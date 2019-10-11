@@ -1,0 +1,10 @@
+language: dart
+dart:
+  - stable
+install:
+  - gem install coveralls-lcov
+before_script:
+  - chmod +x ./tools/travis.sh
+script: ./tools/travis.sh
+after_success:
+  - coveralls-lcov coverage/lcov.info
