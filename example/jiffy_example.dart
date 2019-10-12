@@ -1,3 +1,7 @@
 import 'package:jiffy/jiffy.dart';
 
-main() async {}
+main() async {
+
+  print(Jiffy("Changed", "Jama").minute);
+
+}
