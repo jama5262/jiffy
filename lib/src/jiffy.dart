@@ -23,7 +23,7 @@ class Jiffy {
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
   int get year =>_dateTime.year;
 
-//  Manipulate
+//  MANIPULATE
   String add() {}
 
   String subtract() {}
@@ -36,7 +36,7 @@ class Jiffy {
 
   String utc() {}
 
-//  Display
+//  DISPLAY
   String format() {}
 
   String fromNow() {}
@@ -48,5 +48,24 @@ class Jiffy {
   int valueOf() {}
 
   int unix() {}
+
+//  QUERY
+  bool isBefore(Jiffy jiffy) {}
+
+  bool isAfter(Jiffy jiffy) {}
+
+  bool isSame(Jiffy jiffy) {}
+
+  bool isSameOrBefore(Jiffy jiffy) {}
+
+  bool isSameOrAfter(Jiffy jiffy) {}
+
+  bool _isLeapYear() {}
+
+  bool get isLeapYear => _isLeapYear();
+
+  bool isJiffy(var input) {}
+
+  bool isDateTime(var input) {}
 
 }
