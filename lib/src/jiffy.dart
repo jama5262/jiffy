@@ -36,9 +36,17 @@ class Jiffy {
 
   String utc() {}
 
-
-
+//  Display
   String format() {}
 
+  String fromNow() {}
+
+  String from(Jiffy jiffy) {}
+
+  int diff(Jiffy jiffy, [String unit]) {}
+
+  int valueOf() {}
+
+  int unix() {}
 
 }
