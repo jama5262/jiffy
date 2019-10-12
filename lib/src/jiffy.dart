@@ -5,6 +5,11 @@ class Jiffy {
 
   DateTime get dateTime => _dateTime;
 
+
+  Jiffy([String time = "", String pattern = ""]);
+
+  Jiffy.unit(num timestamp);
+
 //  GET
   int get milliseconds => _dateTime.millisecond;
   int get seconds => _dateTime.second;
@@ -18,9 +23,20 @@ class Jiffy {
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
   int get year =>_dateTime.year;
 
-  Jiffy([String time = "", String pattern = ""]);
+//  Manipulate
+  String add() {}
 
-  Jiffy.unit(num timestamp);
+  String subtract() {}
+
+  void startOf() {}
+
+  void endOf() {}
+
+  String local() {}
+
+  String utc() {}
+
+
 
   String format() {}
 
