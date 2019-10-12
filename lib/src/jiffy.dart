@@ -5,7 +5,6 @@ class Jiffy {
 
   DateTime get dateTime => _dateTime;
 
-
   Jiffy([String time = "", String pattern = ""]);
 
   Jiffy.unit(num timestamp);
@@ -21,51 +20,51 @@ class Jiffy {
   int get week => ((dayOfYear - _dateTime.weekday + 10) / 7).floor();
   int get month => _dateTime.month;
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
-  int get year =>_dateTime.year;
+  int get year => _dateTime.year;
 
 //  MANIPULATE
-  String add() {}
-
-  String subtract() {}
-
-  void startOf() {}
-
-  void endOf() {}
-
-  String local() {}
-
-  String utc() {}
+//  String add() {}
+//
+//  String subtract() {}
+//
+//  void startOf() {}
+//
+//  void endOf() {}
+//
+//  String local() {}
+//
+//  String utc() {}
 
 //  DISPLAY
-  String format() {}
-
-  String fromNow() {}
-
-  String from(Jiffy jiffy) {}
-
-  int diff(Jiffy jiffy, [String unit]) {}
-
-  int valueOf() {}
-
-  int unix() {}
+//  String format() {}
+//
+//  String fromNow() {}
+//
+//  String from(Jiffy jiffy) {}
+//
+//  int diff(Jiffy jiffy, [String unit]) {}
+//
+//  int valueOf() {}
+//
+//  int unix() {}
 
 //  QUERY
-  bool isBefore(Jiffy jiffy) {}
-
-  bool isAfter(Jiffy jiffy) {}
-
-  bool isSame(Jiffy jiffy) {}
-
-  bool isSameOrBefore(Jiffy jiffy) {}
-
-  bool isSameOrAfter(Jiffy jiffy) {}
-
-  bool _isLeapYear() {}
-
-  bool get isLeapYear => _isLeapYear();
-
-  bool isJiffy(var input) {}
-
-  bool isDateTime(var input) {}
+//  bool isBefore(Jiffy jiffy) {}
+//
+//  bool isAfter(Jiffy jiffy) {}
+//
+//  bool isSame(Jiffy jiffy) {}
+//
+//  bool isSameOrBefore(Jiffy jiffy) {}
+//
+//  bool isSameOrAfter(Jiffy jiffy) {}
+//
+//  bool _isLeapYear() {}
+//
+//  bool get isLeapYear => _isLeapYear();
+//
+//  bool isJiffy(var input) {}
+//
+//  bool isDateTime(var input) {}
 
 }
