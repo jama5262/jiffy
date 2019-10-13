@@ -191,8 +191,12 @@ class Jiffy {
             DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
         break;
       case "M":
-        _dateTime = DateTime(_dateTime.year, _dateTime.month,
-            _daysInMonthArray[_dateTime.month], 23, 59, 59, 999);
+        int date = _daysInMonthArray[_dateTime.month];
+        if (Jiffy().isLeapYear(_dateTime.year) && _dateTime.month == 2) {
+          date = 29;
+        }
+        _dateTime =
+            DateTime(_dateTime.year, _dateTime.month, date, 23, 59, 59, 999);
         break;
       case "y":
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
