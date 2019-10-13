@@ -47,33 +47,69 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
-  void add(int input, String units) {
+  DateTime add(int input, String units) {
     units = validateUnits(units);
-    if (units == "ms") _dateTime = _dateTime.add(Duration(milliseconds: input));
-    if (units == "s") _dateTime = _dateTime.add(Duration(seconds: input));
-    if (units == "m") _dateTime = _dateTime.add(Duration(minutes: input));
-    if (units == "h") _dateTime = _dateTime.add(Duration(hours: input));
-    if (units == "d") _dateTime = _dateTime.add(Duration(days: input));
-    if (units == "w") _dateTime = _dateTime.add(Duration(days: input * 7));
-    if (units == "M") _dateTime = _addMonths(_dateTime, input);
-    if (units == "y") _dateTime = _addMonths(_dateTime, input * 12);
-  }
-
-  void subtract(int input, String units) {
-    units = validateUnits(units);
-    if (units == "ms") {
-      _dateTime = _dateTime.subtract(Duration(milliseconds: input));
+    switch (units) {
+      case "ms":
+        _dateTime = _dateTime.add(Duration(milliseconds: input));
+        break;
+      case "s":
+        _dateTime = _dateTime.add(Duration(seconds: input));
+        break;
+      case "m":
+        _dateTime = _dateTime.add(Duration(minutes: input));
+        break;
+      case "h":
+        _dateTime = _dateTime.add(Duration(hours: input));
+        break;
+      case "d":
+        _dateTime = _dateTime.add(Duration(days: input));
+        break;
+      case "w":
+        _dateTime = _dateTime.add(Duration(days: input * 7));
+        break;
+      case "M":
+        _dateTime = _addMonths(_dateTime, input);
+        break;
+      case "y":
+        _dateTime = _addMonths(_dateTime, input * 12);
+        break;
     }
-    if (units == "s") _dateTime = _dateTime.subtract(Duration(seconds: input));
-    if (units == "m") _dateTime = _dateTime.subtract(Duration(minutes: input));
-    if (units == "h") _dateTime = _dateTime.subtract(Duration(hours: input));
-    if (units == "d") _dateTime = _dateTime.subtract(Duration(days: input));
-    if (units == "w") _dateTime = _dateTime.subtract(Duration(days: input * 7));
-    if (units == "M") _dateTime = _addMonths(_dateTime, -input);
-    if (units == "y") _dateTime = _addMonths(_dateTime, -input * 12);
+    return _dateTime;
   }
 
-  void startOf(String units) {
+  DateTime subtract(int input, String units) {
+    units = validateUnits(units);
+    switch (units) {
+      case "ms":
+        _dateTime = _dateTime.subtract(Duration(milliseconds: input));
+        break;
+      case "s":
+        _dateTime = _dateTime.subtract(Duration(seconds: input));
+        break;
+      case "m":
+        _dateTime = _dateTime.subtract(Duration(minutes: input));
+        break;
+      case "h":
+        _dateTime = _dateTime.subtract(Duration(hours: input));
+        break;
+      case "d":
+        _dateTime = _dateTime.subtract(Duration(days: input));
+        break;
+      case "w":
+        _dateTime = _dateTime.subtract(Duration(days: input * 7));
+        break;
+      case "M":
+        _dateTime = _addMonths(_dateTime, -input);
+        break;
+      case "y":
+        _dateTime = _addMonths(_dateTime, -input * 12);
+        break;
+    }
+    return _dateTime;
+  }
+
+  DateTime startOf(String units) {
     units = validateUnits(units);
     switch (units) {
       case "ms":
@@ -114,9 +150,10 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year);
         break;
     }
+    return _dateTime;
   }
 
-  void endOf(String units) {
+  DateTime endOf(String units) {
     units = validateUnits(units);
     switch (units) {
       case "ms":
@@ -161,11 +198,16 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
         break;
     }
+    return _dateTime;
   }
-//
-//  String local() {}
-//
-//  String utc() {}
+
+  DateTime local() {
+    return _dateTime.toLocal();
+  }
+
+  DateTime utc() {
+    return _dateTime.toUtc();
+  }
 
   static const _daysInMonthArray = [
     0,
