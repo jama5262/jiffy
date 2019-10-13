@@ -1,7 +1,5 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-
-  print(Jiffy("Changed", "Jama").minute);
-
+  print(Jiffy("Oct", "yyyy").year);
 }
