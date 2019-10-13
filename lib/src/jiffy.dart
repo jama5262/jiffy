@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:intl/intl.dart';
 import 'package:jiffy/src/exception/exception.dart';
+import 'package:jiffy/src/utils/normalizeUnits.dart';
 
 class Jiffy {
   DateTime _dateTime;
@@ -43,11 +46,66 @@ class Jiffy {
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
   int get year => _dateTime.year;
 
-//  PARSE
-  void parse() {}
-
 //  MANIPULATE
-//  String add() {}
+  DateTime add(int input, String unit) {
+    unit = unit == "M" ? unit : normalizeUnits(unit);
+    if (unit == "0") {
+      throw JiffyException(
+              "Invalid unit passed, please visit to see all available units")
+          .cause;
+//      TODO: ADD GITHUB README URL DOC TO UNITS
+    }
+    if (unit == "ms") _dateTime = _dateTime.add(Duration(milliseconds: input));
+    if (unit == "s") _dateTime = _dateTime.add(Duration(seconds: input));
+    if (unit == "m") _dateTime = _dateTime.add(Duration(minutes: input));
+    if (unit == "h") _dateTime = _dateTime.add(Duration(hours: input));
+    if (unit == "d") _dateTime = _dateTime.add(Duration(days: input));
+    if (unit == "w") _dateTime = _dateTime.add(Duration(days: input * 7));
+    if (unit == "M") _dateTime = _addMonths(_dateTime, input);
+    if (unit == "y") _dateTime = _addMonths(_dateTime, input * 12);
+    return _dateTime;
+  }
+
+  static const _daysInMonthArray = [
+    0,
+    31,
+    28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+  ];
+
+  int _daysInMonth(int year, int month) {
+    var result = _daysInMonthArray[month];
+    if (month == 2 && isLeapYear(year)) result++;
+    return result;
+  }
+
+  DateTime _addMonths(DateTime dt, int value) {
+    var r = value % 12;
+    var q = (value - r) ~/ 12;
+    var newYear = dt.year + q;
+    var newMonth = dt.month + r;
+    if (newMonth > 12) {
+      newYear++;
+      newMonth -= 12;
+    }
+    var newDay = min(dt.day, _daysInMonth(newYear, newMonth));
+    if (dt.isUtc) {
+      return DateTime.utc(newYear, newMonth, newDay, dt.hour, dt.minute,
+          dt.second, dt.millisecond, dt.microsecond);
+    } else {
+      return DateTime(newYear, newMonth, newDay, dt.hour, dt.minute, dt.second,
+          dt.millisecond, dt.microsecond);
+    }
+  }
 
 //  String subtract() {}
 //
@@ -83,7 +141,8 @@ class Jiffy {
 //
 //  bool isSameOrAfter(Jiffy jiffy) {}
 //
-//  bool _isLeapYear() {}
+  bool isLeapYear(int year) =>
+      (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
 //
 //  bool get isLeapYear => _isLeapYear();
 //
