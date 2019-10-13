@@ -9,7 +9,7 @@ class Jiffy {
   Jiffy([String time, String pattern]) {
     if (time != null && pattern == null) {
       throw JiffyException(
-              "JiffyException: When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
+              "When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
           .cause;
     }
     if (time == null && pattern == null) {
