@@ -22,7 +22,7 @@ class Jiffy {
     }
   }
 
-  Jiffy.unit(int timestamp) {
+  Jiffy.unix(int timestamp) {
     int timestampLength = timestamp.toString().length;
     if (timestampLength != 10 && timestampLength != 13) {
       throw JiffyException(
@@ -47,45 +47,125 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
-  DateTime add(int input, String unit) {
-    unit = unit == "M" ? unit : normalizeUnits(unit);
-    if (unit == "0") {
-      throw JiffyException(
-              "Invalid unit passed, please visit to see all available units")
-          .cause;
-//      TODO: ADD GITHUB README URL DOC TO UNITS
-    }
-    if (unit == "ms") _dateTime = _dateTime.add(Duration(milliseconds: input));
-    if (unit == "s") _dateTime = _dateTime.add(Duration(seconds: input));
-    if (unit == "m") _dateTime = _dateTime.add(Duration(minutes: input));
-    if (unit == "h") _dateTime = _dateTime.add(Duration(hours: input));
-    if (unit == "d") _dateTime = _dateTime.add(Duration(days: input));
-    if (unit == "w") _dateTime = _dateTime.add(Duration(days: input * 7));
-    if (unit == "M") _dateTime = _addMonths(_dateTime, input);
-    if (unit == "y") _dateTime = _addMonths(_dateTime, input * 12);
-    return _dateTime;
+  void add(int input, String units) {
+    units = validateUnits(units);
+    if (units == "ms") _dateTime = _dateTime.add(Duration(milliseconds: input));
+    if (units == "s") _dateTime = _dateTime.add(Duration(seconds: input));
+    if (units == "m") _dateTime = _dateTime.add(Duration(minutes: input));
+    if (units == "h") _dateTime = _dateTime.add(Duration(hours: input));
+    if (units == "d") _dateTime = _dateTime.add(Duration(days: input));
+    if (units == "w") _dateTime = _dateTime.add(Duration(days: input * 7));
+    if (units == "M") _dateTime = _addMonths(_dateTime, input);
+    if (units == "y") _dateTime = _addMonths(_dateTime, input * 12);
   }
 
-  DateTime subtract(int input, String unit) {
-    unit = unit == "M" ? unit : normalizeUnits(unit);
-    if (unit == "0") {
-      throw JiffyException(
-              "Invalid unit passed, please visit to see all available units")
-          .cause;
-//      TODO: ADD GITHUB README URL DOC TO UNITS
-    }
-    if (unit == "ms") {
+  void subtract(int input, String units) {
+    units = validateUnits(units);
+    if (units == "ms") {
       _dateTime = _dateTime.subtract(Duration(milliseconds: input));
     }
-    if (unit == "s") _dateTime = _dateTime.subtract(Duration(seconds: input));
-    if (unit == "m") _dateTime = _dateTime.subtract(Duration(minutes: input));
-    if (unit == "h") _dateTime = _dateTime.subtract(Duration(hours: input));
-    if (unit == "d") _dateTime = _dateTime.subtract(Duration(days: input));
-    if (unit == "w") _dateTime = _dateTime.subtract(Duration(days: input * 7));
-    if (unit == "M") _dateTime = _addMonths(_dateTime, -input);
-    if (unit == "y") _dateTime = _addMonths(_dateTime, -input * 12);
-    return _dateTime;
+    if (units == "s") _dateTime = _dateTime.subtract(Duration(seconds: input));
+    if (units == "m") _dateTime = _dateTime.subtract(Duration(minutes: input));
+    if (units == "h") _dateTime = _dateTime.subtract(Duration(hours: input));
+    if (units == "d") _dateTime = _dateTime.subtract(Duration(days: input));
+    if (units == "w") _dateTime = _dateTime.subtract(Duration(days: input * 7));
+    if (units == "M") _dateTime = _addMonths(_dateTime, -input);
+    if (units == "y") _dateTime = _addMonths(_dateTime, -input * 12);
   }
+
+  void startOf(String units) {
+    units = validateUnits(units);
+    switch (units) {
+      case "ms":
+        _dateTime = DateTime(
+            _dateTime.year,
+            _dateTime.month,
+            _dateTime.day,
+            _dateTime.hour,
+            _dateTime.minute,
+            _dateTime.second,
+            _dateTime.millisecond);
+        break;
+      case "s":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
+            _dateTime.hour, _dateTime.minute, _dateTime.second);
+        break;
+      case "m":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
+            _dateTime.hour, _dateTime.minute);
+        break;
+      case "h":
+        _dateTime = DateTime(
+            _dateTime.year, _dateTime.month, _dateTime.day, _dateTime.hour);
+        break;
+      case "d":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day);
+        break;
+      case "w":
+        int weekDay = _dateTime.weekday;
+        if (weekDay == DateTime.daysPerWeek) weekDay -= DateTime.daysPerWeek;
+        var newDate = _dateTime.subtract(Duration(days: weekDay));
+        _dateTime = DateTime(newDate.year, newDate.month, newDate.day);
+        break;
+      case "M":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, 1);
+        break;
+      case "y":
+        _dateTime = DateTime(_dateTime.year);
+        break;
+    }
+  }
+
+  void endOf(String units) {
+    units = validateUnits(units);
+    switch (units) {
+      case "ms":
+        _dateTime = DateTime(
+            _dateTime.year,
+            _dateTime.month,
+            _dateTime.day,
+            _dateTime.hour,
+            _dateTime.minute,
+            _dateTime.second,
+            _dateTime.millisecond);
+        break;
+      case "s":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
+            _dateTime.hour, _dateTime.minute, _dateTime.second, 999);
+        break;
+      case "m":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
+            _dateTime.hour, _dateTime.minute, 59, 999);
+        break;
+      case "h":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
+            _dateTime.hour, 59, 59, 999);
+        break;
+      case "d":
+        _dateTime = DateTime(
+            _dateTime.year, _dateTime.month, _dateTime.day, 23, 59, 59, 999);
+        break;
+      case "w":
+        int weekDay = _dateTime.weekday;
+        if (weekDay == DateTime.daysPerWeek) weekDay -= DateTime.daysPerWeek;
+        var newDate =
+            _dateTime.add(Duration(days: DateTime.daysPerWeek - weekDay - 1));
+        _dateTime =
+            DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
+        break;
+      case "M":
+        _dateTime = DateTime(_dateTime.year, _dateTime.month,
+            _daysInMonthArray[_dateTime.month], 23, 59, 59, 999);
+        break;
+      case "y":
+        _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
+        break;
+    }
+  }
+//
+//  String local() {}
+//
+//  String utc() {}
 
   static const _daysInMonthArray = [
     0,
@@ -128,14 +208,6 @@ class Jiffy {
     }
   }
 
-//  void startOf() {}
-//
-//  void endOf() {}
-//
-//  String local() {}
-//
-//  String utc() {}
-
 //  DISPLAY
 //  String format() {}
 //
@@ -143,7 +215,7 @@ class Jiffy {
 //
 //  String from(Jiffy jiffy) {}
 //
-//  int diff(Jiffy jiffy, [String unit]) {}
+//  int diff(Jiffy jiffy, [String units]) {}
 //
 //  int valueOf() {}
 //

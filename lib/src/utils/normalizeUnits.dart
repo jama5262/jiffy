@@ -1,3 +1,5 @@
+import 'package:jiffy/src/exception/exception.dart';
+
 String normalizeUnits(String unit) {
   String lowerCaseUnit = unit.toLowerCase();
   if (lowerCaseUnit == "millisecond" ||
@@ -33,4 +35,15 @@ String normalizeUnits(String unit) {
   } else {
     return "0";
   }
+}
+
+String validateUnits(String unit) {
+  unit = unit == "M" ? unit : normalizeUnits(unit);
+  if (unit == "0") {
+    throw JiffyException(
+            "Invalid unit passed, please visit to see all available units")
+        .cause;
+//      TODO: ADD GITHUB README URL DOC TO UNITS
+  }
+  return unit;
 }
