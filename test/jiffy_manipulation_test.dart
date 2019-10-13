@@ -299,23 +299,4 @@ void main() {
       }
     });
   });
-
-  group('Test get Jiffy utc and local datetime', () {
-    test("Jiffy utc datetime", () {
-      expect(
-          Jiffy("2020-02-13 13:12:12", "yyyy-MM-dd hh:mm:ss").utc().toString(),
-          "2020-02-13 10:12:12.000Z");
-      expect(
-          Jiffy.unix(1570963450).utc().toString(), "2019-10-13 10:44:10.000Z");
-    });
-    test("Jiffy local datetime", () {
-      expect(
-          Jiffy("2020-02-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .local()
-              .toString(),
-          "2020-02-13 13:12:12.000");
-      expect(
-          Jiffy.unix(1570963450).local().toString(), "2019-10-13 13:44:10.000");
-    });
-  });
 }
