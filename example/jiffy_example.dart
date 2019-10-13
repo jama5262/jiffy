@@ -1,6 +1,6 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-  var jiffy = Jiffy().add(3, "m");
+  var jiffy = Jiffy().subtract(1, "y");
   print(jiffy);
 }

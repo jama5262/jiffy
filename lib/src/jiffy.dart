@@ -66,6 +66,27 @@ class Jiffy {
     return _dateTime;
   }
 
+  DateTime subtract(int input, String unit) {
+    unit = unit == "M" ? unit : normalizeUnits(unit);
+    if (unit == "0") {
+      throw JiffyException(
+              "Invalid unit passed, please visit to see all available units")
+          .cause;
+//      TODO: ADD GITHUB README URL DOC TO UNITS
+    }
+    if (unit == "ms") {
+      _dateTime = _dateTime.subtract(Duration(milliseconds: input));
+    }
+    if (unit == "s") _dateTime = _dateTime.subtract(Duration(seconds: input));
+    if (unit == "m") _dateTime = _dateTime.subtract(Duration(minutes: input));
+    if (unit == "h") _dateTime = _dateTime.subtract(Duration(hours: input));
+    if (unit == "d") _dateTime = _dateTime.subtract(Duration(days: input));
+    if (unit == "w") _dateTime = _dateTime.subtract(Duration(days: input * 7));
+    if (unit == "M") _dateTime = _addMonths(_dateTime, -input);
+    if (unit == "y") _dateTime = _addMonths(_dateTime, -input * 12);
+    return _dateTime;
+  }
+
   static const _daysInMonthArray = [
     0,
     31,
@@ -107,8 +128,6 @@ class Jiffy {
     }
   }
 
-//  String subtract() {}
-//
 //  void startOf() {}
 //
 //  void endOf() {}
