@@ -2,7 +2,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Test get datetime instance', () {
+  group('Test get Jiffy datetime instance', () {
     test("Pass without time and pattern", () {
       expect(Jiffy().year, DateTime.now().year);
       expect(Jiffy().month, DateTime.now().month);
@@ -39,6 +39,29 @@ void main() {
       } catch (e) {
         expect(e.toString(),
             "JiffyException: When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')");
+      }
+    });
+  });
+
+  group('Test get Jiffy.unix datetime instance', () {
+    test("Pass timestamp seconds", () {
+      expect(Jiffy.unit(1570963450).year,
+          DateTime.fromMillisecondsSinceEpoch(1570963450000).year);
+      expect(Jiffy.unit(1570963450).month,
+          DateTime.fromMillisecondsSinceEpoch(1570963450000).month);
+    });
+    test("Pass time milliseconds", () {
+      expect(Jiffy.unit(1570963450000).year,
+          DateTime.fromMillisecondsSinceEpoch(1570963450000).year);
+      expect(Jiffy.unit(1570963450000).month,
+          DateTime.fromMillisecondsSinceEpoch(1570963450000).month);
+    });
+    test("Pass timestamp not in seconds or milliseconds", () {
+      try {
+        Jiffy.unit(157096345);
+      } catch (e) {
+        expect(e.toString(),
+            "JiffyException: The timestamp passed must be in seconds or millisecods e.g. 1570963450 or 1570963450123");
       }
     });
   });

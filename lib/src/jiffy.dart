@@ -2,23 +2,33 @@ import 'package:intl/intl.dart';
 import 'package:jiffy/src/exception/exception.dart';
 
 class Jiffy {
-  DateTime _dateTime = DateTime.now();
+  DateTime _dateTime;
 
   DateTime get dateTime => _dateTime;
 
   Jiffy([String time, String pattern]) {
+    if (time != null && pattern == null) {
+      throw JiffyException(
+              "When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
+          .cause;
+    }
     if (time == null && pattern == null) {
       _dateTime = DateTime.now();
-    } else if (time != null && pattern == null) {
-      throw JiffyException(
-              "JiffyException: When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
-          .cause;
     } else {
       _dateTime = DateFormat(pattern).parse(time);
     }
   }
 
-  Jiffy.unit(num timestamp);
+  Jiffy.unit(int timestamp) {
+    int timestampLength = timestamp.toString().length;
+    if (timestampLength != 10 && timestampLength != 13) {
+      throw JiffyException(
+              "The timestamp passed must be in seconds or millisecods e.g. 1570963450 or 1570963450123")
+          .cause;
+    }
+    if (timestampLength == 10) timestamp *= 1000;
+    _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
+  }
 
 //  GET
   int get milliseconds => _dateTime.millisecond;

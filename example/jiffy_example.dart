@@ -1,5 +1,5 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-  print(Jiffy("Oct", "yyyy").year);
+  print(Jiffy.unit(1570963450).year);
 }
