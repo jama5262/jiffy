@@ -1,7 +1,8 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:jiffy/src/exception/exception.dart';
 
 main() async {
 
-  print(Jiffy("Changed", "Jama").minute);
+  print(Jiffy("", "yyyy").year);
 
 }

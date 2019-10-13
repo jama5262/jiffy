@@ -1,11 +1,22 @@
 import 'package:intl/intl.dart';
+import 'package:jiffy/src/exception/exception.dart';
 
 class Jiffy {
   DateTime _dateTime = DateTime.now();
 
   DateTime get dateTime => _dateTime;
 
-  Jiffy([String time = "", String pattern = ""]);
+  Jiffy([String time, String pattern]) {
+    if (time == null && pattern == null) {
+      _dateTime = DateTime.now();
+    } else if (time != null && pattern == null) {
+      throw JiffyException(
+              "JiffyException: When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
+          .cause;
+    } else {
+      _dateTime = DateFormat(pattern).parse(time);
+    }
+  }
 
   Jiffy.unit(num timestamp);
 
@@ -21,6 +32,9 @@ class Jiffy {
   int get month => _dateTime.month;
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
   int get year => _dateTime.year;
+
+//  PARSE
+  void parse() {}
 
 //  MANIPULATE
 //  String add() {}
