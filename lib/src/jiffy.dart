@@ -48,7 +48,7 @@ class Jiffy {
 
 //  MANIPULATE
 //  String add() {}
-//
+
 //  String subtract() {}
 //
 //  void startOf() {}
