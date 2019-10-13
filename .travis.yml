@@ -1,6 +1,9 @@
 language: dart
 dart:
   - stable
+os:
+  - linux
+  - osx
 install:
   - gem install coveralls-lcov
 before_script:
