@@ -206,11 +206,11 @@ class Jiffy {
   }
 
   DateTime local() {
-    return _dateTime.toLocal();
+    return _dateTime = _dateTime.toLocal();
   }
 
   DateTime utc() {
-    return _dateTime.toUtc();
+    return _dateTime = _dateTime.toUtc();
   }
 
   static const _daysInMonthArray = [
@@ -257,7 +257,7 @@ class Jiffy {
 //  DISPLAY
   String format([String pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
-    return _dateTime.toString();
+    return DateFormat(pattern).format(_dateTime);
   }
 //
 //  String fromNow() {}
