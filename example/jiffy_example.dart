@@ -1,16 +1,16 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-  print(Jiffy().format());
-  var jiffy = Jiffy()..utc();
-  print(jiffy.dateTime);
-  print(jiffy.format("yyyy, hh:mm a"));
-  print(Jiffy().utc());
-//  print(Jiffy("Oct 24", "MMM dd").format("yyyy, hh:mm a"));
+  Jiffy jiffy2 = Jiffy();
 
-  Jiffy jiffy2 = Jiffy()
-    ..add(1, "M")
-    ..utc();
-
-  print(jiffy2.format("MMM, hh:mm a dd yyyy"));
+  print(jiffy2.jm);
+  print(jiffy2.jms);
+  print(jiffy2.yMd);
+  print(jiffy2.yMMMMd);
+  print(jiffy2.yMMMd);
+  print(jiffy2.yMMMMdjm);
+  print(jiffy2.yMMMdjm);
+  print(jiffy2.yMMMMEEEEdjm);
+  print(jiffy2.yMMMEd);
+  print(jiffy2.yMMMEdjm);
 }

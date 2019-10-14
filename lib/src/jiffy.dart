@@ -259,6 +259,42 @@ class Jiffy {
     if (pattern == null) return _dateTime.toIso8601String();
     return DateFormat(pattern).format(_dateTime);
   }
+
+  String get E => DateFormat.E().format(_dateTime);
+  String get EEEE => DateFormat.EEEE().format(_dateTime);
+  String get LLL => DateFormat.LLL().format(_dateTime);
+  String get LLLL => DateFormat.LLLL().format(_dateTime);
+  String get Md => DateFormat.Md().format(_dateTime);
+  String get MEd => DateFormat.MEd().format(_dateTime);
+  String get MMM => DateFormat.MMM().format(_dateTime);
+  String get MMMd => DateFormat.MMMd().format(_dateTime);
+  String get MMMEd => DateFormat.MMMEd().format(_dateTime);
+  String get MMMM => DateFormat.MMMM().format(_dateTime);
+  String get MMMMd => DateFormat.MMMMd().format(_dateTime);
+  String get MMMMEEEEd => DateFormat.MMMMEEEEd().format(_dateTime);
+  String get QQQ => DateFormat.QQQ().format(_dateTime);
+  String get QQQQ => DateFormat.QQQQ().format(_dateTime);
+  String get yM => DateFormat.yM().format(_dateTime);
+  String get yMd => DateFormat.yMd().format(_dateTime);
+  String get yMEd => DateFormat.yMEd().format(_dateTime);
+  String get yMMM => DateFormat.yMMM().format(_dateTime);
+  String get yMMMd => DateFormat.yMMMd().format(_dateTime);
+  String get yMMMdjm => DateFormat.yMMMd().add_jm().format(_dateTime);
+  String get yMMMEd => DateFormat.yMMMEd().format(_dateTime);
+  String get yMMMEdjm => DateFormat.yMMMEd().add_jm().format(_dateTime);
+  String get yMMMM => DateFormat.yMMMM().format(_dateTime);
+  String get yMMMMd => DateFormat.yMMMMd().format(_dateTime);
+  String get yMMMMdjm => DateFormat.yMMMMd().add_jm().format(_dateTime);
+  String get yMMMMEEEEd => DateFormat.yMMMMEEEEd().format(_dateTime);
+  String get yMMMMEEEEdjm => DateFormat.yMMMMEEEEd().add_jm().format(_dateTime);
+  String get yQQQ => DateFormat.yQQQ().format(_dateTime);
+  String get yQQQQ => DateFormat.yQQQQ().format(_dateTime);
+  String get Hm => DateFormat.Hm().format(_dateTime);
+  String get Hms => DateFormat.Hms().format(_dateTime);
+  String get j => DateFormat.j().format(_dateTime);
+  String get jm => DateFormat.jm().format(_dateTime);
+  String get jms => DateFormat.jms().format(_dateTime);
+
 //
 //  String fromNow() {}
 //
