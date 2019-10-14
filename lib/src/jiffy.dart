@@ -302,9 +302,13 @@ class Jiffy {
 //
 //  int diff(Jiffy jiffy, [String units]) {}
 //
-//  int valueOf() {}
-//
-//  int unix() {}
+  int valueOf() {
+    return _dateTime.millisecondsSinceEpoch;
+  }
+
+  int unix() {
+    return (_dateTime.millisecondsSinceEpoch / 1000).round();
+  }
 
 //  QUERY
 //  bool isBefore(Jiffy jiffy) {}

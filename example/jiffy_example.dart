@@ -12,5 +12,7 @@ main() async {
   print(jiffy2.yMMMdjm);
   print(jiffy2.yMMMMEEEEdjm);
   print(jiffy2.yMMMEd);
-  print(jiffy2.yMMMEdjm);
+  print(jiffy2.yMMMEd);
+  print(jiffy2.valueOf());
+  print(jiffy2.unix());
 }
