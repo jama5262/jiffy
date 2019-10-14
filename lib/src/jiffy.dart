@@ -255,7 +255,10 @@ class Jiffy {
   }
 
 //  DISPLAY
-//  String format() {}
+  String format([String pattern]) {
+    if (pattern == null) return _dateTime.toIso8601String();
+    return _dateTime.toString();
+  }
 //
 //  String fromNow() {}
 //
