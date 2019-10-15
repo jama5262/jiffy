@@ -300,8 +300,65 @@ class Jiffy {
 //
 //  String from(Jiffy jiffy) {}
 //
-//  int diff(Jiffy jiffy, [String units]) {}
-//
+  num diff(Jiffy jiffy, [String units = "ms", bool asFloat = false]) {
+    units = validateUnits(units);
+    num diff;
+    switch (units) {
+      case "ms":
+        diff = _dateTime.difference(jiffy.dateTime).inMilliseconds;
+        break;
+      case "s":
+        diff = _dateTime.difference(jiffy.dateTime).inSeconds;
+        break;
+      case "m":
+        diff = _dateTime.difference(jiffy.dateTime).inMinutes;
+        break;
+      case "h":
+        diff = _dateTime.difference(jiffy.dateTime).inHours;
+        break;
+      case "d":
+        diff = _dateTime.difference(jiffy.dateTime).inDays;
+        break;
+      case "w":
+        diff = _dateTime.difference(jiffy.dateTime).inDays / 7;
+        break;
+      case "M":
+        diff = _monthDiff(dateTime, jiffy);
+        break;
+      case "y":
+        diff = _monthDiff(dateTime, jiffy) / 12;
+        break;
+    }
+    if (!asFloat) return _absFloor(diff);
+    return diff;
+  }
+
+  num _monthDiff(DateTime a, Jiffy b) {
+    int wholeMonthDiff = ((b.year - a.year) * 12) + (b.month - a.month);
+    DateTime anchor = _addMonths(a, wholeMonthDiff);
+    DateTime anchor2;
+    var adjust;
+
+    if (b.valueOf() - anchor.millisecondsSinceEpoch < 0) {
+      anchor2 = _addMonths(a, wholeMonthDiff - 1);
+      adjust = (b.valueOf() - anchor.millisecondsSinceEpoch) /
+          (anchor.millisecondsSinceEpoch - anchor2.millisecondsSinceEpoch);
+    } else {
+      anchor2 = _addMonths(a, wholeMonthDiff + 1);
+      adjust = (b.valueOf() - anchor.millisecondsSinceEpoch) /
+          (anchor2.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch);
+    }
+    return -(wholeMonthDiff + adjust) ?? 0;
+  }
+
+  int _absFloor(num number) {
+    if (number < 0) {
+      return number.ceil() ?? 0;
+    } else {
+      return number.floor();
+    }
+  }
+
   int valueOf() {
     return _dateTime.millisecondsSinceEpoch;
   }
