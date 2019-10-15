@@ -1,12 +1,12 @@
 import 'dart:math';
 
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/src/exception/exception.dart';
 import 'package:jiffy/src/utils/normalizeUnits.dart';
 
 class Jiffy {
   DateTime _dateTime;
-
   DateTime get dateTime => _dateTime;
 
   Jiffy([String time, String pattern]) {
@@ -31,6 +31,14 @@ class Jiffy {
     }
     if (timestampLength == 10) timestamp *= 1000;
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
+  }
+
+  static String _defaultLocale = "en";
+  static Future<String> locale([String locale]) async {
+    await initializeDateFormatting();
+    Intl.defaultLocale = locale ?? "en";
+    _defaultLocale = locale ?? "en";
+    return Future.value(_defaultLocale);
   }
 
 //  GET
