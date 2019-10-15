@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/src/exception/exception.dart';
-import 'package:jiffy/src/utils/normalizeUnits.dart';
+import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
+import 'package:jiffy/src/utils/normalize_units.dart';
 
 class Jiffy {
   DateTime _dateTime;
@@ -303,11 +304,14 @@ class Jiffy {
   String get jm => DateFormat.jm().format(_dateTime);
   String get jms => DateFormat.jms().format(_dateTime);
 
-//
-//  String fromNow() {}
-//
-//  String from(Jiffy jiffy) {}
-//
+  String fromNow() {
+    return relative.format(_defaultLocale, _dateTime);
+  }
+
+  String from(Jiffy jiffy) {
+    return relative.format(_defaultLocale, _dateTime, jiffy.dateTime);
+  }
+
   num diff(Jiffy jiffy, [String units = "ms", bool asFloat = false]) {
     units = validateUnits(units);
     num diff;
