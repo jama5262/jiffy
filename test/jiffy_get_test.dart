@@ -21,6 +21,15 @@ void main() {
     test("Get day", () {
       expect(Jiffy().day, DateTime.now().weekday);
     });
+    test("Get day of year", () {
+      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").dayOfYear, 289);
+    });
+    test("Get week", () {
+      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").week, 42);
+    });
+    test("Get week", () {
+      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").quarter, 4);
+    });
     test("Get month", () {
       expect(Jiffy().month, DateTime.now().month);
     });

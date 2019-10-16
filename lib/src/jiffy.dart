@@ -19,7 +19,8 @@ class Jiffy {
     if (time == null && pattern == null) {
       _dateTime = DateTime.now();
     } else {
-      _dateTime = DateFormat(pattern).parse(time);
+      _dateTime = DateFormat(pattern)
+          .parse(time.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM'));
     }
   }
 

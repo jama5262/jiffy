@@ -18,7 +18,7 @@ class ArLyLocale extends LookUpMessages {
     } else if (minutes == 2) {
       result = 'دقيقتين';
     } else if (minutes > 2 && minutes < 11) {
-      result = ' $minutes دقائق ';
+      result = '$minutes دقائق ';
     } else if (minutes > 10) {
       result = '$minutes دقيقة ';
     } else {
@@ -98,9 +98,9 @@ class ArLyLocale extends LookUpMessages {
   String wordSeparator() => ' ';
 }
 
-class ArSaMaTnLocale extends LookUpMessages {
+class ArSaMaDzKwTnLocale extends LookUpMessages {
   bool replaceNum;
-  ArSaMaTnLocale(this.replaceNum);
+  ArSaMaDzKwTnLocale(this.replaceNum);
 
   String prefixAgo() => 'منذ';
   String prefixFromNow() => 'في';
@@ -142,24 +142,5 @@ class ArSaMaTnLocale extends LookUpMessages {
         : '$years سنوات ';
   }
 
-  String wordSeparator() => ' ';
-}
-
-class ArDzKwLocale extends LookUpMessages {
-  String prefixAgo() => 'منذ';
-  String prefixFromNow() => 'في';
-  String suffixAgo() => '';
-  String suffixFromNow() => '';
-  String lessThanOneMinute(int seconds) => 'ثوان';
-  String aboutAMinute(int minutes) => 'دقيقة';
-  String minutes(int minutes) => '$minutes دقائق ';
-  String aboutAnHour(int minutes) => 'ساعة';
-  String hours(int hours) => '$hours ساعات ';
-  String aDay(int hours) => 'يوم';
-  String days(int days) => '$days أيام ';
-  String aboutAMonth(int days) => 'شهر';
-  String months(int months) => '$months أشهر ';
-  String aboutAYear(int year) => 'سنة';
-  String years(int years) => '$years سنوات ';
   String wordSeparator() => ' ';
 }
