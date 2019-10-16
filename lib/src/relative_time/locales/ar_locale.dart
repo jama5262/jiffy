@@ -1,85 +1,165 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
+import 'package:jiffy/src/utils/replace_to_locale_num.dart';
 
-class ArLocale extends LookUpMessages {
-  String prefixAgo() => '';
-  String prefixFromNow() => '';
+class ArLyLocale extends LookUpMessages {
+  bool replaceNum;
+  ArLyLocale(this.replaceNum);
+
+  String prefixAgo() => 'منذ';
+  String prefixFromNow() => 'بعد';
   String suffixAgo() => '';
-  String suffixFromNow() => 'من الآن';
-  String lessThanOneMinute(int seconds) => 'قبل ثواني';
-  String aboutAMinute(int minutes) => 'قبل دقيقة';
+  String suffixFromNow() => '';
+  String lessThanOneMinute(int seconds) => 'ثانية واحدة';
+  String aboutAMinute(int minutes) => 'دقيقة واحدة';
   String minutes(int minutes) {
+    String result;
     if (minutes == 1) {
-      return 'منذ دقيقة';
+      result = 'دقيقة واحدة';
     } else if (minutes == 2) {
-      return 'منذ دقيقتين';
+      result = 'دقيقتين';
     } else if (minutes > 2 && minutes < 11) {
-      return ' منذ $minutes دقائق ';
+      result = ' $minutes دقائق ';
     } else if (minutes > 10) {
-      return ' منذ $minutes دقيقة ';
+      result = '$minutes دقيقة ';
+    } else {
+      result = '$minutes دقائق ';
     }
-
-    return ' منذ $minutes دقائق ';
+    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
   }
 
-  String aboutAnHour(int minutes) => 'قبل حوالي الساعة';
+  String aboutAnHour(int minutes) => 'ساعة واحدة';
   String hours(int hours) {
+    String result;
     if (hours == 1) {
-      return 'منذ ساعة';
+      result = 'ساعة واحدة';
     } else if (hours == 2) {
-      return 'منذ ساعتين';
+      result = ' ساعتين';
     } else if (hours > 2 && hours < 11) {
-      return ' منذ $hours ساعات ';
+      result = '$hours ساعات ';
     } else if (hours > 10) {
-      return ' منذ $hours ساعة ';
+      result = '$hours ساعة ';
+    } else {
+      result = '$hours ساعات ';
     }
-
-    return ' منذ $hours ساعات ';
+    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
   }
 
-  String aDay(int hours) => 'قبل يوم';
+  String aDay(int hours) => 'يوم واحد';
   String days(int days) {
+    String result;
     if (days == 1) {
-      return 'منذ يوم';
+      result = ' يوم واحد';
     } else if (days == 2) {
-      return 'منذ يومين';
+      result = ' يومين';
     } else if (days > 2 && days < 11) {
-      return ' منذ $days ايام ';
+      result = '$days ايام ';
     } else if (days > 10) {
-      return ' منذ $days يوم ';
+      result = '$days يوم ';
+    } else {
+      result = '$days ايام ';
     }
-    return ' منذ $days ايام ';
+    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
   }
 
-  String aboutAMonth(int days) => 'قبل حوالي شهر';
+  String aboutAMonth(int days) => 'شهر واحد';
   String months(int months) {
+    String result;
     if (months == 1) {
-      return 'منذ شهر';
+      result = 'شهر واحد';
     } else if (months == 2) {
-      return 'منذ شهرين';
+      result = 'شهرين';
     } else if (months > 2 && months < 11) {
-      return ' منذ $months اشهر ';
+      result = '$months اشهر ';
     } else if (months > 10) {
-      return ' منذ $months شهر ';
+      result = '$months شهر ';
+    } else {
+      result = '$months شهور ';
     }
-    return ' منذ $months شهور ';
+    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
   }
 
-  String aboutAYear(int year) => 'قبل سنة';
+  String aboutAYear(int year) => 'عام واحد';
   String years(int years) {
+    String result;
     if (years == 1) {
-      return 'منذ سنة';
+      result = 'عام واحد';
     } else if (years == 2) {
-      return 'منذ سنتين';
+      result = 'عامين';
     } else if (years > 2 && years < 11) {
-      return ' منذ $years سنوات ';
+      result = '$years أعوام ';
     } else if (years > 10) {
-      return ' منذ $years سنة ';
+      result = '$years عامًا ';
+    } else {
+      result = '$years أعوام ';
     }
-
-    return ' منذ $years سنوات ';
+    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
   }
 
   String wordSeparator() => ' ';
 }
 
-//class ArDzKwLocale extends LookUpMessages {}
+class ArSaMaTnLocale extends LookUpMessages {
+  bool replaceNum;
+  ArSaMaTnLocale(this.replaceNum);
+
+  String prefixAgo() => 'منذ';
+  String prefixFromNow() => 'في';
+  String suffixAgo() => '';
+  String suffixFromNow() => '';
+  String lessThanOneMinute(int seconds) => 'ثوان';
+  String aboutAMinute(int minutes) => 'دقيقة';
+  String minutes(int minutes) {
+    return this.replaceNum
+        ? replaceToLocaleNum('$minutes دقائق ', "ar")
+        : '$minutes دقائق ';
+  }
+
+  String aboutAnHour(int minutes) => 'ساعة';
+  String hours(int hours) {
+    return this.replaceNum
+        ? replaceToLocaleNum('$hours ساعات ', "ar")
+        : '$hours ساعات ';
+  }
+
+  String aDay(int hours) => 'يوم';
+  String days(int days) {
+    return this.replaceNum
+        ? replaceToLocaleNum('$days أيام ', "ar")
+        : '$days أيام ';
+  }
+
+  String aboutAMonth(int days) => 'شهر';
+  String months(int months) {
+    return this.replaceNum
+        ? replaceToLocaleNum('$months أشهر ', "ar")
+        : '$months أشهر ';
+  }
+
+  String aboutAYear(int year) => 'سنة';
+  String years(int years) {
+    return this.replaceNum
+        ? replaceToLocaleNum('$years سنوات ', "ar")
+        : '$years سنوات ';
+  }
+
+  String wordSeparator() => ' ';
+}
+
+class ArDzKwLocale extends LookUpMessages {
+  String prefixAgo() => 'منذ';
+  String prefixFromNow() => 'في';
+  String suffixAgo() => '';
+  String suffixFromNow() => '';
+  String lessThanOneMinute(int seconds) => 'ثوان';
+  String aboutAMinute(int minutes) => 'دقيقة';
+  String minutes(int minutes) => '$minutes دقائق ';
+  String aboutAnHour(int minutes) => 'ساعة';
+  String hours(int hours) => '$hours ساعات ';
+  String aDay(int hours) => 'يوم';
+  String days(int days) => '$days أيام ';
+  String aboutAMonth(int days) => 'شهر';
+  String months(int months) => '$months أشهر ';
+  String aboutAYear(int year) => 'سنة';
+  String years(int years) => '$years سنوات ';
+  String wordSeparator() => ' ';
+}

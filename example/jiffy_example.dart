@@ -1,11 +1,14 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-  var locale = await Jiffy.locale("ardz");
+  var locale = await Jiffy.locale("pt");
   print(locale);
   var jiffy1 = Jiffy().fromNow();
+  var jiffy14 = Jiffy()..add(1, "s");
   var jiffy2 = Jiffy()..subtract(1, "m");
+  var jiffy16 = Jiffy()..subtract(2, "m");
   var jiffy3 = Jiffy()..subtract(10, "m");
+  var jiffy15 = Jiffy()..subtract(40, "m");
   var jiffy4 = Jiffy()..subtract(1, "h");
   var jiffy5 = Jiffy()..subtract(10, "h");
   var jiffy6 = Jiffy()..subtract(1, "d");
@@ -19,8 +22,11 @@ main() async {
 
   print(Jiffy().yMMMMEEEEdjm);
 
-  print(jiffy1 + " - now");
+  print(jiffy1);
+  print(jiffy14.fromNow() + " - in a seconds");
   print(jiffy2.fromNow() + " - a minute ago");
+  print(jiffy15.fromNow() + " - 2 minute ago");
+  print(jiffy16.fromNow() + " - 40 minute ago");
   print(jiffy3.fromNow() + " - 10 minute ago");
   print(jiffy4.fromNow() + " - a hour ago");
   print(jiffy5.fromNow() + " - 10 hours ago");
