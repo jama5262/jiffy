@@ -3,34 +3,34 @@ import 'package:test/test.dart';
 
 void main() {
   group('Test for all relative date locales', () {
-//    var jiffy1 = Jiffy();
-//    var jiffy2 = Jiffy()..add(1, "s");
-//    var jiffy3 = Jiffy()..subtract(1, "m");
-//    var jiffy5 = Jiffy()..subtract(10, "m");
-//    var jiffy6 = Jiffy()..subtract(1, "h");
-//    var jiffy7 = Jiffy()..subtract(10, "h");
-//    var jiffy8 = Jiffy()..subtract(1, "d");
-//    var jiffy9 = Jiffy()..subtract(10, "d");
-//    var jiffy10 = Jiffy()..subtract(1, "M");
-//    var jiffy11 = Jiffy()..subtract(10, "M");
-//    var jiffy12 = Jiffy()..subtract(1, "y");
-//    var jiffy13 = Jiffy()..subtract(10, "y");
-//
-//    test("Test ar locale", () async {
-//      await Jiffy.locale("ar");
-//      expect(jiffy1.fromNow(), "منذ ثانية واحدة");
-//      expect(jiffy2.fromNow(), "بعد ثانية واحدة");
-//      expect(jiffy3.fromNow(), "منذ دقيقة واحدة");
-//      expect(jiffy5.fromNow(), "منذ ۱۰ دقائق ");
-//      expect(jiffy6.fromNow(), "منذ ساعة واحدة");
-//      expect(jiffy7.fromNow(), "منذ ۱۰ ساعات ");
-//      expect(jiffy8.fromNow(), "منذ يوم واحد");
-//      expect(jiffy9.fromNow(), "منذ ۱۰ ايام ");
-//      expect(jiffy10.fromNow(), "منذ شهر واحد");
-//      expect(jiffy11.fromNow(), "منذ ۱۰ اشهر ");
-//      expect(jiffy12.fromNow(), "منذ عام واحد");
-//      expect(jiffy13.fromNow(), "منذ ۱۰ أعوام ");
-//    });
+    var jiffy1 = Jiffy();
+    var jiffy2 = Jiffy()..add(1, "s");
+    var jiffy3 = Jiffy()..subtract(1, "m");
+    var jiffy5 = Jiffy()..subtract(10, "m");
+    var jiffy6 = Jiffy()..subtract(1, "h");
+    var jiffy7 = Jiffy()..subtract(10, "h");
+    var jiffy8 = Jiffy()..subtract(1, "d");
+    var jiffy9 = Jiffy()..subtract(10, "d");
+    var jiffy10 = Jiffy()..subtract(1, "M");
+    var jiffy11 = Jiffy()..subtract(10, "M");
+    var jiffy12 = Jiffy()..subtract(1, "y");
+    var jiffy13 = Jiffy()..subtract(10, "y");
+
+    test("Test ar locale", () async {
+      await Jiffy.locale("ar");
+      expect(jiffy1.fromNow(), "منذ ثانية واحدة");
+      expect(jiffy2.fromNow(), "بعد ثانية واحدة");
+      expect(jiffy3.fromNow(), "منذ دقيقة واحدة");
+      expect(jiffy5.fromNow(), "منذ ۱۰ دقائق ");
+      expect(jiffy6.fromNow(), "منذ ساعة واحدة");
+      expect(jiffy7.fromNow(), "منذ ۱۰ ساعات ");
+      expect(jiffy8.fromNow(), "منذ يوم واحد");
+      expect(jiffy9.fromNow(), "منذ ۱۰ ايام ");
+      expect(jiffy10.fromNow(), "منذ شهر واحد");
+      expect(jiffy11.fromNow(), "منذ ۱۰ اشهر ");
+      expect(jiffy12.fromNow(), "منذ عام واحد");
+      expect(jiffy13.fromNow(), "منذ ۱۰ أعوام ");
+    });
 //    test("Test ar-dz/kw/ma/tn with no arabic numbers locale", () async {
 //      await Jiffy.locale("ar-dz");
 //      expect(jiffy1.fromNow(), "منذ ثوان");
