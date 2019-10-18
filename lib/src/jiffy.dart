@@ -381,8 +381,10 @@ class Jiffy {
   }
 
 //  QUERY
-//  bool isBefore(Jiffy jiffy) {}
-//
+//  bool isBefore(Jiffy jiffy, String units) {
+//    units = validateUnits(units);
+//  }
+
 //  bool isAfter(Jiffy jiffy) {}
 //
 //  bool isSame(Jiffy jiffy) {}
@@ -393,11 +395,10 @@ class Jiffy {
 //
   bool _isLeapYear(int year) =>
       (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
-//
-  bool get isLeapYear => _isLeapYear(_dateTime.year);
-//
-//  bool isJiffy(var input) {}
-//
-//  bool isDateTime(var input) {}
 
+  bool get isLeapYear => _isLeapYear(_dateTime.year);
+
+  static bool isJiffy(var input) => input is Jiffy;
+
+  static bool isDateTime(var input) => input is DateTime;
 }
