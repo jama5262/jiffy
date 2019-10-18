@@ -399,8 +399,16 @@ class Jiffy {
     return jiffy.valueOf() < valueOf();
   }
 
-//  bool isSame(Jiffy jiffy) {}
-//
+  bool isSame(Jiffy jiffy, [String units = "ms"]) {
+    units = validateUnits(units);
+    if (units == "ms") {
+      return valueOf() == jiffy.valueOf();
+    }
+    int jiffyMs = jiffy.valueOf();
+    return startOf(units).millisecondsSinceEpoch <= jiffyMs &&
+        jiffyMs <= endOf(units).millisecondsSinceEpoch;
+  }
+
 //  bool isSameOrBefore(Jiffy jiffy) {}
 //
 //  bool isSameOrAfter(Jiffy jiffy) {}
