@@ -1,9 +1,8 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-  var jiffy = Jiffy()..add(0, "h");
-  print(jiffy.local());
-  print(Jiffy("2020-02-13 13:12:12:193215", "yyyy-MM-dd hh:mm:ss").local());
-  print(Jiffy().local());
-  print(Jiffy.unix(1570963450).local());
+  var j = Jiffy("2019, 10, 16 10:00:00 am", "yyyy, MM, dd h:mm:ss a");
+  print(j.yMMMMdjm);
+  print(Jiffy().unix());
+  print(j.valueOf());
 }

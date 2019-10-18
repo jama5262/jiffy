@@ -17,6 +17,10 @@ void main() {
     test("Pass with empty time and pattern string", () {
       expect(Jiffy("", "").year, 1970);
     });
+    test("Get Datetime instance", () {
+      expect(Jiffy("Oct, 2009", "MMM, yyyy").dateTime.toString(),
+          "2009-10-01 00:00:00.000");
+    });
     test("Pass pattern and with empty string time", () {
       try {
         Jiffy("", "yyyy");
