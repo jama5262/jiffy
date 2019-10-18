@@ -78,36 +78,131 @@ void main() {
 
   group('Test Jiffy diff datetime', () {
     test("Diff Of seconds", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "s"), -1);
-      expect(Jiffy().diff(Jiffy()..subtract(1, "h"), "s"), 3600);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "s"),
+          -1);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..subtract(1, "h"),
+              "s"),
+          3600);
     });
     test("Diff Of minutes", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "m"), 0);
-      expect(Jiffy().diff(Jiffy()..subtract(1, "d"), "m"), 1440);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "m"),
+          0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..subtract(1, "d"),
+              "m"),
+          1440);
     });
     test("Diff Of hours", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "h"), 0);
-      expect(Jiffy().diff(Jiffy()..subtract(1, "d"), "h"), 24);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "h"),
+          0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..subtract(1, "d"),
+              "h"),
+          24);
     });
     test("Diff Of days", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "d"), 0);
-      expect(Jiffy().diff(Jiffy()..subtract(2, "w"), "d"), 14);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "d"),
+          0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..subtract(2, "w"),
+              "d"),
+          14);
     });
     test("Diff Of weeks", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "w"), 0);
-      expect(Jiffy().diff(Jiffy()..add(2, "w"), "w", true), -2.0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "w"),
+          0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(2, "w"),
+              "w",
+              true),
+          -2.0);
     });
     test("Diff Of months", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "M"), 0);
       expect(
-          Jiffy().diff(Jiffy()..add(2, "w"), "M", true), -0.45161290322580644);
-      expect(Jiffy().diff(Jiffy()..add(2, "M"), "M", true), -2.0);
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "M"),
+          0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(2, "w"),
+              "M",
+              true),
+          -0.45161290322580644);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(2, "M"),
+              "M",
+              true),
+          -2.0);
     });
     test("Diff Of years", () {
-      expect(Jiffy().diff(Jiffy()..add(1, "s"), "y"), 0);
       expect(
-          Jiffy().diff(Jiffy()..add(2, "w"), "y", true), -0.03763440860215054);
-      expect(Jiffy().diff(Jiffy()..add(2, "y"), "y", true), -2.0);
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(1, "s"),
+              "y"),
+          0);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(2, "w"),
+              "y",
+              true),
+          -0.03763440860215054);
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
+              Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+                ..add(2, "y"),
+              "y",
+              true),
+          -2.0);
+    });
+  });
+
+  group('Test valueOf and unix datetime methods', () {
+    test("Test valueOf method", () {
+      expect(
+          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").valueOf(),
+          1571252400000);
+    });
+    test("Test unix method", () {
+      expect(Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").unix(),
+          1571252400);
     });
   });
 }
