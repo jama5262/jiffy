@@ -202,7 +202,7 @@ class Jiffy {
         break;
       case "M":
         int date = _daysInMonthArray[_dateTime.month];
-        if (Jiffy().isLeapYear(_dateTime.year) && _dateTime.month == 2) {
+        if (Jiffy()._isLeapYear(_dateTime.year) && _dateTime.month == 2) {
           date = 29;
         }
         _dateTime =
@@ -241,7 +241,7 @@ class Jiffy {
 
   int _daysInMonth(int year, int month) {
     var result = _daysInMonthArray[month];
-    if (month == 2 && isLeapYear(year)) result++;
+    if (month == 2 && _isLeapYear(year)) result++;
     return result;
   }
 
@@ -391,10 +391,10 @@ class Jiffy {
 //
 //  bool isSameOrAfter(Jiffy jiffy) {}
 //
-  bool isLeapYear(int year) =>
+  bool _isLeapYear(int year) =>
       (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
 //
-//  bool get isLeapYear => _isLeapYear();
+  bool get isLeapYear => _isLeapYear(_dateTime.year);
 //
 //  bool isJiffy(var input) {}
 //
