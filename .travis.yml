@@ -1,10 +1,17 @@
 language: dart
 dart:
   - stable
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++6
 install:
   - gem install coveralls-lcov
 before_script:
-  - chmod +x ./tools/travis.sh
+  - chmod +x ./tools/travis.sht
+  - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
 script: ./tools/travis.sh
 after_success:
   - coveralls-lcov coverage/lcov.info

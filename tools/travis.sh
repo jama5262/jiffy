@@ -16,4 +16,4 @@ fi
 # Run the tests.
 echo "Running tests..."
 pub run test --reporter expanded
-pub run test_coverage --no-badge
+./flutter/bin/flutter test --coverage
