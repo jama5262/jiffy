@@ -1,8 +1,8 @@
 import 'package:jiffy/jiffy.dart';
 
 main() async {
-  var j = Jiffy("2016, 10, 16 10:00:00 am", "yyyy, MM, dd h:mm:ss a");
-  print(j.yMMMMdjm);
-  print(Jiffy().unix());
-  print(Jiffy.isDateTime(j));
+  var jiffy1 = Jiffy('2010-10-20', "yyyy-MM-dd");
+  var jiffy2 = Jiffy('2010-10-20', "yyyy-MM-dd")..add(1, "w");
+
+  print(jiffy1.isBefore(jiffy2, "w"));
 }

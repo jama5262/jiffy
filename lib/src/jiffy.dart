@@ -381,9 +381,14 @@ class Jiffy {
   }
 
 //  QUERY
-//  bool isBefore(Jiffy jiffy, String units) {
-//    units = validateUnits(units);
-//  }
+  bool isBefore(Jiffy jiffy, [String units = "ms"]) {
+    units = validateUnits(units);
+    if(units == "ms") {
+      return valueOf() < jiffy.valueOf();
+    }
+    endOf(units);
+    return valueOf() < jiffy.valueOf();
+  }
 
 //  bool isAfter(Jiffy jiffy) {}
 //
