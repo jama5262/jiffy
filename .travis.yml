@@ -10,7 +10,7 @@ addons:
 install:
   - gem install coveralls-lcov
 before_script:
-  - chmod +x ./tools/travis.sht
+  - chmod +x ./tools/travis.sh
   - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
 script: ./tools/travis.sh
 after_success:
