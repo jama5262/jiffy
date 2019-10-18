@@ -196,13 +196,14 @@ void main() {
 
   group('Test valueOf and unix datetime methods', () {
     test("Test valueOf method", () {
-      expect(
-          Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").valueOf(),
-          1571252400000);
+      var jiffy = Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+        ..utc();
+      expect(jiffy.valueOf(), 1571252400000);
     });
     test("Test unix method", () {
-      expect(Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").unix(),
-          1571252400);
+      var jiffy = Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
+        ..utc();
+      expect(jiffy.unix(), 1571252400);
     });
   });
 }
