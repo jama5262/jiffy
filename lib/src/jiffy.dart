@@ -409,10 +409,18 @@ class Jiffy {
         jiffyMs <= endOf(units).millisecondsSinceEpoch;
   }
 
-//  bool isSameOrBefore(Jiffy jiffy) {}
-//
-//  bool isSameOrAfter(Jiffy jiffy) {}
-//
+  bool isSameOrBefore(Jiffy jiffy, [String units = "ms"]) {
+    return isSame(jiffy, units) || isBefore(jiffy, units);
+  }
+
+  bool isSameOrAfter(Jiffy jiffy, [String units = "ms"]) {
+    return isSame(jiffy, units) || isAfter(jiffy, units);
+  }
+
+  bool isBetween(Jiffy jiffyFrom, Jiffy jiffyTo, [String units = "ms"]) {
+    return isAfter(jiffyFrom, units) && isBefore(jiffyTo, units);
+  }
+
   bool _isLeapYear(int year) =>
       (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
 
