@@ -7,7 +7,7 @@ dartanalyzer lib test example
 
 # Verify that dartfmt has been run.
 echo "Checking dartfmt..."
-if [[ $(dartfmt -n --set-exit-if-changed lib test example) ]]; then
+if [[ $(dartfmt -n --set-exit-if-changed lib test) ]]; then
 	echo "Failed dartfmt check"
 	exit 1
 
