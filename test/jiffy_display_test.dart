@@ -10,6 +10,8 @@ void main() {
           "Today is 16 Oct");
       expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").format("MMMMEEEEd"),
           "Wednesday, October 16");
+      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").format(),
+          "2019-10-16T00:00:00.000");
     });
     test("Test from method", () {
       expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").E, "Wed");

@@ -37,9 +37,11 @@ class Jiffy {
 
   static String _defaultLocale = "en";
   static Future<String> locale([String locale]) async {
-    await initializeDateFormatting();
-    Intl.defaultLocale = locale ?? "en";
-    _defaultLocale = locale ?? "en";
+    if (locale != null) {
+      await initializeDateFormatting();
+      Intl.defaultLocale = locale;
+      _defaultLocale = locale;
+    }
     return Future.value(_defaultLocale);
   }
 
