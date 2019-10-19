@@ -75,7 +75,7 @@ void main() {
             .add(1, "invalidUnit");
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: Invalid unit passed, please visit to see all available units");
+            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
       }
     });
   });
@@ -153,7 +153,7 @@ void main() {
             .subtract(1, "invalidUnit");
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: Invalid unit passed, please visit to see all available units");
+            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
       }
     });
   });
@@ -219,7 +219,7 @@ void main() {
             .startOf("invalidUnit");
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: Invalid unit passed, please visit to see all available units");
+            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
       }
     });
   });
@@ -295,7 +295,7 @@ void main() {
             .endOf("invalidUnit");
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: Invalid unit passed, please visit to see all available units");
+            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
       }
     });
   });
