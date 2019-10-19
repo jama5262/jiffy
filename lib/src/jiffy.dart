@@ -37,9 +37,11 @@ class Jiffy {
 
   static String _defaultLocale = "en";
   static Future<String> locale([String locale]) async {
-    await initializeDateFormatting();
-    Intl.defaultLocale = locale ?? "en";
-    _defaultLocale = locale ?? "en";
+    if (locale != null) {
+      await initializeDateFormatting();
+      Intl.defaultLocale = locale;
+      _defaultLocale = locale;
+    }
     return Future.value(_defaultLocale);
   }
 
@@ -202,7 +204,7 @@ class Jiffy {
         break;
       case "M":
         int date = _daysInMonthArray[_dateTime.month];
-        if (Jiffy().isLeapYear(_dateTime.year) && _dateTime.month == 2) {
+        if (Jiffy()._isLeapYear(_dateTime.year) && _dateTime.month == 2) {
           date = 29;
         }
         _dateTime =
@@ -241,7 +243,7 @@ class Jiffy {
 
   int _daysInMonth(int year, int month) {
     var result = _daysInMonthArray[month];
-    if (month == 2 && isLeapYear(year)) result++;
+    if (month == 2 && _isLeapYear(year)) result++;
     return result;
   }
 
@@ -381,23 +383,52 @@ class Jiffy {
   }
 
 //  QUERY
-//  bool isBefore(Jiffy jiffy) {}
-//
-//  bool isAfter(Jiffy jiffy) {}
-//
-//  bool isSame(Jiffy jiffy) {}
-//
-//  bool isSameOrBefore(Jiffy jiffy) {}
-//
-//  bool isSameOrAfter(Jiffy jiffy) {}
-//
-  bool isLeapYear(int year) =>
-      (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
-//
-//  bool get isLeapYear => _isLeapYear();
-//
-//  bool isJiffy(var input) {}
-//
-//  bool isDateTime(var input) {}
+  bool isBefore(Jiffy jiffy, [String units = "ms"]) {
+    units = validateUnits(units);
+    if (units == "ms") {
+      return valueOf() < jiffy.valueOf();
+    }
+    endOf(units);
+    return valueOf() < jiffy.valueOf();
+  }
 
+  bool isAfter(Jiffy jiffy, [String units = "ms"]) {
+    units = validateUnits(units);
+    if (units == "ms") {
+      return valueOf() > jiffy.valueOf();
+    }
+    startOf(units);
+    return jiffy.valueOf() < valueOf();
+  }
+
+  bool isSame(Jiffy jiffy, [String units = "ms"]) {
+    units = validateUnits(units);
+    if (units == "ms") {
+      return valueOf() == jiffy.valueOf();
+    }
+    int jiffyMs = jiffy.valueOf();
+    return startOf(units).millisecondsSinceEpoch <= jiffyMs &&
+        jiffyMs <= endOf(units).millisecondsSinceEpoch;
+  }
+
+  bool isSameOrBefore(Jiffy jiffy, [String units = "ms"]) {
+    return isSame(jiffy, units) || isBefore(jiffy, units);
+  }
+
+  bool isSameOrAfter(Jiffy jiffy, [String units = "ms"]) {
+    return isSame(jiffy, units) || isAfter(jiffy, units);
+  }
+
+  bool isBetween(Jiffy jiffyFrom, Jiffy jiffyTo, [String units = "ms"]) {
+    return isAfter(jiffyFrom, units) && isBefore(jiffyTo, units);
+  }
+
+  bool _isLeapYear(int year) =>
+      (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
+
+  bool get isLeapYear => _isLeapYear(_dateTime.year);
+
+  static bool isJiffy(var input) => input is Jiffy;
+
+  static bool isDateTime(var input) => input is DateTime;
 }

@@ -27,7 +27,7 @@ String normalizeUnits(String unit) {
       lowerCaseUnit == "w") {
     return "w";
   } else if (lowerCaseUnit == "month" || lowerCaseUnit == "months") {
-    return "sM";
+    return "M";
   } else if (lowerCaseUnit == "year" ||
       lowerCaseUnit == "years" ||
       lowerCaseUnit == "y") {
@@ -41,9 +41,10 @@ String validateUnits(String unit) {
   unit = unit == "M" ? unit : normalizeUnits(unit);
   if (unit == "0") {
     throw JiffyException(
-            "Invalid unit passed, please visit to see all available units")
+            "Invalid unit passed, the following units are available 'year',"
+            " 'month', 'week', 'day', 'hour', 'minute',"
+            " 'second', 'millisecond'")
         .cause;
-//      TODO: ADD GITHUB README URL DOC TO UNITS
   }
   return unit;
 }
