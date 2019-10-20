@@ -3,11 +3,9 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
 
-Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating and formatting dates
+Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-Full [documentation]()
-
-[Installation]()
+#### [Full Documentation]() | [Installation]()
 
 # Usage
 
@@ -71,11 +69,67 @@ jiffy4.format("dd/MM/yyy"); // 21/10/2019
 //  The locale method always return a future
 //  To get locale (The default locale is English)
 await Jiffy.locale(); // en
+
 //  To set locale
 await Jiffy.locale("fr");
 Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
+
 await Jiffy.locale("ar");
 Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
+
 await Jiffy.locale("zh-cn");
 Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+```
+
+## Contributing
+
+To contribute, follow the following easy steps
+
+### Step 1
+
+- **Option 1**
+    - Fork this repo!
+
+- **Option 2**
+    - 👯 Clone this repo to your local machine using `https://github.com/jama5262/jiffy.git`
+
+### Step 2
+
+- **HACK AWAY!** 🔨🔨🔨
+
+### Step 3
+
+- 🔃 Create a new pull request
+
+### Support
+
+Reach out to me at one of the following places!
+
+- Email at jama3137@gmail.com
+- Twitter [timedjama5262](https://twitter.com/timedjama5262)
+
+### License
+
+```
+MIT License
+
+Copyright (c) 2019 Jama Mohamed
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
