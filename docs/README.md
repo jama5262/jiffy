@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
@@ -31,13 +32,23 @@ Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for p
     - [End of Time](#end-of-time)
     - [Local](#local)
     - [UTC](#utc)
-- [Display](#manipulation)
+- [Display](#display)
     - [Format](#format)
     - [Time from Now](#time-from-now)
     - [Time from X](#time-from-x)
     - [Difference](#difference)
     - [Unix Timestamp (Milliseconds)](#unix-timestamp-milliseconds)
     - [Unix Timestamp (Seconds)](#unix-timestamp-seconds)
+- [Query](#query)
+    - [Is Before](#is-before)
+    - [Is Same](#is-same)
+    - [Is After](#is-after)
+    - [Is Same or Before](#is-same-or-before)
+    - [Is Same or After](#is-same-or-after)
+    - [Is Between](#is-between)
+    - [Is Leap Year](#is-leapyear)
+    - [Is Jiffy](#is-jiffy)
+    - [Is DateTime](#is-datetime)
 
 # Before Use
 Almost all of Jiffy methods return a dart DateTime instance, like the `add` and `subtract` methods. Example
@@ -313,4 +324,127 @@ Jiffy().valueOf();
 To get timestamp in seconds see below
 ```dart
 Jiffy().unix();
+```
+
+# Query
+#### Is Before
+Check if date time is before another date time. See below
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+var jiffy2 = Jiffy("2010-10-21", "yyyy-MM-dd");
+jiffy1.isBefore(jiffy2); // true
+```
+
+You can also check in terms of units of measurement. The below example checks if year is before.
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+
+var jiffy2 = Jiffy("2010-12-31", "yyyy-MM-dd");
+var jiffy3 = Jiffy("2011-01-01", "yyyy-MM-dd");
+
+jiffy1.isBefore(jiffy2, "year"); // false
+jiffy1.isBefore(jiffy3, "year"); // true
+```
+
+#### Is Same
+Check if date time is same with another date time. See below
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+var jiffy2 = Jiffy("2010-10-20", "yyyy-MM-dd");
+jiffy1.isSame(jiffy2); // true
+```
+
+You can also check in terms of units of measurement. The below example checks if years are the same.
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+
+var jiffy2 = Jiffy("2009-12-31", "yyyy-MM-dd");
+var jiffy3 = Jiffy("2010-01-01", "yyyy-MM-dd");
+
+jiffy1.isSame(jiffy2, "year"); // false
+jiffy1.isSame(jiffy3, "year"); // true
+```
+
+#### Is After
+Check if date time is after another date time. See below
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+var jiffy2 = Jiffy("2010-10-19", "yyyy-MM-dd");
+jiffy1.isAfter(jiffy2); // true
+```
+
+You can also check in terms of units of measurement. The below example checks if year is before.
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+
+var jiffy2 = Jiffy("2010-01-01", "yyyy-MM-dd");
+var jiffy3 = Jiffy("2009-12-31", "yyyy-MM-dd");
+
+jiffy1.isAfter(jiffy2, "year"); // false
+jiffy1.isAfter(jiffy3, "year"); // true
+```
+
+#### Is Same or Before
+Check if date time is same or before with another date time. See below
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+
+var jiffy2 = Jiffy("2009-12-31", "yyyy-MM-dd");
+var jiffy3 = Jiffy("2010-12-31", "yyyy-MM-dd");
+var jiffy4 = Jiffy("2011-01-01", "yyyy-MM-dd");
+
+jiffy1.isSameOrBefore(jiffy2, "year"); // false
+jiffy1.isSameOrBefore(jiffy3, "year"); // true
+jiffy1.isSameOrBefore(jiffy4, "year"); // true
+```
+#### Is Same or After
+Check if date time is same or after with another date time. See below
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+
+var jiffy2 = Jiffy("2011-12-31", "yyyy-MM-dd");
+var jiffy3 = Jiffy("2010-01-01", "yyyy-MM-dd");
+var jiffy4 = Jiffy("2009-12-31", "yyyy-MM-dd");
+
+jiffy1.isSameOrAfter(jiffy2, "year"); // false
+jiffy1.isSameOrAfter(jiffy3, "year"); // true
+jiffy1.isSameOrAfter(jiffy4, "year"); // true
+```
+
+#### Is Between
+Check if a date time is between two date times. See below
+```dart
+var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
+
+var jiffy2 = Jiffy("2010-01-01", "yyyy-MM-dd");
+var jiffy3 = Jiffy("2012-01-01", "yyyy-MM-dd");
+
+var jiffy4 = Jiffy("2009-12-31", "yyyy-MM-dd");
+var jiffy5 = Jiffy("2012-01-01", "yyyy-MM-dd");
+
+jiffy1.isBetween(jiffy2, jiffy3, "year"); // false
+jiffy1.isBetween(jiffy4, jiffy5, "year"); // true
+```
+
+#### Is LeapYear
+Check if date time is a leap year or not. See below
+```dart
+Jiffy("2019", "yyyy").isLeapYear; // false
+Jiffy("2016", "yyyy").isLeapYear; // true
+```
+
+#### Is Jiffy
+Check if it is a Jiffy instance. See below
+```dart
+Jiffy.isJiffy("string"); // false
+Jiffy.isJiffy(Jiffy()); // true
+Jiffy.isJiffy(DateTime.now()); // false
+```
+
+#### Is DateTime
+Check if it is a dart DateTime instance. See below
+```dart
+Jiffy.isDateTime("string"); // false
+Jiffy.isDateTime(DateTime.now()); // true
+Jiffy.isDateTime(Jiffy()); // false
 ```

@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
@@ -9,7 +10,7 @@ Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for p
 
 # Usage
 
-# Format Dates
+## Format Dates
 ```dart
 Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
 Jiffy().format("EEEE"); // Saturday
@@ -21,7 +22,7 @@ Jiffy("19, Oct 2019", "dd, MMM yyyy").yMMMMd; // October 19, 2019
 Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 ```
 
-# Relative Time
+## Relative Time
 ```dart
 Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
 Jiffy("2012-06-20", "yyyy-MM-dd").fromNow(); // 7 years ago
@@ -39,7 +40,7 @@ var jiffy3 = Jiffy()
 jiffy3.fromNow(); // 9 minutes ago
 ```
 
-# Manipulation
+## Manipulation
 
 ```dart
 var jiffy1 = Jiffy()
@@ -69,7 +70,7 @@ Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
 Jiffy("2010-1-31", "yyyy-MM-dd").add(1, "month"); // This is February 28
 ```
 
-# Locale Support
+## Locale Support
 ```dart
 //  The locale method always return a future
 //  To get locale (The default locale is English)
@@ -106,14 +107,14 @@ To contribute, follow the following easy steps
 
 - 🔃 Create a new pull request
 
-### Support
+## Support
 
 Reach out to me at one of the following places!
 
 - Email at jama3137@gmail.com
 - Twitter [timedjama5262](https://twitter.com/timedjama5262)
 
-### License
+## License
 
 ```
 MIT License
