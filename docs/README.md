@@ -55,3 +55,59 @@ jiffy.format(); // 2019-10-20T11:18:45.069304Z
 ```
 
 # Get
+#### Milliseconds
+Get milliseconds (Returns from 0 - 999)
+```dart
+Jiffy().milliseconds;
+```
+
+#### Seconds
+Get seconds (Returns from 0 - 59)
+```dart
+Jiffy().seconds;
+```
+#### Minute
+Get minute (Returns from 0 - 59)
+```dart
+Jiffy().minute;
+```
+#### Hour
+Get hour (Returns from 0 - 23)
+```dart
+Jiffy().hour;
+```
+#### Date of Month
+Get date of month (Returns from 1 - 31)
+```dart
+Jiffy().date;
+```
+#### Day of week
+Get day of week (Returns from 0 - 6 [Sunday - Saturday])
+```dart
+Jiffy().day;
+```
+#### Day of year
+Get day o year (Returns from 1 - 366)
+```dart
+Jiffy().dayOfYear;
+```
+#### Week of year
+Get week of year
+```dart
+Jiffy().week;
+```
+#### Month
+Get month (Returns from 1 - 12 [Jan - Dec])
+```dart
+Jiffy().month;
+```
+#### Quarter
+Get quarter (Returns from 1 - 4)
+```dart
+Jiffy().quarter;
+```
+#### Year
+Get year
+```dart
+Jiffy().year;
+```
