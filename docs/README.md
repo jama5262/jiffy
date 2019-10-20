@@ -6,6 +6,7 @@
 Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
 # Table of content
+- [Before Use](#before-use)
 - [Parsing](#parsing)
     - [Now](#now)
     - [String Formating](#string-formatting)
@@ -24,12 +25,42 @@ Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for p
     - [Quarter](#quarter)
     - [Year](#year)
 - [Manipulation](#manipulation)
-    - [Addition](#add)
-    - [Subtraction](#subtract)
+    - [Add](#add)
+    - [Subtract](#subtract)
     - [Start of Time](#start-of-time)
     - [End of Time](#end-of-time)
     - [Local](#local)
     - [UTC](#utc)
+- [Display](#manipulation)
+    - [Format](#format)
+    - [Time from Now](#time-from-now)
+    - [Time from X](#time-from-x)
+    - [Difference](#difference)
+    - [Unix Timestamp (Milliseconds)](#unix-timestamp-milliseconds)
+    - [Unix Timestamp (Seconds)](#unix-timestamp-seconds)
+
+# Before Use
+Almost all of Jiffy methods return a dart DateTime instance, like the `add` and `subtract` methods. Example
+```dart
+Jiffy().add(1, "year"); // Returns a DateTime instance
+Jiffy().utc(); // Returns a DateTime instance
+```
+_**But when doing a method chaining, it is recommended to use a variable.**_ The variable will then hold a Jiffy instance. Example
+```dart
+var jiffy = Jiffy()
+    ..utc()
+    ..add(1, "day")
+    ..add(3, "hours")
+    ..subtract(30, "minutes"); // Returns a Jiffy instance
+```
+`jiffy` variable returns a Jiffy instance. Now to get the date time, you can call it with the following methods
+```dart
+jiffy.format(); // 2019-10-20T19:00:53.090646
+// or
+jiffy.yMMMMd; // October 20, 2019
+// or
+jiffy.fromNow(); // in a day
+```
 
 # Parsing
 #### Now
@@ -45,7 +76,7 @@ To get a Jiffy date from a string, pass the string and its pattern to Jiffy as i
 ```dart
 Jiffy("1995-12-25", "yyyy-MM-dd");
 ```
-Jiffy run on top of the [Intl DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html) package, you can find all the date time patterns used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
+Jiffy runs on top of the [Intl DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html) package, you can find all the date time patterns used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
 
 This is also same for Jiffy default formats. See below
 ```dart
@@ -71,10 +102,10 @@ Jiffy.unix(1318781876406).utc();
 #### UTC
 Jiffy can also return date time in UTC. See below
 ```dart
-// No UTC
+// In local time
 Jiffy().format(); // 2019-10-20T14:18:45.069304
 
-//Change to UTC
+// Change to UTC
 var jiffy = Jiffy()
     ..utc();
 jiffy.format(); // 2019-10-20T11:18:45.069304Z
@@ -212,4 +243,74 @@ Sets Jiffy to UTC time. See below
 ```dart
 var jiffy = Jiffy(); // Time in local
 jiffy.utc(); // Set to utc
+```
+# Display
+#### Format
+The format function takes in a string pattern, which can be found [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html), and format them. See below
+```dart
+Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
+Jiffy().format("EEEE"); // Saturday
+Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
+
+//  Not passing a string pattern for format method will return an ISO Date format
+Jiffy().format(); // 2019-10-19T19:00:53.090646
+```
+You can also use Intl Dateformat default methods to format. See below
+```dart
+Jiffy().yMMMMd; // October 19, 2019
+Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+```
+#### Time from Now
+This method is used to get the relative time from now. See below
+```dart
+Jiffy("2007-1-29", "yyyy-MM-dd").fromNow(); // 13 years ago
+Jiffy("2020-10-29", "yyyy-MM-dd").fromNow(); // in a year
+Jiffy("2030-10-29", "yyyy-MM-dd").fromNow(); // in 11 years
+
+var jiffy = Jiffy()
+..startOf("hour");
+jiffy.fromNow(); // 9 minutes ago
+```
+
+#### Time from X
+This method is used to get the relative time from a specific date time. See below
+```dart
+var jiffy1 = Jiffy("2007-1-28", "yyyy-MM-dd");
+var jiffy2 = Jiffy("2017-1-29", "yyyy-MM-dd");
+jiffy1.from(jiffy2); // a day ago
+```
+#### Difference
+Used to get the difference between two Jiffy date times. See below
+```dart
+// By default, diff method, get the difference in milliseconds
+var jiffy1 = Jiffy("2007-1-28", "yyyy-MM-dd");
+var jiffy2 = Jiffy("2017-1-29", "yyyy-MM-dd");
+jiff1.diff(jiffy2); // 86400000
+
+// Getting difference in another unit of measurement
+var jiffy1 = Jiffy("2007-1-28", "yyyy-MM-dd");
+var jiffy2 = Jiffy("2017-1-29", "yyyy-MM-dd");
+jiff1.diff(jiffy2, "day"); // 1
+```
+
+Also by default `diff` with truncate the result to return a whole number. To get decimal numbers, just pass a third param as `true`. See below
+```dart
+var jiffy1 = Jiffy("2008-10", "yyyy-MM");
+var jiffy2 = Jiffy("2007-1", "yyyy-MM-dd");
+
+jiff1.diff(jiffy2, "year"); // 1
+jiff1.diff(jiffy2, "year", true); // 1.75
+```
+**_Note: Months and years are added in respect to how many days there are in a months and if is a year is a leap year. See below**_
+
+#### Unix Timestamp (Milliseconds)
+To get timestamp in milliseconds see below
+```dart
+Jiffy().valueOf();
+```
+
+#### Unix Timestamp (Seconds)
+To get timestamp in seconds see below
+```dart
+Jiffy().unix();
 ```
