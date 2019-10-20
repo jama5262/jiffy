@@ -4,7 +4,7 @@ version: 1.0.0
 homepage: https://github.com/jama5262/jiffy
 repository: https://github.com/jama5262/jiffy
 issue_tracker: https://github.com/jama5262/jiffy/issues
-documentation: https://github.com/jama5262/jiffy/tree/master/docs
+documentation: https://github.com/jama5262/jiffy/tree/master/doc
 author: Jama Mohamed <jama3137@gmail.com>
 
 environment:
