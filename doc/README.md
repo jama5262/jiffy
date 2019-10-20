@@ -51,6 +51,7 @@ Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for p
     - [Is Leap Year](#is-leapyear)
     - [Is Jiffy](#is-jiffy)
     - [Is DateTime](#is-datetime)
+- [Locale Support](#locale-support)
 
 # Before Use
 Almost all of Jiffy methods return a dart DateTime instance, like the `add` and `subtract` methods. Example
