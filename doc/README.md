@@ -51,6 +51,7 @@ Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for p
     - [Is Leap Year](#is-leapyear)
     - [Is Jiffy](#is-jiffy)
     - [Is DateTime](#is-datetime)
+- [Locale Support](#locale-support)
 
 # Before Use
 Almost all of Jiffy methods return a dart DateTime instance, like the `add` and `subtract` methods. Example
@@ -449,4 +450,47 @@ Check if it is a dart DateTime instance. See below
 Jiffy.isDateTime("string"); // false
 Jiffy.isDateTime(DateTime.now()); // true
 Jiffy.isDateTime(Jiffy()); // false
+```
+
+# Locale Support
+
+Since Jiffy runs ontop of Intl Dateformat, locale for all regions are almost supported. Example
+```dart
+await Jiffy.locale("fr");
+Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
+```
+But for relative time e.g `fromNow() and from()` are written manually in Jiffy
+
+Below are the locales that are supported for relative time. More will be added
+
+| Key  | Locale |
+| ------------- | ------------- |
+| English  | en / en-sg / en-au / en-ca / en-gb / en-ie / en-il / en-nz |
+| Spanish  | es / es-do / es-us |
+| Chinese  | zh / zh-cn / zh-hk / zh-tw |
+| Japanese  | ja |
+| German  | de / de-at / de-ch |
+| French  | fr / fr-ch / fr-ca |
+| Italian  | it / it-ch |
+| Korean  | ko |
+| Russian  | ru |
+| Hindi  | hi |
+| Arabic  | ar / ar-ly / ar-dz / ar-kw / ar-sa / ar-ma / ar-tn |
+| Portuguese  | pt / pt-br |
+
+To getting and setting locales in Jiffy always returns a future
+
+```dart
+// Get the locale (By default, the locale is "en")
+await Jiffy.locale(); // en
+
+// To set locale
+await Jiffy.locale("fr");
+Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
+
+await Jiffy.locale("ar");
+Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
+
+await Jiffy.locale("zh-cn");
+Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 ```
