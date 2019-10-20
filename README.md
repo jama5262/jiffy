@@ -62,6 +62,11 @@ var jiffy4 = Jiffy()
     ..add(3, "hours")
     ..subtract(30, "minutes");
 jiffy4.format("dd/MM/yyy"); // 21/10/2019
+
+
+// Months and year are added in respect to how many days there are in a months and if is a year is a leap year
+Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
+Jiffy("2010-1-31", "yyyy-MM-dd").add(1, "month"); // This is February 28
 ```
 
 # Locale Support
