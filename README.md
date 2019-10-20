@@ -1,25 +1,81 @@
-A library for Dart developers.
+# Jiffy
 
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
-[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating and formatting dates
 
-## Usage
+Full [documentation]()
 
-A simple usage example:
+[Installation]()
 
+# Usage
+
+# Format Dates
 ```dart
-import 'package:jiffy/jiffy.dart';
+Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
+Jiffy().format("EEEE"); // Saturday
+Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
+Jiffy().format(); // 2019-10-19T19:00:53.090646
 
-main() {
-  var awesome = new Awesome();
-}
+//  You can also use default formats
+Jiffy("19, Oct 2019", "dd, MMM yyyy").yMMMMd; // October 19, 2019
+Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 ```
 
-## Features and bugs
+# Relative Time
+```dart
+Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
+Jiffy("2012-06-20", "yyyy-MM-dd").fromNow(); // 7 years ago
 
-Please file feature requests and bugs at the [issue tracker][tracker].
+var jiffy1 = Jiffy()
+    ..startOf("day");
+jiffy1.fromNow(); // 19 hours ago
 
-[tracker]: http://example.com/issues/replaceme
+var jiffy2 = Jiffy()
+    ..endOf("day");
+jiffy2.fromNow(); // in 5 hours
+
+var jiffy3 = Jiffy()
+    ..startOf("hour");
+jiffy3.fromNow(); // 9 minutes ago
+```
+
+# Manipulation
+
+```dart
+var jiffy1 = Jiffy()
+    ..add(1, "day");
+jiffy1.yMMMMd; // October 20, 2019
+
+var jiffy2 = Jiffy()
+    ..subtract(1, "day");
+jiffy2.yMMMMd; // October 18, 2019
+
+//  You can chain methods by using Dart method cascading
+var jiffy3 = Jiffy()
+    ..add(1, "day")
+    ..add(3, "hours")
+    ..subtract(30, "minutes");
+jiffy3.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
+
+var jiffy4 = Jiffy()
+    ..add(1, "day")
+    ..add(3, "hours")
+    ..subtract(30, "minutes");
+jiffy4.format("dd/MM/yyy"); // 21/10/2019
+```
+
+# Locale Support
+```dart
+//  The locale method always return a future
+//  To get locale (The default locale is English)
+await Jiffy.locale(); // en
+//  To set locale
+await Jiffy.locale("fr");
+Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
+await Jiffy.locale("ar");
+Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
+await Jiffy.locale("zh-cn");
+Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+```
