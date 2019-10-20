@@ -3,8 +3,10 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Pub Version](https://img.shields.io/badge/pub-v1.0.0-blue)]()
+[![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
-Jiffy is a date dart package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
+Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
 #### [Full Documentation](https://github.com/jama5262/jiffy/tree/setup-readme/docs) | [Installation]()
 
