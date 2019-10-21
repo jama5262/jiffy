@@ -9,27 +9,27 @@ class HiLocale extends LookUpMessages {
   String lessThanOneMinute(int seconds) => 'कुछ ही क्षण';
   String aboutAMinute(int minutes) => 'एक मिनट';
   String minutes(int minutes) {
-    return replaceToLocaleNum('${minutes} मिनट', "hi");
+    return replaceToLocaleNum('$minutes मिनट', "hi");
   }
 
   String aboutAnHour(int minutes) => 'एक घंटा';
   String hours(int hours) {
-    return replaceToLocaleNum('${hours} घंटे', "hi");
+    return replaceToLocaleNum('$hours घंटे', "hi");
   }
 
   String aDay(int hours) => 'एक दिन';
   String days(int days) {
-    return replaceToLocaleNum('${days} दिन', "hi");
+    return replaceToLocaleNum('$days दिन', "hi");
   }
 
   String aboutAMonth(int days) => 'एक महीने';
   String months(int months) {
-    return replaceToLocaleNum('${months} महीने', "hi");
+    return replaceToLocaleNum('$months महीने', "hi");
   }
 
   String aboutAYear(int year) => 'एक वर्ष';
   String years(int years) {
-    return replaceToLocaleNum('${years} वर्ष', "hi");
+    return replaceToLocaleNum('$years वर्ष', "hi");
   }
 
   String wordSeparator() => ' ';

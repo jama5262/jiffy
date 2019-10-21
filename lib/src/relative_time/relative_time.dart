@@ -1,5 +1,7 @@
 import 'package:jiffy/src/relative_time/locales/ar_locale.dart';
 import 'package:jiffy/src/relative_time/locales/de_locale.dart';
+import 'package:jiffy/src/relative_time/locales/en_locale.dart';
+import 'package:jiffy/src/relative_time/locales/es_locale.dart';
 import 'package:jiffy/src/relative_time/locales/fr_locale.dart';
 import 'package:jiffy/src/relative_time/locales/hi_locale.dart';
 import 'package:jiffy/src/relative_time/locales/it_locale.dart';
@@ -8,10 +10,7 @@ import 'package:jiffy/src/relative_time/locales/ko_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
 import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
-
-import 'locales/en_locale.dart';
-import 'locales/es_locale.dart';
-import 'lookup_messages.dart';
+import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
 Map<String, LookUpMessages> _lookupMessagesMap = {
   'en': EnLocale(),
