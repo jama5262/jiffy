@@ -1,7 +1,7 @@
 # Jiffy
 
-[![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
-[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
+[![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
+[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Pub Version](https://img.shields.io/badge/pub-v1.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
@@ -12,8 +12,12 @@ Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for p
 - [Before Use](#before-use)
 - [Parsing](#parsing)
     - [Now](#now)
+    - [String](#string)
     - [String Formating](#string-formatting)
+    - [Maps](#maps)
     - [Unix Timestamp](#unix-timestamp)
+    - [DateTime](#datetime)
+    - [List](#list)
     - [UTC](#utc)
 - [Get](#get)
     - [Milliseconds](#milliseconds)
