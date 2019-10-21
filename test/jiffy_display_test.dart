@@ -14,41 +14,36 @@ void main() {
           "2019-10-16T00:00:00.000");
     });
     test("Test from method", () {
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").E, "Wed");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").EEEE, "Wednesday");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").LLL, "Oct");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").LLLL, "October");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").Md, "10/16");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MEd, "Wed, 10/16");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MMM, "Oct");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MMMd, "Oct 16");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MMMEd, "Wed, Oct 16");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MMMM, "October");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MMMMd, "October 16");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").MMMMEEEEd,
-          "Wednesday, October 16");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").QQQ, "Q4");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").QQQQ, "4th quarter");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yM, "10/2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMd, "10/16/2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMEd, "Wed, 10/16/2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMM, "Oct 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMd, "Oct 16, 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMdjm,
-          "Oct 16, 2019 12:00 AM");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMEd, "Wed, Oct 16, 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMEdjm,
-          "Wed, Oct 16, 2019 12:00 AM");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMM, "October 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMMd, "October 16, 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMMdjm,
-          "October 16, 2019 12:00 AM");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMMEEEEd,
-          "Wednesday, October 16, 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yMMMMEEEEdjm,
+      expect(Jiffy([2019, 10, 16]).E, "Wed");
+      expect(Jiffy([2019, 10, 16]).EEEE, "Wednesday");
+      expect(Jiffy([2019, 10, 16]).LLL, "Oct");
+      expect(Jiffy([2019, 10, 16]).LLLL, "October");
+      expect(Jiffy([2019, 10, 16]).Md, "10/16");
+      expect(Jiffy([2019, 10, 16]).MEd, "Wed, 10/16");
+      expect(Jiffy([2019, 10, 16]).MMM, "Oct");
+      expect(Jiffy([2019, 10, 16]).MMMd, "Oct 16");
+      expect(Jiffy([2019, 10, 16]).MMMEd, "Wed, Oct 16");
+      expect(Jiffy([2019, 10, 16]).MMMM, "October");
+      expect(Jiffy([2019, 10, 16]).MMMMd, "October 16");
+      expect(Jiffy([2019, 10, 16]).MMMMEEEEd, "Wednesday, October 16");
+      expect(Jiffy([2019, 10, 16]).QQQ, "Q4");
+      expect(Jiffy([2019, 10, 16]).QQQQ, "4th quarter");
+      expect(Jiffy([2019, 10, 16]).yM, "10/2019");
+      expect(Jiffy([2019, 10, 16]).yMd, "10/16/2019");
+      expect(Jiffy([2019, 10, 16]).yMEd, "Wed, 10/16/2019");
+      expect(Jiffy([2019, 10, 16]).yMMM, "Oct 2019");
+      expect(Jiffy([2019, 10, 16]).yMMMd, "Oct 16, 2019");
+      expect(Jiffy([2019, 10, 16]).yMMMdjm, "Oct 16, 2019 12:00 AM");
+      expect(Jiffy([2019, 10, 16]).yMMMEd, "Wed, Oct 16, 2019");
+      expect(Jiffy([2019, 10, 16]).yMMMEdjm, "Wed, Oct 16, 2019 12:00 AM");
+      expect(Jiffy([2019, 10, 16]).yMMMM, "October 2019");
+      expect(Jiffy([2019, 10, 16]).yMMMMd, "October 16, 2019");
+      expect(Jiffy([2019, 10, 16]).yMMMMdjm, "October 16, 2019 12:00 AM");
+      expect(Jiffy([2019, 10, 16]).yMMMMEEEEd, "Wednesday, October 16, 2019");
+      expect(Jiffy([2019, 10, 16]).yMMMMEEEEdjm,
           "Wednesday, October 16, 2019 12:00 AM");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yQQQ, "Q4 2019");
-      expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").yQQQQ, "4th quarter 2019");
+      expect(Jiffy([2019, 10, 16]).yQQQ, "Q4 2019");
+      expect(Jiffy([2019, 10, 16]).yQQQQ, "4th quarter 2019");
       expect(Jiffy("2019, 10, 16 3:30 AM", "yyyy, MM, dd hh:mm a").Hm, "03:30");
       expect(Jiffy("2019, 10, 16 3:30 am", "yyyy, MM, dd hh:mm a").Hms,
           "03:30:00");
@@ -69,11 +64,11 @@ void main() {
       expect(jiffy2.fromNow(), "a year ago");
     });
     test("Test from method", () {
-      var jiffy1 = Jiffy("2019, 10, 16", "yyyy, MM, dd");
+      var jiffy1 = Jiffy([2019, 10, 16]);
       expect(Jiffy("2019, 10, 20", "yyyy, MM, dd").from(jiffy1), "in 4 days");
-      var jiffy2 = Jiffy("2019, 10, 16", "yyyy, MM, dd")..add(10, "d");
+      var jiffy2 = Jiffy([2019, 10, 16])..add(10, "d");
       expect(Jiffy("2019, 10, 20", "yyyy, MM, dd").from(jiffy2), "6 days ago");
-      var jiffy3 = Jiffy("2019, 10, 16", "yyyy, MM, dd")..subtract(20, "M");
+      var jiffy3 = Jiffy([2019, 10, 16])..subtract(20, "M");
       expect(Jiffy("2019, 10, 20", "yyyy, MM, dd").from(jiffy3), "in a year");
     });
   });

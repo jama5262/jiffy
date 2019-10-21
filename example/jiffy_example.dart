@@ -57,16 +57,16 @@ main() async {
 //  await Jiffy.locale("zh-cn");
 //  Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 
-  print(Jiffy({"year": 2029}).yMMMMEEEEdjm);
+//  print(Jiffy({"year": 2029}).yMMMMEEEEdjm);
 
-  print(Jiffy("2019-10", "yyyy-MM").yMMMMEEEEdjm);
-//  print(Jiffy.test([2020, 1]).yMMMMEEEEdjm);
+//  print(Jiffy("2019-10", "yyyy-MM").yMMMMEEEEdjm);
+  print(Jiffy([]).yMMMMEEEEdjm);
 
 //  List<int> i = [1, 2];
 //
 //  print(i?.elementAt(5) ?? 3);
 
-  print(Jiffy("2019-10-13 12:01:00 am", "yyyy-MM-dd hh:mm:ss a").dateTime);
+//  print(Jiffy("2019-10-13 12:01:00 am", "yyyy-MM-dd hh:mm:ss a").dateTime);
 
-  print(Jiffy("2019-10-13").dateTime);
+//  print(Jiffy("2019-10-13").dateTime);
 }

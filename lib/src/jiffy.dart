@@ -57,13 +57,13 @@ class Jiffy {
         _dateTime = DateTime.now();
       } else {
         _dateTime = DateTime(
-            input?.elementAt(0) ?? DateTime.now().year,
-            input?.elementAt(1) ?? 1,
-            input?.elementAt(2) ?? 0,
-            input?.elementAt(3) ?? 0,
-            input?.elementAt(4) ?? 0,
-            input?.elementAt(5) ?? 0,
-            input?.elementAt(6) ?? 0);
+            input[0],
+            input.length > 1 ? input[1] : 1,
+            input.length > 2 ? input[2] : 1,
+            input.length > 3 ? input[3] : 0,
+            input.length > 4 ? input[4] : 0,
+            input.length > 5 ? input[5] : 0,
+            input.length > 6 ? input[6] : 0);
       }
     } else if (input is String) {
       if (matchStringDateTime(input)) {
