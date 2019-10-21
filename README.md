@@ -3,12 +3,12 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v1.0.0-blue)]()
+[![Pub Version](https://img.shields.io/badge/pub-v1.0.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-#### [Full Documentation](https://github.com/jama5262/jiffy/tree/master/doc) | [Installation]()
+#### [Full Documentation](https://github.com/jama5262/jiffy/tree/master/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
@@ -93,21 +93,19 @@ Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 
 To contribute, follow the following easy steps
 
-### Step 1
+##### Step 1
 
-- **Option 1**
-    - Fork this repo!
+- Fork this repo! or
 
-- **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/jama5262/jiffy.git`
+- Clone this repo to your local machine using `https://github.com/jama5262/jiffy.git`
 
-### Step 2
+##### Step 2
 
-- **HACK AWAY!** 🔨🔨🔨
+- Make your own updates
 
-### Step 3
+##### Step 3
 
-- 🔃 Create a new pull request
+- Create a new pull request
 
 ## Support
 
