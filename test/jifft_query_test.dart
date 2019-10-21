@@ -14,10 +14,9 @@ void main() {
     test("Test isAfter method", () {
       var jiffy1 = Jiffy('2010-10-20', "yyyy-MM-dd");
       var jiffy2 = Jiffy('2010-01-01', "yyyy-MM-dd");
-      var jiffy3 = Jiffy('2009-12-31', "yyyy-MM-dd");
       expect(jiffy1.isAfter(Jiffy('2010-10-19', "yyyy-MM-dd")), true);
       expect(jiffy1.isAfter(jiffy2, "y"), false);
-      expect(jiffy1.isAfter(jiffy3, "y"), true);
+      expect(jiffy1.isAfter([2009, 12, 31], "y"), true);
     });
     test("Test isSame method", () {
       var jiffy1 = Jiffy('2010-10-20', "yyyy-MM-dd");
@@ -46,13 +45,10 @@ void main() {
       expect(jiffy1.isSameOrAfter(jiffy3, "y"), true);
     });
     test("Test isBetween method", () {
-      var jiffy1 = Jiffy('2010-10-20', "yyyy-MM-dd");
-      var jiffy2 = Jiffy('2010-10-19', "yyyy-MM-dd");
-      var jiffy3 = Jiffy('2010-10-25', "yyyy-MM-dd");
-      var jiffy4 = Jiffy('2010-01-01', "yyyy-MM-dd");
-      var jiffy5 = Jiffy('2012-01-01', "yyyy-MM-dd");
-      expect(jiffy1.isBetween(jiffy2, jiffy3), true);
-      expect(jiffy1.isBetween(jiffy4, jiffy5, "y"), false);
+      var jiffy1 = Jiffy('2010-10-20');
+      var jiffy2 = Jiffy('2010-10-19');
+      expect(jiffy1.isBetween(jiffy2, DateTime(2010, 10, 25)), true);
+      expect(jiffy1.isBetween([2010, 1, 1], "2012-01-01", "y"), false);
     });
     test("Test isLeapYear method", () {
       expect(Jiffy('2010', "yyyy").isLeapYear, false);

@@ -17,6 +17,25 @@ void main() {
     test("Pass with empty time and pattern string", () {
       expect(Jiffy("", "").year, 1970);
     });
+    test("Pass with DateTime instance", () {
+      expect(Jiffy(DateTime(2019)).year, 2019);
+    });
+    test("Pass with Jiffy instance", () {
+      expect(Jiffy(Jiffy("2009", "yyyy")).year, 2009);
+    });
+    test("Pass with Map", () {
+      expect(Jiffy({"y": 2009}).year, 2009);
+      expect(Jiffy({"M": 2}).year, DateTime.now().year);
+    });
+    test("Pass with empty Map", () {
+      expect(Jiffy({}).year, DateTime.now().year);
+    });
+    test("Pass with Array", () {
+      expect(Jiffy([2009, 1]).year, 2009);
+    });
+    test("Pass with empty Array", () {
+      expect(Jiffy([]).year, DateTime.now().year);
+    });
     test("Get Datetime instance", () {
       expect(Jiffy("Oct, 2009", "MMM, yyyy").dateTime.toString(),
           "2009-10-01 00:00:00.000");
@@ -42,7 +61,7 @@ void main() {
         Jiffy("");
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')");
+            "JiffyException: Date time not recognized, a pattern must be passed, e.g. Jiffy(\'12, Oct\', \'dd, MMM\')");
       }
     });
   });
