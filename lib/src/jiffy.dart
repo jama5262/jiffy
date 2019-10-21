@@ -5,23 +5,14 @@ import 'package:intl/intl.dart';
 import 'package:jiffy/src/exception/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
+import 'package:jiffy/src/utils/regex.dart';
 
 class Jiffy {
   DateTime _dateTime;
   DateTime get dateTime => _dateTime;
 
-  Jiffy([String time, String pattern]) {
-    if (time != null && pattern == null) {
-      throw JiffyException(
-              "When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
-          .cause;
-    }
-    if (time == null && pattern == null) {
-      _dateTime = DateTime.now();
-    } else {
-      _dateTime = DateFormat(pattern)
-          .parse(time.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM'));
-    }
+  Jiffy([var input, String pattern]) {
+    _parse(input, pattern);
   }
 
   Jiffy.unix(int timestamp) {
@@ -33,6 +24,59 @@ class Jiffy {
     }
     if (timestampLength == 10) timestamp *= 1000;
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
+  }
+
+  void _parse(var input, [String pattern]) {
+    if (input == null && pattern == null) {
+      _dateTime = DateTime.now();
+    } else if (isDateTime(input)) {
+      _dateTime = input;
+    } else if (isJiffy(input)) {
+      _dateTime = input.dateTime;
+    } else if (input is Map) {
+      input.forEach((key, value) {
+        validateUnits(key);
+      });
+      if (input.isEmpty) {
+        _dateTime = DateTime.now();
+      } else {
+        _dateTime = DateTime(
+            input["year"] ??
+                input["years"] ??
+                input["y"] ??
+                DateTime.now().year,
+            input["month"] ?? input["months"] ?? input["M"] ?? 1,
+            input["day"] ?? input["days"] ?? input["d"] ?? 1,
+            input["hour"] ?? input["hours"] ?? input["h"] ?? 0,
+            input["minute"] ?? input["minutes"] ?? input["m"] ?? 0,
+            input["second"] ?? input["seconds"] ?? input["s"] ?? 0,
+            input["millisecond"] ?? input["milliseconds"] ?? input["ms"] ?? 0);
+      }
+    } else if (input is List) {
+      if (input.isEmpty) {
+        _dateTime = DateTime.now();
+      } else {
+        _dateTime = DateTime(
+            input?.elementAt(0) ?? DateTime.now().year,
+            input?.elementAt(1) ?? 1,
+            input?.elementAt(2) ?? 0,
+            input?.elementAt(3) ?? 0,
+            input?.elementAt(4) ?? 0,
+            input?.elementAt(5) ?? 0,
+            input?.elementAt(6) ?? 0);
+      }
+    } else if (input is String) {
+      if (matchStringDateTime(input)) {
+        _dateTime = DateFormat("yyyy-MM-dd").parse(input);
+      } else if (pattern != null) {
+        _dateTime = DateFormat(pattern)
+            .parse(input.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM'));
+      } else if (pattern == null) {
+        throw JiffyException(
+                "Date time not recognized, a pattern must be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
+            .cause;
+      }
+    }
   }
 
   static String _defaultLocale = "en";

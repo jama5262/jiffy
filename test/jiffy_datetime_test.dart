@@ -42,7 +42,7 @@ void main() {
         Jiffy("");
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: When passing time, a pattern must also be passed, e.g. Jiffy('12, Oct', 'dd, MMM')");
+            "JiffyException: Date time not recognized, a pattern must be passed, e.g. Jiffy(\'12, Oct\', \'dd, MMM\')");
       }
     });
   });
