@@ -10,12 +10,17 @@ main() async {
   Jiffy().format(); // 2019-10-19T19:00:53.090646
 
 //  You can also use default formats
-  Jiffy().yMMMMd; // October 19, 2019
-  Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+  Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
+  Jiffy({
+    "year": 2019,
+    "month": 10,
+    "day": 19,
+    "hour": 19
+  }).yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 
 //  RELATIVE TIME
-  Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
-  Jiffy("2012-06-20", "yyyy-MM-dd").fromNow(); // 7 years ago
+  Jiffy("2011-10-31").fromNow(); // 8 years ago
+  Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
   var jiffy1 = Jiffy()
     ..startOf("day");

@@ -1,9 +1,6 @@
 language: dart
 dart:
   - stable
-os:
-  - linux
-  - osx
 addons:
   apt:
     sources:
