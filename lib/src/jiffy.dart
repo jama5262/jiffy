@@ -12,7 +12,7 @@ class Jiffy {
   DateTime get dateTime => _dateTime;
 
   Jiffy([var input, String pattern]) {
-    _parse(input, pattern);
+    _dateTime = _parse(input, pattern);
   }
 
   Jiffy.unix(int timestamp) {
@@ -26,21 +26,22 @@ class Jiffy {
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
   }
 
-  void _parse(var input, [String pattern]) {
+  DateTime _parse(var input, [String pattern]) {
+    var dateTime;
     if (input == null && pattern == null) {
-      _dateTime = DateTime.now();
+      dateTime = DateTime.now();
     } else if (isDateTime(input)) {
-      _dateTime = input;
+      dateTime = input;
     } else if (isJiffy(input)) {
-      _dateTime = input.dateTime;
+      dateTime = input.dateTime;
     } else if (input is Map) {
       input.forEach((key, value) {
         validateUnits(key);
       });
       if (input.isEmpty) {
-        _dateTime = DateTime.now();
+        dateTime = DateTime.now();
       } else {
-        _dateTime = DateTime(
+        dateTime = DateTime(
             input["year"] ??
                 input["years"] ??
                 input["y"] ??
@@ -54,9 +55,9 @@ class Jiffy {
       }
     } else if (input is List) {
       if (input.isEmpty) {
-        _dateTime = DateTime.now();
+        dateTime = DateTime.now();
       } else {
-        _dateTime = DateTime(
+        dateTime = DateTime(
             input[0],
             input.length > 1 ? input[1] : 1,
             input.length > 2 ? input[2] : 1,
@@ -67,9 +68,9 @@ class Jiffy {
       }
     } else if (input is String) {
       if (matchStringDateTime(input)) {
-        _dateTime = DateFormat("yyyy-MM-dd").parse(input);
+        dateTime = DateFormat("yyyy-MM-dd").parse(input);
       } else if (pattern != null) {
-        _dateTime = DateFormat(pattern)
+        dateTime = DateFormat(pattern)
             .parse(input.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM'));
       } else if (pattern == null) {
         throw JiffyException(
@@ -77,6 +78,7 @@ class Jiffy {
             .cause;
       }
     }
+    return dateTime;
   }
 
   static String _defaultLocale = "en";
@@ -248,7 +250,7 @@ class Jiffy {
         break;
       case "M":
         int date = _daysInMonthArray[_dateTime.month];
-        if (Jiffy()._isLeapYear(_dateTime.year) && _dateTime.month == 2) {
+        if (_isLeapYear(_dateTime.year) && _dateTime.month == 2) {
           date = 29;
         }
         _dateTime =
@@ -355,56 +357,58 @@ class Jiffy {
     return relative.format(_defaultLocale, _dateTime);
   }
 
-  String from(Jiffy jiffy) {
-    return relative.format(_defaultLocale, _dateTime, jiffy.dateTime);
+  String from(var input) {
+    var dateTime = _parse(input);
+    return relative.format(_defaultLocale, _dateTime, dateTime);
   }
 
-  num diff(Jiffy jiffy, [String units = "ms", bool asFloat = false]) {
+  num diff(var input, [String units = "ms", bool asFloat = false]) {
+    var dateTime = _parse(input);
     units = validateUnits(units);
     num diff;
     switch (units) {
       case "ms":
-        diff = _dateTime.difference(jiffy.dateTime).inMilliseconds;
+        diff = _dateTime.difference(dateTime).inMilliseconds;
         break;
       case "s":
-        diff = _dateTime.difference(jiffy.dateTime).inSeconds;
+        diff = _dateTime.difference(dateTime).inSeconds;
         break;
       case "m":
-        diff = _dateTime.difference(jiffy.dateTime).inMinutes;
+        diff = _dateTime.difference(dateTime).inMinutes;
         break;
       case "h":
-        diff = _dateTime.difference(jiffy.dateTime).inHours;
+        diff = _dateTime.difference(dateTime).inHours;
         break;
       case "d":
-        diff = _dateTime.difference(jiffy.dateTime).inDays;
+        diff = _dateTime.difference(dateTime).inDays;
         break;
       case "w":
-        diff = _dateTime.difference(jiffy.dateTime).inDays / 7;
+        diff = _dateTime.difference(dateTime).inDays / 7;
         break;
       case "M":
-        diff = _monthDiff(dateTime, jiffy);
+        diff = _monthDiff(_dateTime, dateTime);
         break;
       case "y":
-        diff = _monthDiff(dateTime, jiffy) / 12;
+        diff = _monthDiff(_dateTime, dateTime) / 12;
         break;
     }
     if (!asFloat) return _absFloor(diff);
     return diff;
   }
 
-  num _monthDiff(DateTime a, Jiffy b) {
+  num _monthDiff(DateTime a, DateTime b) {
     int wholeMonthDiff = ((b.year - a.year) * 12) + (b.month - a.month);
     DateTime anchor = _addMonths(a, wholeMonthDiff);
     DateTime anchor2;
     var adjust;
 
-    if (b.valueOf() - anchor.millisecondsSinceEpoch < 0) {
+    if (b.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch < 0) {
       anchor2 = _addMonths(a, wholeMonthDiff - 1);
-      adjust = (b.valueOf() - anchor.millisecondsSinceEpoch) /
+      adjust = (b.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch) /
           (anchor.millisecondsSinceEpoch - anchor2.millisecondsSinceEpoch);
     } else {
       anchor2 = _addMonths(a, wholeMonthDiff + 1);
-      adjust = (b.valueOf() - anchor.millisecondsSinceEpoch) /
+      adjust = (b.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch) /
           (anchor2.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch);
     }
     return -(wholeMonthDiff + adjust) ?? 0;
@@ -427,44 +431,51 @@ class Jiffy {
   }
 
 //  QUERY
-  bool isBefore(Jiffy jiffy, [String units = "ms"]) {
+  bool isBefore(var input, [String units = "ms"]) {
+    var dateTime = _parse(input);
     units = validateUnits(units);
     if (units == "ms") {
-      return valueOf() < jiffy.valueOf();
+      return valueOf() < dateTime.millisecondsSinceEpoch;
     }
     endOf(units);
-    return valueOf() < jiffy.valueOf();
+    return valueOf() < dateTime.millisecondsSinceEpoch;
   }
 
-  bool isAfter(Jiffy jiffy, [String units = "ms"]) {
+  bool isAfter(var input, [String units = "ms"]) {
+    var dateTime = _parse(input);
     units = validateUnits(units);
     if (units == "ms") {
-      return valueOf() > jiffy.valueOf();
+      return valueOf() > dateTime.millisecondsSinceEpoch;
     }
     startOf(units);
-    return jiffy.valueOf() < valueOf();
+    return dateTime.millisecondsSinceEpoch < valueOf();
   }
 
-  bool isSame(Jiffy jiffy, [String units = "ms"]) {
+  bool isSame(var input, [String units = "ms"]) {
+    var dateTime = _parse(input);
     units = validateUnits(units);
     if (units == "ms") {
-      return valueOf() == jiffy.valueOf();
+      return valueOf() == dateTime.millisecondsSinceEpoch;
     }
-    int jiffyMs = jiffy.valueOf();
+    int jiffyMs = dateTime.millisecondsSinceEpoch;
     return startOf(units).millisecondsSinceEpoch <= jiffyMs &&
         jiffyMs <= endOf(units).millisecondsSinceEpoch;
   }
 
-  bool isSameOrBefore(Jiffy jiffy, [String units = "ms"]) {
-    return isSame(jiffy, units) || isBefore(jiffy, units);
+  bool isSameOrBefore(var input, [String units = "ms"]) {
+    var dateTime = _parse(input);
+    return isSame(dateTime, units) || isBefore(dateTime, units);
   }
 
-  bool isSameOrAfter(Jiffy jiffy, [String units = "ms"]) {
-    return isSame(jiffy, units) || isAfter(jiffy, units);
+  bool isSameOrAfter(var input, [String units = "ms"]) {
+    var dateTime = _parse(input);
+    return isSame(dateTime, units) || isAfter(dateTime, units);
   }
 
-  bool isBetween(Jiffy jiffyFrom, Jiffy jiffyTo, [String units = "ms"]) {
-    return isAfter(jiffyFrom, units) && isBefore(jiffyTo, units);
+  bool isBetween(var inputFrom, var inputTo, [String units = "ms"]) {
+    var dateTimeFrom = _parse(inputFrom);
+    var dateTimeTo = _parse(inputTo);
+    return isAfter(dateTimeFrom, units) && isBefore(dateTimeTo, units);
   }
 
   bool _isLeapYear(int year) =>

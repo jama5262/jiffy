@@ -25,6 +25,7 @@ void main() {
     });
     test("Pass with Map", () {
       expect(Jiffy({"y": 2009}).year, 2009);
+      expect(Jiffy({"M": 2}).year, DateTime.now().year);
     });
     test("Pass with empty Map", () {
       expect(Jiffy({}).year, DateTime.now().year);

@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=develop)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=develop)](https://coveralls.io/github/jama5262/jiffy?branch=develop)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v1.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v1.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
@@ -16,8 +16,16 @@ Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for p
 ```dart
 Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
 Jiffy().format("EEEE"); // Saturday
-Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
+Jiffy("2019-10-2").format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
 Jiffy().format(); // 2019-10-19T19:00:53.090646
+
+Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
+Jiffy({
+  "year": 2019,
+  "month": 10,
+  "day": 19,
+  "hour": 19
+}).yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 
 //  You can also use default formats
 Jiffy("19, Oct 2019", "dd, MMM yyyy").yMMMMd; // October 19, 2019
@@ -27,7 +35,7 @@ Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 ## Relative Time
 ```dart
 Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
-Jiffy("2012-06-20", "yyyy-MM-dd").fromNow(); // 7 years ago
+Jiffy("2012-06-20").fromNow(); // 7 years ago
 
 var jiffy1 = Jiffy()
     ..startOf("day");
