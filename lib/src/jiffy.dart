@@ -119,15 +119,15 @@ class Jiffy {
   }) {
     _dateTime = _dateTime.add(duration);
     _dateTime = _dateTime.add(Duration(
-      days: days + weeks * 7,
+      days: days + (weeks * 7),
       hours: hours,
       minutes: minutes,
       seconds: seconds,
       milliseconds: milliseconds,
       microseconds: microseconds,
     ));
-    _dateTime = _dateTime.add(_durationFrom(_dateTime, months: months));
-    _dateTime = _dateTime.add(_durationFrom(_dateTime, months: years * 12));
+    _dateTime = _addMonths(_dateTime, months);
+    _dateTime = _addMonths(_dateTime, years * 12);
     return _dateTime;
   }
 
@@ -152,9 +152,8 @@ class Jiffy {
       milliseconds: milliseconds,
       microseconds: microseconds,
     ));
-    _dateTime = _dateTime.subtract(_durationFrom(_dateTime, months: months));
-    _dateTime =
-        _dateTime.subtract(_durationFrom(_dateTime, months: years * 12));
+    _dateTime = _addMonths(_dateTime, -months);
+    _dateTime = _addMonths(_dateTime, -years * 12);
     return _dateTime;
   }
 
@@ -284,7 +283,7 @@ class Jiffy {
     return result;
   }
 
-  Duration _durationFrom(DateTime from, {int months = 0}) {
+  DateTime _addMonths(DateTime from, int months) {
     final r = months % 12;
     final q = (months - r) ~/ 12;
     var newYear = from.year + q;
@@ -294,13 +293,14 @@ class Jiffy {
       newMonth -= 12;
     }
     final newDay = min(from.day, _daysInMonth(newYear, newMonth));
-    return DateTime(newYear, newMonth, newDay, from.hour, from.minute,
-            from.second, from.millisecond, from.microsecond)
-        .difference(from);
+    if (from.isUtc) {
+      return DateTime.utc(newYear, newMonth, newDay, from.hour, from.minute,
+          from.second, from.millisecond, from.microsecond);
+    } else {
+      return DateTime(newYear, newMonth, newDay, from.hour, from.minute,
+          from.second, from.millisecond, from.microsecond);
+    }
   }
-
-  DateTime _addMonths(DateTime from, int months) =>
-      from.add(_durationFrom(from, months: months));
 
 //  DISPLAY
   String format([String pattern]) {
