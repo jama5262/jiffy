@@ -36,18 +36,18 @@ main() async {
 
 //  MANIPULATING DATES
   var jiffy4 = Jiffy()
-    ..add(1, "day");
+    ..add(duration: Duration(days: 1));
   jiffy4.yMMMMd; // October 20, 2019
 
   var jiffy5 = Jiffy()
-    ..subtract(1, "day");
+    ..subtract(duration: Duration(days: 1));
   jiffy5.yMMMMd; // October 18, 2019
 
 //  You can chain methods by using Dart method cascading
   var jiffy6 = Jiffy()
-    ..add(1, "day")
-    ..add(3, "hours")
-    ..subtract(30, "minutes");
+    ..add(duration: Duration(days: 1))
+    ..add(duration: Duration(hours: 3))
+    ..subtract(duration: Duration(minutes: 30));
   jiffy6.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
 
 //  LOCALES

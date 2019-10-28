@@ -6,77 +6,68 @@ void main() {
     test("Adding milliseconds", () {
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "ms")
+              .add(duration: Duration(milliseconds: 1))
               .toString(),
           "2019-10-13 00:00:00.001");
     });
     test("Adding seconds", () {
-      expect(Jiffy().add(1, "s").second,
+      expect(Jiffy().add(duration: Duration(seconds: 1)).second,
           DateTime.now().add(Duration(seconds: 1)).second);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "s")
+              .add(duration: Duration(seconds: 1))
               .toString(),
           "2019-10-13 00:00:01.000");
     });
     test("Adding minutes", () {
-      expect(Jiffy().add(1, "m").minute,
+      expect(Jiffy().add(duration: Duration(minutes: 1)).minute,
           DateTime.now().add(Duration(minutes: 1)).minute);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "m")
+              .add(duration: Duration(minutes: 1))
               .toString(),
           "2019-10-13 00:01:00.000");
     });
     test("Adding hours", () {
-      expect(Jiffy().add(1, "h").hour,
+      expect(Jiffy().add(duration: Duration(hours: 1)).hour,
           DateTime.now().add(Duration(hours: 1)).hour);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "h")
+              .add(duration: Duration(hours: 1))
               .toString(),
           "2019-10-13 01:00:00.000");
     });
     test("Adding days", () {
       expect(
-          Jiffy().add(1, "d").day, DateTime.now().add(Duration(days: 1)).day);
+          Jiffy().add(duration: Duration(days: 1)).day, DateTime.now().add(Duration(days: 1)).day);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "d")
+              .add(duration: Duration(days: 1))
               .toString(),
           "2019-10-14 00:00:00.000");
     });
     test("Adding weeks", () {
-      expect(Jiffy().add(1, "w").day,
+      expect(Jiffy().add(weeks: 1).day,
           DateTime.now().add(Duration(days: 1 * 7)).day);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "w")
+              .add(weeks: 1)
               .toString(),
           "2019-10-20 00:00:00.000");
     });
     test("Adding months", () {
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "M")
+              .add(months: 1)
               .toString(),
           "2019-11-13 00:00:00.000");
     });
     test("Adding years", () {
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .add(1, "y")
+              .add(years: 1)
               .toString(),
           "2020-10-13 00:00:00.000");
-    });
-    test("Passing invalid unit", () {
-      try {
-        Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-            .add(1, "invalidUnit");
-      } catch (e) {
-        expect(e.toString(),
-            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
-      }
     });
   });
 
@@ -84,77 +75,68 @@ void main() {
     test("Subtracting milliseconds", () {
       expect(
           Jiffy("2019-10-13 23:00:00:000", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "ms")
+              .subtract(duration: Duration(milliseconds: 1))
               .toString(),
           "2019-10-13 22:59:59.999");
     });
     test("Subtracting seconds", () {
-      expect(Jiffy().subtract(1, "s").second,
+      expect(Jiffy().subtract(duration: Duration(seconds: 1)).second,
           DateTime.now().subtract(Duration(seconds: 1)).second);
       expect(
           Jiffy("2019-10-13 12:00:01", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "s")
+              .subtract(duration: Duration(seconds: 1))
               .toString(),
           "2019-10-13 00:00:00.000");
     });
     test("Subtracting minutes", () {
-      expect(Jiffy().subtract(1, "m").minute,
+      expect(Jiffy().subtract(duration: Duration(minutes: 1)).minute,
           DateTime.now().subtract(Duration(minutes: 1)).minute);
       expect(
           Jiffy("2019-10-13 12:01:00", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "m")
+              .subtract(duration: Duration(minutes: 1))
               .toString(),
           "2019-10-13 00:00:00.000");
     });
     test("Subtracting hours", () {
-      expect(Jiffy().subtract(1, "h").hour,
+      expect(Jiffy().subtract(duration: Duration(hours: 1)).hour,
           DateTime.now().subtract(Duration(hours: 1)).hour);
       expect(
           Jiffy("2019-10-13 13:00:00", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "h")
+              .subtract(duration: Duration(hours: 1))
               .toString(),
           "2019-10-13 12:00:00.000");
     });
     test("Subtracting days", () {
-      expect(Jiffy().subtract(1, "d").day,
+      expect(Jiffy().subtract(duration: Duration(days: 1)).day,
           DateTime.now().subtract(Duration(days: 1)).day);
       expect(
           Jiffy("2019-10-14 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "d")
+              .subtract(duration: Duration(days: 1))
               .toString(),
           "2019-10-13 00:00:00.000");
     });
     test("Subtracting weeks", () {
-      expect(Jiffy().subtract(1, "w").day,
+      expect(Jiffy().subtract(weeks: 1).day,
           DateTime.now().subtract(Duration(days: 1 * 7)).day);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "w")
+              .subtract(weeks: 1)
               .toString(),
           "2019-10-06 00:00:00.000");
     });
     test("Subtracting months", () {
       expect(
           Jiffy("2019-11-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "M")
+              .subtract(months: 1)
               .toString(),
           "2019-10-13 00:00:00.000");
     });
     test("Subtracting years", () {
       expect(
           Jiffy("2020-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-              .subtract(1, "y")
+              .subtract(years: 1)
               .toString(),
           "2019-10-13 00:00:00.000");
-    });
-    test("Passing invalid unit", () {
-      try {
-        Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-            .subtract(1, "invalidUnit");
-      } catch (e) {
-        expect(e.toString(),
-            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
-      }
     });
   });
 
