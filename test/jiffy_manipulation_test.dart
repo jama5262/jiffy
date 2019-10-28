@@ -38,8 +38,8 @@ void main() {
           "2019-10-13 01:00:00.000");
     });
     test("Adding days", () {
-      expect(
-          Jiffy().add(duration: Duration(days: 1)).day, DateTime.now().add(Duration(days: 1)).day);
+      expect(Jiffy().add(duration: Duration(days: 1)).day,
+          DateTime.now().add(Duration(days: 1)).day);
       expect(
           Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
               .add(duration: Duration(days: 1))

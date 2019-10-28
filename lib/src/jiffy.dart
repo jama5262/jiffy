@@ -116,7 +116,7 @@ class Jiffy {
     int seconds = 0,
     int milliseconds = 0,
     int microseconds = 0,
-   }) {
+  }) {
     _dateTime = _dateTime.add(duration);
     _dateTime = _dateTime.add(Duration(
       days: days + weeks * 7,
@@ -153,7 +153,8 @@ class Jiffy {
       microseconds: microseconds,
     ));
     _dateTime = _dateTime.subtract(_durationFrom(_dateTime, months: months));
-    _dateTime = _dateTime.subtract(_durationFrom(_dateTime, months: years * 12));
+    _dateTime =
+        _dateTime.subtract(_durationFrom(_dateTime, months: years * 12));
     return _dateTime;
   }
 
@@ -293,11 +294,13 @@ class Jiffy {
       newMonth -= 12;
     }
     final newDay = min(from.day, _daysInMonth(newYear, newMonth));
-    return DateTime(newYear, newMonth, newDay, from.hour, from.minute, from.second,
-          from.millisecond, from.microsecond).difference(from);
+    return DateTime(newYear, newMonth, newDay, from.hour, from.minute,
+            from.second, from.millisecond, from.microsecond)
+        .difference(from);
   }
 
-  DateTime _addMonths(DateTime from, int months) => from.add(_durationFrom(from, months: months));
+  DateTime _addMonths(DateTime from, int months) =>
+      from.add(_durationFrom(from, months: months));
 
 //  DISPLAY
   String format([String pattern]) {

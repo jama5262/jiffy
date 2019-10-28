@@ -132,18 +132,21 @@ void main() {
     });
     test("Diff Of weeks", () {
       expect(
-          Jiffy(DateTime(2019, 10, 16, 23))
-              .diff(Jiffy(DateTime(2019, 10, 16, 23))..add(duration: Duration(seconds: 1)), "w"),
+          Jiffy(DateTime(2019, 10, 16, 23)).diff(
+              Jiffy(DateTime(2019, 10, 16, 23))
+                ..add(duration: Duration(seconds: 1)),
+              "w"),
           0);
       expect(
-          Jiffy(DateTime(2019, 10, 16, 23))
-              .diff(Jiffy(DateTime(2019, 10, 16, 23))..add(weeks: 2), "w", true),
+          Jiffy(DateTime(2019, 10, 16, 23)).diff(
+              Jiffy(DateTime(2019, 10, 16, 23))..add(weeks: 2), "w", true),
           -2.0);
     });
     test("Diff Of months", () {
       expect(
-          Jiffy([2019, 10, 16, 22])
-              .diff(Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)), "M"),
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
+              "M"),
           0);
       expect(
           Jiffy([2019, 10, 16, 22])
