@@ -62,5 +62,18 @@ void main() {
       expect(Jiffy.isDateTime(Jiffy()), false);
       expect(Jiffy.isDateTime(DateTime.now()), true);
     });
+    test("Test compareTo and operator methods", () {
+      var jiffy1 = Jiffy('2010-10-20', "yyyy-MM-dd");
+      var jiffy2 = Jiffy('2010-01-01', "yyyy-MM-dd");
+      expect(jiffy1 == jiffy1, true);
+      expect(jiffy1 != jiffy2, true);
+      expect(jiffy1 == Jiffy('2010-10-20', "yyyy-MM-dd"), true);
+      expect([jiffy1, jiffy2]..sort(), [jiffy2, jiffy1]);
+      expect([jiffy2, jiffy1]..sort(), [jiffy2, jiffy1]);
+      expect(jiffy1 > jiffy2, true);
+      expect(jiffy1 >= jiffy2, true);
+      expect(jiffy2 < jiffy1, true);
+      expect(jiffy2 <= jiffy1, true);
+    });
   });
 }

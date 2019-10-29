@@ -7,7 +7,7 @@ import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
 import 'package:jiffy/src/utils/regex.dart';
 
-class Jiffy {
+class Jiffy implements Comparable<Jiffy> {
   DateTime _dateTime;
   DateTime get dateTime => _dateTime;
 
@@ -486,4 +486,36 @@ class Jiffy {
   static bool isJiffy(var input) => input is Jiffy;
 
   static bool isDateTime(var input) => input is DateTime;
+
+  /**
+   * Compares this DateTime object to [other],
+   * returning zero if the values are equal.
+   *
+   * Returns a negative value if this DateTime [isBefore] [other]. It returns 0
+   * if it [isAtSameMomentAs] [other], and returns a positive value otherwise
+   * (when this [isAfter] [other]).
+   */
+  @override
+  int compareTo(Jiffy other) {
+    if (isBefore(other)) {
+      return -1;
+    }
+    if (isAfter(other)) {
+      return 1;
+    }
+    return 0;
+  }
+
+  bool operator <(Jiffy other) => isBefore(other);
+  bool operator <=(Jiffy other) => isSameOrBefore(other);
+
+  bool operator >(Jiffy other) => isAfter(other);
+  bool operator >=(Jiffy other) => isSameOrAfter(other);
+
+  bool operator ==(dynamic other) {
+    if (other is Jiffy) {
+      return isSame(other);
+    }
+    return false;
+  }
 }
