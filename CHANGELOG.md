@@ -1,3 +1,12 @@
+## 2.0.0
+
+Added params to add and subtract methods
+Example
+```dart
+Jiffy().add(days: 1);
+Jiffy().add(years: 2, months: 1, duration: Duration(days: 1, hours: 30));
+```
+
 ## 1.1.0
 
 Add more functionality to parsing. These are

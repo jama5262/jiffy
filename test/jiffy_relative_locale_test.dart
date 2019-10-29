@@ -4,17 +4,17 @@ import 'package:test/test.dart';
 void main() {
   group('Test for all relative date locales', () {
     var jiffy1 = Jiffy();
-    var jiffy2 = Jiffy()..add(1, "s");
-    var jiffy3 = Jiffy()..subtract(1, "m");
-    var jiffy5 = Jiffy()..subtract(10, "m");
-    var jiffy6 = Jiffy()..subtract(1, "h");
-    var jiffy7 = Jiffy()..subtract(10, "h");
-    var jiffy8 = Jiffy()..subtract(1, "d");
-    var jiffy9 = Jiffy()..subtract(10, "d");
-    var jiffy10 = Jiffy()..subtract(1, "M");
-    var jiffy11 = Jiffy()..subtract(10, "M");
-    var jiffy12 = Jiffy()..subtract(1, "y");
-    var jiffy13 = Jiffy()..subtract(10, "y");
+    var jiffy2 = Jiffy()..add(duration: Duration(seconds: 1));
+    var jiffy3 = Jiffy()..subtract(duration: Duration(minutes: 1));
+    var jiffy5 = Jiffy()..subtract(duration: Duration(minutes: 10));
+    var jiffy6 = Jiffy()..subtract(duration: Duration(hours: 1));
+    var jiffy7 = Jiffy()..subtract(duration: Duration(hours: 10));
+    var jiffy8 = Jiffy()..subtract(duration: Duration(days: 1));
+    var jiffy9 = Jiffy()..subtract(duration: Duration(days: 10));
+    var jiffy10 = Jiffy()..subtract(months: 1);
+    var jiffy11 = Jiffy()..subtract(months: 10);
+    var jiffy12 = Jiffy()..subtract(years: 1);
+    var jiffy13 = Jiffy()..subtract(years: 10);
 
     test("Test ar locale", () async {
       await Jiffy.locale("ar");

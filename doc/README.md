@@ -3,10 +3,10 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v1.1.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v2.0.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
-Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
+Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
 # Table of content
 - [Before Use](#before-use)
@@ -60,16 +60,16 @@ Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for p
 # Before Use
 Almost all of Jiffy methods return a dart DateTime instance, like the `add` and `subtract` methods. Example
 ```dart
-Jiffy().add(1, "year"); // Returns a DateTime instance
+Jiffy().add(years: 1); // Returns a DateTime instance
 Jiffy().utc(); // Returns a DateTime instance
 ```
 _**But when doing a method chaining, it is recommended to use a variable.**_ The variable will then hold a Jiffy instance. Example
 ```dart
 var jiffy = Jiffy()
     ..utc()
-    ..add(1, "day")
-    ..add(3, "hours")
-    ..subtract(30, "minutes"); // Returns a Jiffy instance
+    ..add(days: 1)
+    ..add(hours: 3)
+    ..subtract(minutes: 30); // Returns a Jiffy instance
 ```
 Now `jiffy` variable returns a Jiffy instance. To get the date time, you can call it with the following methods
 ```dart
@@ -95,7 +95,7 @@ Creating a Jiffy from a string. See below
 Jiffy("1995-12-25");
 ```
 
-**_Note: For now, Jiffy supports only `yyyy-MM-dd` string formats. Passing string like `dd-MM-yyyy` will result in an exception. If you do need to pass, this format, `dd-MM-yyyy` or any other, should also pass a pattern of that string, Also know as `String Formatting`. See below_**
+**_Note: For now, Jiffy supports only `yyyy-MM-dd` string formats. Passing string like `dd-MM-yyyy` will result in an exception. If you do need to pass this format, `dd-MM-yyyy` or any other, should also pass a pattern of that string, Also know as `String Formatting`. See below_**
 ```dart
 Jiffy("25-12-1995", "dd-MM-yyyy");
 Jiffy("12-1995", "MM-yyyy");
@@ -239,30 +239,23 @@ Jiffy().year;
 # Manipulation
 
 #### Add
-This adds time to Jiffy by the following units years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
+This adds time to Jiffy by the following units years, months, weeks, days, hours, minutes, seconds and milliseconds, microseconds and duration. See below
 ```dart
-Jiffy().add(1, "year");
-Jiffy().add(3, "d");
+Jiffy().add(years: 1);
+Jiffy().add(days: 3);
+Jiffy().add(duration: Duration(days: 3));
+Jiffy().add(years: 1, weeks: 3, duration: Duration(days: 3));
 ```
-Below are the units that can be used
+Below are the params that can be used
 
-| Key  | Units |
-| ------------- | ------------- |
-| years  | y / year / years  |
-| months  | M / month / months  |
-| weeks  | w / week / weeks  |
-| days  | d / day / days  |
-| hours  | h / hour / hours  |
-| minutes  | m / minute /minutes  |
-| seconds  | s / second / seconds  |
-| milliseconds  | ms / millisecond / milliseconds  |
+`years, months, weeks, days, hours, minutes, seconds, milliseconds, microseconds, duration`
 
 You can also add date time with chaining using [dart method cascading](https://news.dartlang.org/2012/02/method-cascades-in-dart-posted-by-gilad.html)
 
 ```dart
 var jiffy = Jiffy()
-    ..add(7, "days")
-    ..add(1, "month");
+    ..add(days: 7)
+    ..add(months: 1);
 jiffy.yMMMMd; // November 27, 2019
 ```
 
@@ -270,13 +263,13 @@ jiffy.yMMMMd; // November 27, 2019
 
 ```dart
 Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
-Jiffy("2010-1-31", "yyyy-MM-dd").add(1, "month"); // This is February 28
+Jiffy("2010-1-31", "yyyy-MM-dd").add(months: 1); // This is February 28
 ```
 #### Subtract
 This subtracts time from Jiffy by the following units years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
 ```dart
-Jiffy().subtract(1, "year");
-Jiffy().subtract(3, "d");
+Jiffy().subtract(years: 1);
+Jiffy().subtract(days: 3);
 ```
 #### Start of Time
 This set the Jiffy date time to a specific unit in time in terms of years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
@@ -290,6 +283,14 @@ Jiffy().startOf('hour');    // Set to now, but with 0 mins, 0 secs, and 0 ms
 Jiffy().startOf('minute');  // Set to now, but with 0 seconds and 0 milliseconds
 Jiffy().startOf('second');  // Set to now, but with 0 milliseconds;
 ```
+You can also add method cascading to date time. See below
+
+```dart
+var jiffy1 = Jiffy()
+    ..startOf("day")
+    ..add(days: 1);
+```
+
 #### End of Time
 This set the Jiffy date time to a specific unit in time in terms of years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
 
@@ -365,7 +366,7 @@ Jiffy({
 }).diff([2017, 1, 29], "day"); // 1
 ```
 
-Also by default `diff` with truncate the result to return a whole number. To get decimal numbers, just pass a third param as `true`. See below
+Also by default `diff` will truncate the result to return a whole number. To get decimal numbers, just pass a third param as `true`. See below
 ```dart
 var jiffy1 = Jiffy("2008-10", "yyyy-MM");
 var jiffy2 = Jiffy("2007-1", "yyyy-MM");
