@@ -40,14 +40,14 @@ main() async {
   jiffy4.yMMMMd; // October 20, 2019
 
   var jiffy5 = Jiffy()
-    ..subtract(duration: Duration(days: 1));
+    ..subtract(days: 1);
   jiffy5.yMMMMd; // October 18, 2019
 
 //  You can chain methods by using Dart method cascading
   var jiffy6 = Jiffy()
-    ..add(duration: Duration(days: 1))
-    ..add(duration: Duration(hours: 3))
-    ..subtract(duration: Duration(minutes: 30));
+    ..add(days: 1)
+    ..add(hours: 3)
+    ..subtract(minutes: 30);
   jiffy6.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
 
 //  LOCALES

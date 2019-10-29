@@ -6,9 +6,9 @@
 [![Pub Version](https://img.shields.io/badge/pub-v1.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
-Jiffy is a dart date package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
+Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-#### [Full Documentation](https://github.com/jama5262/jiffy/tree/master/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
+#### [Full Documentation](https://github.com/jama5262/jiffy/tree/master/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
@@ -54,30 +54,30 @@ jiffy3.fromNow(); // 9 minutes ago
 
 ```dart
 var jiffy1 = Jiffy()
-    ..add(1, "day");
+    ..add(duration: Duration(days: 1));
 jiffy1.yMMMMd; // October 20, 2019
 
 var jiffy2 = Jiffy()
-    ..subtract(1, "day");
+    ..subtract(days: 1);
 jiffy2.yMMMMd; // October 18, 2019
 
 //  You can chain methods by using Dart method cascading
 var jiffy3 = Jiffy()
-    ..add(1, "day")
-    ..add(3, "hours")
-    ..subtract(30, "minutes");
+    ..add(days: 1)
+    ..add(hours: 3)
+    ..subtract(minutes: 30);
 jiffy3.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
 
 var jiffy4 = Jiffy()
-    ..add(1, "day")
-    ..add(3, "hours")
-    ..subtract(30, "minutes");
-jiffy4.format("dd/MM/yyy"); // 21/10/2019
+    ..add(duration: Duration(days: 1))
+    ..add(duration: Duration(hours: 3))
+    ..subtract(duration: Duration(minutes: 30));
+jiffy4.format("dd/MM/yyy"); // 20/10/2019
 
 
 // Months and year are added in respect to how many days there are in a months and if is a year is a leap year
 Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
-Jiffy("2010-1-31", "yyyy-MM-dd").add(1, "month"); // This is February 28
+Jiffy("2010-1-31", "yyyy-MM-dd").add(months: 1); // This is February 28
 ```
 
 ## Locale Support
