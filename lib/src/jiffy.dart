@@ -105,65 +105,55 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
-  DateTime add(int input, String units) {
-    units = validateUnits(units);
-    switch (units) {
-      case "ms":
-        _dateTime = _dateTime.add(Duration(milliseconds: input));
-        break;
-      case "s":
-        _dateTime = _dateTime.add(Duration(seconds: input));
-        break;
-      case "m":
-        _dateTime = _dateTime.add(Duration(minutes: input));
-        break;
-      case "h":
-        _dateTime = _dateTime.add(Duration(hours: input));
-        break;
-      case "d":
-        _dateTime = _dateTime.add(Duration(days: input));
-        break;
-      case "w":
-        _dateTime = _dateTime.add(Duration(days: input * 7));
-        break;
-      case "M":
-        _dateTime = _addMonths(_dateTime, input);
-        break;
-      case "y":
-        _dateTime = _addMonths(_dateTime, input * 12);
-        break;
-    }
+  DateTime add({
+    Duration duration = Duration.zero,
+    int years = 0,
+    int months = 0,
+    int weeks = 0,
+    int days = 0,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
+    int microseconds = 0,
+  }) {
+    _dateTime = _dateTime.add(duration);
+    _dateTime = _dateTime.add(Duration(
+      days: days + (weeks * 7),
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+      milliseconds: milliseconds,
+      microseconds: microseconds,
+    ));
+    _dateTime = _addMonths(_dateTime, months);
+    _dateTime = _addMonths(_dateTime, years * 12);
     return _dateTime;
   }
 
-  DateTime subtract(int input, String units) {
-    units = validateUnits(units);
-    switch (units) {
-      case "ms":
-        _dateTime = _dateTime.subtract(Duration(milliseconds: input));
-        break;
-      case "s":
-        _dateTime = _dateTime.subtract(Duration(seconds: input));
-        break;
-      case "m":
-        _dateTime = _dateTime.subtract(Duration(minutes: input));
-        break;
-      case "h":
-        _dateTime = _dateTime.subtract(Duration(hours: input));
-        break;
-      case "d":
-        _dateTime = _dateTime.subtract(Duration(days: input));
-        break;
-      case "w":
-        _dateTime = _dateTime.subtract(Duration(days: input * 7));
-        break;
-      case "M":
-        _dateTime = _addMonths(_dateTime, -input);
-        break;
-      case "y":
-        _dateTime = _addMonths(_dateTime, -input * 12);
-        break;
-    }
+  DateTime subtract({
+    Duration duration = Duration.zero,
+    int years = 0,
+    int months = 0,
+    int weeks = 0,
+    int days = 0,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
+    int microseconds = 0,
+  }) {
+    _dateTime = _dateTime.subtract(duration);
+    _dateTime = _dateTime.subtract(Duration(
+      days: days + weeks * 7,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+      milliseconds: milliseconds,
+      microseconds: microseconds,
+    ));
+    _dateTime = _addMonths(_dateTime, -months);
+    _dateTime = _addMonths(_dateTime, -years * 12);
     return _dateTime;
   }
 
@@ -293,22 +283,22 @@ class Jiffy {
     return result;
   }
 
-  DateTime _addMonths(DateTime dt, int value) {
-    var r = value % 12;
-    var q = (value - r) ~/ 12;
-    var newYear = dt.year + q;
-    var newMonth = dt.month + r;
+  DateTime _addMonths(DateTime from, int months) {
+    final r = months % 12;
+    final q = (months - r) ~/ 12;
+    var newYear = from.year + q;
+    var newMonth = from.month + r;
     if (newMonth > 12) {
       newYear++;
       newMonth -= 12;
     }
-    var newDay = min(dt.day, _daysInMonth(newYear, newMonth));
-    if (dt.isUtc) {
-      return DateTime.utc(newYear, newMonth, newDay, dt.hour, dt.minute,
-          dt.second, dt.millisecond, dt.microsecond);
+    final newDay = min(from.day, _daysInMonth(newYear, newMonth));
+    if (from.isUtc) {
+      return DateTime.utc(newYear, newMonth, newDay, from.hour, from.minute,
+          from.second, from.millisecond, from.microsecond);
     } else {
-      return DateTime(newYear, newMonth, newDay, dt.hour, dt.minute, dt.second,
-          dt.millisecond, dt.microsecond);
+      return DateTime(newYear, newMonth, newDay, from.hour, from.minute,
+          from.second, from.millisecond, from.microsecond);
     }
   }
 
