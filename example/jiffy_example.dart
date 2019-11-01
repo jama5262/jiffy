@@ -39,6 +39,8 @@ main() async {
     ..add(duration: Duration(days: 1));
   jiffy4.yMMMMd; // October 20, 2019
 
+  print(Jiffy("20 Mon", "do EEE").yMMMMEEEEd);
+
   var jiffy5 = Jiffy()
     ..subtract(days: 1);
   jiffy5.yMMMMd; // October 18, 2019

@@ -6,6 +6,7 @@ import 'package:jiffy/src/exception/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
 import 'package:jiffy/src/utils/regex.dart';
+import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
   DateTime _dateTime;
@@ -70,8 +71,8 @@ class Jiffy {
       if (matchStringDateTime(input)) {
         dateTime = DateFormat("yyyy-MM-dd").parse(input);
       } else if (pattern != null) {
-        dateTime = DateFormat(pattern)
-            .parse(input.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM'));
+        dateTime = DateFormat(replaceOrdinalDayPattern(pattern))
+            .parse(replaceParseInput(input));
       } else if (pattern == null) {
         throw JiffyException(
                 "Date time not recognized, a pattern must be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")

@@ -9,3 +9,11 @@ String replaceToLocaleNum(String input, locale) {
   }
   return input;
 }
+
+String replaceParseInput(String input) {
+  return input.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM');
+}
+
+String replaceOrdinalDayPattern(String input) {
+  return input.replaceFirst('do', 'd');
+}
