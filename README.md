@@ -3,20 +3,21 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v2.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v2.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-#### [Full Documentation](https://github.com/jama5262/jiffy/tree/v2.0.0/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
+#### [Full Documentation](https://github.com/jama5262/jiffy/tree/v2.1.0/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
 ## Format Dates
 ```dart
-Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
+Jiffy([2019, 10, 19]).format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
 Jiffy().format("EEEE"); // Saturday
-Jiffy("2019-10-2").format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
+Jiffy().format("MMM do yy"); // Oct 19th 19
+Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
 Jiffy().format(); // 2019-10-19T19:00:53.090646
 
 Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
@@ -63,21 +64,19 @@ jiffy2.yMMMMd; // October 18, 2019
 
 //  You can chain methods by using Dart method cascading
 var jiffy3 = Jiffy()
-    ..add(days: 1)
-    ..add(hours: 3)
-    ..subtract(minutes: 30);
-jiffy3.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
+     ..add(hours: 3, days: 1)
+     ..subtract(minutes: 30, months: 1);
+jiffy3.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
 
 var jiffy4 = Jiffy()
-    ..add(duration: Duration(days: 1))
-    ..add(duration: Duration(hours: 3))
+    ..add(duration: Duration(days: 1, hours: 3))
     ..subtract(duration: Duration(minutes: 30));
 jiffy4.format("dd/MM/yyy"); // 20/10/2019
 
 
 // Months and year are added in respect to how many days there are in a months and if is a year is a leap year
 Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
-Jiffy("2010-1-31", "yyyy-MM-dd").add(months: 1); // This is February 28
+Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
 ## Locale Support
@@ -103,9 +102,7 @@ To contribute, follow the following easy steps
 
 ##### Step 1
 
-- Fork this repo! or
-
-- Clone this repo to your local machine using `https://github.com/jama5262/jiffy.git`
+- Fork this repo!
 
 ##### Step 2
 

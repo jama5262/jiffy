@@ -2,8 +2,9 @@ import 'package:jiffy/jiffy.dart';
 
 main() async {
 //  FORMATTING DATES
-  Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
+  Jiffy([2019, 10, 19]).format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
   Jiffy().format("EEEE"); // Saturday
+  Jiffy().format("MMM do yy"); // Oct 19th 19
   Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
 
 //  Not passing a string pattern for format method will return an ISO Date format
@@ -45,10 +46,9 @@ main() async {
 
 //  You can chain methods by using Dart method cascading
   var jiffy6 = Jiffy()
-    ..add(days: 1)
-    ..add(hours: 3)
-    ..subtract(minutes: 30);
-  jiffy6.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
+    ..add(hours: 3, days: 1)
+    ..subtract(minutes: 30, months: 1);
+  jiffy6.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
 
 //  LOCALES
 //  The locale method always return a future
