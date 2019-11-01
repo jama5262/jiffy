@@ -63,21 +63,19 @@ jiffy2.yMMMMd; // October 18, 2019
 
 //  You can chain methods by using Dart method cascading
 var jiffy3 = Jiffy()
-    ..add(days: 1)
-    ..add(hours: 3)
-    ..subtract(minutes: 30);
-jiffy3.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
+     ..add(hours: 3, days: 1)
+     ..subtract(minutes: 30, months: 1);
+jiffy3.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
 
 var jiffy4 = Jiffy()
-    ..add(duration: Duration(days: 1))
-    ..add(duration: Duration(hours: 3))
+    ..add(duration: Duration(days: 1, hours: 3))
     ..subtract(duration: Duration(minutes: 30));
 jiffy4.format("dd/MM/yyy"); // 20/10/2019
 
 
 // Months and year are added in respect to how many days there are in a months and if is a year is a leap year
 Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
-Jiffy("2010-1-31", "yyyy-MM-dd").add(months: 1); // This is February 28
+Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
 ## Locale Support
@@ -103,9 +101,7 @@ To contribute, follow the following easy steps
 
 ##### Step 1
 
-- Fork this repo! or
-
-- Clone this repo to your local machine using `https://github.com/jama5262/jiffy.git`
+- Fork this repo!
 
 ##### Step 2
 
