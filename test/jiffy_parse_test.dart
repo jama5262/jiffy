@@ -11,6 +11,25 @@ void main() {
       expect(Jiffy("2009", "yyyy").year, 2009);
       expect(Jiffy("Oct, 2009", "MMM, yyyy").year, 2009);
     });
+    test("Pass time and pattern with ordinal", () {
+      expect(Jiffy([2019, 10, 1]).format("MMM do yy"), "Oct 1st 19");
+      expect(Jiffy([2019, 10, 2]).format("MMM do yy"), "Oct 2nd 19");
+      expect(Jiffy([2019, 10, 3]).format("MMM do yy"), "Oct 3rd 19");
+      expect(Jiffy([2019, 10, 10]).format("MMM do yy"), "Oct 10th 19");
+      expect(Jiffy([2019, 10, 21]).format("MMM do yy"), "Oct 21st 19");
+    });
+    test("Pass ordinal time and pattern with ordinal", () {
+      expect(
+          Jiffy("Oct 1st 19", "MMM do yy").format("MMM do yy"), "Oct 1st 19");
+      expect(
+          Jiffy("Oct 2st 19", "MMM do yy").format("MMM do yy"), "Oct 2nd 19");
+      expect(
+          Jiffy("Oct 3st 19", "MMM do yy").format("MMM do yy"), "Oct 3rd 19");
+      expect(
+          Jiffy("Oct 10st 19", "MMM do yy").format("MMM do yy"), "Oct 10th 19");
+      expect(
+          Jiffy("Oct 21st 19", "MMM do yy").format("MMM do yy"), "Oct 21st 19");
+    });
     test("Pass time and with empty string pattern", () {
       expect(Jiffy("2009", "").year, 1970);
     });

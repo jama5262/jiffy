@@ -13,7 +13,10 @@ List<String> localeOrdinals = [
   "zh",
   "zhcn",
   "zhhk",
-  "zhtw"
+  "zhtw",
+  "de",
+  "deat",
+  "dech"
 ];
 
 List<String> getOrdinalLocaleDates(String locale) {
@@ -32,7 +35,10 @@ List<String> getOrdinalLocaleDates(String locale) {
     localeOrdinals[11]: ["日", "日", "日", "日"],
     localeOrdinals[12]: ["日", "日", "日", "日"],
     localeOrdinals[13]: ["日", "日", "日", "日"],
-    localeOrdinals[14]: ["日", "日", "日", "日"]
+    localeOrdinals[14]: ["日", "日", "日", "日"],
+    localeOrdinals[15]: [".", ".", ".", "."],
+    localeOrdinals[16]: [".", ".", ".", "."],
+    localeOrdinals[17]: [".", ".", ".", "."]
   };
   return ordinals[locale];
 }

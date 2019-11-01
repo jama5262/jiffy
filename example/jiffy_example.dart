@@ -55,12 +55,9 @@ main() async {
   await Jiffy.locale(); // en
 //  To set locale
   await Jiffy.locale("fr");
-  print(Jiffy([2019, 11, 1]).format("d do 'do' EEE 'do' MMM"));
   Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
   await Jiffy.locale("ar");
-  print(Jiffy([2019, 11, 10]).format("d do 'do' EEE 'do' MMM"));
   Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
   await Jiffy.locale("zh-cn");
-  print(Jiffy([2019, 11, 1]).format("d do 'do' EEE 'do' MMM"));
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 }

@@ -28,7 +28,8 @@ String replaceOrdinalDatePattern(String input, String suffix) {
   var pattern = input;
   regex.forEach((match) {
     if (match.group(1) == "do") {
-      pattern = input.replaceRange(match.start, match.end, "d'$suffix'");
+      pattern = input.replaceRange(
+          match.start, match.end, "d${suffix.isNotEmpty ? "'$suffix'" : ""}");
     }
   });
   return pattern;
