@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:jiffy/src/exception/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
+import 'package:jiffy/src/utils/ordinalLocale.dart';
 import 'package:jiffy/src/utils/regex.dart';
+import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
   DateTime _dateTime;
@@ -70,8 +72,8 @@ class Jiffy {
       if (matchStringDateTime(input)) {
         dateTime = DateFormat("yyyy-MM-dd").parse(input);
       } else if (pattern != null) {
-        dateTime = DateFormat(pattern)
-            .parse(input.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM'));
+        dateTime = DateFormat(replacePatternInput(pattern))
+            .parse(replaceParseInput(input));
       } else if (pattern == null) {
         throw JiffyException(
                 "Date time not recognized, a pattern must be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
@@ -306,7 +308,22 @@ class Jiffy {
 //  DISPLAY
   String format([String pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
-    return DateFormat(pattern).format(_dateTime);
+    final suffix = _getOrdinalDates(_dateTime.day);
+    final _pattern = replaceOrdinalDatePattern(pattern, suffix);
+    return DateFormat(_pattern).format(_dateTime);
+  }
+
+  String _getOrdinalDates(int day) {
+    if (!localeOrdinals.contains(replaceLocateHyphen(_defaultLocale))) {
+      return "";
+    }
+    final ordinals = getOrdinalLocaleDates(replaceLocateHyphen(_defaultLocale));
+    var suffix = ordinals[0];
+    final digit = day % 10;
+    if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
+      suffix = ordinals[digit];
+    }
+    return suffix;
   }
 
   String get E => DateFormat.E().format(_dateTime);
