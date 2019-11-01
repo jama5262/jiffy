@@ -45,10 +45,9 @@ main() async {
 
 //  You can chain methods by using Dart method cascading
   var jiffy6 = Jiffy()
-    ..add(days: 1)
-    ..add(hours: 3)
-    ..subtract(minutes: 30);
-  jiffy6.yMMMMEEEEdjm; // Sunday, October 20, 2019 9:50 PM
+    ..add(hours: 3, days: 1)
+    ..subtract(minutes: 30, months: 1);
+  jiffy6.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
 
 //  LOCALES
 //  The locale method always return a future

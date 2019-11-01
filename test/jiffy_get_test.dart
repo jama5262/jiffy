@@ -6,9 +6,6 @@ void main() {
     test("Get seconds", () {
       expect(Jiffy().seconds, DateTime.now().second);
     });
-    test("Get seconds", () {
-      expect(Jiffy().seconds, DateTime.now().second);
-    });
     test("Get minutes", () {
       expect(Jiffy().minute, DateTime.now().minute);
     });
@@ -20,6 +17,11 @@ void main() {
     });
     test("Get day", () {
       expect(Jiffy().day, DateTime.now().weekday);
+    });
+    test("Get days in month", () {
+      expect(Jiffy([2016, 1]).daysInMonth, 31);
+      expect(Jiffy([2016, 2]).daysInMonth, 29);
+      expect(Jiffy([2017, 2]).daysInMonth, 28);
     });
     test("Get day of year", () {
       expect(Jiffy("2019, 10, 16", "yyyy, MM, dd").dayOfYear, 289);

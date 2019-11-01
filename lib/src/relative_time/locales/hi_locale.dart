@@ -1,5 +1,5 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
-import 'package:jiffy/src/utils/replace_to_locale_num.dart';
+import 'package:jiffy/src/utils/replace.dart';
 
 class HiLocale extends LookUpMessages {
   String prefixAgo() => '';

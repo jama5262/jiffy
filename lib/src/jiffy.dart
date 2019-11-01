@@ -98,6 +98,7 @@ class Jiffy {
   int get hour => _dateTime.hour;
   int get date => _dateTime.day;
   int get day => _dateTime.weekday;
+  int get daysInMonth => _daysInMonth(_dateTime.year, _dateTime.month);
   int get dayOfYear => int.parse(DateFormat("D").format(_dateTime));
   int get week => ((dayOfYear - _dateTime.weekday + 10) / 7).floor();
   int get month => _dateTime.month;

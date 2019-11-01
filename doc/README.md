@@ -95,7 +95,7 @@ Creating a Jiffy from a string. See below
 Jiffy("1995-12-25");
 ```
 
-**_Note: For now, Jiffy supports only `yyyy-MM-dd` string formats. Passing string like `dd-MM-yyyy` will result in an exception. If you do need to pass this format, `dd-MM-yyyy` or any other, should also pass a pattern of that string, Also know as `String Formatting`. See below_**
+**_Note: For now, Jiffy supports only `yyyy-MM-dd` string formats. Passing string like `dd-MM-yyyy` will result in an exception. If you do need to pass this format, `dd-MM-yyyy` or any other, should also pass a pattern of that string, Also know as [String Formating](#string-formatting). See below_**
 ```dart
 Jiffy("25-12-1995", "dd-MM-yyyy");
 Jiffy("12-1995", "MM-yyyy");
@@ -200,10 +200,15 @@ Get hour (Returns from 0 - 23)
 ```dart
 Jiffy().hour;
 ```
-#### Date of Month
+#### Date of month
 Get date of month (Returns from 1 - 31)
 ```dart
 Jiffy().date;
+```
+#### Days in month
+Get days in a month (Returns from 28 - 31)
+```dart
+Jiffy().daysInMonth;
 ```
 #### Day of week
 Get day of week (Returns from 0 - 6 [Sunday - Saturday])
