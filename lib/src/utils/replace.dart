@@ -16,9 +16,20 @@ String replaceParseInput(String input) {
   return input
       .replaceFirst(' pm', ' PM')
       .replaceFirst(' am', ' AM')
-      .replaceFirst(matchOrdinalDays(input), "");
+      .replaceFirst(matchOrdinalDays(), "");
 }
 
 String replacePatternInput(String input) {
   return input.replaceFirst('do', 'd');
+}
+
+String replaceOrdinalDatePattern(String input, String suffix) {
+  final regex = matchOrdinalDatePattern().allMatches(input);
+  var pattern = input;
+  regex.forEach((match) {
+    if (match.group(1) == "do") {
+      pattern = input.replaceRange(match.start, match.end, "d'$suffix'");
+    }
+  });
+  return pattern;
 }
