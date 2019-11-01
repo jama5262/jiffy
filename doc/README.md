@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v2.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v2.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
@@ -109,6 +109,13 @@ Jiffy("1995-12-25", "yyyy-MM-dd");
 Jiffy("25-12-1995", "dd-MM-yyyy");
 Jiffy("12-1995", "MM-yyyy");
 ```
+You can also parse ordinal date formats. The date pattern for the ordinal date is `do`
+
+```dart
+Jiffy("0ct 19th", "MMM do");
+Jiffy("19th October 2019", "do MMMM yyyy");
+```
+
 Jiffy runs on top of the [Intl DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html) package, you can find all the date time patterns used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
 
 This is also same for Jiffy default formats. See below
@@ -249,7 +256,7 @@ This adds time to Jiffy by the following units years, months, weeks, days, hours
 ```dart
 Jiffy().add(years: 1);
 Jiffy().add(days: 3);
-Jiffy().add(duration: Duration(days: 3));
+Jiffy().add(months: 3, duration: Duration(days: 3));
 Jiffy().add(years: 1, weeks: 3, duration: Duration(days: 3));
 ```
 Below are the params that can be used
@@ -260,9 +267,11 @@ You can also add date time with chaining using [dart method cascading](https://n
 
 ```dart
 var jiffy = Jiffy()
-    ..add(days: 7)
-    ..add(months: 1);
-jiffy.yMMMMd; // November 27, 2019
+    ..startOf('day')
+    ..utc()
+    ..add(days: 7, months: 1)
+    ..subtract(years: 1);
+jiffy.yMMMMd; // November 27, 2018
 ```
 
 **_Note: Months and year are added in respect to how many days there are in a months and if is a year is a leap year. See below_**
@@ -322,7 +331,7 @@ jiffy.utc(); // Set to utc
 #### Format
 The format function takes in a string pattern, which can be found [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html), and format them. See below
 ```dart
-Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
+Jiffy().format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
 Jiffy().format("EEEE"); // Saturday
 Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
 
