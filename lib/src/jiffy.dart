@@ -71,7 +71,7 @@ class Jiffy {
       if (matchStringDateTime(input)) {
         dateTime = DateFormat("yyyy-MM-dd").parse(input);
       } else if (pattern != null) {
-        dateTime = DateFormat(replaceOrdinalDayPattern(pattern))
+        dateTime = DateFormat(replacePatternInput(pattern))
             .parse(replaceParseInput(input));
       } else if (pattern == null) {
         throw JiffyException(

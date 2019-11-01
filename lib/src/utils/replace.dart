@@ -1,3 +1,5 @@
+import 'package:jiffy/src/utils/regex.dart';
+
 String replaceToLocaleNum(String input, locale) {
   Map<String, List<String>> localNumbers = {
     "en": ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
@@ -11,9 +13,12 @@ String replaceToLocaleNum(String input, locale) {
 }
 
 String replaceParseInput(String input) {
-  return input.replaceFirst(' pm', ' PM').replaceFirst(' am', ' AM');
+  return input
+      .replaceFirst(' pm', ' PM')
+      .replaceFirst(' am', ' AM')
+      .replaceFirst(matchOrdinalDays(input), "");
 }
 
-String replaceOrdinalDayPattern(String input) {
+String replacePatternInput(String input) {
   return input.replaceFirst('do', 'd');
 }
