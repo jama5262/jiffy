@@ -2,12 +2,12 @@ import 'package:jiffy/jiffy.dart';
 
 main() async {
 //  FORMATTING DATES
-//  Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
-//  Jiffy().format("EEEE"); // Saturday
-//  Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
+  Jiffy().format("MMMM dd yyyy, h:mm:ss a"); // October 19 2019, 7:00:53 PM
+  Jiffy().format("EEEE"); // Saturday
+  Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
 
 //  Not passing a string pattern for format method will return an ISO Date format
-//  Jiffy().format(); // 2019-10-19T19:00:53.090646
+  Jiffy().format(); // 2019-10-19T19:00:53.090646
 
 //  You can also use default formats
   Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
@@ -39,8 +39,6 @@ main() async {
     ..add(duration: Duration(days: 1));
   jiffy4.yMMMMd; // October 20, 2019
 
-  print(Jiffy("13th jama Mon", "do 'jama' EEE").format("d do 'do' EEE 'do' MMM"));
-
   var jiffy5 = Jiffy()
     ..subtract(days: 1);
   jiffy5.yMMMMd; // October 18, 2019
@@ -57,9 +55,12 @@ main() async {
   await Jiffy.locale(); // en
 //  To set locale
   await Jiffy.locale("fr");
+  print(Jiffy([2019, 11, 1]).format("d do 'do' EEE 'do' MMM"));
   Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
   await Jiffy.locale("ar");
+  print(Jiffy([2019, 11, 10]).format("d do 'do' EEE 'do' MMM"));
   Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
   await Jiffy.locale("zh-cn");
+  print(Jiffy([2019, 11, 1]).format("d do 'do' EEE 'do' MMM"));
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 }
