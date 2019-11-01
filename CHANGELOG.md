@@ -1,3 +1,14 @@
+## 2.1.1
+
+- Minor bug fixes on ordinal date formating
+Previously
+
+`Jiffy([2014, 4, 23]).format("EEEE MMMM do, yyyy"); // Wednesday April 23o, 2014`
+
+Updated
+
+`Jiffy([2014, 4, 23]).format("EEEE MMMM do, yyyy"); // Wednesday April 23rd, 2014`
+
 ## 2.1.0
 
 - Ordinal date parsing and formating
