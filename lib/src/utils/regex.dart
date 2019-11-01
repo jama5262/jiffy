@@ -7,5 +7,6 @@ Pattern matchOrdinalDates() {
 }
 
 Pattern matchOrdinalDatePattern() {
-  return RegExp('''(?<unquote>[^"'\\s]+)|(?:["][^"]+?["])|(?:['][^']+?['])''');
+  return RegExp(
+      '''(?<unquote>[^"'\\s]\\w+)|(?:["][^"]+?["])|(?:['][^']+?['])''');
 }
