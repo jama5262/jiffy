@@ -83,6 +83,29 @@ class Jiffy {
     return dateTime;
   }
 
+  static const _sundayStartOfWeek = [
+    "en",
+    "enca",
+    "enil",
+    "esus",
+    "zhhk",
+    "zhtw",
+    "ja",
+    "frca",
+    "ko",
+    "hi",
+    "ardz",
+    "arkw",
+    "arsa",
+    "ptbr",
+  ];
+
+  static const _saturdayStartOfWeek = [
+    "ar",
+    "arly",
+    "arma",
+  ];
+
   static String _defaultLocale = "en";
   static Future<String> locale([String locale]) async {
     if (locale != null) {
@@ -189,7 +212,13 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day);
         break;
       case "w":
-        int weekDay = _dateTime.weekday;
+        int weekDay = _dateTime.weekday - 1;
+        var _locale = replaceLocaleHyphen(_defaultLocale);
+        if (_sundayStartOfWeek.contains(_locale)) {
+          weekDay += 1;
+        } else if (_saturdayStartOfWeek.contains(_locale)) {
+          weekDay += 2;
+        }
         if (weekDay == DateTime.daysPerWeek) weekDay -= DateTime.daysPerWeek;
         var newDate = _dateTime.subtract(Duration(days: weekDay));
         _dateTime = DateTime(newDate.year, newDate.month, newDate.day);
@@ -234,7 +263,13 @@ class Jiffy {
             _dateTime.year, _dateTime.month, _dateTime.day, 23, 59, 59, 999);
         break;
       case "w":
-        int weekDay = _dateTime.weekday;
+        int weekDay = _dateTime.weekday - 1;
+        var _locale = replaceLocaleHyphen(_defaultLocale);
+        if (_sundayStartOfWeek.contains(_locale)) {
+          weekDay += 1;
+        } else if (_saturdayStartOfWeek.contains(_locale)) {
+          weekDay += 2;
+        }
         if (weekDay == DateTime.daysPerWeek) weekDay -= DateTime.daysPerWeek;
         var newDate =
             _dateTime.add(Duration(days: DateTime.daysPerWeek - weekDay - 1));
@@ -314,10 +349,10 @@ class Jiffy {
   }
 
   String _getOrdinalDates(int day) {
-    if (!localeOrdinals.contains(replaceLocateHyphen(_defaultLocale))) {
+    if (!localeOrdinals.contains(replaceLocaleHyphen(_defaultLocale))) {
       return "";
     }
-    final ordinals = getOrdinalLocaleDates(replaceLocateHyphen(_defaultLocale));
+    final ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
     var suffix = ordinals[0];
     final digit = day % 10;
     if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
