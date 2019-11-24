@@ -15,8 +15,13 @@ void main() {
     test("Get date", () {
       expect(Jiffy().date, DateTime.now().day);
     });
-    test("Get day", () {
-      expect(Jiffy().day, DateTime.now().weekday);
+    test("Get day fr locale", () async {
+      await Jiffy.locale("fr");
+      expect(Jiffy([2019, 11, 24]).day, 7);
+    });
+    test("Get day en locale", () async {
+      await Jiffy.locale("en");
+      expect(Jiffy([2019, 11, 24]).day, 1);
     });
     test("Get days in month", () {
       expect(Jiffy([2016, 1]).daysInMonth, 31);

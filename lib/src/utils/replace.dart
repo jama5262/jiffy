@@ -35,6 +35,6 @@ String replaceOrdinalDatePattern(String input, String suffix) {
   return pattern;
 }
 
-String replaceLocateHyphen(String input) {
+String replaceLocaleHyphen(String input) {
   return input.replaceAll(RegExp(r'[-_]'), '').toLowerCase();
 }
