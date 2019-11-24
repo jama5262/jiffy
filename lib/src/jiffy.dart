@@ -122,10 +122,23 @@ class Jiffy {
   int get minute => _dateTime.minute;
   int get hour => _dateTime.hour;
   int get date => _dateTime.day;
-  int get day => _dateTime.weekday;
+  int get day {
+    List<int> weekDays = [1,2,3,4,5,6,7,1,2];
+    int weekDayIndex = _dateTime.weekday - 1; // ISO 8601 -> Monday = 1;
+
+    // Adapt weekday to locale if needed
+    var _locale = replaceLocaleHyphen(_defaultLocale);
+    if (_sundayStartOfWeek.contains(_locale)) {
+      weekDayIndex += 1;
+    } else if (_saturdayStartOfWeek.contains(_locale)) {
+      weekDayIndex += 2;
+    }
+
+    return weekDays[weekDayIndex];
+  }
   int get daysInMonth => _daysInMonth(_dateTime.year, _dateTime.month);
   int get dayOfYear => int.parse(DateFormat("D").format(_dateTime));
-  int get week => ((dayOfYear - _dateTime.weekday + 10) / 7).floor();
+  int get week => ((dayOfYear - day + 10) / 7).floor();
   int get month => _dateTime.month;
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
   int get year => _dateTime.year;
@@ -212,15 +225,7 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day);
         break;
       case "w":
-        int weekDay = _dateTime.weekday - 1;
-        var _locale = replaceLocaleHyphen(_defaultLocale);
-        if (_sundayStartOfWeek.contains(_locale)) {
-          weekDay += 1;
-        } else if (_saturdayStartOfWeek.contains(_locale)) {
-          weekDay += 2;
-        }
-        if (weekDay == DateTime.daysPerWeek) weekDay -= DateTime.daysPerWeek;
-        var newDate = _dateTime.subtract(Duration(days: weekDay));
+        var newDate = _dateTime.subtract(Duration(days: day - 1));
         _dateTime = DateTime(newDate.year, newDate.month, newDate.day);
         break;
       case "M":
@@ -263,16 +268,8 @@ class Jiffy {
             _dateTime.year, _dateTime.month, _dateTime.day, 23, 59, 59, 999);
         break;
       case "w":
-        int weekDay = _dateTime.weekday - 1;
-        var _locale = replaceLocaleHyphen(_defaultLocale);
-        if (_sundayStartOfWeek.contains(_locale)) {
-          weekDay += 1;
-        } else if (_saturdayStartOfWeek.contains(_locale)) {
-          weekDay += 2;
-        }
-        if (weekDay == DateTime.daysPerWeek) weekDay -= DateTime.daysPerWeek;
         var newDate =
-            _dateTime.add(Duration(days: DateTime.daysPerWeek - weekDay - 1));
+            _dateTime.add(Duration(days: DateTime.daysPerWeek - day));
         _dateTime =
             DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
         break;
