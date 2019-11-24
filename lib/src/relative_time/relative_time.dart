@@ -54,7 +54,7 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
 
 String format(String locale, DateTime date1, [DateTime date2]) {
   final messages =
-      _lookupMessagesMap[replaceLocateHyphen(locale)] ?? EnLocale();
+      _lookupMessagesMap[replaceLocaleHyphen(locale)] ?? EnLocale();
   final _date2 = date2 ?? DateTime.now();
   final _allowFromNow = _date2.isBefore(date1);
   var elapsed = _date2.millisecondsSinceEpoch - date1.millisecondsSinceEpoch;
