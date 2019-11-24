@@ -123,9 +123,8 @@ class Jiffy {
   int get hour => _dateTime.hour;
   int get date => _dateTime.day;
   int get day {
-    List<int> weekDays = [1,2,3,4,5,6,7,1,2];
+    List<int> weekDays = [1, 2, 3, 4, 5, 6, 7, 1, 2];
     int weekDayIndex = _dateTime.weekday - 1; // ISO 8601 -> Monday = 1;
-
     // Adapt weekday to locale if needed
     var _locale = replaceLocaleHyphen(_defaultLocale);
     if (_sundayStartOfWeek.contains(_locale)) {
@@ -133,9 +132,9 @@ class Jiffy {
     } else if (_saturdayStartOfWeek.contains(_locale)) {
       weekDayIndex += 2;
     }
-
     return weekDays[weekDayIndex];
   }
+
   int get daysInMonth => _daysInMonth(_dateTime.year, _dateTime.month);
   int get dayOfYear => int.parse(DateFormat("D").format(_dateTime));
   int get week => ((dayOfYear - day + 10) / 7).floor();
@@ -268,8 +267,7 @@ class Jiffy {
             _dateTime.year, _dateTime.month, _dateTime.day, 23, 59, 59, 999);
         break;
       case "w":
-        var newDate =
-            _dateTime.add(Duration(days: DateTime.daysPerWeek - day));
+        var newDate = _dateTime.add(Duration(days: DateTime.daysPerWeek - day));
         _dateTime =
             DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
         break;

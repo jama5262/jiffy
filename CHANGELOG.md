@@ -1,6 +1,15 @@
+## 2.1.2
+
+- Minor bug fixes on the following
+
+Bug fix to support `startOf` and `endOf` for locales
+
+Bug fix on week getter
+
 ## 2.1.1
 
 - Minor bug fixes on ordinal date formating
+
 Previously
 
 `Jiffy([2014, 4, 23]).format("EEEE MMMM do, yyyy"); // Wednesday April 23o, 2014`
