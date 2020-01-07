@@ -1,6 +1,6 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
-class EnLocale extends LookUpMessages {
+class PlLocale extends LookUpMessages {
   String prefixAgo() => '';
   String prefixFromNow() => 'w';
   String suffixAgo() => 'temu';
