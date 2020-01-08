@@ -6,9 +6,9 @@
 [![Pub Version](https://img.shields.io/badge/pub-v2.1.2-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
-Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
+Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-#### [Full Documentation](https://github.com/jama5262/jiffy/tree/v2.1.2/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
+### [Full Documentation](https://github.com/jama5262/jiffy/tree/v2.1.2/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
@@ -74,8 +74,9 @@ var jiffy4 = Jiffy()
 jiffy4.format("dd/MM/yyy"); // 20/10/2019
 
 
-// Months and year are added in respect to how many days there are in a months and if is a year is a leap year
-Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
+// Months and year are added in respect to how many 
+// days there are in a months and if is a year is a leap year
+Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
 Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
