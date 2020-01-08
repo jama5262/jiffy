@@ -26,11 +26,27 @@ class PlLocale extends LookUpMessages {
     }
     return "$hours $result";
   }
-  String aDay(int hours) => 'dzień temu';
+  String aDay(int hours) => '1 dzień';
   String days(int days) => '$days dni';
-  String aboutAMonth(int days) => 'miesiąc temu';
-  String months(int months) => '$months msc';
-  String aboutAYear(int year) => 'rok temu';
-  String years(int years) => '$years lat';
+  String aboutAMonth(int days) => 'miesiąc';
+  String months(int months) {
+    String result;
+    if(months >= 1 && months <= 4) {
+      result = "miesiące";
+    } else {
+      result = "miesięcy";
+    }
+    return "$months $result";
+  }
+  String aboutAYear(int year) => 'rok';
+  String years(int years) {
+    String result;
+    if(years >= 1 && years <= 4) {
+      result = "lata";
+    } else {
+      result = "lat";
+    }
+    return "$years $result";
+  }
   String wordSeparator() => ' ';
 }
