@@ -69,8 +69,10 @@ class Jiffy {
             input.length > 6 ? input[6] : 0);
       }
     } else if (input is String) {
-      if (matchStringDateTime(input)) {
+      if (matchHyphenStringDateTime(input)) {
         dateTime = DateFormat("yyyy-MM-dd").parse(input);
+      } else if (matchSlashStringDateTime(input)) {
+        dateTime = DateFormat("yyyy/MM/dd").parse(input);
       } else if (pattern != null) {
         dateTime = DateFormat(replacePatternInput(pattern))
             .parse(replaceParseInput(input));

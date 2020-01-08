@@ -1,5 +1,9 @@
-bool matchStringDateTime(String input) {
+bool matchHyphenStringDateTime(String input) {
   return RegExp(r"\d{4}-\d{1,2}-\d{1,2}$").hasMatch(input);
+}
+
+bool matchSlashStringDateTime(String input) {
+  return RegExp(r"\d{4}\/\d{1,2}\/\d{1,2}$").hasMatch(input);
 }
 
 Pattern matchOrdinalDates() {
