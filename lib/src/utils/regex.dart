@@ -6,7 +6,7 @@ bool matchDartStringDateTime(String input) {
 
 bool matchISOStringDateTime(String input) {
   return RegExp(
-      r"\d{4}-\d{1,2}-\d{1,2}T\d{1,2}(:\d{1,2})?(:\d{1,2})?(.\d+)?(Z?)")
+          r"\d{4}-\d{1,2}-\d{1,2}T\d{1,2}(:\d{1,2})?(:\d{1,2})?(.\d+)?(Z?)")
       .hasMatch(input);
 }
 
