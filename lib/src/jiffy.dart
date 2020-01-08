@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:jiffy/src/exception/exception.dart';
+import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
 import 'package:jiffy/src/utils/ordinalLocale.dart';
@@ -69,11 +69,21 @@ class Jiffy {
             input.length > 6 ? input[6] : 0);
       }
     } else if (input is String) {
-      if (matchStringDateTime(input)) {
-        dateTime = DateFormat("yyyy-MM-dd").parse(input);
-      } else if (pattern != null) {
+      if (pattern != null) {
         dateTime = DateFormat(replacePatternInput(pattern))
             .parse(replaceParseInput(input));
+      } else if (matchHyphenStringDateTime(input)) {
+        dateTime = DateFormat("yyyy-MM-dd").parse(input);
+      } else if (matchDartStringDateTime(input) ||
+          matchISOStringDateTime(input)) {
+        dateTime = DateTime.parse(input).toLocal();
+      } else if (matchSlashStringDateTime(input)) {
+        dateTime = DateFormat("yyyy/MM/dd").parse(input);
+      } else if (matchBasicStringDateTime().hasMatch(input)) {
+        dateTime = DateFormat("yyyy/MM/dd")
+            .parse(input.replaceAllMapped(matchBasicStringDateTime(), (match) {
+          return "${match.group(1)}/${match.group(2)}/${match.group(3)}";
+        }));
       } else if (pattern == null) {
         throw JiffyException(
                 "Date time not recognized, a pattern must be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")

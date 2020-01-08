@@ -74,7 +74,7 @@ void main() {
   group('Test Jiffy subtracting datetime', () {
     test("Subtracting milliseconds", () {
       expect(
-          Jiffy("2019-10-13 23:00:00:000", "yyyy-MM-dd hh:mm:ss")
+          Jiffy("2019-10-13 23:00:00")
               .subtract(duration: Duration(milliseconds: 1))
               .toString(),
           "2019-10-13 22:59:59.999");

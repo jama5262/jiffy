@@ -1,3 +1,17 @@
+## 2.2.0
+
+- Added more string parsing functionality. See below
+
+```
+Jiffy("1995/12/25"); // A calendar date part separated by slash "/"
+Jiffy("19951225"); // Basic (short) full date
+Jiffy("1995-12-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
+Jiffy("1995-12-25T12:00:00.000"); ISO dart format
+Jiffy("1995-12-25T12:00:00.000Z"); ISO dart format (UTC)
+```
+
+- Added support to Polish locale `pl`
+
 ## 2.1.2
 
 - Minor bug fixes on the following
@@ -25,7 +39,7 @@ In Jiffy you can now parse and format with ordinal date. e.g
 ```dart
 Jiffy().format("MMM do yyyy"); // Oct 19th 2019
 ```
-It also supports locales for the following
+- It also supports locales for the following
 
 `"en", "es", "fr", "frch", "frca", "it", "itch", "ja", "ko", "pt", "ptbr", "zh", "zhcn", "zhhk", "zhtw", "de", "deat", "dech"`
 

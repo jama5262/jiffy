@@ -1,4 +1,4 @@
-import 'package:jiffy/src/exception/exception.dart';
+import 'package:jiffy/src/utils/exception.dart';
 
 String normalizeUnits(String unit) {
   String lowerCaseUnit = unit.toLowerCase();

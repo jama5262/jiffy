@@ -3,12 +3,12 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v2.1.2-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v2.2.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
-Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
+Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-#### [Full Documentation](https://github.com/jama5262/jiffy/tree/v2.1.2/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
+### [Full Documentation](https://github.com/jama5262/jiffy/tree/v2.2.0/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
@@ -74,8 +74,9 @@ var jiffy4 = Jiffy()
 jiffy4.format("dd/MM/yyy"); // 20/10/2019
 
 
-// Months and year are added in respect to how many days there are in a months and if is a year is a leap year
-Jiffy("2010-1-31", "yyyy-MM-dd"); // This is January 31
+// Months and year are added in respect to how many 
+// days there are in a months and if is a year is a leap year
+Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
 Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
@@ -118,6 +119,8 @@ Reach out to me at one of the following places!
 
 - Email at jama3137@gmail.com
 - Twitter [timedjama5262](https://twitter.com/timedjama5262)
+
+<a href="https://www.buymeacoffee.com/jama" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 ## License
 

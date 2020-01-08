@@ -241,5 +241,20 @@ void main() {
       expect(jiffy12.fromNow(), "1 年前");
       expect(jiffy13.fromNow(), "10 年前");
     });
+    test("Test pl locale", () async {
+      await Jiffy.locale("pl");
+      expect(jiffy1.fromNow(), "kilka sekund temu");
+      expect(jiffy2.fromNow(), "za kilka sekund");
+      expect(jiffy3.fromNow(), "minutę temu");
+      expect(jiffy5.fromNow(), "10 minut temu");
+      expect(jiffy6.fromNow(), "godzinę temu");
+      expect(jiffy7.fromNow(), "10 godzin temu");
+      expect(jiffy8.fromNow(), "1 dzień temu");
+      expect(jiffy9.fromNow(), "10 dni temu");
+      expect(jiffy10.fromNow(), "miesiąc temu");
+      expect(jiffy11.fromNow(), "10 miesięcy temu");
+      expect(jiffy12.fromNow(), "rok temu");
+      expect(jiffy13.fromNow(), "10 lat temu");
+    });
   });
 }
