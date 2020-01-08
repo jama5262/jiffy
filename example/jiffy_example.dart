@@ -23,9 +23,13 @@ main() async {
   Jiffy("2011-10-31").fromNow(); // 8 years ago
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
+  await Jiffy.locale("pl");
+
   var jiffy1 = Jiffy()
-    ..startOf("day");
+    ..subtract(hours: 3);
   jiffy1.fromNow(); // 19 hours ago
+
+  print(jiffy1.fromNow());
 
   var jiffy2 = Jiffy()
     ..endOf("day");

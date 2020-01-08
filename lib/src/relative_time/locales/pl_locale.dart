@@ -2,14 +2,30 @@ import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
 class PlLocale extends LookUpMessages {
   String prefixAgo() => '';
-  String prefixFromNow() => 'w';
+  String prefixFromNow() => 'za';
   String suffixAgo() => 'temu';
   String suffixFromNow() => '';
-  String lessThanOneMinute(int seconds) => 'chwilę temu';
-  String aboutAMinute(int minutes) => 'minutę temu';
-  String minutes(int minutes) => '$minutes min';
-  String aboutAnHour(int minutes) => 'godzinę temu';
-  String hours(int hours) => '$hours h';
+  String lessThanOneMinute(int seconds) => 'kilka sekund';
+  String aboutAMinute(int minutes) => 'minutę';
+  String minutes(int minutes) {
+    String result;
+    if(minutes >= 1 && minutes <= 4) {
+      result = "minuty";
+    } else {
+      result = "minut";
+    }
+    return "$minutes $result";
+  }
+  String aboutAnHour(int minutes) => 'godzinę';
+  String hours(int hours) {
+    String result;
+    if(hours >= 1 && hours <= 4) {
+      result = "godziny";
+    } else {
+      result = "godzin";
+    }
+    return "$hours $result";
+  }
   String aDay(int hours) => 'dzień temu';
   String days(int days) => '$days dni';
   String aboutAMonth(int days) => 'miesiąc temu';
