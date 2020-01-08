@@ -20,10 +20,10 @@ main() async {
   }).yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 
 //  RELATIVE TIME
-  Jiffy("2011/10/31").fromNow(); // 8 years ago
+  Jiffy("20111001").fromNow(); // 8 years ago
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
-  print(Jiffy("2011-10-31").fromNow());
+  print(Jiffy("202011").fromNow());
 
   var jiffy1 = Jiffy()
     ..startOf("day");

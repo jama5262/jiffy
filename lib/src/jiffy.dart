@@ -69,7 +69,12 @@ class Jiffy {
             input.length > 6 ? input[6] : 0);
       }
     } else if (input is String) {
-      if (matchHyphenStringDateTime(input)) {
+      if (matchBasicStringDateTime(input).hasMatch(input)) {
+        dateTime = DateFormat("yyyy/M/dd").parse(
+            input.replaceAllMapped(matchBasicStringDateTime(input), (match) {
+          return "${match.group(1)}/${match.group(2)}/${match.group(3)}";
+        }));
+      } else if (matchHyphenStringDateTime(input)) {
         dateTime = DateFormat("yyyy-MM-dd").parse(input);
       } else if (matchSlashStringDateTime(input)) {
         dateTime = DateFormat("yyyy/MM/dd").parse(input);
