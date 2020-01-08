@@ -6,7 +6,7 @@
 [![Pub Version](https://img.shields.io/badge/pub-v2.1.2-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
-Jiffy is a dart date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
+Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
 # Table of content
 - [Before Use](#before-use)
@@ -67,10 +67,9 @@ Jiffy().utc(); // Returns a DateTime instance
 _**But when doing a method chaining, it is recommended to use a variable.**_ The variable will then hold a Jiffy instance. Example
 ```dart
 var jiffy = Jiffy()
-    ..utc()
     ..add(days: 1)
-    ..add(hours: 3)
     ..subtract(minutes: 30); // Returns a Jiffy instance
+    ..utc()
 ```
 Now `jiffy` variable returns a Jiffy instance. To get the date time, you can call it with the following methods
 ```dart
@@ -93,10 +92,15 @@ Jiffy().format(); // Return a ISO 8601 date time format
 ### String
 Creating a Jiffy from a string. See below
 ```dart
-Jiffy("1995-12-25");
+Jiffy("1995-12-25"); // A calendar date part
+Jiffy("1995/12/25"); // A calendar date part separated by slash "/"
+Jiffy("19951225"); // Basic (short) full date
+Jiffy("1995-12-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
+Jiffy("1995-12-25T12:00:00.000"); ISO dart format
+Jiffy("1995-12-25T12:00:00.000Z"); ISO dart format (UTC)
 ```
 
-**_Note: For now, Jiffy supports only `yyyy-MM-dd` string formats. Passing string like `dd-MM-yyyy` will result in an exception. If you do need to pass this format, `dd-MM-yyyy` or any other, should also pass a pattern of that string, Also know as [String Formating](#string-formatting). See below_**
+**_Note: For now, Jiffy supports only the above string formats. Passing string like `dd-MM-yyyy` will result in an exception. If you do need to pass this format, `dd-MM-yyyy` or any other, should also pass a pattern of that string, Also know as [String Formating](#string-formatting). See below_**
 ```dart
 Jiffy("25-12-1995", "dd-MM-yyyy");
 Jiffy("12-1995", "MM-yyyy");
@@ -116,7 +120,7 @@ Jiffy("0ct 19th", "MMM do");
 Jiffy("19th October 2019", "do MMMM yyyy");
 ```
 
-Jiffy runs on top of the [Intl DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html) package, you can find all the date time patterns used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
+**_Note: Jiffy runs on top of the [Intl DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html) package, you can find all the date time patterns used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)_**
 
 This is also same for Jiffy default formats. See below
 ```dart
