@@ -69,18 +69,20 @@ class Jiffy {
             input.length > 6 ? input[6] : 0);
       }
     } else if (input is String) {
-      if (matchBasicStringDateTime(input).hasMatch(input)) {
-        dateTime = DateFormat("yyyy/M/dd").parse(
-            input.replaceAllMapped(matchBasicStringDateTime(input), (match) {
-          return "${match.group(1)}/${match.group(2)}/${match.group(3)}";
-        }));
-      } else if (matchHyphenStringDateTime(input)) {
-        dateTime = DateFormat("yyyy-MM-dd").parse(input);
-      } else if (matchSlashStringDateTime(input)) {
-        dateTime = DateFormat("yyyy/MM/dd").parse(input);
-      } else if (pattern != null) {
+      if (pattern != null) {
         dateTime = DateFormat(replacePatternInput(pattern))
             .parse(replaceParseInput(input));
+      } else if (matchHyphenStringDateTime(input)) {
+        dateTime = DateFormat("yyyy-MM-dd").parse(input);
+      } else if (matchDartStringDateTime(input)) {
+        dateTime = DateTime.parse(input).toLocal();
+      } else if (matchSlashStringDateTime(input)) {
+        dateTime = DateFormat("yyyy/MM/dd").parse(input);
+      } else if (matchBasicStringDateTime().hasMatch(input)) {
+        dateTime = DateFormat("yyyy/MM/dd")
+            .parse(input.replaceAllMapped(matchBasicStringDateTime(), (match) {
+          return "${match.group(1)}/${match.group(2)}/${match.group(3)}";
+        }));
       } else if (pattern == null) {
         throw JiffyException(
                 "Date time not recognized, a pattern must be passed, e.g. Jiffy('12, Oct', 'dd, MMM')")
