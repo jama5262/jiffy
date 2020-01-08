@@ -23,7 +23,7 @@ main() async {
   Jiffy("20111001").fromNow(); // 8 years ago
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
-  print(Jiffy("2020-01-01 11:13:00.000666").yMMMMdjm);
+  print(Jiffy(Jiffy("2020-01-01T11Z").format()).yMMMMdjm);
 
   var jiffy1 = Jiffy()
     ..startOf("day");

@@ -4,6 +4,12 @@ bool matchDartStringDateTime(String input) {
       .hasMatch(input);
 }
 
+bool matchISOStringDateTime(String input) {
+  return RegExp(
+      r"\d{4}-\d{1,2}-\d{1,2}T\d{1,2}(:\d{1,2})?(:\d{1,2})?(.\d+)?(Z?)")
+      .hasMatch(input);
+}
+
 RegExp matchBasicStringDateTime() {
   return RegExp(r"(\d{4})(\d{1,2})(\d{1,2})$");
 }

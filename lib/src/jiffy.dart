@@ -74,7 +74,7 @@ class Jiffy {
             .parse(replaceParseInput(input));
       } else if (matchHyphenStringDateTime(input)) {
         dateTime = DateFormat("yyyy-MM-dd").parse(input);
-      } else if (matchDartStringDateTime(input)) {
+      } else if (matchDartStringDateTime(input) || matchISOStringDateTime(input)) {
         dateTime = DateTime.parse(input).toLocal();
       } else if (matchSlashStringDateTime(input)) {
         dateTime = DateFormat("yyyy/MM/dd").parse(input);
