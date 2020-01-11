@@ -147,7 +147,12 @@ class Jiffy {
 
   int get daysInMonth => _daysInMonth(_dateTime.year, _dateTime.month);
   int get dayOfYear => int.parse(DateFormat("D").format(_dateTime));
-  int get week => ((dayOfYear - day + 10) / 7).floor();
+  int get week {
+    int _daysToAdd = DateTime.thursday - date.weekday;
+    DateTime thursdayDate = _daysToAdd > 0 ? date.add(Duration(days: _daysToAdd)) : date.subtract(Duration(days: _daysToAdd.abs()));
+    int dayOfYearThursday = int.parse(DateFormat("D").format(thursdayDate));
+  return 1 + ((dayOfYearThursday - 1) / 7).floor();
+  }// ISO 8601 week number
   int get month => _dateTime.month;
   int get quarter => int.parse(DateFormat("Q").format(_dateTime));
   int get year => _dateTime.year;
