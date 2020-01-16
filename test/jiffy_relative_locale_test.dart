@@ -91,6 +91,21 @@ void main() {
       expect(jiffy12.fromNow(), "a year ago");
       expect(jiffy13.fromNow(), "10 years ago");
     });
+    test("Test id locale", () async {
+      await Jiffy.locale("id");
+      expect(jiffy1.fromNow(), "beberapa detik yang lalu");
+      expect(jiffy2.fromNow(), "in a few seconds");
+      expect(jiffy3.fromNow(), "satu menit yang lalu");
+      expect(jiffy5.fromNow(), "sepuluh menit yang lalu");
+      expect(jiffy6.fromNow(), "satu jam yang lalu");
+      expect(jiffy7.fromNow(), "10 jam yang lalu");
+      expect(jiffy8.fromNow(), "satu hari yang lalu");
+      expect(jiffy9.fromNow(), "sepuluh hari yang lalu");
+      expect(jiffy10.fromNow(), "satu bulan yang lalu");
+      expect(jiffy11.fromNow(), "10 bulan yang lalu");
+      expect(jiffy12.fromNow(), "satu tahun yang lalu");
+      expect(jiffy13.fromNow(), "10 tahun yang lalu");
+    });
     test("Test es locale", () async {
       await Jiffy.locale("es");
       expect(jiffy1.fromNow(), "hace un momento");
