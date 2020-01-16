@@ -549,6 +549,7 @@ Below are the locales that are supported for relative time. More will be added
 | Japanese  | ja |
 | German  | de / de-at / de-ch |
 | French  | fr / fr-ch / fr-ca |
+| Indonesian  | id |
 | Italian  | it / it-ch |
 | Korean  | ko |
 | Russian  | ru |
