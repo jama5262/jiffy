@@ -4,17 +4,17 @@ class TrLocale extends LookUpMessages {
   String prefixAgo() => '';
   String prefixFromNow() => '';
   String suffixAgo() => 'önce';
-  String suffixFromNow() => '';
+  String suffixFromNow() => 'içinde';
   String lessThanOneMinute(int seconds) => 'birkaç saniye';
-  String aboutAMinute(int minutes) => 'dakika';
+  String aboutAMinute(int minutes) => 'bir dakika';
   String minutes(int minutes) => '$minutes dakika';
-  String aboutAnHour(int minutes) => 'saat';
+  String aboutAnHour(int minutes) => 'bir saat';
   String hours(int hours) => '$hours saat';
-  String aDay(int hours) => 'gün';
+  String aDay(int hours) => 'bir gün';
   String days(int days) => '$days gün';
-  String aboutAMonth(int days) => 'ay';
+  String aboutAMonth(int days) => 'bir ay';
   String months(int months) => '$months ay';
-  String aboutAYear(int year) => 'yıl';
+  String aboutAYear(int year) => 'bir yıl';
   String years(int years) => '$years yıl';
   String wordSeparator() => ' ';
 }
