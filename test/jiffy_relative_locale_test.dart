@@ -271,5 +271,20 @@ void main() {
       expect(jiffy12.fromNow(), "rok temu");
       expect(jiffy13.fromNow(), "10 lat temu");
     });
+    test("Test tr locale", () async {
+      await Jiffy.locale("tr");
+      expect(jiffy1.fromNow(), "birkaç saniye önce");
+      expect(jiffy2.fromNow(), "birkaç saniye içinde");
+      expect(jiffy3.fromNow(), "bir dakika önce");
+      expect(jiffy5.fromNow(), "10 dakika önce");
+      expect(jiffy6.fromNow(), "bir saat önce");
+      expect(jiffy7.fromNow(), "10 saat önce");
+      expect(jiffy8.fromNow(), "bir gün önce");
+      expect(jiffy9.fromNow(), "10 gün önce");
+      expect(jiffy10.fromNow(), "bir ay önce");
+      expect(jiffy11.fromNow(), "10 ay önce");
+      expect(jiffy12.fromNow(), "bir yıl önce");
+      expect(jiffy13.fromNow(), "10 yıl önce");
+    });
   });
 }
