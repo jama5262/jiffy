@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:jiffy/src/enums/units.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
@@ -135,8 +136,7 @@ class Jiffy {
   int get date => _dateTime.day;
   int get day {
     var weekDays = [1, 2, 3, 4, 5, 6, 7, 1, 2];
-    var weekDayIndex = _dateTime.weekday - 1; // ISO 8601 -> Monday = 1;
-    // Adapt weekday to locale if needed
+    var weekDayIndex = _dateTime.weekday - 1;
     var _locale = replaceLocaleHyphen(_defaultLocale);
     if (_sundayStartOfWeek.contains(_locale)) {
       weekDayIndex += 1;
@@ -206,10 +206,9 @@ class Jiffy {
     return _dateTime;
   }
 
-  DateTime startOf(String units) {
-    units = validateUnits(units);
+  DateTime startOf(Units units) {
     switch (units) {
-      case 'ms':
+      case Units.MILLISECOND:
         _dateTime = DateTime(
             _dateTime.year,
             _dateTime.month,
@@ -219,39 +218,38 @@ class Jiffy {
             _dateTime.second,
             _dateTime.millisecond);
         break;
-      case 's':
+      case Units.SECOND:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
             _dateTime.hour, _dateTime.minute, _dateTime.second);
         break;
-      case 'm':
+      case Units.MINUTE:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
             _dateTime.hour, _dateTime.minute);
         break;
-      case 'h':
+      case Units.HOUR:
         _dateTime = DateTime(
             _dateTime.year, _dateTime.month, _dateTime.day, _dateTime.hour);
         break;
-      case 'd':
+      case Units.DAY:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day);
         break;
-      case 'w':
+      case Units.WEEK:
         var newDate = _dateTime.subtract(Duration(days: day - 1));
         _dateTime = DateTime(newDate.year, newDate.month, newDate.day);
         break;
-      case 'M':
+      case Units.MONTH:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, 1);
         break;
-      case 'y':
+      case Units.YEAR:
         _dateTime = DateTime(_dateTime.year);
         break;
     }
     return _dateTime;
   }
 
-  DateTime endOf(String units) {
-    units = validateUnits(units);
+  DateTime endOf(Units units) {
     switch (units) {
-      case 'ms':
+      case Units.MILLISECOND:
         _dateTime = DateTime(
             _dateTime.year,
             _dateTime.month,
@@ -261,28 +259,28 @@ class Jiffy {
             _dateTime.second,
             _dateTime.millisecond);
         break;
-      case 's':
+      case Units.SECOND:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
             _dateTime.hour, _dateTime.minute, _dateTime.second, 999);
         break;
-      case 'm':
+      case Units.MINUTE:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
             _dateTime.hour, _dateTime.minute, 59, 999);
         break;
-      case 'h':
+      case Units.HOUR:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
             _dateTime.hour, 59, 59, 999);
         break;
-      case 'd':
+      case Units.DAY:
         _dateTime = DateTime(
             _dateTime.year, _dateTime.month, _dateTime.day, 23, 59, 59, 999);
         break;
-      case 'w':
+      case Units.WEEK:
         var newDate = _dateTime.add(Duration(days: DateTime.daysPerWeek - day));
         _dateTime =
             DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
         break;
-      case 'M':
+      case Units.MONTH:
         var date = _daysInMonthArray[_dateTime.month];
         if (_isLeapYear(_dateTime.year) && _dateTime.month == 2) {
           date = 29;
@@ -290,7 +288,7 @@ class Jiffy {
         _dateTime =
             DateTime(_dateTime.year, _dateTime.month, date, 23, 59, 59, 999);
         break;
-      case 'y':
+      case Units.YEAR:
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
         break;
     }
@@ -356,7 +354,7 @@ class Jiffy {
 
   String _getOrdinalDates(int day) {
     if (!localeOrdinals.contains(replaceLocaleHyphen(_defaultLocale))) {
-      return "";
+      return '';
     }
     final ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
     var suffix = ordinals[0];
@@ -411,33 +409,32 @@ class Jiffy {
     return relative.format(_defaultLocale, _dateTime, dateTime);
   }
 
-  num diff(var input, [String units = 'ms', bool asFloat = false]) {
+  num diff(var input, [Units units = Units.MILLISECOND, bool asFloat = false]) {
     var dateTime = _parse(input);
-    units = validateUnits(units);
     num diff;
     switch (units) {
-      case 'ms':
+      case Units.MILLISECOND:
         diff = _dateTime.difference(dateTime).inMilliseconds;
         break;
-      case 's':
+      case Units.SECOND:
         diff = _dateTime.difference(dateTime).inSeconds;
         break;
-      case 'm':
+      case Units.MINUTE:
         diff = _dateTime.difference(dateTime).inMinutes;
         break;
-      case 'h':
+      case Units.HOUR:
         diff = _dateTime.difference(dateTime).inHours;
         break;
-      case 'd':
+      case Units.DAY:
         diff = _dateTime.difference(dateTime).inDays;
         break;
-      case 'w':
+      case Units.WEEK:
         diff = _dateTime.difference(dateTime).inDays / 7;
         break;
-      case 'M':
+      case Units.MONTH:
         diff = _monthDiff(_dateTime, dateTime);
         break;
-      case 'y':
+      case Units.YEAR:
         diff = _monthDiff(_dateTime, dateTime) / 12;
         break;
     }
@@ -480,30 +477,27 @@ class Jiffy {
   }
 
 //  QUERY
-  bool isBefore(var input, [String units = 'ms']) {
+  bool isBefore(var input, [Units units = Units.MILLISECOND]) {
     var dateTime = _parse(input);
-    units = validateUnits(units);
-    if (units == 'ms') {
+    if (units == Units.MILLISECOND) {
       return valueOf() < dateTime.millisecondsSinceEpoch;
     }
     endOf(units);
     return valueOf() < dateTime.millisecondsSinceEpoch;
   }
 
-  bool isAfter(var input, [String units = 'ms']) {
+  bool isAfter(var input, [Units units = Units.MILLISECOND]) {
     var dateTime = _parse(input);
-    units = validateUnits(units);
-    if (units == 'ms') {
+    if (units == Units.MILLISECOND) {
       return valueOf() > dateTime.millisecondsSinceEpoch;
     }
     startOf(units);
     return dateTime.millisecondsSinceEpoch < valueOf();
   }
 
-  bool isSame(var input, [String units = 'ms']) {
+  bool isSame(var input, [Units units = Units.MILLISECOND]) {
     var dateTime = _parse(input);
-    units = validateUnits(units);
-    if (units == 'ms') {
+    if (units == Units.MILLISECOND) {
       return valueOf() == dateTime.millisecondsSinceEpoch;
     }
     var jiffyMs = dateTime.millisecondsSinceEpoch;
@@ -511,17 +505,18 @@ class Jiffy {
         jiffyMs <= endOf(units).millisecondsSinceEpoch;
   }
 
-  bool isSameOrBefore(var input, [String units = 'ms']) {
+  bool isSameOrBefore(var input, [Units units = Units.MILLISECOND]) {
     var dateTime = _parse(input);
     return isSame(dateTime, units) || isBefore(dateTime, units);
   }
 
-  bool isSameOrAfter(var input, [String units = 'ms']) {
+  bool isSameOrAfter(var input, [Units units = Units.MILLISECOND]) {
     var dateTime = _parse(input);
     return isSame(dateTime, units) || isAfter(dateTime, units);
   }
 
-  bool isBetween(var inputFrom, var inputTo, [String units = 'ms']) {
+  bool isBetween(var inputFrom, var inputTo,
+      [Units units = Units.MILLISECOND]) {
     var dateTimeFrom = _parse(inputFrom);
     var dateTimeTo = _parse(inputTo);
     return isAfter(dateTimeFrom, units) && isBefore(dateTimeTo, units);

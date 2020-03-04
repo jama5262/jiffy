@@ -1,4 +1,5 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:jiffy/src/enums/units.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -96,13 +97,13 @@ void main() {
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(duration: Duration(seconds: 1)),
-              's'),
+              Units.SECOND),
           -1);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..subtract(duration: Duration(hours: 1)),
-              's'),
+              Units.SECOND),
           3600);
     });
     test(
@@ -112,13 +113,13 @@ void main() {
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(duration: Duration(seconds: 1)),
-              'm'),
+              Units.MINUTE),
           0);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..subtract(duration: Duration(days: 1)),
-              'm'),
+              Units.MINUTE),
           1440);
     });
     test(
@@ -128,13 +129,13 @@ void main() {
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(duration: Duration(seconds: 1)),
-              'h'),
+              Units.HOUR),
           0);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..subtract(duration: Duration(days: 1)),
-              'h'),
+              Units.HOUR),
           24);
     });
     test(
@@ -144,13 +145,13 @@ void main() {
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(duration: Duration(seconds: 1)),
-              'd'),
+              Units.DAY),
           0);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..subtract(weeks: 2),
-              'd'),
+              Units.DAY),
           14);
     });
     test(
@@ -160,11 +161,13 @@ void main() {
           Jiffy(DateTime(2019, 10, 16, 23)).diff(
               Jiffy(DateTime(2019, 10, 16, 23))
                 ..add(duration: Duration(seconds: 1)),
-              'w'),
+              Units.WEEK),
           0);
       expect(
           Jiffy(DateTime(2019, 10, 16, 23)).diff(
-              Jiffy(DateTime(2019, 10, 16, 23))..add(weeks: 2), 'w', true),
+              Jiffy(DateTime(2019, 10, 16, 23))..add(weeks: 2),
+              Units.WEEK,
+              true),
           -2.0);
     });
     test(
@@ -173,15 +176,15 @@ void main() {
       expect(
           Jiffy([2019, 10, 16, 22]).diff(
               Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
-              'M'),
+              Units.MONTH),
           0);
       expect(
-          Jiffy([2019, 10, 16, 22])
-              .diff(Jiffy([2019, 10, 16, 22])..add(weeks: 2), 'M', true),
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(weeks: 2), Units.MONTH, true),
           -0.45161290322580644);
       expect(
-          Jiffy([2019, 10, 16, 22])
-              .diff(Jiffy([2019, 10, 16, 22])..add(months: 2), 'M', true),
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(months: 2), Units.MONTH, true),
           -2.0);
     });
     test(
@@ -191,20 +194,20 @@ void main() {
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(duration: Duration(seconds: 1)),
-              'y'),
+              Units.YEAR),
           0);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(weeks: 2),
-              'y',
+              Units.YEAR,
               true),
           -0.03763440860215054);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
                 ..add(years: 2),
-              'y',
+              Units.YEAR,
               true),
           -2.0);
     });

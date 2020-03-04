@@ -16,7 +16,7 @@ String replaceParseInput(String input) {
   return input
       .replaceFirst(' pm', ' PM')
       .replaceFirst(' am', ' AM')
-      .replaceFirst(matchOrdinalDates(), "");
+      .replaceFirst(matchOrdinalDates(), '');
 }
 
 String replacePatternInput(String input) {
