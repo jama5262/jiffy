@@ -7,6 +7,8 @@ String escape changes to use square braces `[]`. Examples, previously
  
 `Jiffy().format("yyyy 'escaped' yyyy");` and now updated to `Jiffy().format("yyyy [escaped] yyyy");`
 
+Added Indonsia local `id` by [ampersanda](https://github.com/ampersanda) and Turkish local `tr` by [iozozturk](https://github.com/iozozturk)
+
 
 ## 2.2.0
 
@@ -20,7 +22,7 @@ Jiffy("1995-12-25T12:00:00.000"); ISO dart format
 Jiffy("1995-12-25T12:00:00.000Z"); ISO dart format (UTC)
 ```
 
-- Added support to Polish locale `pl`
+- Added support to Polish locale `pl` added by [leszekkrol](https://github.com/leszekkrol)
 
 ## 2.1.2
 
@@ -29,6 +31,8 @@ Jiffy("1995-12-25T12:00:00.000Z"); ISO dart format (UTC)
 Bug fix to support `startOf` and `endOf` for locales
 
 Bug fix on week getter
+
+By [MrCasCode](https://github.com/MrCasCode)
 
 ## 2.1.1
 
@@ -62,7 +66,7 @@ Jiffy([2017, 2]).daysInMonth; // 29
 
 ## 2.0.0
 
-Added params to add and subtract methods
+Added params to add and subtract methods by [yongjhih](https://github.com/yongjhih)
 Example
 ```dart
 Jiffy().add(days: 1);
