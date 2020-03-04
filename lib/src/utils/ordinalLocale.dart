@@ -38,11 +38,11 @@ List<String> getOrdinalLocaleDates(String locale) {
     localeOrdinals[12]: ['日', '日', '日', '日'],
     localeOrdinals[13]: ['日', '日', '日', '日'],
     localeOrdinals[14]: ['日', '日', '日', '日'],
-    localeOrdinals[15]: ['.', '.','.','.'],
-    localeOrdinals[16]: ['.', '.','.','.'],
-    localeOrdinals[17]: ['.', '.','.','.'],
+    localeOrdinals[15]: ['.', '.', '.', '.'],
+    localeOrdinals[16]: ['.', '.', '.', '.'],
+    localeOrdinals[17]: ['.', '.', '.', '.'],
     localeOrdinals[18]: ['', '', '', ''],
-    localeOrdinals[19]: ['.', '.','.','.'],
+    localeOrdinals[19]: ['.', '.', '.', '.'],
   };
   return ordinals[locale];
 }
