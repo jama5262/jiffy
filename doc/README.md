@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v2.2.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v3.0.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 
@@ -100,8 +100,8 @@ Jiffy("1995-12-25"); // A calendar date part
 Jiffy("1995/12/25"); // A calendar date part separated by slash "/"
 Jiffy("19951225"); // Basic (short) full date
 Jiffy("1995-12-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
-Jiffy("1995-12-25T12:00:00.000"); ISO dart format
-Jiffy("1995-12-25T12:00:00.000Z"); ISO dart format (UTC)
+Jiffy("1995-12-25T12:00:00.000"); // ISO dart format
+Jiffy("1995-12-25T12:00:00.000Z"); // ISO dart format (UTC)
 ```
 
 ### String Formatting

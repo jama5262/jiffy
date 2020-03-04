@@ -1,3 +1,13 @@
+## 3.0.0
+
+- Major changes
+
+Unit of time are now in enums. Examples, previously `startOf("day")` can now be set as `startOf(Units.DAY)`
+String escape changes to use square braces `[]`. Examples, previously
+ 
+`Jiffy().format("yyyy 'escaped' yyyy");` and now updated to `Jiffy().format("yyyy [escaped] yyyy");`
+
+
 ## 2.2.0
 
 - Added more string parsing functionality. See below
