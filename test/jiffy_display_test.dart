@@ -8,7 +8,7 @@ void main() {
         'test Jiffy().format get method with parsing date time should return correct date time string',
         () {
       expect(Jiffy('20191016').format('MMMM dd, yyyy'), 'October 16, 2019');
-      expect(Jiffy('2019-10-16 12:00').format("'Today is' dd MMM"),
+      expect(Jiffy('2019-10-16 12:00').format("[Today is] dd MMM"),
           'Today is 16 Oct');
       expect(Jiffy('2019-10-16T00:00:00.000').format('MMMMEEEEd'),
           'Wednesday, October 16');

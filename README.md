@@ -17,7 +17,7 @@ Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentj
 Jiffy([2019, 10, 19]).format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
 Jiffy().format("EEEE"); // Saturday
 Jiffy().format("MMM do yy"); // Oct 19th 19
-Jiffy().format("yyyy 'escaped' yyyy"); // 2019 escaped 2019
+Jiffy().format("yyyy [escaped] yyyy"); // 2019 escaped 2019
 Jiffy().format(); // 2019-10-19T19:00:53.090646
 
 Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
@@ -30,6 +30,7 @@ Jiffy({
 
 //  You can also use default formats
 Jiffy("19, Oct 2019", "dd, MMM yyyy").yMMMMd; // October 19, 2019
+
 Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 ```
 
@@ -39,15 +40,15 @@ Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
 Jiffy("2012-06-20").fromNow(); // 7 years ago
 
 var jiffy1 = Jiffy()
-    ..startOf("day");
+    ..startOf(Units.DAY);
 jiffy1.fromNow(); // 19 hours ago
 
 var jiffy2 = Jiffy()
-    ..endOf("day");
+    ..endOf(Units.DAY);
 jiffy2.fromNow(); // in 5 hours
 
 var jiffy3 = Jiffy()
-    ..startOf("hour");
+    ..startOf(Units.HOUR);
 jiffy3.fromNow(); // 9 minutes ago
 ```
 
