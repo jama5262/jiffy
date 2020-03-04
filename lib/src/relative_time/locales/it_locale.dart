@@ -1,20 +1,20 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
 class ItLocale extends LookUpMessages {
-  String prefixAgo() => '';
-  String prefixFromNow() => 'tra';
-  String suffixAgo() => 'fa';
-  String suffixFromNow() => '';
-  String lessThanOneMinute(int seconds) => 'alcuni secondi';
-  String aboutAMinute(int minutes) => 'un minuto';
-  String minutes(int minutes) => '$minutes minuti';
-  String aboutAnHour(int minutes) => "un'ora";
-  String hours(int hours) => '$hours ore';
-  String aDay(int hours) => 'un giorno';
-  String days(int days) => '$days giorni';
-  String aboutAMonth(int days) => 'un mese';
-  String months(int months) => '$months mesi';
-  String aboutAYear(int year) => 'un anno';
-  String years(int years) => '$years anni';
-  String wordSeparator() => ' ';
+  @override String prefixAgo() => '';
+  @override String prefixFromNow() => 'tra';
+  @override String suffixAgo() => 'fa';
+  @override String suffixFromNow() => '';
+  @override String lessThanOneMinute(int seconds) => 'alcuni secondi';
+  @override String aboutAMinute(int minutes) => 'un minuto';
+  @override String minutes(int minutes) => '$minutes minuti';
+  @override String aboutAnHour(int minutes) => 'un\'ora';
+  @override String hours(int hours) => '$hours ore';
+  @override String aDay(int hours) => 'un giorno';
+  @override String days(int days) => '$days giorni';
+  @override String aboutAMonth(int days) => 'un mese';
+  @override String months(int months) => '$months mesi';
+  @override String aboutAYear(int year) => 'un anno';
+  @override String years(int years) => '$years anni';
+  @override String wordSeparator() => ' ';
 }

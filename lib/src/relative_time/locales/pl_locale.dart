@@ -1,56 +1,56 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
 class PlLocale extends LookUpMessages {
-  String prefixAgo() => '';
-  String prefixFromNow() => 'za';
-  String suffixAgo() => 'temu';
-  String suffixFromNow() => '';
-  String lessThanOneMinute(int seconds) => 'kilka sekund';
-  String aboutAMinute(int minutes) => 'minutę';
-  String minutes(int minutes) {
+  @override String prefixAgo() => '';
+  @override String prefixFromNow() => 'za';
+  @override String suffixAgo() => 'temu';
+  @override String suffixFromNow() => '';
+  @override String lessThanOneMinute(int seconds) => 'kilka sekund';
+  @override String aboutAMinute(int minutes) => 'minutę';
+  @override String minutes(int minutes) {
     String result;
     if (minutes >= 1 && minutes <= 4) {
-      result = "minuty";
+      result = 'minuty';
     } else {
-      result = "minut";
+      result = 'minut';
     }
-    return "$minutes $result";
+    return '$minutes $result';
   }
 
-  String aboutAnHour(int minutes) => 'godzinę';
-  String hours(int hours) {
+  @override String aboutAnHour(int minutes) => 'godzinę';
+  @override String hours(int hours) {
     String result;
     if (hours >= 1 && hours <= 4) {
-      result = "godziny";
+      result = 'godziny';
     } else {
-      result = "godzin";
+      result = 'godzin';
     }
-    return "$hours $result";
+    return '$hours $result';
   }
 
-  String aDay(int hours) => '1 dzień';
-  String days(int days) => '$days dni';
-  String aboutAMonth(int days) => 'miesiąc';
-  String months(int months) {
+  @override String aDay(int hours) => '1 dzień';
+  @override String days(int days) => '$days dni';
+  @override String aboutAMonth(int days) => 'miesiąc';
+  @override String months(int months) {
     String result;
     if (months >= 1 && months <= 4) {
-      result = "miesiące";
+      result = 'miesiące';
     } else {
-      result = "miesięcy";
+      result = 'miesięcy';
     }
-    return "$months $result";
+    return '$months $result';
   }
 
-  String aboutAYear(int year) => 'rok';
-  String years(int years) {
+  @override String aboutAYear(int year) => 'rok';
+  @override String years(int years) {
     String result;
     if (years >= 1 && years <= 4) {
-      result = "lata";
+      result = 'lata';
     } else {
-      result = "lat";
+      result = 'lat';
     }
-    return "$years $result";
+    return '$years $result';
   }
 
-  String wordSeparator() => ' ';
+  @override String wordSeparator() => ' ';
 }

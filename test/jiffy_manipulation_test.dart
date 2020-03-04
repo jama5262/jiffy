@@ -4,344 +4,344 @@ import 'package:test/test.dart';
 void main() {
   group('Test Jiffy().add() method adding datetime', () {
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in milliseconds",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in milliseconds',
         () {
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(duration: Duration(milliseconds: 1))
               .toString(),
-          "2019-10-13 00:00:00.001");
+          '2019-10-13 00:00:00.001');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in seconds",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in seconds',
         () {
       expect(Jiffy().add(duration: Duration(seconds: 1)).second,
           DateTime.now().add(Duration(seconds: 1)).second);
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(duration: Duration(seconds: 1))
               .toString(),
-          "2019-10-13 00:00:01.000");
+          '2019-10-13 00:00:01.000');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in minutes",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in minutes',
         () {
       expect(Jiffy().add(duration: Duration(minutes: 1)).minute,
           DateTime.now().add(Duration(minutes: 1)).minute);
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(duration: Duration(minutes: 1))
               .toString(),
-          "2019-10-13 00:01:00.000");
+          '2019-10-13 00:01:00.000');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in hours",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in hours',
         () {
       expect(Jiffy().add(duration: Duration(hours: 1)).hour,
           DateTime.now().add(Duration(hours: 1)).hour);
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(duration: Duration(hours: 1))
               .toString(),
-          "2019-10-13 01:00:00.000");
+          '2019-10-13 01:00:00.000');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in days",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in days',
         () {
       expect(Jiffy().add(duration: Duration(days: 1)).day,
           DateTime.now().add(Duration(days: 1)).day);
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(duration: Duration(days: 1))
               .toString(),
-          "2019-10-14 00:00:00.000");
+          '2019-10-14 00:00:00.000');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in day",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in day',
         () {
       expect(Jiffy().add(weeks: 1).day,
           DateTime.now().add(Duration(days: 1 * 7)).day);
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(weeks: 1)
               .toString(),
-          "2019-10-20 00:00:00.000");
+          '2019-10-20 00:00:00.000');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in months",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in months',
         () {
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(months: 1)
               .toString(),
-          "2019-11-13 00:00:00.000");
+          '2019-11-13 00:00:00.000');
     });
     test(
-        "test Jiffy().add() method with parsing date time should add and return correct date time in years",
+        'test Jiffy().add() method with parsing date time should add and return correct date time in years',
         () {
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .add(years: 1)
               .toString(),
-          "2020-10-13 00:00:00.000");
+          '2020-10-13 00:00:00.000');
     });
   });
 
   group('Test Jiffy subtracting datetime', () {
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in milliseconds",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in milliseconds',
         () {
       expect(
-          Jiffy("2019-10-13 23:00:00")
+          Jiffy('2019-10-13 23:00:00')
               .subtract(duration: Duration(milliseconds: 1))
               .toString(),
-          "2019-10-13 22:59:59.999");
+          '2019-10-13 22:59:59.999');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in seconds",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in seconds',
         () {
       expect(Jiffy().subtract(duration: Duration(seconds: 1)).second,
           DateTime.now().subtract(Duration(seconds: 1)).second);
       expect(
-          Jiffy("2019-10-13 12:00:01", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:01', 'yyyy-MM-dd hh:mm:ss')
               .subtract(duration: Duration(seconds: 1))
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in minutes",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in minutes',
         () {
       expect(Jiffy().subtract(duration: Duration(minutes: 1)).minute,
           DateTime.now().subtract(Duration(minutes: 1)).minute);
       expect(
-          Jiffy("2019-10-13 12:01:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:01:00', 'yyyy-MM-dd hh:mm:ss')
               .subtract(duration: Duration(minutes: 1))
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in hours",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in hours',
         () {
       expect(Jiffy().subtract(duration: Duration(hours: 1)).hour,
           DateTime.now().subtract(Duration(hours: 1)).hour);
       expect(
-          Jiffy("2019-10-13 13:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 13:00:00', 'yyyy-MM-dd hh:mm:ss')
               .subtract(duration: Duration(hours: 1))
               .toString(),
-          "2019-10-13 12:00:00.000");
+          '2019-10-13 12:00:00.000');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in day",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in day',
         () {
       expect(Jiffy().subtract(duration: Duration(days: 1)).day,
           DateTime.now().subtract(Duration(days: 1)).day);
       expect(
-          Jiffy("2019-10-14 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-14 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .subtract(duration: Duration(days: 1))
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in weeks",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in weeks',
         () {
       expect(Jiffy().subtract(weeks: 1).day,
           DateTime.now().subtract(Duration(days: 1 * 7)).day);
       expect(
-          Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .subtract(weeks: 1)
               .toString(),
-          "2019-10-06 00:00:00.000");
+          '2019-10-06 00:00:00.000');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in months",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in months',
         () {
       expect(
-          Jiffy("2019-11-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2019-11-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .subtract(months: 1)
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
     });
     test(
-        "test Jiffy().subtract() method with parsing date time should subtract and return correct date time in years",
+        'test Jiffy().subtract() method with parsing date time should subtract and return correct date time in years',
         () {
       expect(
-          Jiffy("2020-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
+          Jiffy('2020-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
               .subtract(years: 1)
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
     });
   });
 
   group('Test Jiffy().startOf() datetime', () {
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in seconds",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in seconds',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("s")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('s')
               .toString(),
-          "2019-10-13 13:12:12.000");
+          '2019-10-13 13:12:12.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in minutes",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in minutes',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("m")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('m')
               .toString(),
-          "2019-10-13 13:12:00.000");
+          '2019-10-13 13:12:00.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in hours",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in hours',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("h")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('h')
               .toString(),
-          "2019-10-13 13:00:00.000");
+          '2019-10-13 13:00:00.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in days",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in days',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("d")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('d')
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in weeks",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in weeks',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("w")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('w')
               .toString(),
-          "2019-10-13 00:00:00.000");
+          '2019-10-13 00:00:00.000');
       expect(
-          Jiffy("2019-10-10 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("w")
+          Jiffy('2019-10-10 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('w')
               .toString(),
-          "2019-10-06 00:00:00.000");
+          '2019-10-06 00:00:00.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in months",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in months',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("M")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('M')
               .toString(),
-          "2019-10-01 00:00:00.000");
+          '2019-10-01 00:00:00.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing date time should add and return correct start of date time in years",
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in years',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .startOf("y")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .startOf('y')
               .toString(),
-          "2019-01-01 00:00:00.000");
+          '2019-01-01 00:00:00.000');
     });
     test(
-        "test Jiffy().startOf() method with parsing invalid unit should add and return exception",
+        'test Jiffy().startOf() method with parsing invalid unit should add and return exception',
         () {
       try {
-        Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-            .startOf("invalidUnit");
+        Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
+            .startOf('invalidUnit');
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
+            'JiffyException: Invalid unit passed, the following units are available "year", "month", "week", "day", "hour", "minute", "second", "millisecond"');
       }
     });
   });
 
   group('Test Jiffy().endOf() datetime', () {
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in seconds",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in seconds',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("s")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('s')
               .toString(),
-          "2019-10-13 13:12:12.999");
+          '2019-10-13 13:12:12.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in mintes",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in mintes',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("m")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('m')
               .toString(),
-          "2019-10-13 13:12:59.999");
+          '2019-10-13 13:12:59.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in hours",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in hours',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("h")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('h')
               .toString(),
-          "2019-10-13 13:59:59.999");
+          '2019-10-13 13:59:59.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in days",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in days',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("d")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('d')
               .toString(),
-          "2019-10-13 23:59:59.999");
+          '2019-10-13 23:59:59.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in weeks",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in weeks',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("w")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('w')
               .toString(),
-          "2019-10-19 23:59:59.999");
+          '2019-10-19 23:59:59.999');
       expect(
-          Jiffy("2019-10-10 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("w")
+          Jiffy('2019-10-10 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('w')
               .toString(),
-          "2019-10-12 23:59:59.999");
+          '2019-10-12 23:59:59.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in months",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in months',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("M")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('M')
               .toString(),
-          "2019-10-31 23:59:59.999");
+          '2019-10-31 23:59:59.999');
       expect(
-          Jiffy("2019-02-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("M")
+          Jiffy('2019-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('M')
               .toString(),
-          "2019-02-28 23:59:59.999");
+          '2019-02-28 23:59:59.999');
       expect(
-          Jiffy("2016-02-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("M")
+          Jiffy('2016-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('M')
               .toString(),
-          "2016-02-29 23:59:59.999");
+          '2016-02-29 23:59:59.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing date time should add and return correct end of date time in years",
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in years',
         () {
       expect(
-          Jiffy("2019-10-13 13:12:12", "yyyy-MM-dd hh:mm:ss")
-              .endOf("y")
+          Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+              .endOf('y')
               .toString(),
-          "2019-12-31 23:59:59.999");
+          '2019-12-31 23:59:59.999');
     });
     test(
-        "test Jiffy().endOf() method with parsing invalid unit should add and return exception",
+        'test Jiffy().endOf() method with parsing invalid unit should add and return exception',
         () {
       try {
-        Jiffy("2019-10-13 12:00:00", "yyyy-MM-dd hh:mm:ss")
-            .endOf("invalidUnit");
+        Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
+            .endOf('invalidUnit');
       } catch (e) {
         expect(e.toString(),
-            "JiffyException: Invalid unit passed, the following units are available 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'");
+            'JiffyException: Invalid unit passed, the following units are available "year", "month", "week", "day", "hour", "minute", "second", "millisecond"');
       }
     });
   });
