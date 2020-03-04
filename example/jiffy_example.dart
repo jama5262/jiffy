@@ -6,7 +6,14 @@ main() async {
   Jiffy([2019, 10, 19]).format('MMMM do yyyy, h:mm:ss a'); // October 19th 2019, 7:00:53 PM
   Jiffy().format('EEEE'); // Saturday
   Jiffy().format('MMM do yy'); // Oct 19th 19
-  Jiffy().format('yyyy [escaped] yyyy'); // 2019 escaped 2019
+  Jiffy().format('yyyy "escaped" yyyy'); // 2019 escaped 2019
+
+//  await Jiffy.locale("es");
+  print(Jiffy().format('yyyy \'escaped\' yyyy'));
+  print(Jiffy().format("yyyy \'escaped\' yyyy"));
+  print(Jiffy().format("yyyy 'escaped' yyyy"));
+  print(Jiffy().format('yyyy "escaped" yyyy'));
+  print(Jiffy().format('yyyy [escaped] yyyy'));
 
 //  Not passing a string pattern for format method will return an ISO Date format
   Jiffy().format(); // 2019-10-19T19:00:53.090646

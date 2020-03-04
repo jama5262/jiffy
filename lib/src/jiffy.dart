@@ -348,8 +348,7 @@ class Jiffy {
   String format([String pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
     final suffix = _getOrdinalDates(_dateTime.day);
-    final escaped = replaceEscapePattern(pattern);
-    final _pattern = replaceOrdinalDatePattern(escaped, suffix);
+    final _pattern = replaceOrdinalDatePattern(pattern, suffix);
     return DateFormat(_pattern).format(_dateTime);
   }
 
