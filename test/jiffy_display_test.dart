@@ -3,7 +3,9 @@ import 'package:test/test.dart';
 
 void main() {
   group('Test format and default format datetime methods', () {
-    test("Test format method", () {
+    test(
+        "test Jiffy().format get method with parsing date time should return correct date time string",
+        () {
       expect(Jiffy("20191016").format("MMMM dd, yyyy"), "October 16, 2019");
       expect(Jiffy("2019-10-16 12:00").format("'Today is' dd MMM"),
           "Today is 16 Oct");
@@ -11,7 +13,18 @@ void main() {
           "Wednesday, October 16");
       expect(Jiffy("2019/10/16").format(), "2019-10-16T00:00:00.000");
     });
-    test("Test from method", () {
+    test(
+        "test Jiffy().format get method with parsing ordianl date time should return correct date time string",
+        () {
+      expect(Jiffy([2019, 10, 1]).format("MMM do yy"), "Oct 1st 19");
+      expect(Jiffy([2019, 10, 2]).format("MMM do yy"), "Oct 2nd 19");
+      expect(Jiffy([2019, 10, 3]).format("MMM do yy"), "Oct 3rd 19");
+      expect(Jiffy([2019, 10, 10]).format("MMM do yy"), "Oct 10th 19");
+      expect(Jiffy([2019, 10, 21]).format("MMM do yy"), "Oct 21st 19");
+    });
+    test(
+        "test Jiffy().defaultDatetime get method with parsing date time should return correct date time string",
+        () {
       expect(Jiffy([2019, 10, 16]).E, "Wed");
       expect(Jiffy([2019, 10, 16]).EEEE, "Wednesday");
       expect(Jiffy([2019, 10, 16]).LLL, "Oct");
@@ -53,15 +66,19 @@ void main() {
     });
   });
 
-  group('Test fromNow and from datetime methods', () {
-    test("Test fromNow method", () {
+  group('Test Jiffy.fromNow() and Jiffy.from() datetime methods', () {
+    test(
+        "test Jiffy().fromNow() method with parsing date time should return correct relative date time string",
+        () {
       expect(Jiffy().fromNow(), "a few seconds ago");
       var jiffy1 = Jiffy()..add(duration: Duration(seconds: 20));
       expect(jiffy1.fromNow(), "in a few seconds");
       var jiffy2 = Jiffy()..subtract(months: 20);
       expect(jiffy2.fromNow(), "a year ago");
     });
-    test("Test from method", () {
+    test(
+        "test Jiffy().from() method with parsing date time should return correct relative date time string",
+        () {
       var jiffy1 = Jiffy([2019, 10, 16]);
       expect(Jiffy("2019, 10, 20", "yyyy, MM, dd").from(jiffy1), "in 4 days");
       var jiffy2 = Jiffy([2019, 10, 16])..add(duration: Duration(days: 10));
@@ -71,8 +88,10 @@ void main() {
     });
   });
 
-  group('Test Jiffy diff datetime', () {
-    test("Diff Of seconds", () {
+  group('Test Jiffy().diff() datetime', () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in seconds",
+        () {
       expect(
           Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
               Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
@@ -86,7 +105,9 @@ void main() {
               "s"),
           3600);
     });
-    test("Diff Of minutes", () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in minutes",
+        () {
       expect(
           Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
               Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
@@ -100,7 +121,9 @@ void main() {
               "m"),
           1440);
     });
-    test("Diff Of hours", () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in hours",
+        () {
       expect(
           Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
               Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
@@ -114,7 +137,9 @@ void main() {
               "h"),
           24);
     });
-    test("Diff Of days", () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in days",
+        () {
       expect(
           Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
               Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
@@ -128,7 +153,9 @@ void main() {
               "d"),
           14);
     });
-    test("Diff Of weeks", () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in weeks",
+        () {
       expect(
           Jiffy(DateTime(2019, 10, 16, 23)).diff(
               Jiffy(DateTime(2019, 10, 16, 23))
@@ -140,7 +167,9 @@ void main() {
               Jiffy(DateTime(2019, 10, 16, 23))..add(weeks: 2), "w", true),
           -2.0);
     });
-    test("Diff Of months", () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in months",
+        () {
       expect(
           Jiffy([2019, 10, 16, 22]).diff(
               Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
@@ -155,7 +184,9 @@ void main() {
               .diff(Jiffy([2019, 10, 16, 22])..add(months: 2), "M", true),
           -2.0);
     });
-    test("Diff Of years", () {
+    test(
+        "test Jiffy().diff() method with parsing date time should return correct date time in years",
+        () {
       expect(
           Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a").diff(
               Jiffy("2019, 10, 16 10:00:00 pm", "yyyy, MM, dd h:mm:ss a")
