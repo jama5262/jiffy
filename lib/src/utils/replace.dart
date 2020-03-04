@@ -23,6 +23,10 @@ String replacePatternInput(String input) {
   return input.replaceFirst('do', 'd');
 }
 
+String replaceEscapePattern(String input) {
+  return input.replaceAll('[', '\'').replaceAll(']', '\'');
+}
+
 String replaceOrdinalDatePattern(String input, String suffix) {
   final regex = matchOrdinalDatePattern().allMatches(input);
   var pattern = input;
