@@ -3,14 +3,23 @@ import 'package:jiffy/src/utils/replace.dart';
 
 class ArLyLocale extends LookUpMessages {
   bool replaceNum;
-  ArLyLocale(this.replaceNum);
+  ArLyLocale(replaceNum) {
+    this.replaceNum = replaceNum;
+  }
 
+  @override
   String prefixAgo() => 'منذ';
+  @override
   String prefixFromNow() => 'بعد';
+  @override
   String suffixAgo() => '';
+  @override
   String suffixFromNow() => '';
+  @override
   String lessThanOneMinute(int seconds) => 'ثانية واحدة';
+  @override
   String aboutAMinute(int minutes) => 'دقيقة واحدة';
+  @override
   String minutes(int minutes) {
     String result;
     if (minutes == 1) {
@@ -24,10 +33,12 @@ class ArLyLocale extends LookUpMessages {
     } else {
       result = '$minutes دقائق ';
     }
-    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
+    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
   }
 
+  @override
   String aboutAnHour(int minutes) => 'ساعة واحدة';
+  @override
   String hours(int hours) {
     String result;
     if (hours == 1) {
@@ -41,10 +52,12 @@ class ArLyLocale extends LookUpMessages {
     } else {
       result = '$hours ساعات ';
     }
-    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
+    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
   }
 
+  @override
   String aDay(int hours) => 'يوم واحد';
+  @override
   String days(int days) {
     String result;
     if (days == 1) {
@@ -58,10 +71,12 @@ class ArLyLocale extends LookUpMessages {
     } else {
       result = '$days ايام ';
     }
-    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
+    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
   }
 
+  @override
   String aboutAMonth(int days) => 'شهر واحد';
+  @override
   String months(int months) {
     String result;
     if (months == 1) {
@@ -75,10 +90,12 @@ class ArLyLocale extends LookUpMessages {
     } else {
       result = '$months شهور ';
     }
-    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
+    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
   }
 
+  @override
   String aboutAYear(int year) => 'عام واحد';
+  @override
   String years(int years) {
     String result;
     if (years == 1) {
@@ -92,55 +109,72 @@ class ArLyLocale extends LookUpMessages {
     } else {
       result = '$years أعوام ';
     }
-    return this.replaceNum ? replaceToLocaleNum(result, "ar") : result;
+    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
   }
 
+  @override
   String wordSeparator() => ' ';
 }
 
 class ArSaMaDzKwTnLocale extends LookUpMessages {
   bool replaceNum;
-  ArSaMaDzKwTnLocale(this.replaceNum);
+  ArSaMaDzKwTnLocale(replaceNum) {
+    this.replaceNum = replaceNum;
+  }
 
+  @override
   String prefixAgo() => 'منذ';
+  @override
   String prefixFromNow() => 'في';
+  @override
   String suffixAgo() => '';
+  @override
   String suffixFromNow() => '';
+  @override
   String lessThanOneMinute(int seconds) => 'ثوان';
+  @override
   String aboutAMinute(int minutes) => 'دقيقة';
+  @override
   String minutes(int minutes) {
-    return this.replaceNum
-        ? replaceToLocaleNum('$minutes دقائق ', "ar")
+    return replaceNum
+        ? replaceToLocaleNum('$minutes دقائق ', 'ar')
         : '$minutes دقائق ';
   }
 
+  @override
   String aboutAnHour(int minutes) => 'ساعة';
+  @override
   String hours(int hours) {
-    return this.replaceNum
-        ? replaceToLocaleNum('$hours ساعات ', "ar")
+    return replaceNum
+        ? replaceToLocaleNum('$hours ساعات ', 'ar')
         : '$hours ساعات ';
   }
 
+  @override
   String aDay(int hours) => 'يوم';
+  @override
   String days(int days) {
-    return this.replaceNum
-        ? replaceToLocaleNum('$days أيام ', "ar")
-        : '$days أيام ';
+    return replaceNum ? replaceToLocaleNum('$days أيام ', 'ar') : '$days أيام ';
   }
 
+  @override
   String aboutAMonth(int days) => 'شهر';
+  @override
   String months(int months) {
-    return this.replaceNum
-        ? replaceToLocaleNum('$months أشهر ', "ar")
+    return replaceNum
+        ? replaceToLocaleNum('$months أشهر ', 'ar')
         : '$months أشهر ';
   }
 
+  @override
   String aboutAYear(int year) => 'سنة';
+  @override
   String years(int years) {
-    return this.replaceNum
-        ? replaceToLocaleNum('$years سنوات ', "ar")
+    return replaceNum
+        ? replaceToLocaleNum('$years سنوات ', 'ar')
         : '$years سنوات ';
   }
 
+  @override
   String wordSeparator() => ' ';
 }

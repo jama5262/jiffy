@@ -4,18 +4,21 @@ import 'package:jiffy/src/relative_time/locales/en_locale.dart';
 import 'package:jiffy/src/relative_time/locales/es_locale.dart';
 import 'package:jiffy/src/relative_time/locales/fr_locale.dart';
 import 'package:jiffy/src/relative_time/locales/hi_locale.dart';
+import 'package:jiffy/src/relative_time/locales/id_locale.dart';
 import 'package:jiffy/src/relative_time/locales/it_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ja_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ko_locale.dart';
-import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pl_locale.dart';
+import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
 import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
+import 'package:jiffy/src/relative_time/locales/tr_locale.dart';
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 Map<String, LookUpMessages> _lookupMessagesMap = {
   'en': EnLocale(),
+  'id': IdLocale(),
   'ensg': EnLocale(),
   'enau': EnLocale(),
   'enca': EnLocale(),
@@ -26,32 +29,33 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'es': EsLocale(),
   'esdo': EsLocale(),
   'esus': EsLocale(),
-  "zh": ZhCnLocale(),
-  "zhcn": ZhCnLocale(),
-  "zhhk": ZhLocale(),
-  "zhtw": ZhLocale(),
-  "ja": JaLocale(),
-  "de": DeLocale(),
-  "deat": DeLocale(),
-  "dech": DeLocale(),
-  "fr": FrLocale(),
-  "frch": FrLocale(),
-  "frca": FrLocale(),
-  "it": ItLocale(),
-  "itch": ItLocale(),
-  "ko": KoLocale(),
-  "ru": RuLocale(),
-  "hi": HiLocale(),
-  "ar": ArLyLocale(true),
-  "arly": ArLyLocale(false),
-  "ardz": ArSaMaDzKwTnLocale(false),
-  "arkw": ArSaMaDzKwTnLocale(false),
-  "arsa": ArSaMaDzKwTnLocale(true),
-  "arma": ArSaMaDzKwTnLocale(false),
-  "artn": ArSaMaDzKwTnLocale(false),
-  "pt": PtLocale(),
-  "pl": PlLocale(),
-  "ptbr": PtLocale(),
+  'zh': ZhCnLocale(),
+  'zhcn': ZhCnLocale(),
+  'zhhk': ZhLocale(),
+  'zhtw': ZhLocale(),
+  'ja': JaLocale(),
+  'de': DeLocale(),
+  'deat': DeLocale(),
+  'dech': DeLocale(),
+  'fr': FrLocale(),
+  'frch': FrLocale(),
+  'frca': FrLocale(),
+  'it': ItLocale(),
+  'itch': ItLocale(),
+  'ko': KoLocale(),
+  'ru': RuLocale(),
+  'hi': HiLocale(),
+  'ar': ArLyLocale(true),
+  'arly': ArLyLocale(false),
+  'ardz': ArSaMaDzKwTnLocale(false),
+  'arkw': ArSaMaDzKwTnLocale(false),
+  'arsa': ArSaMaDzKwTnLocale(true),
+  'arma': ArSaMaDzKwTnLocale(false),
+  'artn': ArSaMaDzKwTnLocale(false),
+  'pt': PtLocale(),
+  'pl': PlLocale(),
+  'ptbr': PtLocale(),
+  'tr': TrLocale()
 };
 
 String format(String locale, DateTime date1, [DateTime date2]) {
