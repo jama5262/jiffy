@@ -32,12 +32,12 @@ void main() {
     test(
         'test Jiffy() instance with parsing empty string pattern should set correct date time',
         () {
-      expect(Jiffy('2009', "").year, 1970);
+      expect(Jiffy('2009', '').year, 1970);
     });
     test(
         'test Jiffy() instance with parsing empty string time and pattern should set correct date time',
         () {
-      expect(Jiffy("", "").year, 1970);
+      expect(Jiffy('', '').year, 1970);
     });
     test(
         'test Jiffy() instance with parsing Datetime object should set correct date time',
@@ -80,7 +80,7 @@ void main() {
         'test Jiffy() instance with parsing pattern and empty time should return exception',
         () {
       try {
-        Jiffy("", 'yyyy');
+        Jiffy('', 'yyyy');
       } catch (e) {
         expect(e.toString(),
             'FormatException: Trying to read yyyy from  at position 0');
@@ -100,7 +100,7 @@ void main() {
         'test Jiffy() instance with parsing time and without pattern should return exception',
         () {
       try {
-        Jiffy("");
+        Jiffy('');
       } catch (e) {
         expect(e.toString(),
             'JiffyException: Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")');

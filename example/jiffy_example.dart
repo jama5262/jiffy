@@ -1,4 +1,5 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:jiffy/src/enums/units.dart';
 
 main() async {
 //  FORMATTING DATES
@@ -31,15 +32,15 @@ main() async {
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
   var jiffy1 = Jiffy()
-    ..startOf('day');
+    ..startOf(Units.DAY);
   jiffy1.fromNow(); // 19 hours ago
 
   var jiffy2 = Jiffy()
-    ..endOf('day');
+    ..endOf(Units.DAY);
   jiffy2.fromNow(); // in 5 hours
 
   var jiffy3 = Jiffy()
-    ..startOf('hour');
+    ..startOf(Units.HOUR);
   jiffy3.fromNow(); // 9 minutes ago
 
 //  MANIPULATING DATES
@@ -68,4 +69,6 @@ main() async {
   Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
   await Jiffy.locale('zh-cn');
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+
+  return 0;
 }

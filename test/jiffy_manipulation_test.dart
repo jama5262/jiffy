@@ -1,4 +1,5 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:jiffy/src/enums/units.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -178,7 +179,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('s')
+              .startOf(Units.SECOND)
               .toString(),
           '2019-10-13 13:12:12.000');
     });
@@ -187,7 +188,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('m')
+              .startOf(Units.MINUTE)
               .toString(),
           '2019-10-13 13:12:00.000');
     });
@@ -196,7 +197,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('h')
+              .startOf(Units.HOUR)
               .toString(),
           '2019-10-13 13:00:00.000');
     });
@@ -205,7 +206,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('d')
+              .startOf(Units.DAY)
               .toString(),
           '2019-10-13 00:00:00.000');
     });
@@ -214,12 +215,12 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('w')
+              .startOf(Units.WEEK)
               .toString(),
           '2019-10-13 00:00:00.000');
       expect(
           Jiffy('2019-10-10 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('w')
+              .startOf(Units.WEEK)
               .toString(),
           '2019-10-06 00:00:00.000');
     });
@@ -228,7 +229,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('M')
+              .startOf(Units.MONTH)
               .toString(),
           '2019-10-01 00:00:00.000');
     });
@@ -237,20 +238,9 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .startOf('y')
+              .startOf(Units.YEAR)
               .toString(),
           '2019-01-01 00:00:00.000');
-    });
-    test(
-        'test Jiffy().startOf() method with parsing invalid unit should add and return exception',
-        () {
-      try {
-        Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
-            .startOf('invalidUnit');
-      } catch (e) {
-        expect(e.toString(),
-            'JiffyException: Invalid unit passed, the following units are available "year", "month", "week", "day", "hour", "minute", "second", "millisecond"');
-      }
     });
   });
 
@@ -260,7 +250,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('s')
+              .endOf(Units.SECOND)
               .toString(),
           '2019-10-13 13:12:12.999');
     });
@@ -269,7 +259,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('m')
+              .endOf(Units.MINUTE)
               .toString(),
           '2019-10-13 13:12:59.999');
     });
@@ -278,7 +268,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('h')
+              .endOf(Units.HOUR)
               .toString(),
           '2019-10-13 13:59:59.999');
     });
@@ -287,7 +277,7 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('d')
+              .endOf(Units.DAY)
               .toString(),
           '2019-10-13 23:59:59.999');
     });
@@ -296,12 +286,12 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('w')
+              .endOf(Units.WEEK)
               .toString(),
           '2019-10-19 23:59:59.999');
       expect(
           Jiffy('2019-10-10 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('w')
+              .endOf(Units.WEEK)
               .toString(),
           '2019-10-12 23:59:59.999');
     });
@@ -310,17 +300,17 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('M')
+              .endOf(Units.MONTH)
               .toString(),
           '2019-10-31 23:59:59.999');
       expect(
           Jiffy('2019-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('M')
+              .endOf(Units.MONTH)
               .toString(),
           '2019-02-28 23:59:59.999');
       expect(
           Jiffy('2016-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('M')
+              .endOf(Units.MONTH)
               .toString(),
           '2016-02-29 23:59:59.999');
     });
@@ -329,20 +319,9 @@ void main() {
         () {
       expect(
           Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
-              .endOf('y')
+              .endOf(Units.YEAR)
               .toString(),
           '2019-12-31 23:59:59.999');
-    });
-    test(
-        'test Jiffy().endOf() method with parsing invalid unit should add and return exception',
-        () {
-      try {
-        Jiffy('2019-10-13 12:00:00', 'yyyy-MM-dd hh:mm:ss')
-            .endOf('invalidUnit');
-      } catch (e) {
-        expect(e.toString(),
-            'JiffyException: Invalid unit passed, the following units are available "year", "month", "week", "day", "hour", "minute", "second", "millisecond"');
-      }
     });
   });
 }

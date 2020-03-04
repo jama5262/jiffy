@@ -25,7 +25,7 @@ List<String> getOrdinalLocaleDates(String locale) {
   var ordinals = {
     localeOrdinals[0]: ['th', 'st', 'nd', 'rd'],
     localeOrdinals[1]: ['º', 'º', 'º', 'º'],
-    localeOrdinals[2]: ["", 'er', "", ""],
+    localeOrdinals[2]: ['', 'er', '', ''],
     localeOrdinals[3]: ['e', 'er', 'e', 'e'],
     localeOrdinals[4]: ['e', 'er', 'e', 'e'],
     localeOrdinals[5]: ['º', 'º', 'º', 'º'],

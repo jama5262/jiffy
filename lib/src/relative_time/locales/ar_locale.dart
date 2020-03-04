@@ -122,6 +122,7 @@ class ArSaMaDzKwTnLocale extends LookUpMessages {
     this.replaceNum = replaceNum;
   }
 
+  @override
   String prefixAgo() => 'منذ';
   @override
   String prefixFromNow() => 'في';
