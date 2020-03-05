@@ -322,5 +322,22 @@ void main() {
       expect(jiffy12.fromNow(), 'bir yıl önce');
       expect(jiffy13.fromNow(), '10 yıl önce');
     });
+    test(
+        'test Jiffy.locale() method with parsing en locale should return correct date time in en locale',
+        () async {
+      await Jiffy.locale('sv');
+      expect(jiffy1.fromNow(), 'några sekunder sedan');
+      expect(jiffy2.fromNow(), 'om några sekunder');
+      expect(jiffy3.fromNow(), 'en minut sedan');
+      expect(jiffy5.fromNow(), '10 minuter sedan');
+      expect(jiffy6.fromNow(), 'en timme sedan');
+      expect(jiffy7.fromNow(), '10 timmar sedan');
+      expect(jiffy8.fromNow(), 'en dag sedan');
+      expect(jiffy9.fromNow(), '10 dagar sedan');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'en månad sedan');
+      expect(jiffy11.fromNow(), '10 månader sedan');
+      expect(jiffy12.fromNow(), 'ett år sedan');
+      expect(jiffy13.fromNow(), '10 år sedan');
+    });
   });
 }
