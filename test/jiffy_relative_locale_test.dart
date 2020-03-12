@@ -323,7 +323,7 @@ void main() {
       expect(jiffy13.fromNow(), '10 yıl önce');
     });
     test(
-        'test Jiffy.locale() method with parsing en locale should return correct date time in sv locale',
+        'test Jiffy.locale() method with parsing sv locale should return correct date time in sv locale',
         () async {
       await Jiffy.locale('sv');
       expect(jiffy1.fromNow(), 'några sekunder sedan');

@@ -1,3 +1,11 @@
+## 3.0.1
+
+- Patch changes
+
+Fixed `Undefined name 'Units'` bug
+
+Swedish locale `sv` contributed by [Erik Carlsson](https://github.com/ercadev)
+
 ## 3.0.0
 
 - Major changes
