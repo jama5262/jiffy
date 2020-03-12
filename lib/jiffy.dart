@@ -4,3 +4,4 @@
 library jiffy;
 
 export 'src/jiffy.dart';
+export 'src/enums/units.dart';
