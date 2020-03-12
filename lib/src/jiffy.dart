@@ -110,6 +110,7 @@ class Jiffy {
     'arkw',
     'arsa',
     'ptbr',
+    'sv'
   ];
 
   static const _saturdayStartOfWeek = [

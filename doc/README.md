@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v3.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v3.0.1-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 
@@ -461,7 +461,7 @@ var jiffy2 = Jiffy("2010-10-19", "yyyy-MM-dd");
 jiffy1.isAfter(jiffy2); // true
 ```
 
-You can also check in terms of units of measurement. The below example checks if year is before.
+You can also check in terms of units of measurement. The below example checks if year is after.
 ```dart
 var jiffy1 = Jiffy("2010-10-20", "yyyy-MM-dd");
 
@@ -565,6 +565,7 @@ Below are the locales that are supported for relative time. More will be added
 | Portuguese  | pt / pt-br |
 | Polish  | pl |
 | Turkish  | tr |
+| Swedish | sv |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 
