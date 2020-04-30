@@ -10,7 +10,7 @@ class NoLocale extends LookUpMessages {
   @override
   String suffixFromNow() => '';
   @override
-  String lessThanOneMinute(int seconds) => 'noen få sekunder';
+  String lessThanOneMinute(int seconds) => 'noen sekunder';
   @override
   String aboutAMinute(int minutes) => 'ett minutt';
   @override
