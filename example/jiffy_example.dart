@@ -62,6 +62,8 @@ main() async {
   Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
   await Jiffy.locale('zh-cn');
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+  await Jiffy.locale('no');
+  Jiffy().yMMMMEEEEdjm;
 
   return 0;
 }
