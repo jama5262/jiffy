@@ -60,7 +60,6 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'tr': TrLocale(),
   'sv': SvLocale(),
   'no': NoLocale(),
-  'nb': NoLocale(),
   'nonb': NoLocale()
 };
 
