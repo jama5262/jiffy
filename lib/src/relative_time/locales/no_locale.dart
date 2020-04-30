@@ -28,7 +28,7 @@ class NoLocale extends LookUpMessages {
   @override
   String months(int months) => '$months måneder';
   @override
-  String aboutAYear(int year) => 'et år';
+  String aboutAYear(int year) => 'ett år';
   @override
   String years(int years) => '$years år';
   @override
