@@ -1,6 +1,6 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
-class NoLocale extends LookUpMessages {
+class NbLocale extends LookUpMessages {
   @override
   String prefixAgo() => '';
   @override

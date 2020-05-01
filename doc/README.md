@@ -566,7 +566,7 @@ Below are the locales that are supported for relative time. More will be added
 | Polish  | pl |
 | Turkish  | tr |
 | Swedish | sv |
-| Norwegian | no | no-nb |
+| Norwegian | nb |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 
