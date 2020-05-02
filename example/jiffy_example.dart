@@ -1,6 +1,7 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/enums/units.dart';
 
+// ignore: always_declare_return_types
 main() async {
 //  FORMATTING DATES
   Jiffy([2019, 10, 19]).format('MMMM do yyyy, h:mm:ss a'); // October 19th 2019, 7:00:53 PM
@@ -62,6 +63,8 @@ main() async {
   Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
   await Jiffy.locale('zh-cn');
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+  await Jiffy.locale('nb');
+  Jiffy().yMMMMEEEEdjm;
 
   return 0;
 }

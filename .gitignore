@@ -1,6 +1,10 @@
-# Files and directories created by pub
-.dart_tool/
-.packages
+# ignore all . files
+.*
+# except
+!.gitignore
+
+*.iml
+
 # Remove the following pattern if you wish to check in your lock file
 pubspec.lock
 

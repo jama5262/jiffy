@@ -8,6 +8,7 @@ import 'package:jiffy/src/relative_time/locales/id_locale.dart';
 import 'package:jiffy/src/relative_time/locales/it_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ja_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ko_locale.dart';
+import 'package:jiffy/src/relative_time/locales/nb_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
@@ -57,7 +58,8 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'pl': PlLocale(),
   'ptbr': PtLocale(),
   'tr': TrLocale(),
-  'sv': SvLocale()
+  'sv': SvLocale(),
+  'nb': NbLocale(),
 };
 
 String format(String locale, DateTime date1, [DateTime date2]) {
