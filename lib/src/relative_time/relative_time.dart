@@ -37,6 +37,7 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'zhtw': ZhLocale(),
   'ja': JaLocale(),
   'de': DeLocale(),
+  'dede': DeLocale(),
   'deat': DeLocale(),
   'dech': DeLocale(),
   'fr': FrLocale(),
