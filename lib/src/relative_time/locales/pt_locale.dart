@@ -6,7 +6,7 @@ class PtPtLocale extends LookUpMessages {
   @override
   String prefixFromNow() => 'daqui a';
   @override
-  String suffixAgo() => '';
+  String suffixAgo() => 'atrás';
   @override
   String suffixFromNow() => '';
   @override
@@ -38,4 +38,6 @@ class PtPtLocale extends LookUpMessages {
 class PtBrLocale extends PtPtLocale {
   @override
   String prefixFromNow() => 'em';
+    @override
+  String suffixAgo() => '';
 }

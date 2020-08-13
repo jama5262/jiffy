@@ -1,4 +1,5 @@
 import 'package:jiffy/src/relative_time/locales/ar_locale.dart';
+import 'package:jiffy/src/relative_time/locales/bg_locale.dart';
 import 'package:jiffy/src/relative_time/locales/de_locale.dart';
 import 'package:jiffy/src/relative_time/locales/en_locale.dart';
 import 'package:jiffy/src/relative_time/locales/es_locale.dart';
@@ -63,6 +64,7 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'arsa': ArSaMaDzKwTnLocale(true),
   'arma': ArSaMaDzKwTnLocale(false),
   'artn': ArSaMaDzKwTnLocale(false),
+  'bgbg': BgLocale(),
   'pl': PlLocale(),
   'plpl': PlLocale(),
   'pt': PtPtLocale(),
