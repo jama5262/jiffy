@@ -1,10 +1,10 @@
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 
-class PtLocale extends LookUpMessages {
+class PtPtLocale extends LookUpMessages {
   @override
   String prefixAgo() => 'há';
   @override
-  String prefixFromNow() => 'em';
+  String prefixFromNow() => 'daqui a';
   @override
   String suffixAgo() => '';
   @override
@@ -33,4 +33,9 @@ class PtLocale extends LookUpMessages {
   String years(int years) => '$years anos';
   @override
   String wordSeparator() => ' ';
+}
+
+class PtBrLocale extends PtPtLocale {
+  @override
+  String prefixFromNow() => 'em';
 }
