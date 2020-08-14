@@ -14,7 +14,6 @@ import 'package:jiffy/src/relative_time/locales/nl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
-import 'package:jiffy/src/relative_time/locales/uk_locale.dart';
 import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
 import 'package:jiffy/src/relative_time/locales/tr_locale.dart';
 import 'package:jiffy/src/relative_time/locales/sv_locale.dart';
@@ -68,9 +67,9 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'arma': ArSaMaDzKwTnLocale(false),
   'arsa': ArSaMaDzKwTnLocale(true),
   'artn': ArSaMaDzKwTnLocale(false),
-  'bgbg': BgLocale(), // Unverified
-  'bgbg': DaLocale(), // Unverified
-  'nlnl': NlLocale(), // Unverified
+  'bgbg': BgLocale(),
+  'bgbg': DaLocale(),
+  'nlnl': NlLocale(),
   'pl': PlLocale(),
   'plpl': PlLocale(),
   'pt': PtPtLocale(),
@@ -79,7 +78,7 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'sv': SvLocale(),
   'svse': SvLocale(),
   'tr': TrLocale(),
-  'trtr': TrLocale(),// Unimplemented
+  'trtr': TrLocale(),
   'zh': ZhCnLocale(),
   'zhcn': ZhCnLocale(),
   'zhhk': ZhLocale(),
