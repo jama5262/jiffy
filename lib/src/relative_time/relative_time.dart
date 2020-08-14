@@ -30,6 +30,8 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'artn': ArSaMaDzKwTnLocale(false),
   'bg': BgLocale(), // Unverified
   'bgbg': BgLocale(), // Unverified
+  'da': DaLocale(),
+  'dadk': DaLocale(),
   'de': DeLocale(),
   'deat': DeLocale(),
   'dech': DeLocale(),
@@ -67,6 +69,8 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'jajp': JaLocale(),
   'ko': KoLocale(),
   'kokr': KoLocale(),
+  'nl': NlLocale(),
+  'nlnl': NlLocale(),
   'pl': PlLocale(),
   'plpl': PlLocale(),
   'pt': PtPtLocale(),
