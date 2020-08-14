@@ -1,5 +1,6 @@
 import 'package:jiffy/src/relative_time/locales/ar_locale.dart';
 import 'package:jiffy/src/relative_time/locales/bg_locale.dart';
+import 'package:jiffy/src/relative_time/locales/da_locale.dart';
 import 'package:jiffy/src/relative_time/locales/de_locale.dart';
 import 'package:jiffy/src/relative_time/locales/en_locale.dart';
 import 'package:jiffy/src/relative_time/locales/es_locale.dart';
@@ -9,9 +10,11 @@ import 'package:jiffy/src/relative_time/locales/id_locale.dart';
 import 'package:jiffy/src/relative_time/locales/it_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ja_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ko_locale.dart';
+import 'package:jiffy/src/relative_time/locales/nl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
+import 'package:jiffy/src/relative_time/locales/uk_locale.dart';
 import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
 import 'package:jiffy/src/relative_time/locales/tr_locale.dart';
 import 'package:jiffy/src/relative_time/locales/sv_locale.dart';
@@ -19,60 +22,68 @@ import 'package:jiffy/src/relative_time/lookup_messages.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 Map<String, LookUpMessages> _lookupMessagesMap = {
+  'de': DeLocale(),
+  'deat': DeLocale(),
+  'dech': DeLocale(),
+  'dede': DeLocale(),
+  'delu': DeLocale(),
   'en': EnLocale(),
-  'id': IdLocale(),
-  'ensg': EnLocale(),
   'enau': EnLocale(),
   'enca': EnLocale(),
   'engb': EnLocale(),
+  'enid': EnLocale(),
   'enie': EnLocale(),
   'enil': EnLocale(),
   'ennz': EnLocale(),
+  'ensg': EnLocale(),
   'enus': EnLocale(),
   'es': EsLocale(),
+  'esdo': EsLocale(),
   'eses': EsLocale(),
   'esic': EsLocale(),
-  'esdo': EsLocale(),
   'esus': EsLocale(),
+  'fr': FrLocale(),
+  'frbe': FrLocale(),
+  'frca': FrLocale(),
+  'frch': FrLocale(),
+  'frfr': FrLocale(),
+  'frlu': FrLocale(),
+  'id': IdLocale(),
+  'idid': IdLocale(),
+  'it': ItLocale(),
+  'itch': ItLocale(),
+  'itit': ItLocale(),
+  'ja': JaLocale(),
+  'jajp': JaLocale(),
+  'ko': KoLocale(),
+  'kokr': KoLocale(),
+  'ru': RuLocale(),
+  'ruru': RuLocale(),
+  'hi': HiLocale(),
+  'hiin': HiLocale(),
+  'ar': ArLyLocale(true),
+  'ardz': ArSaMaDzKwTnLocale(false),
+  'arkw': ArSaMaDzKwTnLocale(false),
+  'arly': ArLyLocale(false),
+  'arma': ArSaMaDzKwTnLocale(false),
+  'arsa': ArSaMaDzKwTnLocale(true),
+  'artn': ArSaMaDzKwTnLocale(false),
+  'bgbg': BgLocale(), // Unverified
+  'bgbg': DaLocale(), // Unverified
+  'nlnl': NlLocale(), // Unverified
+  'pl': PlLocale(),
+  'plpl': PlLocale(),
+  'pt': PtPtLocale(),
+  'ptbr': PtBrLocale(),
+  'ptpt': PtPtLocale(),
+  'sv': SvLocale(),
+  'svse': SvLocale(),
+  'tr': TrLocale(),
+  'trtr': TrLocale(),// Unimplemented
   'zh': ZhCnLocale(),
   'zhcn': ZhCnLocale(),
   'zhhk': ZhLocale(),
   'zhtw': ZhLocale(),
-  'ja': JaLocale(),
-  'de': DeLocale(),
-  'dede': DeLocale(),
-  'deat': DeLocale(),
-  'delu': DeLocale(),
-  'dech': DeLocale(),
-  'fr': FrLocale(),
-  'frfr': FrLocale(),
-  'frch': FrLocale(),
-  'frbe': FrLocale(),
-  'frca': FrLocale(),
-  'frlu': FrLocale(),
-  'it': ItLocale(),
-  'itit': ItLocale(),
-  'itch': ItLocale(),
-  'ko': KoLocale(),
-  'ru': RuLocale(),
-  'ruru': RuLocale(),
-  'hi': HiLocale(),
-  'ar': ArLyLocale(true),
-  'arly': ArLyLocale(false),
-  'ardz': ArSaMaDzKwTnLocale(false),
-  'arkw': ArSaMaDzKwTnLocale(false),
-  'arsa': ArSaMaDzKwTnLocale(true),
-  'arma': ArSaMaDzKwTnLocale(false),
-  'artn': ArSaMaDzKwTnLocale(false),
-  'bgbg': BgLocale(),
-  'pl': PlLocale(),
-  'plpl': PlLocale(),
-  'pt': PtPtLocale(),
-  'ptpt': PtPtLocale(),
-  'ptbr': PtBrLocale(),
-  'tr': TrLocale(),
-  'sv': SvLocale(),
-  'svse': SvLocale()
 };
 
 String format(String locale, DateTime date1, [DateTime date2]) {
