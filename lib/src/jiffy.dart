@@ -14,6 +14,13 @@ class Jiffy {
   DateTime _dateTime;
   DateTime get dateTime => _dateTime;
 
+  /// This method should be called if any date formatting is required.
+  /// Idealy then, any time one wants to utilize Jiffy.
+  static Future<Jiffy> load() async {
+    await initializeDateFormatting();
+    return Jiffy();
+  }
+
   Jiffy([var input, String pattern]) {
     _dateTime = _parse(input, pattern);
   }
@@ -119,17 +126,20 @@ class Jiffy {
     'arma',
   ];
 
-  static String _defaultLocale = 'en';
-  static Future<String> locale([String locale]) async {
-    if (locale != null) {
-      await initializeDateFormatting();
-      Intl.defaultLocale = locale;
-      _defaultLocale = locale;
-    }
-    return Future.value(_defaultLocale);
+  static String _defaultLocale;
+
+  String get currentLocale => _defaultLocale ?? Intl.getCurrentLocale();
+
+  /// Deprecatted this function as it sets the locale for the
+  /// whole Intl singleton, thus affecting the entire app.
+  static String locale([String locale]) {
+    _defaultLocale = locale;
+    return _defaultLocale;
   }
 
-//  GET
+  //  GET
+  List<String> get supportedLocales => relative.availableLocales();
+
   int get milliseconds => _dateTime.millisecond;
   int get seconds => _dateTime.second;
   int get minute => _dateTime.minute;
@@ -138,7 +148,7 @@ class Jiffy {
   int get day {
     var weekDays = [1, 2, 3, 4, 5, 6, 7, 1, 2];
     var weekDayIndex = _dateTime.weekday - 1;
-    var _locale = replaceLocaleHyphen(_defaultLocale);
+    var _locale = replaceLocaleHyphen(currentLocale);
     if (_sundayStartOfWeek.contains(_locale)) {
       weekDayIndex += 1;
     } else if (_saturdayStartOfWeek.contains(_locale)) {
@@ -355,10 +365,11 @@ class Jiffy {
   }
 
   String _getOrdinalDates(int day) {
-    if (!localeOrdinals.contains(replaceLocaleHyphen(_defaultLocale))) {
+    final locale = replaceLocaleHyphen(currentLocale);
+    if (!localeOrdinals.contains(locale)) {
       return '';
     }
-    final ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
+    final ordinals = getOrdinalLocaleDates(locale);
     var suffix = ordinals[0];
     final digit = day % 10;
     if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
@@ -403,12 +414,12 @@ class Jiffy {
   String get jms => DateFormat.jms().format(_dateTime);
 
   String fromNow() {
-    return relative.format(_defaultLocale, _dateTime);
+    return relative.format(currentLocale, _dateTime);
   }
 
-  String from(var input) {
+  String from(var input, {String locale}) {
     var dateTime = _parse(input);
-    return relative.format(_defaultLocale, _dateTime, dateTime);
+    return relative.format(currentLocale, _dateTime, dateTime);
   }
 
   num diff(var input, [Units units = Units.MILLISECOND, bool asFloat = false]) {
