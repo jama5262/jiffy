@@ -21,6 +21,15 @@ import 'package:jiffy/src/relative_time/lookup_messages.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 Map<String, LookUpMessages> _lookupMessagesMap = {
+  'ar': ArLyLocale(true),
+  'ardz': ArSaMaDzKwTnLocale(false),
+  'arkw': ArSaMaDzKwTnLocale(false),
+  'arly': ArLyLocale(false),
+  'arma': ArSaMaDzKwTnLocale(false),
+  'arsa': ArSaMaDzKwTnLocale(true),
+  'artn': ArSaMaDzKwTnLocale(false),
+  'bg': BgLocale(), // Unverified
+  'bgbg': BgLocale(), // Unverified
   'de': DeLocale(),
   'deat': DeLocale(),
   'dech': DeLocale(),
@@ -47,6 +56,8 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'frch': FrLocale(),
   'frfr': FrLocale(),
   'frlu': FrLocale(),
+  'hi': HiLocale(),
+  'hiin': HiLocale(),
   'id': IdLocale(),
   'idid': IdLocale(),
   'it': ItLocale(),
@@ -56,25 +67,15 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'jajp': JaLocale(),
   'ko': KoLocale(),
   'kokr': KoLocale(),
-  'ru': RuLocale(),
-  'ruru': RuLocale(),
-  'hi': HiLocale(),
-  'hiin': HiLocale(),
-  'ar': ArLyLocale(true),
-  'ardz': ArSaMaDzKwTnLocale(false),
-  'arkw': ArSaMaDzKwTnLocale(false),
-  'arly': ArLyLocale(false),
-  'arma': ArSaMaDzKwTnLocale(false),
-  'arsa': ArSaMaDzKwTnLocale(true),
-  'artn': ArSaMaDzKwTnLocale(false),
-  'bgbg': BgLocale(),
-  'bgbg': DaLocale(),
-  'nlnl': NlLocale(),
   'pl': PlLocale(),
   'plpl': PlLocale(),
   'pt': PtPtLocale(),
-  'ptbr': PtBrLocale(),
   'ptpt': PtPtLocale(),
+  'ru': RuLocale(),
+  'ruru': RuLocale(),
+  'sv': SvLocale(),
+  'svse': SvLocale(),
+  'tr': TrLocale(),
   'sv': SvLocale(),
   'svse': SvLocale(),
   'tr': TrLocale(),
@@ -84,6 +85,8 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'zhhk': ZhLocale(),
   'zhtw': ZhLocale(),
 };
+
+List<String> availableLocales() => _lookupMessagesMap.keys.toList();
 
 String format(String locale, DateTime date1, [DateTime date2]) {
   final messages =
