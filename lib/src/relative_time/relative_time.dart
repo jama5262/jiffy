@@ -1,5 +1,6 @@
 import 'package:jiffy/src/relative_time/locales/ar_locale.dart';
 import 'package:jiffy/src/relative_time/locales/bg_locale.dart';
+import 'package:jiffy/src/relative_time/locales/da_locale.dart';
 import 'package:jiffy/src/relative_time/locales/de_locale.dart';
 import 'package:jiffy/src/relative_time/locales/en_locale.dart';
 import 'package:jiffy/src/relative_time/locales/es_locale.dart';
@@ -9,6 +10,7 @@ import 'package:jiffy/src/relative_time/locales/id_locale.dart';
 import 'package:jiffy/src/relative_time/locales/it_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ja_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ko_locale.dart';
+import 'package:jiffy/src/relative_time/locales/nl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
@@ -34,43 +36,35 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'dede': DeLocale(),
   'delu': DeLocale(),
   'en': EnLocale(),
-  'id': IdLocale(),
-  'ensg': EnLocale(),
   'enau': EnLocale(),
   'enca': EnLocale(),
   'engb': EnLocale(),
+  'enid': EnLocale(),
   'enie': EnLocale(),
   'enil': EnLocale(),
   'ennz': EnLocale(),
+  'ensg': EnLocale(),
   'enus': EnLocale(),
   'es': EsLocale(),
+  'esdo': EsLocale(),
   'eses': EsLocale(),
   'esic': EsLocale(),
-  'esdo': EsLocale(),
   'esus': EsLocale(),
-  'zh': ZhCnLocale(),
-  'zhcn': ZhCnLocale(),
-  'zhhk': ZhLocale(),
-  'zhtw': ZhLocale(),
-  'ja': JaLocale(),
-  'de': DeLocale(),
-  'dede': DeLocale(),
-  'deat': DeLocale(),
-  'delu': DeLocale(),
-  'dech': DeLocale(),
   'fr': FrLocale(),
-  'frfr': FrLocale(),
-  'frch': FrLocale(),
   'frbe': FrLocale(),
   'frca': FrLocale(),
+  'frch': FrLocale(),
+  'frfr': FrLocale(),
   'frlu': FrLocale(),
   'hi': HiLocale(),
   'hiin': HiLocale(),
   'id': IdLocale(),
   'idid': IdLocale(),
   'it': ItLocale(),
-  'itit': ItLocale(),
   'itch': ItLocale(),
+  'itit': ItLocale(),
+  'ja': JaLocale(),
+  'jajp': JaLocale(),
   'ko': KoLocale(),
   'kokr': KoLocale(),
   'pl': PlLocale(),
@@ -83,7 +77,13 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'svse': SvLocale(),
   'tr': TrLocale(),
   'sv': SvLocale(),
-  'svse': SvLocale()
+  'svse': SvLocale(),
+  'tr': TrLocale(),
+  'trtr': TrLocale(),
+  'zh': ZhCnLocale(),
+  'zhcn': ZhCnLocale(),
+  'zhhk': ZhLocale(),
+  'zhtw': ZhLocale(),
 };
 
 List<String> availableLocales() => _lookupMessagesMap.keys.toList();
