@@ -14,6 +14,7 @@ import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
 import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
 import 'package:jiffy/src/relative_time/locales/tr_locale.dart';
 import 'package:jiffy/src/relative_time/locales/sv_locale.dart';
+import 'package:jiffy/src/relative_time/locales/az_locale.dart';
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
@@ -56,6 +57,8 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'pt': PtLocale(),
   'pl': PlLocale(),
   'ptbr': PtLocale(),
+  'az': AzLocale(),
+  'aze': AzLocale(),
   'tr': TrLocale(),
   'sv': SvLocale()
 };

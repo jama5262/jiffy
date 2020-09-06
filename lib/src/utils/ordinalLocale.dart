@@ -18,6 +18,8 @@ List<String> localeOrdinals = [
   'deat',
   'dech',
   'id',
+  'az',
+  'aze',
   'tr',
   'sv'
 ];
