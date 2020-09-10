@@ -102,28 +102,76 @@ class Jiffy {
   }
 
   static const _sundayStartOfWeek = [
-    'en',
-    'id',
-    'enca',
-    'enil',
-    'esus',
-    'zhhk',
-    'zhtw',
-    'ja',
-    'frca',
-    'ko',
-    'hi',
-    'ardz',
-    'arkw',
-    'arsa',
-    'ptbr',
-    'sv'
+    "bg",
+    "bgbg",
+    "da",
+    "dadk",
+    "de",
+    "deat",
+    "dech",
+    "dede",
+    "delu",
+    "en",
+    "enau",
+    "enca",
+    "engb",
+    "enid",
+    "enie",
+    "enil",
+    "ennz",
+    "ensg",
+    "enus",
+    "es",
+    "esdo",
+    "eses",
+    "esic",
+    "esus",
+    "fr",
+    "frbe",
+    "frca",
+    "frch",
+    "frfr",
+    "frlu",
+    "hi",
+    "hiin",
+    "id",
+    "idid",
+    "it",
+    "itch",
+    "itit",
+    "ja",
+    "jajp",
+    "ko",
+    "kokr",
+    "nl",
+    "nlnl",
+    "pl",
+    "plpl",
+    "pt",
+    "ptpt",
+    "ru",
+    "ruru",
+    "sv",
+    "svse",
+    "tr",
+    "sv",
+    "svse",
+    "tr",
+    "trtr",
+    "zh",
+    "zhcn",
+    "zhhk",
+    "zhtw",
   ];
 
   static const _saturdayStartOfWeek = [
-    'ar',
-    'arly',
-    'arma',
+    "ar",
+    "ardz",
+    "arkw",
+    "arly",
+    "arma",
+    "arsa",
+    "artn",
   ];
 
   static String _defaultLocale;
@@ -414,6 +462,9 @@ class Jiffy {
   String get jms => DateFormat.jms().format(_dateTime);
 
   String fromNow() {
+    print("DEFAULT" + _defaultLocale);
+    print("CURRENT" + currentLocale);
+    print("INTL" + Intl.getCurrentLocale());
     return relative.format(currentLocale, _dateTime);
   }
 
