@@ -461,12 +461,7 @@ class Jiffy {
   String get jm => DateFormat.jm().format(_dateTime);
   String get jms => DateFormat.jms().format(_dateTime);
 
-  String fromNow() {
-    print("DEFAULT" + _defaultLocale);
-    print("CURRENT" + currentLocale);
-    print("INTL" + Intl.getCurrentLocale());
-    return relative.format(currentLocale, _dateTime);
-  }
+  String fromNow() => relative.format(currentLocale, _dateTime);
 
   String from(var input, {String locale}) {
     var dateTime = _parse(input);
