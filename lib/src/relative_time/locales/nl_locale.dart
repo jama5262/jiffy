@@ -21,7 +21,7 @@ class NlLocale extends LookUpMessages {
   @override
   String hours(int hours) => '$hours uur';
   @override
-  String aDay(int hours) => 'a dag';
+  String aDay(int hours) => 'een dag';
   @override
   String days(int days) => '$days dagen';
   @override
