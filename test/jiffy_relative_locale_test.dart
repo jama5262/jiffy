@@ -356,5 +356,22 @@ void main() {
       expect(jiffy12.fromNow(), 'ett år siden');
       expect(jiffy13.fromNow(), '10 år siden');
     });
+    test(
+        'test Jiffy.locale() method with parsing fa locale should return correct date time in fa locale',
+        () async {
+      await Jiffy.locale('fa');
+      expect(jiffy1.fromNow(), 'چند ثانیه پیش');
+      expect(jiffy2.fromNow(), 'چند ثانیه بعد');
+      expect(jiffy3.fromNow(), 'یک دقیقه پیش');
+      expect(jiffy5.fromNow(), '۱۰ دقیقه  پیش');
+      expect(jiffy6.fromNow(), 'یک ساعت پیش');
+      expect(jiffy7.fromNow(), '۱۰ ساعت  پیش');
+      expect(jiffy8.fromNow(), 'یک روز پیش');
+      expect(jiffy9.fromNow(), '۱۰ روز  پیش');
+      expect(jiffy10.from(Jiffy([2019, 10, 1])), 'یک ماه پیش');
+      expect(jiffy11.fromNow(), '۱۰ ماه  پیش');
+      expect(jiffy12.fromNow(), 'یک سال پیش');
+      expect(jiffy13.fromNow(), '۱۰ سال  پیش');
+    });
   });
 }
