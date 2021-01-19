@@ -112,13 +112,13 @@ class Jiffy {
     'ptbr',
     'sv',
     'nb',
-    'fa',
   ];
 
   static const _saturdayStartOfWeek = [
     'ar',
     'arly',
     'arma',
+    'fa',
   ];
 
   static String _defaultLocale = 'en';
