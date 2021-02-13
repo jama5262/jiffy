@@ -11,9 +11,9 @@ import 'package:jiffy/src/relative_time/locales/ko_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pl_locale.dart';
 import 'package:jiffy/src/relative_time/locales/pt_locale.dart';
 import 'package:jiffy/src/relative_time/locales/ru_locale.dart';
-import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
-import 'package:jiffy/src/relative_time/locales/tr_locale.dart';
 import 'package:jiffy/src/relative_time/locales/sv_locale.dart';
+import 'package:jiffy/src/relative_time/locales/tr_locale.dart';
+import 'package:jiffy/src/relative_time/locales/zh_locale.dart';
 import 'package:jiffy/src/relative_time/lookup_messages.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
@@ -60,7 +60,7 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'sv': SvLocale()
 };
 
-String format(String locale, DateTime date1, [DateTime date2]) {
+String format(String locale, DateTime date1, [DateTime? date2]) {
   final messages =
       _lookupMessagesMap[replaceLocaleHyphen(locale)] ?? EnLocale();
   final _date2 = date2 ?? DateTime.now();
@@ -111,6 +111,6 @@ String format(String locale, DateTime date1, [DateTime date2]) {
   }
 
   return [prefix, result, suffix]
-      .where((str) => str != null && str.isNotEmpty)
+      .where((str) => str.isNotEmpty)
       .join(messages.wordSeparator());
 }

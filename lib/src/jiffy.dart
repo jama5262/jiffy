@@ -3,18 +3,18 @@ import 'dart:math';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/src/enums/units.dart';
-import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
+import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/utils/normalize_units.dart';
 import 'package:jiffy/src/utils/ordinalLocale.dart';
 import 'package:jiffy/src/utils/regex.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
-  DateTime _dateTime;
+  late DateTime _dateTime;
   DateTime get dateTime => _dateTime;
 
-  Jiffy([var input, String pattern]) {
+  Jiffy([var input, String? pattern]) {
     _dateTime = _parse(input, pattern);
   }
 
@@ -29,7 +29,7 @@ class Jiffy {
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
   }
 
-  DateTime _parse(var input, [String pattern]) {
+  DateTime _parse(var input, [String? pattern]) {
     var dateTime;
     if (input == null && pattern == null) {
       dateTime = DateTime.now();
@@ -120,7 +120,7 @@ class Jiffy {
   ];
 
   static String _defaultLocale = 'en';
-  static Future<String> locale([String locale]) async {
+  static Future<String> locale([String? locale]) async {
     if (locale != null) {
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
@@ -346,7 +346,7 @@ class Jiffy {
   }
 
 //  DISPLAY
-  String format([String pattern]) {
+  String format([String? pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
     final suffix = _getOrdinalDates(_dateTime.day);
     final escaped = replaceEscapePattern(pattern);
@@ -459,12 +459,12 @@ class Jiffy {
       adjust = (b.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch) /
           (anchor2.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch);
     }
-    return -(wholeMonthDiff + adjust) ?? 0;
+    return -(wholeMonthDiff + adjust);
   }
 
   int _absFloor(num number) {
     if (number < 0) {
-      return number.ceil() ?? 0;
+      return number.ceil();
     } else {
       return number.floor();
     }

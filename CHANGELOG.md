@@ -1,3 +1,9 @@
+## 4.0.0-nullsafety
+
+- Major changes
+
+Opt in the null safety
+
 ## 3.0.1
 
 - Patch changes

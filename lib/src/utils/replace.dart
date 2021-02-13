@@ -6,8 +6,8 @@ String replaceToLocaleNum(String input, String locale) {
     'ar': ['۰', '۱', '۲', '۳', '٤', '۵', '٦', '۷', '۸', '۹'],
     'hi': ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९']
   };
-  for (var i = 0; i < localeNumbers['en'].length; i++) {
-    input = input.replaceAll(localeNumbers['en'][i], localeNumbers[locale][i]);
+  for (var i = 0; i < localeNumbers['en']!.length; i++) {
+    input = input.replaceAll(localeNumbers['en']![i], localeNumbers[locale]![i]);
   }
   return input;
 }

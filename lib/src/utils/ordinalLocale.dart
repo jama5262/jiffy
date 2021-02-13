@@ -46,5 +46,5 @@ List<String> getOrdinalLocaleDates(String locale) {
     localeOrdinals[19]: ['.', '.', '.', '.'],
     localeOrdinals[20]: ['', '', '', ''],
   };
-  return ordinals[locale];
+  return ordinals[locale]!;
 }
