@@ -118,6 +118,7 @@ class Jiffy {
     'ar',
     'arly',
     'arma',
+    'fa',
   ];
 
   static String _defaultLocale = 'en';
