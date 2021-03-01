@@ -9,8 +9,6 @@
 
 Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-<a href="https://www.buymeacoffee.com/jama" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
-
 # Table of content
 - [Before Use](#before-use)
 - [Parsing](#parsing)
