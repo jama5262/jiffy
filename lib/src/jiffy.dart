@@ -416,24 +416,28 @@ class Jiffy {
   num diff(var input, [Units units = Units.MILLISECOND, bool asFloat = false]) {
     var dateTime = _parse(input);
     num diff;
+
+    var dt1 = _dateTime.millisecondsSinceEpoch;
+    var dt2 = dateTime.millisecondsSinceEpoch;
+
     switch (units) {
       case Units.MILLISECOND:
         diff = _dateTime.difference(dateTime).inMilliseconds;
         break;
       case Units.SECOND:
-        diff = _dateTime.difference(dateTime).inSeconds;
+        diff = (dt1 - dt2) / Duration.millisecondsPerSecond;
         break;
       case Units.MINUTE:
-        diff = _dateTime.difference(dateTime).inMinutes;
+        diff = (dt1 - dt2) / Duration.millisecondsPerMinute;
         break;
       case Units.HOUR:
-        diff = _dateTime.difference(dateTime).inHours;
+        diff = (dt1 - dt2) / Duration.millisecondsPerHour;
         break;
       case Units.DAY:
-        diff = _dateTime.difference(dateTime).inDays;
+        diff = (dt1 - dt2) / Duration.millisecondsPerDay;
         break;
       case Units.WEEK:
-        diff = _dateTime.difference(dateTime).inDays / 7;
+        diff = ((dt1 - dt2) / Duration.millisecondsPerDay) / 7;
         break;
       case Units.MONTH:
         diff = _monthDiff(_dateTime, dateTime);
