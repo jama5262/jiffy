@@ -53,12 +53,27 @@ class Jiffy {
                 input['years'] ??
                 input['y'] ??
                 DateTime.now().year,
-            input['month'] ?? input['months'] ?? input['M'] ?? DateTime.now().month,
+            input['month'] ??
+                input['months'] ??
+                input['M'] ??
+                DateTime.now().month,
             input['day'] ?? input['days'] ?? input['d'] ?? DateTime.now().day,
-            input['hour'] ?? input['hours'] ?? input['h'] ?? DateTime.now().hour,
-            input['minute'] ?? input['minutes'] ?? input['m'] ?? DateTime.now().minute,
-            input['second'] ?? input['seconds'] ?? input['s'] ?? DateTime.now().second,
-            input['millisecond'] ?? input['milliseconds'] ?? input['ms'] ?? DateTime.now().millisecond);
+            input['hour'] ??
+                input['hours'] ??
+                input['h'] ??
+                DateTime.now().hour,
+            input['minute'] ??
+                input['minutes'] ??
+                input['m'] ??
+                DateTime.now().minute,
+            input['second'] ??
+                input['seconds'] ??
+                input['s'] ??
+                DateTime.now().second,
+            input['millisecond'] ??
+                input['milliseconds'] ??
+                input['ms'] ??
+                DateTime.now().millisecond);
       }
     } else if (input is List) {
       if (input.isEmpty) {
