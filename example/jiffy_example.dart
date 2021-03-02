@@ -8,7 +8,11 @@ Future<int> main() async {
   Jiffy().format('MMM do yy'); // Oct 19th 19
   Jiffy().format('yyyy [escaped] yyyy'); // 2019 escaped 2019
 
-  print(Jiffy([2007, 1, 28]).diff([2017, 1, 29], Units.DAY));
+  print((
+      Jiffy()
+        ..add(hours: 3, days: 1)
+        ..subtract(minutes: 30, months: 1)
+  ).yMMMMEEEEdjm);
 
 //  Not passing a string pattern for format method will return an ISO Date format
   Jiffy().format(); // 2019-10-19T19:00:53.090646
