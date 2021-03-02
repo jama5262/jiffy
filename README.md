@@ -14,71 +14,64 @@ Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentj
 
 ## Format Dates
 ```dart
-Jiffy([2019, 10, 19]).format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
-Jiffy().format("EEEE"); // Saturday
-Jiffy().format("MMM do yy"); // Oct 19th 19
-Jiffy().format("yyyy [escaped] yyyy"); // 2019 escaped 2019
-Jiffy().format(); // 2019-10-19T19:00:53.090646
+Jiffy([2021, 1, 19]).format("MMMM do yyyy, h:mm:ss a"); // January 1st 2021, 12:00:00 AM
+Jiffy().format("EEEE"); // Tuesday
+Jiffy().format("MMM do yy"); // Mar 2nd 21
+Jiffy().format("yyyy [escaped] yyyy"); // 2021 escaped 2021
+Jiffy().format(); // 2021-03-02T15:18:29.922343
 
-Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
+Jiffy([2020, 10, 19]).yMMMMd; // January 19, 2021
+
 Jiffy({
-  "year": 2019,
+  "year": 2020,
   "month": 10,
   "day": 19,
   "hour": 19
-}).yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+}).yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
 
 //  You can also use default formats
-Jiffy("19, Oct 2019", "dd, MMM yyyy").yMMMMd; // October 19, 2019
+Jiffy("19, Jan 2021", "dd, MMM yyyy").yMMMMd; // January 19, 2021
 
-Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+Jiffy().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
 ```
 
 ## Relative Time
 ```dart
-Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
-Jiffy("2012-06-20").fromNow(); // 7 years ago
+Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 9 years ago
 
 var jiffy1 = Jiffy()
     ..startOf(Units.DAY);
 jiffy1.fromNow(); // 19 hours ago
 
-var jiffy2 = Jiffy()
-    ..endOf(Units.DAY);
-jiffy2.fromNow(); // in 5 hours
+var jiffy2 = (Jiffy()..endOf(Units.DAY)).fromNow(); // in 5 hours
 
-var jiffy3 = Jiffy()
-    ..startOf(Units.HOUR);
-jiffy3.fromNow(); // 9 minutes ago
+var jiffy3 = (
+    Jiffy()
+    ..startOf(Units.HOUR)
+    ..add(hours: 2, minutes: 20)
+).fromNow(); // in 2 hours
 ```
 
 ## Manipulation
 
 ```dart
-var jiffy1 = Jiffy()
-    ..add(duration: Duration(days: 1));
-jiffy1.yMMMMd; // October 20, 2019
+var jiffy1 = Jiffy()..add(duration: Duration(days: 1));
+jiffy1.yMMMMd; // March 3, 2021
 
-var jiffy2 = Jiffy()
-    ..subtract(days: 1);
-jiffy2.yMMMMd; // October 18, 2019
+var jiffy2 = (Jiffy()..subtract(days: 1)).yMMMMd; // March 1, 2021
 
 //  You can chain methods by using Dart method cascading
-var jiffy3 = Jiffy()
+var jiffy3 = (
+    Jiffy()
      ..add(hours: 3, days: 1)
-     ..subtract(minutes: 30, months: 1);
-jiffy3.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
-
-var jiffy4 = Jiffy()
-    ..add(duration: Duration(days: 1, hours: 3))
-    ..subtract(duration: Duration(minutes: 30));
-jiffy4.format("dd/MM/yyy"); // 20/10/2019
-
+     ..subtract(minutes: 30, months: 1)
+);
+jiffy3.yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
 
 // Months and year are added in respect to how many 
 // days there are in a months and if is a year is a leap year
 Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
-Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
+Jiffy([2010, 1, 31])..add(months: 1); // This is February 28
 ```
 
 ## Locale Support
