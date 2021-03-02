@@ -29,6 +29,10 @@ class Jiffy {
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
   }
 
+  Jiffy clone() {
+    return Jiffy(this);
+  }
+
   DateTime _parse(var input, [String pattern]) {
     var dateTime;
     if (input == null && pattern == null) {
@@ -132,8 +136,8 @@ class Jiffy {
   }
 
 //  GET
-  int get milliseconds => _dateTime.millisecond;
-  int get seconds => _dateTime.second;
+  int get millisecond => _dateTime.millisecond;
+  int get second => _dateTime.second;
   int get minute => _dateTime.minute;
   int get hour => _dateTime.hour;
   int get date => _dateTime.day;
@@ -157,7 +161,7 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
-  DateTime add({
+  void add({
     Duration duration = Duration.zero,
     int years = 0,
     int months = 0,
@@ -180,10 +184,9 @@ class Jiffy {
     ));
     _dateTime = _addMonths(_dateTime, months);
     _dateTime = _addMonths(_dateTime, years * 12);
-    return _dateTime;
   }
 
-  DateTime subtract({
+  void subtract({
     Duration duration = Duration.zero,
     int years = 0,
     int months = 0,
@@ -206,10 +209,9 @@ class Jiffy {
     ));
     _dateTime = _addMonths(_dateTime, -months);
     _dateTime = _addMonths(_dateTime, -years * 12);
-    return _dateTime;
   }
 
-  DateTime startOf(Units units) {
+  void startOf(Units units) {
     switch (units) {
       case Units.MILLISECOND:
         _dateTime = DateTime(
@@ -247,10 +249,9 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year);
         break;
     }
-    return _dateTime;
   }
 
-  DateTime endOf(Units units) {
+  void endOf(Units units) {
     switch (units) {
       case Units.MILLISECOND:
         _dateTime = DateTime(
@@ -295,7 +296,6 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
         break;
     }
-    return _dateTime;
   }
 
   DateTime local() {
@@ -490,8 +490,8 @@ class Jiffy {
     if (units == Units.MILLISECOND) {
       return valueOf() < dateTime.millisecondsSinceEpoch;
     }
-    endOf(units);
-    return valueOf() < dateTime.millisecondsSinceEpoch;
+    var endOfMs = (clone()..endOf(units)).valueOf();
+    return endOfMs < dateTime.millisecondsSinceEpoch;
   }
 
   bool isAfter(var input, [Units units = Units.MILLISECOND]) {
@@ -499,8 +499,8 @@ class Jiffy {
     if (units == Units.MILLISECOND) {
       return valueOf() > dateTime.millisecondsSinceEpoch;
     }
-    startOf(units);
-    return dateTime.millisecondsSinceEpoch < valueOf();
+    var startOfMs = (clone()..startOf(units)).valueOf();
+    return dateTime.millisecondsSinceEpoch < startOfMs;
   }
 
   bool isSame(var input, [Units units = Units.MILLISECOND]) {
@@ -508,9 +508,10 @@ class Jiffy {
     if (units == Units.MILLISECOND) {
       return valueOf() == dateTime.millisecondsSinceEpoch;
     }
-    var jiffyMs = dateTime.millisecondsSinceEpoch;
-    return startOf(units).millisecondsSinceEpoch <= jiffyMs &&
-        jiffyMs <= endOf(units).millisecondsSinceEpoch;
+    var startOfMs = (clone()..startOf(units)).valueOf();
+    var endOfMs = (clone()..endOf(units)).valueOf();
+    var dateTimeMs = dateTime.millisecondsSinceEpoch;
+    return startOfMs <= dateTimeMs && dateTimeMs <= endOfMs;
   }
 
   bool isSameOrBefore(var input, [Units units = Units.MILLISECOND]) {

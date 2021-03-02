@@ -21,8 +21,8 @@ Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentj
     - [List](#list)
     - [UTC](#utc)
 - [Get](#get)
-    - [Milliseconds](#milliseconds)
-    - [Seconds](#seconds)
+    - [Millisecond](#millisecond)
+    - [Second](#second)
     - [Minute](#minute)
     - [Hour](#hour)
     - [Date of Month](#date-of-month)
@@ -169,7 +169,7 @@ Jiffy(DateTime(2019, 10, 19)).yMMMM; // October 2019
 ### List
 You can also create Jiffy from a List. But they should mirror the following
 
-`[ year, month, day, hour, minute, second, milliseconds ]`
+`[ year, month, day, hour, minute, second, millisecond ]`
 ```dart
 Jiffy([2019]); // January 1st
 Jiffy([2019, 10]); // October 1st
@@ -189,16 +189,16 @@ jiffy.format(); // 2019-10-20T11:18:45.069304Z
 ```
 
 # Get
-### Milliseconds
-Get milliseconds (Returns from 0 - 999)
+### Millisecond
+Get millisecond (Returns from 0 - 999)
 ```dart
-Jiffy().milliseconds;
+Jiffy().millisecond;
 ```
 
-### Seconds
-Get seconds (Returns from 0 - 59)
+### Second
+Get second (Returns from 0 - 59)
 ```dart
-Jiffy().seconds;
+Jiffy().second;
 ```
 ### Minute
 Get minute (Returns from 0 - 59)

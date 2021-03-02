@@ -1,8 +1,7 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/enums/units.dart';
 
-// ignore: always_declare_return_types
-main() async {
+Future<int> main() async {
 //  FORMATTING DATES
   Jiffy([2019, 10, 19]).format('MMMM do yyyy, h:mm:ss a'); // October 19th 2019, 7:00:53 PM
   Jiffy().format('EEEE'); // Saturday

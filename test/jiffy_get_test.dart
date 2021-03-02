@@ -6,7 +6,7 @@ void main() {
     test(
         'test Jiffy().seconds get method with parsing date time should return correct date time seconds',
         () {
-      expect(Jiffy().seconds, DateTime.now().second);
+      expect(Jiffy().second, DateTime.now().second);
     });
     test(
         'test Jiffy().minute get method with parsing date time should return correct date time minute',
