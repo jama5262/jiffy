@@ -3,12 +3,9 @@ import 'package:jiffy/src/utils/replace.dart';
 
 class ArLyLocale extends LookUpMessages {
   bool replaceNum;
-  ArLyLocale(replaceNum) {
-    this.replaceNum = replaceNum;
-  }
+  ArLyLocale(this.replaceNum);
 
-  @override
-  String prefixAgo() => 'منذ';
+  @override String prefixAgo() => 'منذ';
   @override
   String prefixFromNow() => 'بعد';
   @override
@@ -118,9 +115,7 @@ class ArLyLocale extends LookUpMessages {
 
 class ArSaMaDzKwTnLocale extends LookUpMessages {
   bool replaceNum;
-  ArSaMaDzKwTnLocale(replaceNum) {
-    this.replaceNum = replaceNum;
-  }
+  ArSaMaDzKwTnLocale(this.replaceNum);
 
   @override
   String prefixAgo() => 'منذ';

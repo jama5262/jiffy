@@ -16,7 +16,7 @@ Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentj
     - [String Formating](#string-formatting)
     - [Maps](#maps)
     - [Unix Timestamp](#unix-timestamp)
-    - [Jiffy Clone](#jiffy-clone)
+    - [Jiffy Cloning](#jiffy-cloning)
     - [DateTime](#datetime)
     - [List](#list)
     - [UTC](#utc)
@@ -134,12 +134,12 @@ Jiffy.unix(1318781876).format(); // 2011-10-16T19:17:56.000
 Jiffy.unix(1318781876406).utc();
 ```
 
-### Jiffy Clone
+### Jiffy Cloning
 Jiffy date time can be created from another Jiffy instance, a way of cloning.
 ```dart
 var jiffy1 = Jiffy([2021]);
 var jiffy2 = Jiffy(jiffy1);
-jiffy1.add(year: 10);
+jiffy1..add(years: 10);
 jiffy1.year; // 2031
 jiffy2.year; // 2021
 ```
@@ -148,7 +148,7 @@ Or you can use the clone method itself
 ```dart
 var jiffy1 = Jiffy([2021]);
 var jiffy2 = jiffy1.clone();
-jiffy1.add(year: 10);
+jiffy1..add(years: 10);
 jiffy1.year; // 2031
 jiffy2.year; // 2021
 ```

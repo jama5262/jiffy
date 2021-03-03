@@ -11,8 +11,8 @@ import 'package:jiffy/src/utils/regex.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
-  DateTime _dateTime;
-  DateTime get dateTime => _dateTime;
+  DateTime/*!*/ _dateTime;
+  DateTime/*!*/ get dateTime => _dateTime;
 
   Jiffy([var input, String pattern]) {
     _dateTime = _parse(input, pattern);
@@ -109,6 +109,10 @@ class Jiffy {
                 'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
             .cause;
       }
+    } else {
+      throw JiffyException(
+          'Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters')
+          .cause;
     }
     return dateTime;
   }
@@ -372,10 +376,8 @@ class Jiffy {
   }
 
   String _getOrdinalDates(int day) {
-    if (!localeOrdinals.contains(replaceLocaleHyphen(_defaultLocale))) {
-      return '';
-    }
-    final ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
+    var ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
+    if (ordinals == null) return '';
     var suffix = ordinals[0];
     final digit = day % 10;
     if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
