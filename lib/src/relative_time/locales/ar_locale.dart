@@ -5,7 +5,8 @@ class ArLyLocale extends LookUpMessages {
   bool replaceNum;
   ArLyLocale(this.replaceNum);
 
-  @override String prefixAgo() => 'منذ';
+  @override
+  String prefixAgo() => 'منذ';
   @override
   String prefixFromNow() => 'بعد';
   @override

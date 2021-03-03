@@ -3,23 +3,27 @@ import 'package:test/test.dart';
 
 void main() {
   group('Test Jiffy cloning', () {
-    test('Test with clone() function no manipulation should be equal',  () {
+    test('Test with clone() function no manipulation should be equal', () {
       var jiffy1 = Jiffy([2021]);
       var jiffy2 = jiffy1.clone();
       expect(jiffy1.year, jiffy2.year);
     });
-    test('Test with clone() function manipulation by adding 10 years should not be equal',  () {
+    test(
+        'Test with clone() function manipulation by adding 10 years should not be equal',
+        () {
       var jiffy1 = Jiffy([2021]);
       var jiffy2 = jiffy1.clone();
       jiffy1..add(years: 10);
       expect(jiffy1.year, isNot(jiffy2.year));
     });
-    test('Test clone from instance no manipulation should be equal',  () {
+    test('Test clone from instance no manipulation should be equal', () {
       var jiffy1 = Jiffy([2021]);
       var jiffy2 = Jiffy(jiffy1);
       expect(jiffy1.year, jiffy2.year);
     });
-    test('Test clone from instance manipulation by adding 10 years should not be equal',  () {
+    test(
+        'Test clone from instance manipulation by adding 10 years should not be equal',
+        () {
       var jiffy1 = Jiffy([2021]);
       var jiffy2 = Jiffy(jiffy1);
       jiffy1..add(years: 10);
@@ -133,14 +137,14 @@ void main() {
     });
     test(
         'test Jiffy() instance with parsing other than String, List, Map, DateTime or Jiffy itself',
-            () {
-          try {
-            Jiffy(2);
-          } catch (e) {
-            expect(e.toString(),
-                'JiffyException: Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters');
-          }
-        });
+        () {
+      try {
+        Jiffy(2);
+      } catch (e) {
+        expect(e.toString(),
+            'JiffyException: Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters');
+      }
+    });
   });
 
   group('Test Jiffy.unix datetime instance', () {

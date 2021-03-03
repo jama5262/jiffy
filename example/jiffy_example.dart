@@ -3,7 +3,7 @@ import 'package:jiffy/src/enums/units.dart';
 
 Future<int> main() async {
 //  DISPLAY
-  Jiffy(2020)
+  Jiffy([2021, 1, 19])
       .format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
   Jiffy().format('EEEE'); // Tuesday
   Jiffy().format('MMM do yy'); // Mar 2nd 21

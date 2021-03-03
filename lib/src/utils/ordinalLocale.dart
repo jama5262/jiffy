@@ -20,7 +20,7 @@ List<String> _localeOrdinals = [
   'tr'
 ];
 
-List<String> getOrdinalLocaleDates(String locale) {
+List<String>? getOrdinalLocaleDates(String locale) {
   var ordinals = {
     _localeOrdinals[0]: ['th', 'st', 'nd', 'rd'],
     _localeOrdinals[1]: ['º', 'º', 'º', 'º'],
