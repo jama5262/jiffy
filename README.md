@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
 [![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v3.0.1-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v4.0.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
@@ -14,78 +14,71 @@ Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentj
 
 ## Format Dates
 ```dart
-Jiffy([2019, 10, 19]).format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
-Jiffy().format("EEEE"); // Saturday
-Jiffy().format("MMM do yy"); // Oct 19th 19
-Jiffy().format("yyyy [escaped] yyyy"); // 2019 escaped 2019
-Jiffy().format(); // 2019-10-19T19:00:53.090646
+Jiffy([2021, 1, 19]).format("MMMM do yyyy, h:mm:ss a"); // January 1st 2021, 12:00:00 AM
+Jiffy().format("EEEE"); // Tuesday
+Jiffy().format("MMM do yy"); // Mar 2nd 21
+Jiffy().format("yyyy [escaped] yyyy"); // 2021 escaped 2021
+Jiffy().format(); // 2021-03-02T15:18:29.922343
 
-Jiffy([2019, 10, 19]).yMMMMd; // October 19, 2019
+Jiffy([2020, 10, 19]).yMMMMd; // January 19, 2021
+
 Jiffy({
-  "year": 2019,
+  "year": 2020,
   "month": 10,
   "day": 19,
   "hour": 19
-}).yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+}).yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
 
 //  You can also use default formats
-Jiffy("19, Oct 2019", "dd, MMM yyyy").yMMMMd; // October 19, 2019
+Jiffy("19, Jan 2021", "dd, MMM yyyy").yMMMMd; // January 19, 2021
 
-Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+Jiffy().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
 ```
 
 ## Relative Time
 ```dart
-Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 8 years ago
-Jiffy("2012-06-20").fromNow(); // 7 years ago
+Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 9 years ago
 
 var jiffy1 = Jiffy()
     ..startOf(Units.DAY);
 jiffy1.fromNow(); // 19 hours ago
 
-var jiffy2 = Jiffy()
-    ..endOf(Units.DAY);
-jiffy2.fromNow(); // in 5 hours
+var jiffy2 = (Jiffy()..endOf(Units.DAY)).fromNow(); // in 5 hours
 
-var jiffy3 = Jiffy()
-    ..startOf(Units.HOUR);
-jiffy3.fromNow(); // 9 minutes ago
+var jiffy3 = (
+    Jiffy()
+    ..startOf(Units.HOUR)
+    ..add(hours: 2, minutes: 20)
+).fromNow(); // in 2 hours
 ```
 
 ## Manipulation
 
 ```dart
-var jiffy1 = Jiffy()
-    ..add(duration: Duration(days: 1));
-jiffy1.yMMMMd; // October 20, 2019
+var jiffy1 = Jiffy()..add(duration: Duration(days: 1));
+jiffy1.yMMMMd; // March 3, 2021
 
-var jiffy2 = Jiffy()
-    ..subtract(days: 1);
-jiffy2.yMMMMd; // October 18, 2019
+var jiffy2 = (Jiffy()..subtract(days: 1)).yMMMMd; // March 1, 2021
 
 //  You can chain methods by using Dart method cascading
-var jiffy3 = Jiffy()
+var jiffy3 = (
+    Jiffy()
      ..add(hours: 3, days: 1)
-     ..subtract(minutes: 30, months: 1);
-jiffy3.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
-
-var jiffy4 = Jiffy()
-    ..add(duration: Duration(days: 1, hours: 3))
-    ..subtract(duration: Duration(minutes: 30));
-jiffy4.format("dd/MM/yyy"); // 20/10/2019
-
+     ..subtract(minutes: 30, months: 1)
+);
+jiffy3.yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
 
 // Months and year are added in respect to how many 
 // days there are in a months and if is a year is a leap year
 Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
-Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
+Jiffy([2010, 1, 31])..add(months: 1); // This is February 28
 ```
 
 ## Locale Support
 ```dart
 //  The locale method always return a future
 //  To get locale (The default locale is English)
-await Jiffy.locale(); // en
+await (Jiffy.locale()).code; // en
 
 //  To set locale
 await Jiffy.locale("fr");
@@ -94,7 +87,7 @@ Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
 await Jiffy.locale("ar");
 Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
 
-await Jiffy.locale("zh-cn");
+await Jiffy.locale("zh_cn");
 Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 ```
 
@@ -120,8 +113,6 @@ Reach out to me at one of the following places!
 
 - Email at jama3137@gmail.com
 - Twitter [timedjama5262](https://twitter.com/timedjama5262)
-
-<a href="https://www.buymeacoffee.com/jama" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 ## License
 

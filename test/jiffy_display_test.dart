@@ -102,9 +102,10 @@ void main() {
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
-                ..subtract(duration: Duration(hours: 1)),
-              Units.SECOND),
-          3600);
+                ..subtract(duration: Duration(seconds: 25, milliseconds: 200)),
+              Units.SECOND,
+              true),
+          25.2);
     });
     test(
         'test Jiffy().diff() method with parsing date time should return correct date time in minutes',
@@ -118,9 +119,10 @@ void main() {
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
-                ..subtract(duration: Duration(days: 1)),
-              Units.MINUTE),
-          1440);
+                ..subtract(duration: Duration(seconds: 178)),
+              Units.MINUTE,
+              true),
+          2.966666666666667);
     });
     test(
         'test Jiffy().diff() method with parsing date time should return correct date time in hours',
@@ -134,9 +136,10 @@ void main() {
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
-                ..subtract(duration: Duration(days: 1)),
-              Units.HOUR),
-          24);
+                ..add(duration: Duration(hours: 12, minutes: 30)),
+              Units.HOUR,
+              true),
+          -12.5);
     });
     test(
         'test Jiffy().diff() method with parsing date time should return correct date time in days',
@@ -150,9 +153,10 @@ void main() {
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
-                ..subtract(weeks: 2),
-              Units.DAY),
-          14);
+                ..subtract(hours: 2),
+              Units.DAY,
+              true),
+          0.08333333333333333);
     });
     test(
         'test Jiffy().diff() method with parsing date time should return correct date time in weeks',
@@ -165,16 +169,16 @@ void main() {
           0);
       expect(
           Jiffy(DateTime(2019, 10, 16, 23)).diff(
-              Jiffy(DateTime(2019, 10, 16, 23))..add(weeks: 2),
+              Jiffy(DateTime(2019, 10, 16, 23))..add(days: 2, hours: 23),
               Units.WEEK,
               true),
-          -2.0);
+          -0.4226190476190476);
     });
     test(
         'test Jiffy().diff() method with parsing date time should return correct date time in months',
         () {
       expect(
-          Jiffy([2019, 10, 16, 22]).diff(
+          Jiffy([2019, 10, 20, 22]).diff(
               Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
               Units.MONTH),
           0);

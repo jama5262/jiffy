@@ -1,7 +1,22 @@
-import 'package:jiffy/src/relative_time/lookup_messages.dart';
-import 'package:jiffy/src/utils/replace.dart';
+import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/relativeTime.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 
-class HiLocale extends LookUpMessages {
+class HiLocale extends Locale {
+  StartOfWeek strtOfWeek;
+  HiLocale(this.strtOfWeek);
+
+  @override
+  RelativeTime relativeTime() => HiRelativeTime();
+
+  @override
+  List<String>? ordinals() => null;
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
+}
+
+class HiRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
@@ -15,37 +30,23 @@ class HiLocale extends LookUpMessages {
   @override
   String aboutAMinute(int minutes) => 'एक मिनट';
   @override
-  String minutes(int minutes) {
-    return replaceToLocaleNum('$minutes मिनट', 'hi');
-  }
-
+  String minutes(int minutes) => '$minutes मिनट';
   @override
   String aboutAnHour(int minutes) => 'एक घंटा';
   @override
-  String hours(int hours) {
-    return replaceToLocaleNum('$hours घंटे', 'hi');
-  }
-
+  String hours(int hours) => '$hours घंटे';
   @override
   String aDay(int hours) => 'एक दिन';
   @override
-  String days(int days) {
-    return replaceToLocaleNum('$days दिन', 'hi');
-  }
-
+  String days(int days) => '$days दिन';
   @override
   String aboutAMonth(int days) => 'एक महीने';
   @override
-  String months(int months) {
-    return replaceToLocaleNum('$months महीने', 'hi');
-  }
-
+  String months(int months) => '$months महीने';
   @override
   String aboutAYear(int year) => 'एक वर्ष';
   @override
-  String years(int years) {
-    return replaceToLocaleNum('$years वर्ष', 'hi');
-  }
+  String years(int years) => '$years वर्ष';
 
   @override
   String wordSeparator() => ' ';

@@ -1,11 +1,41 @@
-import 'package:jiffy/src/relative_time/lookup_messages.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
+import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/relativeTime.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
-class ArLyLocale extends LookUpMessages {
+class ArLyLocale extends Locale {
   bool replaceNum;
-  ArLyLocale(replaceNum) {
-    this.replaceNum = replaceNum;
-  }
+  StartOfWeek strtOfWeek;
+  ArLyLocale(this.replaceNum, this.strtOfWeek);
+
+  @override
+  RelativeTime relativeTime() => ArLyRelativeTime(replaceNum);
+
+  @override
+  List<String>? ordinals() => null;
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
+}
+
+class ArSaMaDzKwTnLocale extends Locale {
+  bool replaceNum;
+  StartOfWeek strtOfWeek;
+  ArSaMaDzKwTnLocale(this.replaceNum, this.strtOfWeek);
+
+  @override
+  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(replaceNum);
+
+  @override
+  List<String>? ordinals() => null;
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
+}
+
+class ArLyRelativeTime extends RelativeTime {
+  bool replaceNum;
+  ArLyRelativeTime(this.replaceNum);
 
   @override
   String prefixAgo() => 'منذ';
@@ -116,11 +146,9 @@ class ArLyLocale extends LookUpMessages {
   String wordSeparator() => ' ';
 }
 
-class ArSaMaDzKwTnLocale extends LookUpMessages {
+class ArSaMaDzKwTnRelativeTime extends RelativeTime {
   bool replaceNum;
-  ArSaMaDzKwTnLocale(replaceNum) {
-    this.replaceNum = replaceNum;
-  }
+  ArSaMaDzKwTnRelativeTime(this.replaceNum);
 
   @override
   String prefixAgo() => 'منذ';

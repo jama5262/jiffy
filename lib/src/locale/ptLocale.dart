@@ -1,6 +1,22 @@
-import 'package:jiffy/src/relative_time/lookup_messages.dart';
+import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/relativeTime.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 
-class PtLocale extends LookUpMessages {
+class PtLocale extends Locale {
+  StartOfWeek strtOfWeek;
+  PtLocale(this.strtOfWeek);
+
+  @override
+  RelativeTime relativeTime() => PtRelativeTime();
+
+  @override
+  List<String>? ordinals() => ['º', 'º', 'º', 'º'];
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
+}
+
+class PtRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => 'há';
   @override
