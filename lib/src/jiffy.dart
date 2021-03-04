@@ -2,7 +2,9 @@ import 'dart:math';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/locale.dart';
 import 'package:jiffy/src/enums/units.dart';
+import 'package:jiffy/src/locale/EnLocale.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
