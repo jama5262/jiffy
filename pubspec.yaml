@@ -11,7 +11,7 @@ environment:
   sdk: '>=2.4.0 <3.0.0'
 
 dependencies:
-  intl: ^0.16.0
+  intl: ^0.17.0
 
 dev_dependencies:
   pedantic: ^1.7.0
