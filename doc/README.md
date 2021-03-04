@@ -530,14 +530,12 @@ Jiffy.isDateTime(Jiffy()); // false
 
 # Locale Support
 
-Since Jiffy runs on top of Intl Dateformat, locale for all regions are almost supported. Example
 ```dart
 await Jiffy.locale("fr");
 Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
 ```
-But for relative time e.g `fromNow() and from()` are written manually in Jiffy
 
-Below are the locales that are supported for relative time. More will be added
+Below are the locales that are supported in Jiffy. More will be added
 
 | Key  | Locale |
 | ------------- | ------------- |
@@ -575,4 +573,12 @@ Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
 
 await Jiffy.locale("zh-cn");
 Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+```
+
+### Get all available locales
+
+To get all available locales in Jiffy run the following
+
+```dart
+Jiffy.getAllAvailableLocales() // returns all locales
 ```

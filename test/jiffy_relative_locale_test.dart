@@ -25,7 +25,7 @@ void main() {
         await Jiffy.locale('english');
       } catch (e) {
         expect(e.toString(),
-            'JiffyException: The locale "english" does not exist in Jiffy, run Jiiffy.getAllAvailableLocales() for more locales');
+            'JiffyException: The locale "english" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales');
       }
     });
   });

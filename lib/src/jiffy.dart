@@ -136,7 +136,7 @@ class Jiffy {
     if (locale != null) {
       if (isLocalAvailable(locale)) {
         throw JiffyException(
-                'The locale "$locale" does not exist in Jiffy, run Jiiffy.getAllAvailableLocales() for more locales')
+                'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
             .cause;
       }
       await initializeDateFormatting();
