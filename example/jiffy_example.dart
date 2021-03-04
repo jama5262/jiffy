@@ -3,15 +3,15 @@ import 'package:jiffy/src/enums/units.dart';
 
 Future<int> main() async {
 //  DISPLAY
-  Jiffy([2021, 1, 19])
-      .format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
-  Jiffy().format('EEEE'); // Tuesday
-  Jiffy().format('MMM do yy'); // Mar 2nd 21
-  Jiffy().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
-  Jiffy().format(); // 2021-03-02T15:18:29.922343
+//   Jiffy([2021, 1, 19])
+//       .format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
+//   Jiffy().format('EEEE'); // Tuesday
+//   Jiffy().format('MMM do yy'); // Mar 2nd 21
+//   Jiffy().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
+//   Jiffy().format(); // 2021-03-02T15:18:29.922343
 
 //  Not passing a string pattern for format method will return an ISO Date format
-  Jiffy().format(); // 2021-03-02T15:18:29.922343
+//   Jiffy().format(); // 2021-03-02T15:18:29.922343
 
 //  Using lists
   Jiffy([2019, 10, 19]).yMMMMd; // January 19, 2021
@@ -81,8 +81,10 @@ Future<int> main() async {
   Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
   await Jiffy.locale('zh-cn');
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
-  await Jiffy.locale('nb');
-  Jiffy().yMMMMEEEEdjm;
+
+  await Jiffy.locale('en');
+  var j1 = Jiffy([2021, 1, 11]).format('MMM do');
+  print(j1);
 
   return 0;
 }
