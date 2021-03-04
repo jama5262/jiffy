@@ -1,4 +1,4 @@
-abstract class LookUpMessages {
+abstract class RelativeTime {
   String prefixAgo();
   String prefixFromNow();
   String suffixAgo();
@@ -14,5 +14,5 @@ abstract class LookUpMessages {
   String months(int months);
   String aboutAYear(int year);
   String years(int years);
-  String wordSeparator() => ' ';
+  String wordSeparator();
 }

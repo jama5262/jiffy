@@ -78,7 +78,7 @@ Jiffy([2010, 1, 31])..add(months: 1); // This is February 28
 ```dart
 //  The locale method always return a future
 //  To get locale (The default locale is English)
-await Jiffy.locale(); // en
+await (Jiffy.locale()).code; // en
 
 //  To set locale
 await Jiffy.locale("fr");
@@ -87,7 +87,7 @@ Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
 await Jiffy.locale("ar");
 Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
 
-await Jiffy.locale("zh-cn");
+await Jiffy.locale("zh_cn");
 Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 ```
 

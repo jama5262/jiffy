@@ -1,9 +1,26 @@
-import 'package:jiffy/src/relative_time/lookup_messages.dart';
+import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/relativeTime.dart';
 import 'package:jiffy/src/utils/replace.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 
-class FaLocale extends LookUpMessages {
+class FaLocale extends Locale {
   bool replaceNum;
-  FaLocale(this.replaceNum);
+  StartOfWeek strtOfWeek;
+  FaLocale(this.replaceNum, this.strtOfWeek);
+
+  @override
+  RelativeTime relativeTime() => FaRelativeTime(replaceNum);
+
+  @override
+  List<String>? ordinals() => ['م', 'م', 'م', 'م'];
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
+}
+
+class FaRelativeTime extends RelativeTime {
+  bool replaceNum;
+  FaRelativeTime(this.replaceNum);
 
   @override
   String prefixAgo() => '';

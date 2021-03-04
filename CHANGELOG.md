@@ -16,8 +16,7 @@
 5. Added Persian `fa` locale contributed by [mozaffari](https://github.com/mozaffari)
 6. Added Norwegian `nb` locale contributed by [Yilmaz Guleryuz](https://github.com/zeusbaba)
 7. Added `de_DE` mapping locale contributed by [Sebastian Rutofski](https://github.com/SebRut)
-
-_**More changes to come, not yet ready for publish**_
+8. Fixed minor locale bugs
 
 ## 3.0.1
 

@@ -2,20 +2,24 @@ import 'dart:math';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/enums/units.dart';
+import 'package:jiffy/src/locale/availableLocales.dart';
+import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/utils/exception.dart';
-import 'package:jiffy/src/relative_time/relative_time.dart' as relative;
 import 'package:jiffy/src/utils/normalize_units.dart';
-import 'package:jiffy/src/utils/ordinalLocale.dart';
 import 'package:jiffy/src/utils/regex.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
   late DateTime _dateTime;
+  static late Locale _defaultLocale;
+
   DateTime get dateTime => _dateTime;
 
   Jiffy([var input, String? pattern]) {
-    _dateTime = _parse(input, pattern);
+    _initializeDateTime(input, pattern);
+    _initializeLocale();
   }
 
   Jiffy.unix(int timestamp) {
@@ -31,6 +35,10 @@ class Jiffy {
 
   Jiffy clone() {
     return Jiffy(this);
+  }
+
+  void _initializeDateTime(var input, [String? pattern]) {
+    _dateTime = _parse(input, pattern);
   }
 
   DateTime _parse(var input, [String? pattern]) {
@@ -117,66 +125,71 @@ class Jiffy {
     return dateTime;
   }
 
-  static const _sundayStartOfWeek = [
-    'en',
-    'id',
-    'enca',
-    'enil',
-    'esus',
-    'zhhk',
-    'zhtw',
-    'ja',
-    'frca',
-    'ko',
-    'hi',
-    'ardz',
-    'arkw',
-    'arsa',
-    'ptbr',
-    'sv',
-    'nb',
-  ];
+  static void _initializeLocale() {
+    var currentLocale = Intl.getCurrentLocale();
+    _defaultLocale = getLocale(currentLocale);
+    _defaultLocale.code = currentLocale.toLowerCase();
+  }
 
-  static const _saturdayStartOfWeek = [
-    'ar',
-    'arly',
-    'arma',
-    'fa',
-  ];
-
-  static String _defaultLocale = 'en';
-  static Future<String> locale([String? locale]) async {
+  static Future<Locale> locale([String? locale]) async {
+    _initializeLocale();
     if (locale != null) {
+      if (isLocalAvailable(locale)) {
+        throw JiffyException(
+                'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
+            .cause;
+      }
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
-      _defaultLocale = locale;
+      _defaultLocale = getLocale(locale);
+      _defaultLocale.code = locale.toLowerCase();
     }
     return Future.value(_defaultLocale);
   }
 
+  static List<String> getAllAvailableLocales() {
+    return getAllLocales();
+  }
+
 //  GET
   int get millisecond => _dateTime.millisecond;
+
   int get second => _dateTime.second;
+
   int get minute => _dateTime.minute;
+
   int get hour => _dateTime.hour;
+
   int get date => _dateTime.day;
+
   int get day {
     var weekDays = [1, 2, 3, 4, 5, 6, 7, 1, 2];
     var weekDayIndex = _dateTime.weekday - 1;
-    var _locale = replaceLocaleHyphen(_defaultLocale);
-    if (_sundayStartOfWeek.contains(_locale)) {
-      weekDayIndex += 1;
-    } else if (_saturdayStartOfWeek.contains(_locale)) {
-      weekDayIndex += 2;
+
+    switch (_defaultLocale.startOfWeek()) {
+      case StartOfWeek.MONDAY:
+        weekDayIndex += 0;
+        break;
+      case StartOfWeek.SUNDAY:
+        weekDayIndex += 1;
+        break;
+      case StartOfWeek.SATURDAY:
+        weekDayIndex += 2;
+        break;
     }
     return weekDays[weekDayIndex];
   }
 
   int get daysInMonth => _daysInMonth(_dateTime.year, _dateTime.month);
+
   int get dayOfYear => int.parse(DateFormat('D').format(_dateTime));
+
   int get week => ((dayOfYear - day + 10) / 7).floor();
+
   int get month => _dateTime.month;
+
   int get quarter => int.parse(DateFormat('Q').format(_dateTime));
+
   int get year => _dateTime.year;
 
 //  MANIPULATE
@@ -369,65 +382,87 @@ class Jiffy {
 //  DISPLAY
   String format([String? pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
-    final suffix = _getOrdinalDates(_dateTime.day);
-    final escaped = replaceEscapePattern(pattern);
-    final _pattern = replaceOrdinalDatePattern(escaped, suffix);
-    return DateFormat(_pattern).format(_dateTime);
-  }
-
-  String _getOrdinalDates(int day) {
-    var ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
-    if (ordinals == null) return '';
-    var suffix = ordinals[0];
-    final digit = day % 10;
-    if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
-      suffix = ordinals[digit];
-    }
-    return suffix;
+    var ordinal = _defaultLocale.ordinal(_dateTime.day);
+    var escaped = replaceEscapePattern(pattern);
+    var newPattern = replaceOrdinalDatePattern(escaped, ordinal);
+    return DateFormat(newPattern).format(_dateTime);
   }
 
   String get E => DateFormat.E().format(_dateTime);
+
   String get EEEE => DateFormat.EEEE().format(_dateTime);
+
   String get LLL => DateFormat.LLL().format(_dateTime);
+
   String get LLLL => DateFormat.LLLL().format(_dateTime);
+
   String get Md => DateFormat.Md().format(_dateTime);
+
   String get MEd => DateFormat.MEd().format(_dateTime);
+
   String get MMM => DateFormat.MMM().format(_dateTime);
+
   String get MMMd => DateFormat.MMMd().format(_dateTime);
+
   String get MMMEd => DateFormat.MMMEd().format(_dateTime);
+
   String get MMMM => DateFormat.MMMM().format(_dateTime);
+
   String get MMMMd => DateFormat.MMMMd().format(_dateTime);
+
   String get MMMMEEEEd => DateFormat.MMMMEEEEd().format(_dateTime);
+
   String get QQQ => DateFormat.QQQ().format(_dateTime);
+
   String get QQQQ => DateFormat.QQQQ().format(_dateTime);
+
   String get yM => DateFormat.yM().format(_dateTime);
+
   String get yMd => DateFormat.yMd().format(_dateTime);
+
   String get yMEd => DateFormat.yMEd().format(_dateTime);
+
   String get yMMM => DateFormat.yMMM().format(_dateTime);
+
   String get yMMMd => DateFormat.yMMMd().format(_dateTime);
+
   String get yMMMdjm => DateFormat.yMMMd().add_jm().format(_dateTime);
+
   String get yMMMEd => DateFormat.yMMMEd().format(_dateTime);
+
   String get yMMMEdjm => DateFormat.yMMMEd().add_jm().format(_dateTime);
+
   String get yMMMM => DateFormat.yMMMM().format(_dateTime);
+
   String get yMMMMd => DateFormat.yMMMMd().format(_dateTime);
+
   String get yMMMMdjm => DateFormat.yMMMMd().add_jm().format(_dateTime);
+
   String get yMMMMEEEEd => DateFormat.yMMMMEEEEd().format(_dateTime);
+
   String get yMMMMEEEEdjm => DateFormat.yMMMMEEEEd().add_jm().format(_dateTime);
+
   String get yQQQ => DateFormat.yQQQ().format(_dateTime);
+
   String get yQQQQ => DateFormat.yQQQQ().format(_dateTime);
+
   String get Hm => DateFormat.Hm().format(_dateTime);
+
   String get Hms => DateFormat.Hms().format(_dateTime);
+
   String get j => DateFormat.j().format(_dateTime);
+
   String get jm => DateFormat.jm().format(_dateTime);
+
   String get jms => DateFormat.jms().format(_dateTime);
 
   String fromNow() {
-    return relative.format(_defaultLocale, _dateTime);
+    return _defaultLocale.getRelativeTime(_dateTime);
   }
 
   String from(var input) {
     var dateTime = _parse(input);
-    return relative.format(_defaultLocale, _dateTime, dateTime);
+    return _defaultLocale.getRelativeTime(_dateTime, dateTime);
   }
 
   num diff(var input, [Units units = Units.MILLISECOND, bool asFloat = false]) {

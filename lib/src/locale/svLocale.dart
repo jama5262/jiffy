@@ -1,6 +1,22 @@
-import 'package:jiffy/src/relative_time/lookup_messages.dart';
+import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/relativeTime.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 
-class SvLocale extends LookUpMessages {
+class SvLocale extends Locale {
+  StartOfWeek strtOfWeek;
+  SvLocale(this.strtOfWeek);
+
+  @override
+  RelativeTime relativeTime() => SvRelativeTime();
+
+  @override
+  List<String>? ordinals() => null;
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
+}
+
+class SvRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
