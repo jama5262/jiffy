@@ -178,7 +178,7 @@ void main() {
         'test Jiffy().diff() method with parsing date time should return correct date time in months',
         () {
       expect(
-          Jiffy([2019, 10, 16, 22]).diff(
+          Jiffy([2019, 10, 20, 22]).diff(
               Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
               Units.MONTH),
           0);

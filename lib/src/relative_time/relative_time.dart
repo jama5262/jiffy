@@ -65,7 +65,7 @@ Map<String, LookUpMessages> _lookupMessagesMap = {
   'fa': FaLocale(true),
 };
 
-String format(String locale, DateTime date1, [DateTime date2]) {
+String format(String locale, DateTime date1, [DateTime? date2]) {
   final messages =
       _lookupMessagesMap[replaceLocaleHyphen(locale)] ?? EnLocale();
   final _date2 = date2 ?? DateTime.now();
@@ -116,6 +116,6 @@ String format(String locale, DateTime date1, [DateTime date2]) {
   }
 
   return [prefix, result, suffix]
-      .where((str) => str != null && str.isNotEmpty)
+      .where((str) => str.isNotEmpty)
       .join(messages.wordSeparator());
 }

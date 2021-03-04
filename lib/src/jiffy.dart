@@ -11,10 +11,10 @@ import 'package:jiffy/src/utils/regex.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
-  DateTime _dateTime;
+  late DateTime _dateTime;
   DateTime get dateTime => _dateTime;
 
-  Jiffy([var input, String pattern]) {
+  Jiffy([var input, String? pattern]) {
     _dateTime = _parse(input, pattern);
   }
 
@@ -33,7 +33,7 @@ class Jiffy {
     return Jiffy(this);
   }
 
-  DateTime _parse(var input, [String pattern]) {
+  DateTime _parse(var input, [String? pattern]) {
     var dateTime;
     if (input == null && pattern == null) {
       dateTime = DateTime.now();
@@ -109,6 +109,10 @@ class Jiffy {
                 'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
             .cause;
       }
+    } else {
+      throw JiffyException(
+              'Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters')
+          .cause;
     }
     return dateTime;
   }
@@ -141,7 +145,7 @@ class Jiffy {
   ];
 
   static String _defaultLocale = 'en';
-  static Future<String> locale([String locale]) async {
+  static Future<String> locale([String? locale]) async {
     if (locale != null) {
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
@@ -363,7 +367,7 @@ class Jiffy {
   }
 
 //  DISPLAY
-  String format([String pattern]) {
+  String format([String? pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
     final suffix = _getOrdinalDates(_dateTime.day);
     final escaped = replaceEscapePattern(pattern);
@@ -372,10 +376,8 @@ class Jiffy {
   }
 
   String _getOrdinalDates(int day) {
-    if (!localeOrdinals.contains(replaceLocaleHyphen(_defaultLocale))) {
-      return '';
-    }
-    final ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
+    var ordinals = getOrdinalLocaleDates(replaceLocaleHyphen(_defaultLocale));
+    if (ordinals == null) return '';
     var suffix = ordinals[0];
     final digit = day % 10;
     if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
@@ -437,7 +439,7 @@ class Jiffy {
 
     switch (units) {
       case Units.MILLISECOND:
-        diff = _dateTime.difference(dateTime).inMilliseconds;
+        diff = dt1 - dt2;
         break;
       case Units.SECOND:
         diff = (dt1 - dt2) / Duration.millisecondsPerSecond;
@@ -480,12 +482,12 @@ class Jiffy {
       adjust = (b.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch) /
           (anchor2.millisecondsSinceEpoch - anchor.millisecondsSinceEpoch);
     }
-    return -(wholeMonthDiff + adjust) ?? 0;
+    return -(wholeMonthDiff + adjust);
   }
 
   int _absFloor(num number) {
     if (number < 0) {
-      return number.ceil() ?? 0;
+      return number.ceil();
     } else {
       return number.floor();
     }

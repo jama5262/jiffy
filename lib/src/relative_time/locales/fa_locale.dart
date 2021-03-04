@@ -3,9 +3,7 @@ import 'package:jiffy/src/utils/replace.dart';
 
 class FaLocale extends LookUpMessages {
   bool replaceNum;
-  FaLocale(replaceNum) {
-    this.replaceNum = replaceNum;
-  }
+  FaLocale(this.replaceNum);
 
   @override
   String prefixAgo() => '';

@@ -35,7 +35,7 @@ Future<int> main() async {
 
   jiffy2.from([2017, 1, 30]); // 2 days ago
 
-//  Displaying thid 'Difference' between two date times
+//  Displaying the 'Difference' between two date times
 //  By default, 'diff' method, get the difference in milliseconds
   var jiffy4 = Jiffy('2007-1-28', 'yyyy-MM-dd');
   var jiffy5 = Jiffy('2017-1-29', 'yyyy-MM-dd');
