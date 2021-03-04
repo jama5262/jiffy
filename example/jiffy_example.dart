@@ -70,9 +70,9 @@ Future<int> main() async {
     ..subtract(minutes: 30, months: 1);
   jiffy11.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
 
-//  LOCALES
-//  The locale method always return a future
-//  To get locale (The default locale is English)
+ // LOCALES
+ // The locale method always return a future
+ // To get locale (The default locale is English)
   await Jiffy.locale(); // en
 //  To set locale
   await Jiffy.locale('fr');
@@ -82,8 +82,10 @@ Future<int> main() async {
   await Jiffy.locale('zh-cn');
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 
-  await Jiffy.locale('en');
-  var j1 = Jiffy([2021, 1, 11]).format('MMM do');
+  await Jiffy.locale('fr');
+  var locale = (await Jiffy.locale());
+  print(locale.code);
+  var j1 = Jiffy([2021, 1, 1]).yMMMEdjm;
   print(j1);
 
   return 0;

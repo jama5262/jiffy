@@ -1,19 +1,13 @@
-import 'package:jiffy/src/locale/Locale.dart';
-import 'package:jiffy/src/locale/RelativeTime.dart';
+import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/relativeTime.dart';
 
 class EnLocale extends Locale {
 
   @override
-  String code() => 'en';
-
-  @override
-  RelativeTime relativeTime() => EnRelativeTime();
+  RelativeTime relativeTime = EnRelativeTime();
 
   @override
   List<String>? ordinals = ['st', 'nd', 'rd', 'th'];
-
-  @override
-  String ordinal(int day) => super.ordinal(day);
 
 }
 
