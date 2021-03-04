@@ -1,10 +1,12 @@
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/locale/relativeTime.dart';
 import 'package:jiffy/src/utils/replace.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 
 class FaLocale extends Locale {
   bool replaceNum;
-  FaLocale(this.replaceNum);
+  StartOfWeek strtOfWeek;
+  FaLocale(this.replaceNum, this.strtOfWeek);
 
   @override
   RelativeTime relativeTime() => FaRelativeTime(replaceNum);
@@ -12,6 +14,8 @@ class FaLocale extends Locale {
   @override
   List<String>? ordinals() => ['م', 'م', 'م', 'م'];
 
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
 }
 
 class FaRelativeTime extends RelativeTime {

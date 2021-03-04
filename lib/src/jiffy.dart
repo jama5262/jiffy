@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/enums/units.dart';
 import 'package:jiffy/src/locale/availableLocales.dart';
-import 'package:jiffy/src/locale/enLocale.dart';
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/utils/normalize_units.dart';
@@ -125,33 +125,6 @@ class Jiffy {
     return dateTime;
   }
 
-  static const _sundayStartOfWeek = [
-    'en',
-    'id',
-    'enca',
-    'enil',
-    'esus',
-    'zhhk',
-    'zhtw',
-    'ja',
-    'frca',
-    'ko',
-    'hi',
-    'ardz',
-    'arkw',
-    'arsa',
-    'ptbr',
-    'sv',
-    'nb',
-  ];
-
-  static const _saturdayStartOfWeek = [
-    'ar',
-    'arly',
-    'arma',
-    'fa',
-  ];
-
   static void _initializeLocale() {
     var currentLocale = Intl.getCurrentLocale();
     _defaultLocale = getLocale(currentLocale);
@@ -165,7 +138,6 @@ class Jiffy {
         throw JiffyException('The locale \'$locale\' does not exist in Jiffy')
             .cause;
       }
-
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
       _defaultLocale = getLocale(locale);
@@ -188,11 +160,17 @@ class Jiffy {
   int get day {
     var weekDays = [1, 2, 3, 4, 5, 6, 7, 1, 2];
     var weekDayIndex = _dateTime.weekday - 1;
-    var _locale = replaceLocaleHyphen(_defaultLocale.code);
-    if (_sundayStartOfWeek.contains(_locale)) {
-      weekDayIndex += 1;
-    } else if (_saturdayStartOfWeek.contains(_locale)) {
-      weekDayIndex += 2;
+
+    switch (_defaultLocale.startOfWeek()) {
+      case StartOfWeek.MONDAY:
+        weekDayIndex += 0;
+        break;
+      case StartOfWeek.SUNDAY:
+        weekDayIndex += 1;
+        break;
+      case StartOfWeek.SATURDAY:
+        weekDayIndex += 2;
+        break;
     }
     return weekDays[weekDayIndex];
   }

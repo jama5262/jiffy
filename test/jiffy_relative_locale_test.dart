@@ -36,7 +36,7 @@ void main() {
     test(
         'test Jiffy.locale() method with parsing ar-dz/kw/ma/tn locale should return correct date time in ar-dz locale',
         () async {
-      await Jiffy.locale('ar-dz');
+      await Jiffy.locale('ar_dz');
       expect(jiffy1.fromNow(), 'منذ ثوان');
       expect(jiffy2.fromNow(), 'في ثوان');
       expect(jiffy3.fromNow(), 'منذ دقيقة');
@@ -53,7 +53,7 @@ void main() {
     test(
         'test Jiffy.locale() method with parsing ar-sa locale should return correct date time in ar-sa locale',
         () async {
-      await Jiffy.locale('ar-sa');
+      await Jiffy.locale('ar_sa');
       expect(jiffy1.fromNow(), 'منذ ثوان');
       expect(jiffy2.fromNow(), 'في ثوان');
       expect(jiffy3.fromNow(), 'منذ دقيقة');
@@ -159,15 +159,15 @@ void main() {
       expect(jiffy1.fromNow(), 'कुछ ही क्षण पहले');
       expect(jiffy2.fromNow(), 'कुछ ही क्षण में');
       expect(jiffy3.fromNow(), 'एक मिनट पहले');
-      expect(jiffy5.fromNow(), '१० मिनट पहले');
+      expect(jiffy5.fromNow(), '10 मिनट पहले');
       expect(jiffy6.fromNow(), 'एक घंटा पहले');
-      expect(jiffy7.fromNow(), '१० घंटे पहले');
+      expect(jiffy7.fromNow(), '10 घंटे पहले');
       expect(jiffy8.fromNow(), 'एक दिन पहले');
-      expect(jiffy9.fromNow(), '१० दिन पहले');
+      expect(jiffy9.fromNow(), '10 दिन पहले');
       expect(jiffy10.from(Jiffy('2019-10-01')), 'एक महीने पहले');
-      expect(jiffy11.fromNow(), '१० महीने पहले');
+      expect(jiffy11.fromNow(), '10 महीने पहले');
       expect(jiffy12.fromNow(), 'एक वर्ष पहले');
-      expect(jiffy13.fromNow(), '१० वर्ष पहले');
+      expect(jiffy13.fromNow(), '10 वर्ष पहले');
     });
     test(
         'test Jiffy.locale() method with parsing it locale should return correct date time in it locale',
@@ -274,7 +274,7 @@ void main() {
     test(
         'test Jiffy.locale() method with parsing zh-hk/tw locale should return correct date time in zh-hk/tw locale',
         () async {
-      await Jiffy.locale('zh-hk');
+      await Jiffy.locale('zh_hk');
       expect(jiffy1.fromNow(), '幾秒前');
       expect(jiffy2.fromNow(), '幾秒内');
       expect(jiffy3.fromNow(), '1 分鐘前');

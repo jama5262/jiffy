@@ -1,7 +1,7 @@
+import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/locale/relativeTime.dart';
 
 abstract class Locale {
-
   late String code;
 
   // If a locale does not have ordinals return null
@@ -9,7 +9,9 @@ abstract class Locale {
 
   RelativeTime relativeTime();
 
-  String getRelativeTime (DateTime date1, [DateTime? date2]) {
+  StartOfWeek startOfWeek();
+
+  String getRelativeTime(DateTime date1, [DateTime? date2]) {
     final relative = relativeTime();
     final _date2 = date2 ?? DateTime.now();
     final _allowFromNow = _date2.isBefore(date1);

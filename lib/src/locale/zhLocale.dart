@@ -1,12 +1,19 @@
 import 'package:jiffy/src/locale/relativeTime.dart';
 import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/enums/startOfWeek.dart';
 
 class ZhLocale extends Locale {
+  StartOfWeek strtOfWeek;
+  ZhLocale(this.strtOfWeek);
+
   @override
   RelativeTime relativeTime() => ZhRelativeTime();
 
   @override
   List<String>? ordinals() => ['日', '日', '日', '日'];
+
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
 }
 
 class ZhRelativeTime extends RelativeTime {

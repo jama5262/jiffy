@@ -1,13 +1,19 @@
+import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/locale/relativeTime.dart';
 
 class DeLocale extends Locale {
+  StartOfWeek strtOfWeek;
+  DeLocale(this.strtOfWeek);
+
   @override
   RelativeTime relativeTime() => DeRelativeTime();
 
   @override
   List<String>? ordinals() => ['.', '.', '.', '.'];
 
+  @override
+  StartOfWeek startOfWeek() => strtOfWeek;
 }
 
 class DeRelativeTime extends RelativeTime {
