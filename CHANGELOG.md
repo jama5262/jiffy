@@ -1,4 +1,4 @@
-## 4.0.0-nullsafety
+## 4.0.0
 
 ### Major Changes
 
