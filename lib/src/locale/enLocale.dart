@@ -2,12 +2,11 @@ import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/locale/relativeTime.dart';
 
 class EnLocale extends Locale {
+  @override
+  RelativeTime relativeTime() => EnRelativeTime();
 
   @override
-  RelativeTime relativeTime = EnRelativeTime();
-
-  @override
-  List<String>? ordinals = ['st', 'nd', 'rd', 'th'];
+  List<String>? ordinals() => ['st', 'nd', 'rd', 'th'];
 
 }
 

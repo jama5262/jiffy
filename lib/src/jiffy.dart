@@ -153,8 +153,9 @@ class Jiffy {
   ];
 
   static void _initializeLocale() {
-    _defaultLocale = EnLocale();
-    _defaultLocale.code = 'en';
+    var currentLocale = Intl.getCurrentLocale();
+    _defaultLocale = getLocale(currentLocale);
+    _defaultLocale.code = currentLocale.toLowerCase();
   }
 
   static Future<Locale> locale([String? locale]) async {

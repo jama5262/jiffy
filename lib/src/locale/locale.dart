@@ -5,12 +5,12 @@ abstract class Locale {
   late String code;
 
   // If a locale does not have ordinals return null
-  List<String>? ordinals;
+  List<String>? ordinals();
 
-  late RelativeTime relativeTime;
+  RelativeTime relativeTime();
 
   String getRelativeTime (DateTime date1, [DateTime? date2]) {
-    final relative = relativeTime;
+    final relative = relativeTime();
     final _date2 = date2 ?? DateTime.now();
     final _allowFromNow = _date2.isBefore(date1);
     var elapsed = _date2.millisecondsSinceEpoch - date1.millisecondsSinceEpoch;
@@ -64,11 +64,11 @@ abstract class Locale {
   }
 
   String ordinal(int day) {
-    if (ordinals == null) return '';
-    var suffix = ordinals!.last;
+    if (ordinals() == null) return '';
+    var suffix = ordinals()!.last;
     var digit = day % 10;
     if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
-      suffix = ordinals![digit - 1];
+      suffix = ordinals()![digit - 1];
     }
     return suffix;
   }
