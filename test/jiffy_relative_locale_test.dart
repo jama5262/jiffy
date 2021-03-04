@@ -1,7 +1,23 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:jiffy/src/locale/availableLocales.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('Test display all locales', () {
+    test('test show all available locales as List<String> type', () {
+      var locales = getAllLocales();
+      expect(locales, isList);
+    });
+
+    test('test show all available locales contains locales en, fr, de, zn_ch', () {
+      var locales = getAllLocales();
+      expect(locales, contains('en'));
+      expect(locales, contains('fr'));
+      expect(locales, contains('de'));
+      expect(locales, contains('zh_cn'));
+    });
+  });
+  
   group('Test for all relative date locales', () {
     var jiffy1 = Jiffy();
     var jiffy2 = Jiffy()..add(duration: Duration(seconds: 1));

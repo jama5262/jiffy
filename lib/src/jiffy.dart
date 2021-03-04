@@ -146,6 +146,10 @@ class Jiffy {
     return Future.value(_defaultLocale);
   }
 
+  static List<String> getAllAvailableLocales() {
+    return getAllLocales();
+  }
+
 //  GET
   int get millisecond => _dateTime.millisecond;
 

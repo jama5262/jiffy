@@ -82,5 +82,7 @@ Future<int> main() async {
   await Jiffy.locale('zh_cn');
   Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 
+  print(Jiffy.getAllAvailableLocales());
+
   return 0;
 }

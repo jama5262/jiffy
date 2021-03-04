@@ -75,3 +75,7 @@ Locale getLocale(String locale) {
 bool isLocalAvailable(String locale) {
   return !_availableLocales.containsKey(locale.toLowerCase());
 }
+
+List<String> getAllLocales() {
+  return _availableLocales.keys.toList();
+}
