@@ -541,19 +541,19 @@ Below are the locales that are supported for relative time. More will be added
 
 | Key  | Locale |
 | ------------- | ------------- |
-| English  | en / en-sg / en-au / en-ca / en-gb / en-ie / en-il / en-nz |
-| Spanish  | es / es-do / es-us |
-| Chinese  | zh / zh-cn / zh-hk / zh-tw |
+| English  | en / en_sg / en_au / en_ca / en_gb / en_ie / en_il / en_nz |
+| Spanish  | es / es_do / es_us |
+| Chinese  | zh / zh_cn / zh_hk / zh_tw |
 | Japanese  | ja |
-| German  | de / de-at / de-ch |
-| French  | fr / fr-ch / fr-ca |
+| German  | de / de_at / de_ch |
+| French  | fr / fr_ch / fr_ca |
 | Indonesian  | id |
-| Italian  | it / it-ch |
+| Italian  | it / it_ch |
 | Korean  | ko |
 | Russian  | ru |
 | Hindi  | hi |
-| Arabic  | ar / ar-ly / ar-dz / ar-kw / ar-sa / ar-ma / ar-tn |
-| Portuguese  | pt / pt-br |
+| Arabic  | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma / ar_tn |
+| Portuguese  | pt / pt_br |
 | Polish  | pl |
 | Turkish  | tr |
 | Swedish | sv |

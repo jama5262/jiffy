@@ -9,7 +9,8 @@ void main() {
       expect(locales, isList);
     });
 
-    test('test show all available locales contains locales en, fr, de, zn_ch', () {
+    test('test show all available locales contains locales en, fr, de, zn_ch',
+        () {
       var locales = getAllLocales();
       expect(locales, contains('en'));
       expect(locales, contains('fr'));
@@ -17,7 +18,18 @@ void main() {
       expect(locales, contains('zh_cn'));
     });
   });
-  
+
+  group('Test locale if available', () {
+    test('test is unavailable locale exists', () async {
+      try {
+        await Jiffy.locale('english');
+      } catch (e) {
+        expect(e.toString(),
+            'JiffyException: The locale "english" does not exist in Jiffy, run Jiiffy.getAllAvailableLocales() for more locales');
+      }
+    });
+  });
+
   group('Test for all relative date locales', () {
     var jiffy1 = Jiffy();
     var jiffy2 = Jiffy()..add(duration: Duration(seconds: 1));
