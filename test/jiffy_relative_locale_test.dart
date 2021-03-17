@@ -445,4 +445,23 @@ void main() {
       expect(locale.ordinals(), ['م', 'م', 'م', 'م']);
     });
   });
+  test(
+      'test Jiffy.locale() method with parsing bn locale should return correct date time in bn locale',
+          () async {
+        var locale = await Jiffy.locale('bn');
+        expect(jiffy1.fromNow(), 'কিছু মুহূর্ত আগে');
+        expect(jiffy2.fromNow(), 'কিছু মুহূর্ত পরে');
+        expect(jiffy3.fromNow(), 'এক মিনিট আগে');
+        expect(jiffy5.fromNow(), '১০ মিনিট আগে');
+        expect(jiffy6.fromNow(), 'এক ঘন্টা আগে');
+        expect(jiffy7.fromNow(), '১০ ঘণ্টা আগে');
+        expect(jiffy8.fromNow(), 'এক দিন আগে');
+        expect(jiffy9.fromNow(), '১০ দিন আগে');
+        expect(jiffy10.from(Jiffy('2019-10-01')), 'এক মাস আগে');
+        expect(jiffy11.fromNow(), '১০ মাস আগে');
+        expect(jiffy12.fromNow(), 'এক বছর আগে');
+        expect(jiffy13.fromNow(), '১০ বছর আগে');
+        expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+        expect(locale.ordinals(), null);
+      });
 }
