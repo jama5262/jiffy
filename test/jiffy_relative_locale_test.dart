@@ -10,13 +10,15 @@ void main() {
       expect(locales, isList);
     });
 
-    test('test show all available locales contains locales en, fr, de, zn_ch',
+    test('test show all available locales contains locales en, fr, de, zn_ch, ru, az',
         () {
       var locales = getAllLocales();
       expect(locales, contains('en'));
       expect(locales, contains('fr'));
       expect(locales, contains('de'));
       expect(locales, contains('zh_cn'));
+      expect(locales, contains('ru'));
+      expect(locales, contains('az'));
     });
   });
 
@@ -308,6 +310,25 @@ void main() {
       expect(jiffy11.fromNow(), '10 месяцев назад');
       expect(jiffy12.fromNow(), 'год назад');
       expect(jiffy13.fromNow(), '10 лет назад');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), null);
+    });
+    test(
+      'test Jiffy.locale() method with parsing az locale should return correct date time in az locale',
+        () async {
+      var locale = await Jiffy.locale('az');
+      expect(jiffy1.fromNow(), 'bir neçə saniyə geri');
+      expect(jiffy2.fromNow(), 'sonra bir neçə saniyə');
+      expect(jiffy3.fromNow(), 'dəqiqə geri');
+      expect(jiffy5.fromNow(), '10 dəqiqə geri');
+      expect(jiffy6.fromNow(), 'saat geri');
+      expect(jiffy7.fromNow(), '10 saat geri');
+      expect(jiffy8.fromNow(), 'gün geri');
+      expect(jiffy9.fromNow(), '10 gün geri');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'ay geri');
+      expect(jiffy11.fromNow(), '10 ay geri');
+      expect(jiffy12.fromNow(), 'il geri');
+      expect(jiffy13.fromNow(), '10 il geri');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
       expect(locale.ordinals(), null);
     });
