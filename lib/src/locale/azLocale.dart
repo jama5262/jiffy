@@ -20,11 +20,11 @@ class AzRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
-  String prefixFromNow() => 'sonra';
+  String prefixFromNow() => '';
   @override
   String suffixAgo() => 'geri';
   @override
-  String suffixFromNow() => '';
+  String suffixFromNow() => 'sonra';
   @override
   String lessThanOneMinute(int seconds) => 'bir neçə saniyə';
   @override

@@ -318,7 +318,7 @@ void main() {
         () async {
       var locale = await Jiffy.locale('az');
       expect(jiffy1.fromNow(), 'bir neçə saniyə geri');
-      expect(jiffy2.fromNow(), 'sonra bir neçə saniyə');
+      expect(jiffy2.fromNow(), 'bir neçə saniyə sonra');
       expect(jiffy3.fromNow(), 'dəqiqə geri');
       expect(jiffy5.fromNow(), '10 dəqiqə geri');
       expect(jiffy6.fromNow(), 'saat geri');
