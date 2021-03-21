@@ -10,7 +10,8 @@ void main() {
       expect(locales, isList);
     });
 
-    test('test show all available locales contains locales en, fr, de, zn_ch, ru, az',
+    test(
+        'test show all available locales contains locales en, fr, de, zn_ch, ru, az',
         () {
       var locales = getAllLocales();
       expect(locales, contains('en'));
@@ -314,7 +315,7 @@ void main() {
       expect(locale.ordinals(), null);
     });
     test(
-      'test Jiffy.locale() method with parsing az locale should return correct date time in az locale',
+        'test Jiffy.locale() method with parsing az locale should return correct date time in az locale',
         () async {
       var locale = await Jiffy.locale('az');
       expect(jiffy1.fromNow(), 'bir neçə saniyə geri');

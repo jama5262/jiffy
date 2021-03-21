@@ -10,13 +10,13 @@ Future<int> main() async {
   Jiffy().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
   Jiffy().format(); // 2021-03-02T15:18:29.922343
 
- // Not passing a string pattern for format method will return an ISO Date format
+// Not passing a string pattern for format method will return an ISO Date format
   Jiffy().format(); // 2021-03-02T15:18:29.922343
 
- // Using lists
+// Using lists
   Jiffy([2019, 10, 19]).yMMMMd; // January 19, 2021
 
-  // Using maps
+// Using maps
   Jiffy({'year': 2019, 'month': 10, 'day': 19, 'hour': 19})
       .yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
 
@@ -70,9 +70,9 @@ Future<int> main() async {
     ..subtract(minutes: 30, months: 1);
   jiffy11.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
 
- // LOCALES
- // The locale method always return a future
- // To get locale (The default locale is English)
+// LOCALES
+// The locale method always return a future
+// To get locale (The default locale is English)
   await Jiffy.locale(); // en
 //  To set locale
   await Jiffy.locale('fr');
