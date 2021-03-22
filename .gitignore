@@ -2,6 +2,7 @@
 .*
 # except
 !.gitignore
+!.github
 
 *.iml
 
