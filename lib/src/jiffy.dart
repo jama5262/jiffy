@@ -193,7 +193,7 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
-  void add({
+  Jiffy add({
     Duration duration = Duration.zero,
     int years = 0,
     int months = 0,
@@ -216,9 +216,10 @@ class Jiffy {
     ));
     _dateTime = _addMonths(_dateTime, months);
     _dateTime = _addMonths(_dateTime, years * 12);
+    return clone();
   }
 
-  void subtract({
+  Jiffy subtract({
     Duration duration = Duration.zero,
     int years = 0,
     int months = 0,
@@ -241,9 +242,10 @@ class Jiffy {
     ));
     _dateTime = _addMonths(_dateTime, -months);
     _dateTime = _addMonths(_dateTime, -years * 12);
+    return clone();
   }
 
-  void startOf(Units units) {
+  Jiffy startOf(Units units) {
     switch (units) {
       case Units.MILLISECOND:
         _dateTime = DateTime(
@@ -281,9 +283,10 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year);
         break;
     }
+    return clone();
   }
 
-  void endOf(Units units) {
+  Jiffy endOf(Units units) {
     switch (units) {
       case Units.MILLISECOND:
         _dateTime = DateTime(
@@ -328,6 +331,7 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
         break;
     }
+    return clone();
   }
 
   DateTime local() {
