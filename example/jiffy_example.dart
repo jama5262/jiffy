@@ -3,8 +3,7 @@ import 'package:jiffy/src/enums/units.dart';
 
 Future<int> main() async {
 //  DISPLAY
-  Jiffy([2021, 1, 19])
-      .format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
+  Jiffy([2021, 1, 19]).format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
   Jiffy().format('EEEE'); // Tuesday
   Jiffy().format('MMM do yy'); // Mar 2nd 21
   Jiffy().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
@@ -25,7 +24,7 @@ Future<int> main() async {
   Jiffy([2022, 10, 29]).fromNow(); // in a year
   Jiffy(DateTime(2050, 10, 29)).fromNow(); // in 30 years
 
-  (Jiffy()..startOf(Units.HOUR)).fromNow(); // 9 minutes ago
+  Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 
 //  'From X' implementation
   var jiffy2 = Jiffy('2007-1-28');
@@ -48,27 +47,16 @@ Future<int> main() async {
   Jiffy('2011-10-31').fromNow(); // 8 years ago
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
-  var jiffy6 = Jiffy()..startOf(Units.DAY);
-  jiffy6.fromNow(); // 19 hours ago
+  var jiffy6 = Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
 
-  var jiffy7 = Jiffy()..endOf(Units.DAY);
-  jiffy7.fromNow(); // in 5 hours
+  var jiffy7 = Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
 
-  var jiffy8 = Jiffy()..startOf(Units.HOUR);
-  jiffy8.fromNow(); // 9 minutes ago
+  var jiffy8 = Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 
 //  MANIPULATING DATES
-  var jiffy9 = Jiffy()..add(duration: Duration(days: 1));
-  jiffy9.yMMMMd; // October 20, 2019
+  var jiffy9 = Jiffy().add(duration: Duration(days: 1)).yMMMMd; // October 20, 2019
 
-  var jiffy10 = Jiffy()..subtract(days: 1);
-  jiffy10.yMMMMd; // October 18, 2019
-
-//  You can chain methods by using Dart method cascading
-  var jiffy11 = Jiffy()
-    ..add(hours: 3, days: 1)
-    ..subtract(minutes: 30, months: 1);
-  jiffy11.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
+  var jiffy10 = Jiffy().subtract(days: 1).yMMMMd; // October 18, 2019
 
 // LOCALES
 // The locale method always return a future
