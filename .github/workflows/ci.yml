@@ -30,7 +30,7 @@ jobs:
         run: dart test --coverage coverage
 
       - name: Generate Coverage
-        run: dart run coverage:format_coverage --in coverage\test\ --out coverage\lcov.info --lcov
+        run: dart run coverage:format_coverage --in coverage/test --out coverage/lcov.info --lcov
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
