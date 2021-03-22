@@ -557,6 +557,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Swedish | sv |
 | Norwegian | nb |
 | Persian | fa |
+| Azerbaijani | az |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 
