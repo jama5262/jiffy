@@ -31,9 +31,6 @@ jobs:
 
       - name: Generate Coverage
         run: dart run coverage:format_coverage --in coverage/test --out coverage/lcov.info --lcov
-        
-      - name: Check files
-        run: ls & cd coverage\ & ls
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
