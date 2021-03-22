@@ -3,7 +3,8 @@ import 'package:jiffy/src/enums/units.dart';
 
 Future<int> main() async {
 //  DISPLAY
-  Jiffy([2021, 1, 19]).format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
+  Jiffy([2021, 1, 19])
+      .format('MMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
   Jiffy().format('EEEE'); // Tuesday
   Jiffy().format('MMM do yy'); // Mar 2nd 21
   Jiffy().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
@@ -47,16 +48,16 @@ Future<int> main() async {
   Jiffy('2011-10-31').fromNow(); // 8 years ago
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
-  var jiffy6 = Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
+  Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
 
-  var jiffy7 = Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
+  Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
 
-  var jiffy8 = Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
+  Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 
 //  MANIPULATING DATES
-  var jiffy9 = Jiffy().add(duration: Duration(days: 1)).yMMMMd; // October 20, 2019
+  Jiffy().add(duration: Duration(days: 1)).yMMMMd; // October 20, 2019
 
-  var jiffy10 = Jiffy().subtract(days: 1).yMMMMd; // October 18, 2019
+  Jiffy().subtract(days: 1).yMMMMd; // October 18, 2019
 
 // LOCALES
 // The locale method always return a future
