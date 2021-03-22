@@ -50,79 +50,85 @@ class Jiffy {
     } else if (isJiffy(input)) {
       dateTime = input.dateTime;
     } else if (input is Map) {
-      input.forEach((key, value) {
-        validateUnits(key);
-      });
-      if (input.isEmpty) {
-        dateTime = DateTime.now();
-      } else {
-        dateTime = DateTime(
-            input['year'] ??
-                input['years'] ??
-                input['y'] ??
-                DateTime.now().year,
-            input['month'] ??
-                input['months'] ??
-                input['M'] ??
-                DateTime.now().month,
-            input['day'] ?? input['days'] ?? input['d'] ?? DateTime.now().day,
-            input['hour'] ??
-                input['hours'] ??
-                input['h'] ??
-                DateTime.now().hour,
-            input['minute'] ??
-                input['minutes'] ??
-                input['m'] ??
-                DateTime.now().minute,
-            input['second'] ??
-                input['seconds'] ??
-                input['s'] ??
-                DateTime.now().second,
-            input['millisecond'] ??
-                input['milliseconds'] ??
-                input['ms'] ??
-                DateTime.now().millisecond);
-      }
+      dateTime = _parseMap(input);
     } else if (input is List) {
-      if (input.isEmpty) {
-        dateTime = DateTime.now();
-      } else {
-        dateTime = DateTime(
-            input[0],
-            input.length > 1 ? input[1] : 1,
-            input.length > 2 ? input[2] : 1,
-            input.length > 3 ? input[3] : 0,
-            input.length > 4 ? input[4] : 0,
-            input.length > 5 ? input[5] : 0,
-            input.length > 6 ? input[6] : 0);
-      }
+      dateTime = _parseList(input);
     } else if (input is String) {
-      if (pattern != null) {
-        dateTime = DateFormat(replacePatternInput(pattern))
-            .parse(replaceParseInput(input));
-      } else if (matchHyphenStringDateTime(input)) {
-        dateTime = DateFormat('yyyy-MM-dd').parse(input);
-      } else if (matchDartStringDateTime(input) ||
-          matchISOStringDateTime(input)) {
-        dateTime = DateTime.parse(input).toLocal();
-      } else if (matchSlashStringDateTime(input)) {
-        dateTime = DateFormat('yyyy/MM/dd').parse(input);
-      } else if (matchBasicStringDateTime().hasMatch(input)) {
-        dateTime = DateFormat('yyyy/MM/dd')
-            .parse(input.replaceAllMapped(matchBasicStringDateTime(), (match) {
-          return '${match.group(1)}/${match.group(2)}/${match.group(3)}';
-        }));
-      } else if (pattern == null) {
-        throw JiffyException(
-                'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
-            .cause;
-      }
+      dateTime = _parseString(input, pattern);
     } else {
       throw JiffyException(
               'Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters')
           .cause;
     }
     return dateTime;
+  }
+
+  DateTime _parseMap(Map input) {
+    input.forEach((key, value) {
+      validateUnits(key);
+    });
+    if (input.isEmpty) {
+      return DateTime.now();
+    } else {
+      return DateTime(
+          input['year'] ?? input['years'] ?? input['y'] ?? DateTime.now().year,
+          input['month'] ??
+              input['months'] ??
+              input['M'] ??
+              DateTime.now().month,
+          input['day'] ?? input['days'] ?? input['d'] ?? DateTime.now().day,
+          input['hour'] ?? input['hours'] ?? input['h'] ?? DateTime.now().hour,
+          input['minute'] ??
+              input['minutes'] ??
+              input['m'] ??
+              DateTime.now().minute,
+          input['second'] ??
+              input['seconds'] ??
+              input['s'] ??
+              DateTime.now().second,
+          input['millisecond'] ??
+              input['milliseconds'] ??
+              input['ms'] ??
+              DateTime.now().millisecond);
+    }
+  }
+
+  DateTime _parseList(List input) {
+    if (input.isEmpty) {
+      return DateTime.now();
+    } else {
+      return DateTime(
+          input[0],
+          input.length > 1 ? input[1] : 1,
+          input.length > 2 ? input[2] : 1,
+          input.length > 3 ? input[3] : 0,
+          input.length > 4 ? input[4] : 0,
+          input.length > 5 ? input[5] : 0,
+          input.length > 6 ? input[6] : 0);
+    }
+  }
+
+  DateTime _parseString(String input, String? pattern) {
+    if (pattern != null) {
+      return DateFormat(replacePatternInput(pattern))
+          .parse(replaceParseInput(input));
+    } else if (matchHyphenStringDateTime(input)) {
+      return DateFormat('yyyy-MM-dd').parse(input);
+    } else if (matchDartStringDateTime(input) ||
+        matchISOStringDateTime(input)) {
+      return DateTime.parse(input).toLocal();
+    } else if (matchSlashStringDateTime(input)) {
+      return DateFormat('yyyy/MM/dd').parse(input);
+    } else if (matchBasicStringDateTime().hasMatch(input)) {
+      return DateFormat('yyyy/MM/dd')
+          .parse(input.replaceAllMapped(matchBasicStringDateTime(), (match) {
+        return '${match.group(1)}/${match.group(2)}/${match.group(3)}';
+      }));
+    } else {
+      throw JiffyException(
+              'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
+          .cause;
+    }
   }
 
   static void _initializeLocale() {
@@ -193,7 +199,7 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
-  void add({
+  Jiffy add({
     Duration duration = Duration.zero,
     int years = 0,
     int months = 0,
@@ -216,9 +222,10 @@ class Jiffy {
     ));
     _dateTime = _addMonths(_dateTime, months);
     _dateTime = _addMonths(_dateTime, years * 12);
+    return clone();
   }
 
-  void subtract({
+  Jiffy subtract({
     Duration duration = Duration.zero,
     int years = 0,
     int months = 0,
@@ -241,9 +248,10 @@ class Jiffy {
     ));
     _dateTime = _addMonths(_dateTime, -months);
     _dateTime = _addMonths(_dateTime, -years * 12);
+    return clone();
   }
 
-  void startOf(Units units) {
+  Jiffy startOf(Units units) {
     switch (units) {
       case Units.MILLISECOND:
         _dateTime = DateTime(
@@ -281,9 +289,10 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year);
         break;
     }
+    return clone();
   }
 
-  void endOf(Units units) {
+  Jiffy endOf(Units units) {
     switch (units) {
       case Units.MILLISECOND:
         _dateTime = DateTime(
@@ -328,6 +337,7 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
         break;
     }
+    return clone();
   }
 
   DateTime local() {
