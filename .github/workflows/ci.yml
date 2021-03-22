@@ -27,10 +27,10 @@ jobs:
         run: dart analyze
 
       - name: Run tests
-        run: dart test
+        run: dart test --coverage coverage
 
       - name: Generate Coverage
-        run: dart run test_cov
+        run: dart run coverage:format_coverage --in coverage\test\ --out coverage\lcov.info --lcov
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
