@@ -10,13 +10,13 @@ Future<int> main() async {
   Jiffy().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
   Jiffy().format(); // 2021-03-02T15:18:29.922343
 
- // Not passing a string pattern for format method will return an ISO Date format
+// Not passing a string pattern for format method will return an ISO Date format
   Jiffy().format(); // 2021-03-02T15:18:29.922343
 
- // Using lists
+// Using lists
   Jiffy([2019, 10, 19]).yMMMMd; // January 19, 2021
 
-  // Using maps
+// Using maps
   Jiffy({'year': 2019, 'month': 10, 'day': 19, 'hour': 19})
       .yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
 
@@ -25,7 +25,7 @@ Future<int> main() async {
   Jiffy([2022, 10, 29]).fromNow(); // in a year
   Jiffy(DateTime(2050, 10, 29)).fromNow(); // in 30 years
 
-  (Jiffy()..startOf(Units.HOUR)).fromNow(); // 9 minutes ago
+  Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 
 //  'From X' implementation
   var jiffy2 = Jiffy('2007-1-28');
@@ -48,31 +48,20 @@ Future<int> main() async {
   Jiffy('2011-10-31').fromNow(); // 8 years ago
   Jiffy(DateTime(2012, 6, 20)).fromNow(); // 7 years ago
 
-  var jiffy6 = Jiffy()..startOf(Units.DAY);
-  jiffy6.fromNow(); // 19 hours ago
+  Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
 
-  var jiffy7 = Jiffy()..endOf(Units.DAY);
-  jiffy7.fromNow(); // in 5 hours
+  Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
 
-  var jiffy8 = Jiffy()..startOf(Units.HOUR);
-  jiffy8.fromNow(); // 9 minutes ago
+  Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 
 //  MANIPULATING DATES
-  var jiffy9 = Jiffy()..add(duration: Duration(days: 1));
-  jiffy9.yMMMMd; // October 20, 2019
+  Jiffy().add(duration: Duration(days: 1)).yMMMMd; // October 20, 2019
 
-  var jiffy10 = Jiffy()..subtract(days: 1);
-  jiffy10.yMMMMd; // October 18, 2019
+  Jiffy().subtract(days: 1).yMMMMd; // October 18, 2019
 
-//  You can chain methods by using Dart method cascading
-  var jiffy11 = Jiffy()
-    ..add(hours: 3, days: 1)
-    ..subtract(minutes: 30, months: 1);
-  jiffy11.yMMMMEEEEdjm; // Friday, September 20, 2019 9:50 PM
-
- // LOCALES
- // The locale method always return a future
- // To get locale (The default locale is English)
+// LOCALES
+// The locale method always return a future
+// To get locale (The default locale is English)
   await Jiffy.locale(); // en
 //  To set locale
   await Jiffy.locale('fr');

@@ -1,14 +1,14 @@
 # Jiffy
 
-[![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
-[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
+[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg?event=release)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v4.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v4.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-### [Full Documentation](https://github.com/jama5262/jiffy/tree/v4.0.0/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
+### [Full Documentation](https://github.com/jama5262/jiffy/tree/v4.1.0/doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
@@ -39,39 +39,30 @@ Jiffy().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
 ```dart
 Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 9 years ago
 
-var jiffy1 = Jiffy()
-    ..startOf(Units.DAY);
-jiffy1.fromNow(); // 19 hours ago
+var jiffy1 = Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
 
-var jiffy2 = (Jiffy()..endOf(Units.DAY)).fromNow(); // in 5 hours
+var jiffy2 = Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
 
-var jiffy3 = (
-    Jiffy()
-    ..startOf(Units.HOUR)
-    ..add(hours: 2, minutes: 20)
-).fromNow(); // in 2 hours
+var jiffy3 = Jiffy().startOf(Units.HOUR).add(hours: 2, minutes: 20).fromNow(); // in 2 hours
 ```
 
 ## Manipulation
 
 ```dart
-var jiffy1 = Jiffy()..add(duration: Duration(days: 1));
+var jiffy1 = Jiffy().add(duration: Duration(days: 1));
 jiffy1.yMMMMd; // March 3, 2021
 
-var jiffy2 = (Jiffy()..subtract(days: 1)).yMMMMd; // March 1, 2021
+var jiffy2 = Jiffy().subtract(days: 1).yMMMMd; // March 1, 2021
 
-//  You can chain methods by using Dart method cascading
-var jiffy3 = (
-    Jiffy()
-     ..add(hours: 3, days: 1)
-     ..subtract(minutes: 30, months: 1)
-);
-jiffy3.yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
+var jiffy3 = Jiffy()
+    .add(hours: 3, days: 1)
+    .subtract(minutes: 30, months: 1);
+    .yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
 
 // Months and year are added in respect to how many 
 // days there are in a months and if is a year is a leap year
 Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
-Jiffy([2010, 1, 31])..add(months: 1); // This is February 28
+Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
 ## Locale Support
