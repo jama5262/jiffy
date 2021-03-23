@@ -13,7 +13,7 @@ void main() {
         () {
       var jiffy1 = Jiffy([2021]);
       var jiffy2 = jiffy1.clone();
-      jiffy1..add(years: 10);
+      jiffy1.add(years: 10);
       expect(jiffy1.year, isNot(jiffy2.year));
     });
     test('Test clone from instance no manipulation should be equal', () {
@@ -26,7 +26,7 @@ void main() {
         () {
       var jiffy1 = Jiffy([2021]);
       var jiffy2 = Jiffy(jiffy1);
-      jiffy1..add(years: 10);
+      jiffy1.add(years: 10);
       expect(jiffy1.year, isNot(jiffy2.year));
     });
   });
