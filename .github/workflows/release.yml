@@ -45,7 +45,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Publishing to Pub Dev
-      - uses: k-paxian/dart-package-publisher@master
+        uses: k-paxian/dart-package-publisher@master
         with:
           accessToken: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
           refreshToken: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
