@@ -3,7 +3,8 @@
 ### Minor Changes
 
 1. All methods return `Jiffy`, except `utc()` and `local()` functions
-2. Added Azerbaijani `az` locale contributed by [Konstantin](https://github.com/justkost)
+2. Added github actions   
+3. Added Azerbaijani `az` locale contributed by [Konstantin](https://github.com/justkost)
 
 
 ## 4.0.0
