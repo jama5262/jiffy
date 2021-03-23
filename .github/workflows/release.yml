@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  test:
+    name: Test Package
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: flutter format --set-exit-if-changed lib test
+
+      - name: Analyze project source
+        run: flutter analyze lib test
+
+      - name: Run tests and generate coverage
+        run: flutter test --coverage
+
+      - name: Send to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: coverage/lcov.info
+
+  publish:
+    needs: test
+    name: Publish to Pub Dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Publishing to Pub Dev
+        uses: k-paxian/dart-package-publisher@master
+        with:
+          accessToken: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+          refreshToken: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+          skipTests: true
+
+
+
+
+

@@ -1,7 +1,7 @@
 # Jiffy
 
-[![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
-[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
+[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg?event=release)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Pub Version](https://img.shields.io/badge/pub-v4.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
@@ -216,7 +216,7 @@ Get days in a month (Returns from 28 - 31)
 Jiffy().daysInMonth;
 ```
 ### Day of week
-Get day of week (Returns from 0 - 6 [Sunday - Saturday])
+Get day of week (Returns from 1 - 7 that is [Sunday - Saturday] depending on locale start of week)
 ```dart
 Jiffy().day;
 ```
