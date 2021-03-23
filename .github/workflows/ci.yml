@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ github-actions ]
+    branches: [ develop ]
   pull_request:
     branches: [ develop ]
 
