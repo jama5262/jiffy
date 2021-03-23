@@ -216,7 +216,7 @@ Get days in a month (Returns from 28 - 31)
 Jiffy().daysInMonth;
 ```
 ### Day of week
-Get day of week (Returns from 0 - 6 [Sunday - Saturday])
+Get day of week (Returns from 1 - 7 that is [Sunday - Saturday] depending on locale start of week)
 ```dart
 Jiffy().day;
 ```
