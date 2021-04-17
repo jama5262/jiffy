@@ -1,6 +1,7 @@
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/locale/relativeTime.dart';
 import 'package:jiffy/src/enums/startOfWeek.dart';
+import 'package:jiffy/src/utils/replace.dart';
 
 class BnLocale extends Locale {
   StartOfWeek strtOfWeek;
@@ -30,23 +31,23 @@ class BnRelativeTime extends RelativeTime {
   @override
   String aboutAMinute(int minutes) => 'এক মিনিট';
   @override
-  String minutes(int minutes) => '$minutes মিনিট';
+  String minutes(int minutes) => replaceToLocaleNum('$minutes মিনিট', 'bn');
   @override
   String aboutAnHour(int minutes) => 'এক ঘণ্টা';
   @override
-  String hours(int hours) => '$hours ঘণ্টা';
+  String hours(int hours) => replaceToLocaleNum('$hours ঘণ্টা', 'bn');
   @override
   String aDay(int hours) => 'এক দিন';
   @override
-  String days(int days) => '$days দিন';
+  String days(int days) => replaceToLocaleNum('$days দিন', 'bn');
   @override
   String aboutAMonth(int days) => 'এক মাস';
   @override
-  String months(int months) => '$months মাস';
+  String months(int months) => replaceToLocaleNum('$months মাস', 'bn');
   @override
   String aboutAYear(int year) => 'এক বছর';
   @override
-  String years(int years) => '$years বছর';
+  String years(int years) => replaceToLocaleNum('$years বছর', 'bn');
   @override
   String wordSeparator() => ' ';
 }
