@@ -317,23 +317,23 @@ void main() {
     });
     test(
         'test Jiffy.locale() method with parsing uk locale should return correct date time in uk locale',
-            () async {
-          var locale = await Jiffy.locale('uk');
-          expect(jiffy1.fromNow(), 'декілька секунд тому');
-          expect(jiffy2.fromNow(), 'через декілька секунд');
-          expect(jiffy3.fromNow(), 'хвилину тому');
-          expect(jiffy5.fromNow(), '10 хвилин тому');
-          expect(jiffy6.fromNow(), 'годину тому');
-          expect(jiffy7.fromNow(), '10 годин тому');
-          expect(jiffy8.fromNow(), 'день тому');
-          expect(jiffy9.fromNow(), '10 днів тому');
-          expect(jiffy10.from(Jiffy('2019-10-01')), 'місяць тому');
-          expect(jiffy11.fromNow(), '10 місяців тому');
-          expect(jiffy12.fromNow(), 'рік тому');
-          expect(jiffy13.fromNow(), '10 років тому');
-          expect(locale.startOfWeek(), StartOfWeek.MONDAY);
-          expect(locale.ordinals(), null);
-        });
+        () async {
+      var locale = await Jiffy.locale('uk');
+      expect(jiffy1.fromNow(), 'декілька секунд тому');
+      expect(jiffy2.fromNow(), 'через декілька секунд');
+      expect(jiffy3.fromNow(), 'хвилину тому');
+      expect(jiffy5.fromNow(), '10 хвилин тому');
+      expect(jiffy6.fromNow(), 'годину тому');
+      expect(jiffy7.fromNow(), '10 годин тому');
+      expect(jiffy8.fromNow(), 'день тому');
+      expect(jiffy9.fromNow(), '10 днів тому');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'місяць тому');
+      expect(jiffy11.fromNow(), '10 місяців тому');
+      expect(jiffy12.fromNow(), 'рік тому');
+      expect(jiffy13.fromNow(), '10 років тому');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), null);
+    });
     test(
         'test Jiffy.locale() method with parsing az locale should return correct date time in az locale',
         () async {
