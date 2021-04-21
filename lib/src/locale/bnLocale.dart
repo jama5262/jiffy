@@ -33,9 +33,9 @@ class BnRelativeTime extends RelativeTime {
   @override
   String minutes(int minutes) => replaceToLocaleNum('$minutes মিনিট', 'bn');
   @override
-  String aboutAnHour(int minutes) => 'এক ঘণ্টা';
+  String aboutAnHour(int minutes) => 'এক ঘন্টা';
   @override
-  String hours(int hours) => replaceToLocaleNum('$hours ঘণ্টা', 'bn');
+  String hours(int hours) => replaceToLocaleNum('$hours ঘন্টা', 'bn');
   @override
   String aDay(int hours) => 'এক দিন';
   @override

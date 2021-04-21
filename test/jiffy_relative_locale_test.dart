@@ -453,7 +453,7 @@ void main() {
       expect(jiffy3.fromNow(), 'এক মিনিট আগে');
       expect(jiffy5.fromNow(), '১০ মিনিট আগে');
       expect(jiffy6.fromNow(), 'এক ঘন্টা আগে');
-      expect(jiffy7.fromNow(), '১০ ঘণ্টা আগে');
+      expect(jiffy7.fromNow(), '১০ ঘন্টা আগে');
       expect(jiffy8.fromNow(), 'এক দিন আগে');
       expect(jiffy9.fromNow(), '১০ দিন আগে');
       expect(jiffy10.from(Jiffy('2019-10-01')), 'এক মাস আগে');
