@@ -1,6 +1,6 @@
 # Jiffy
 
-[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg?event=release)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
+[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Pub Version](https://img.shields.io/badge/pub-v4.1.0-blue)](https://pub.dev/packages/jiffy)
@@ -39,11 +39,11 @@ Jiffy().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
 ```dart
 Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 9 years ago
 
-var jiffy1 = Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
+Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
 
-var jiffy2 = Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
+Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
 
-var jiffy3 = Jiffy().startOf(Units.HOUR).add(hours: 2, minutes: 20).fromNow(); // in 2 hours
+Jiffy().startOf(Units.HOUR).add(hours: 2, minutes: 20).fromNow(); // in 2 hours
 ```
 
 ## Manipulation
@@ -52,12 +52,12 @@ var jiffy3 = Jiffy().startOf(Units.HOUR).add(hours: 2, minutes: 20).fromNow(); /
 var jiffy1 = Jiffy().add(duration: Duration(days: 1));
 jiffy1.yMMMMd; // March 3, 2021
 
-var jiffy2 = Jiffy().subtract(days: 1).yMMMMd; // March 1, 2021
+Jiffy().subtract(days: 1).yMMMMd; // March 1, 2021
 
-var jiffy3 = Jiffy()
-    .add(hours: 3, days: 1)
-    .subtract(minutes: 30, months: 1);
-    .yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
+Jiffy()
+  .add(hours: 3, days: 1)
+  .subtract(minutes: 30, months: 1);
+  .yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
 
 // Months and year are added in respect to how many 
 // days there are in a months and if is a year is a leap year

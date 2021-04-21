@@ -1,6 +1,6 @@
 # Jiffy
 
-[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg?event=release)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
+[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Pub Version](https://img.shields.io/badge/pub-v4.1.0-blue)](https://pub.dev/packages/jiffy)
@@ -542,6 +542,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Italian  | it / it_ch |
 | Korean  | ko |
 | Russian  | ru |
+| Ukrainian  | uk |
 | Hindi  | hi |
 | Arabic  | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma / ar_tn |
 | Portuguese  | pt / pt_br |
