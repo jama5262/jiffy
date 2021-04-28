@@ -466,5 +466,24 @@ void main() {
       expect(locale.startOfWeek(), StartOfWeek.SATURDAY);
       expect(locale.ordinals(), ['م', 'م', 'م', 'م']);
     });
+    test(
+        'test Jiffy.locale() method with parsing nl locale should return correct date time in nl locale',
+        () async {
+      var locale = await Jiffy.locale('nl');
+      expect(jiffy1.fromNow(), 'een ogenblik geleden');
+      expect(jiffy2.fromNow(), 'over op dit moment');
+      expect(jiffy3.fromNow(), 'een minuut geleden');
+      expect(jiffy5.fromNow(), '10 minuten geleden');
+      expect(jiffy6.fromNow(), 'een uur geleden');
+      expect(jiffy7.fromNow(), '10 uur geleden');
+      expect(jiffy8.fromNow(), 'een dag geleden');
+      expect(jiffy9.fromNow(), '10 dagen geleden');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'een maand geleden');
+      expect(jiffy11.fromNow(), '10 maanden geleden');
+      expect(jiffy12.fromNow(), 'een jaar geleden');
+      expect(jiffy13.fromNow(), '10 jaar geleden');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), ['.', '.', '.', '.']);
+    });
   });
 }
