@@ -471,7 +471,7 @@ void main() {
         () async {
       var locale = await Jiffy.locale('nl');
       expect(jiffy1.fromNow(), 'een ogenblik geleden');
-      expect(jiffy2.fromNow(), 'over op dit moment');
+      expect(jiffy2.fromNow(), 'op dit moment');
       expect(jiffy3.fromNow(), 'een minuut geleden');
       expect(jiffy5.fromNow(), '10 minuten geleden');
       expect(jiffy6.fromNow(), 'een uur geleden');

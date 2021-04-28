@@ -20,7 +20,7 @@ class NlRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
-  String prefixFromNow() => 'over';
+  String prefixFromNow() => '';
   @override
   String suffixAgo() => 'geleden';
   @override
