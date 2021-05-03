@@ -103,7 +103,7 @@ Jiffy("2021-5-25", "yyyy-MM-dd").yMMMMd; // May 25, 2021
 
 ### Maps
 You can also create a Jiffy from a Map, Supported key pairs are,
- 
+
 `[ year, month, day, hour, minute, second and millisecond ]`. See below
 ```dart
 Jiffy({
@@ -552,6 +552,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Norwegian | nb |
 | Persian | fa |
 | Azerbaijani | az |
+| Dutch | nl |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 
