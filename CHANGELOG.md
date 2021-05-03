@@ -1,3 +1,12 @@
+## 4.1.0
+
+### Minor Changes
+
+1. All methods return `Jiffy`, except `utc()` and `local()` functions
+2. Added github actions   
+3. Added Azerbaijani `az` locale contributed by [Konstantin](https://github.com/justkost)
+
+
 ## 4.0.0
 
 ### Major Changes
@@ -12,11 +21,10 @@
    var jiffy2 = Jiffy(jiffy1);
    ```
 3. Bug fix `diff()` function
-4. All methods return `Jiffy`, except `utc()` and `local()` functions
-5. Added Persian `fa` locale contributed by [mozaffari](https://github.com/mozaffari)
-6. Added Norwegian `nb` locale contributed by [Yilmaz Guleryuz](https://github.com/zeusbaba)
-7. Added `de_DE` mapping locale contributed by [Sebastian Rutofski](https://github.com/SebRut)
-8. Fixed minor locale bugs
+4. Added Persian `fa` locale contributed by [mozaffari](https://github.com/mozaffari)
+5. Added Norwegian `nb` locale contributed by [Yilmaz Guleryuz](https://github.com/zeusbaba)
+6. Added `de_DE` mapping locale contributed by [Sebastian Rutofski](https://github.com/SebRut)
+7. Fixed minor locale bugs
 
 ## 3.0.1
 

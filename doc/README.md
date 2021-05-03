@@ -1,9 +1,9 @@
 # Jiffy
 
-[![Build Status](https://travis-ci.org/jama5262/jiffy.svg?branch=master)](https://travis-ci.org/jama5262/jiffy)
-[![Coverage Status](https://coveralls.io/repos/github/jama5262/jiffy/badge.svg?branch=master)](https://coveralls.io/github/jama5262/jiffy?branch=master)
+[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v4.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v4.1.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 
@@ -103,7 +103,7 @@ Jiffy("2021-5-25", "yyyy-MM-dd").yMMMMd; // May 25, 2021
 
 ### Maps
 You can also create a Jiffy from a Map, Supported key pairs are,
- 
+
 `[ year, month, day, hour, minute, second and millisecond ]`. See below
 ```dart
 Jiffy({
@@ -139,7 +139,7 @@ Jiffy date time can be created from another Jiffy instance, a way of cloning.
 ```dart
 var jiffy1 = Jiffy([2021]);
 var jiffy2 = Jiffy(jiffy1);
-jiffy1..add(years: 10);
+jiffy1.add(years: 10);
 jiffy1.year; // 2031
 jiffy2.year; // 2021
 ```
@@ -148,7 +148,7 @@ Or you can use the clone method itself
 ```dart
 var jiffy1 = Jiffy([2021]);
 var jiffy2 = jiffy1.clone();
-jiffy1..add(years: 10);
+jiffy1.add(years: 10);
 jiffy1.year; // 2031
 jiffy2.year; // 2021
 ```
@@ -216,7 +216,7 @@ Get days in a month (Returns from 28 - 31)
 Jiffy().daysInMonth;
 ```
 ### Day of week
-Get day of week (Returns from 0 - 6 [Sunday - Saturday])
+Get day of week (Returns from 1 - 7 that is [Sunday - Saturday] depending on locale start of week)
 ```dart
 Jiffy().day;
 ```
@@ -251,23 +251,20 @@ Jiffy().year;
 ### Add
 This adds time to Jiffy by the following units `years, months, weeks, days, hours, minutes, seconds and milliseconds, microseconds and duration`. See below
 ```dart
-Jiffy()..add(years: 1);
-Jiffy()..add(days: 3);
-Jiffy()..add(months: 3, duration: Duration(days: 3));
-Jiffy()..add(years: 1, weeks: 3, duration: Duration(days: 3));
+Jiffy().add(years: 1);
+Jiffy().add(days: 3);
+Jiffy().add(months: 3, duration: Duration(days: 3));
+Jiffy().add(years: 1, weeks: 3, duration: Duration(days: 3));
 ```
 Below are the params that can be used
 
 `[ years, months, weeks, days, hours, minutes, seconds, milliseconds, microseconds, duration ]`
 
-You can also add date time with chaining using [dart method cascading](https://news.dartlang.org/2012/02/method-cascades-in-dart-posted-by-gilad.html)
-
 ```dart
 var jiffy = Jiffy()
-    ..startOf(Units.DAY)
-    ..add(days: 7, months: 1)
-    ..subtract(years: 1)
-    ..utc();
+    .startOf(Units.DAY)
+    .add(days: 7, months: 1)
+    .subtract(years: 1);
 jiffy.yMMMdjm; // Apr 8, 2020 9:00 PM
 ```
 
@@ -275,13 +272,13 @@ jiffy.yMMMdjm; // Apr 8, 2020 9:00 PM
 
 ```dart
 Jiffy("2021-1-31", "yyyy-MM-dd").yMMMd; // Jan 31, 2021
-(Jiffy("2021-1-31", "yyyy-MM-dd")..add(months: 1)).yMMMd; // Feb 28, 2021
+Jiffy("2021-1-31", "yyyy-MM-dd").add(months: 1).yMMMd; // Feb 28, 2021
 ```
 ### Subtract
 This subtracts time from Jiffy by the following units `years, months, weeks, days, hours, minutes, seconds and milliseconds`. See below
 ```dart
-Jiffy()..subtract(years: 1);
-Jiffy()..subtract(days: 3);
+Jiffy().subtract(years: 1);
+Jiffy().subtract(days: 3);
 ```
 ### Start of Time
 This set the Jiffy date time to a specific unit in time in terms of years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
@@ -291,37 +288,35 @@ The units that are available are,
 `[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.YEAR ]`
 
 ```dart
-Jiffy()..startOf(Units.YEAR);    // Set to January 1st, 12:00 am this year
-Jiffy()..startOf(Units.MONTH);   // Set to the first of this month, 12:00 am
-Jiffy()..startOf(Units.WEEK);    // Set to the first day of this week, 12:00 am
-Jiffy()..startOf(Units.DAY);     // Set to 12:00 am today
-Jiffy()..startOf(Units.HOUR);    // Set to now, but with 0 mins, 0 secs, and 0 ms
-Jiffy()..startOf(Units.MINUTE);  // Set to now, but with 0 seconds and 0 milliseconds
-Jiffy()..startOf(Units.SECONDS);  // Set to now, but with 0 milliseconds;
+Jiffy().startOf(Units.YEAR);    // Set to January 1st, 12:00 am this year
+Jiffy().startOf(Units.MONTH);   // Set to the first of this month, 12:00 am
+Jiffy().startOf(Units.WEEK);    // Set to the first day of this week, 12:00 am
+Jiffy().startOf(Units.DAY);     // Set to 12:00 am today
+Jiffy().startOf(Units.HOUR);    // Set to now, but with 0 mins, 0 secs, and 0 ms
+Jiffy().startOf(Units.MINUTE);  // Set to now, but with 0 seconds and 0 milliseconds
+Jiffy().startOf(Units.SECONDS);  // Set to now, but with 0 milliseconds;
 ```
-You can also add method cascading to date time. See below
 
 ```dart
 var jiffy = Jiffy()
-    ..startOf(Units.DAY)
-    ..add(days: 1);
-
-jiffy.format("MMMM do yyyy, h:mm:ss a"); // March 3rd 2021, 12:00:00 AM
+    .startOf(Units.DAY)
+    .add(days: 1);
+    .format("MMMM do yyyy, h:mm:ss a"); // March 3rd 2021, 12:00:00 AM
 ```
 
 ### End of Time
 This set the Jiffy date time to a specific unit in time in terms of years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
 
 ```dart
-Jiffy()..endOf(Units.YEAR);    // Set to December 31st, 23:59:59:999 this year
-Jiffy()..endOf(Units.MONTH);   // Set to the end of this month, 23:59:59:999
-Jiffy()..endOf(Units.WEEK);    // Set to the end day of this week, 23:59:59:999
-Jiffy()..endOf(Units.DAY);     // Set to 23:59:59:999 today
+Jiffy().endOf(Units.YEAR);    // Set to December 31st, 23:59:59:999 this year
+Jiffy().endOf(Units.MONTH);   // Set to the end of this month, 23:59:59:999
+Jiffy().endOf(Units.WEEK);    // Set to the end day of this week, 23:59:59:999
+Jiffy().endOf(Units.DAY);     // Set to 23:59:59:999 today
 ```
 ### Local
 Sets Jiffy to local time. See below
 ```dart
-var jiffy = Jiffy()..utc(); // Time in utc
+var jiffy = Jiffy().utc(); // Time in utc
 jiffy.local(); // Set to local
 ```
 ### UTC
@@ -353,9 +348,7 @@ Jiffy("2007-1-29").fromNow(); // 14 years ago
 Jiffy([2022, 10, 29]).fromNow(); // in a year
 Jiffy(DateTime(2050, 10, 29)).fromNow(); // in 30 years
 
-var jiffy = (Jiffy()
-  ..startOf(Units.HOUR)
-).fromNow(); // 9 minutes ago
+var jiffy = Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 ```
 
 ### Time from X
@@ -549,6 +542,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Italian  | it / it_ch |
 | Korean  | ko |
 | Russian  | ru |
+| Ukrainian  | uk |
 | Hindi  | hi |
 | Arabic  | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma / ar_tn |
 | Portuguese  | pt / pt_br |
@@ -557,6 +551,8 @@ Below are the locales that are supported in Jiffy. More will be added
 | Swedish | sv |
 | Norwegian | nb |
 | Persian | fa |
+| Azerbaijani | az |
+| Dutch | nl |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 

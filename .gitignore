@@ -2,6 +2,7 @@
 .*
 # except
 !.gitignore
+!.github
 
 *.iml
 
@@ -13,3 +14,6 @@ build/
 
 # Directory created by dartdoc
 doc/api/
+
+# Coverage
+coverage/

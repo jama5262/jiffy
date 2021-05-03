@@ -12,9 +12,12 @@ import 'package:jiffy/src/locale/jaLocale.dart';
 import 'package:jiffy/src/locale/koLocale.dart';
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/locale/nbLocale.dart';
+import 'package:jiffy/src/locale/nlLocale.dart';
 import 'package:jiffy/src/locale/plLocale.dart';
 import 'package:jiffy/src/locale/ptLocale.dart';
 import 'package:jiffy/src/locale/ruLocale.dart';
+import 'package:jiffy/src/locale/ukLocale.dart';
+import 'package:jiffy/src/locale/azLocale.dart';
 import 'package:jiffy/src/locale/svLocale.dart';
 import 'package:jiffy/src/locale/trLocale.dart';
 import 'package:jiffy/src/locale/zhCnLocale.dart';
@@ -54,10 +57,12 @@ Map<String, Locale> _availableLocales = {
   'ar_sa': ArSaMaDzKwTnLocale(true, StartOfWeek.SUNDAY),
   'ar_ma': ArSaMaDzKwTnLocale(false, StartOfWeek.SATURDAY),
   'ar_tn': ArSaMaDzKwTnLocale(false, StartOfWeek.SATURDAY),
+  'az': AzLocale(StartOfWeek.MONDAY),
   'id': IdLocale(StartOfWeek.SUNDAY),
   'ja': JaLocale(StartOfWeek.SUNDAY),
   'ko': KoLocale(StartOfWeek.SUNDAY),
   'ru': RuLocale(StartOfWeek.MONDAY),
+  'uk': UkLocale(StartOfWeek.MONDAY),
   'hi': HiLocale(StartOfWeek.SUNDAY),
   'pt': PtLocale(StartOfWeek.MONDAY),
   'pt_br': PtLocale(StartOfWeek.SUNDAY),
@@ -67,6 +72,7 @@ Map<String, Locale> _availableLocales = {
   'nb': NbLocale(StartOfWeek.SUNDAY),
   'fa': FaLocale(true, StartOfWeek.SATURDAY),
   'bn': BnLocale(StartOfWeek.SUNDAY)
+  'nl': NlLocale(StartOfWeek.MONDAY),
 };
 
 Locale getLocale(String locale) {
