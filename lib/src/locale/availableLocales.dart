@@ -71,8 +71,8 @@ Map<String, Locale> _availableLocales = {
   'sv': SvLocale(StartOfWeek.SUNDAY),
   'nb': NbLocale(StartOfWeek.SUNDAY),
   'fa': FaLocale(true, StartOfWeek.SATURDAY),
-  'bn': BnLocale(StartOfWeek.SUNDAY)
-  'nl': NlLocale(StartOfWeek.MONDAY),
+  'bn': BnLocale(StartOfWeek.SUNDAY),
+  'nl': NlLocale(StartOfWeek.MONDAY)
 };
 
 Locale getLocale(String locale) {
