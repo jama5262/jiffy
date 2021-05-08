@@ -524,5 +524,24 @@ void main() {
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
       expect(locale.ordinals(), ['.', '.', '.', '.']);
     });
+    test(
+        'test Jiffy.locale() method with parsing th locale should return correct date time in th locale',
+        () async {
+      var locale = await Jiffy.locale('th');
+      expect(jiffy1.fromNow(), 'ไม่กี่วินาทีที่แล้ว');
+      expect(jiffy2.fromNow(), 'อีกไม่กี่วินาที');
+      expect(jiffy3.fromNow(), '1 นาทีที่แล้ว');
+      expect(jiffy5.fromNow(), '10 นาทีที่แล้ว');
+      expect(jiffy6.fromNow(), '1 ชั่วโมงที่แล้ว');
+      expect(jiffy7.fromNow(), '10 ชั่วโมงที่แล้ว');
+      expect(jiffy8.fromNow(), '1 วันที่แล้ว');
+      expect(jiffy9.fromNow(), '10 วันที่แล้ว');
+      expect(jiffy10.from(Jiffy([2019, 10, 01])), '1 เดือนที่แล้ว');
+      expect(jiffy11.fromNow(), '10 เดือนที่แล้ว');
+      expect(jiffy12.fromNow(), '1 ปีที่แล้ว');
+      expect(jiffy13.fromNow(), '10 ปีที่แล้ว');
+      expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+      expect(locale.ordinals(), null);
+    });
   });
 }
