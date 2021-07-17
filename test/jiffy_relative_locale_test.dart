@@ -425,7 +425,7 @@ void main() {
       expect(jiffy11.fromNow(), '10 månader sedan');
       expect(jiffy12.fromNow(), 'ett år sedan');
       expect(jiffy13.fromNow(), '10 år sedan');
-      expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
       expect(locale.ordinals(), null);
     });
     test(
