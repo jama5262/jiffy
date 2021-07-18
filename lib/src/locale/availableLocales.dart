@@ -69,7 +69,7 @@ Map<String, Locale> _availableLocales = {
   'pt_br': PtLocale(StartOfWeek.SUNDAY),
   'pl': PlLocale(StartOfWeek.MONDAY),
   'tr': TrLocale(StartOfWeek.MONDAY),
-  'sv': SvLocale(StartOfWeek.SUNDAY),
+  'sv': SvLocale(StartOfWeek.MONDAY),
   'nb': NbLocale(StartOfWeek.SUNDAY),
   'fa': FaLocale(true, StartOfWeek.SATURDAY),
   'bn': BnLocale(StartOfWeek.SUNDAY),
