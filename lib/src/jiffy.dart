@@ -45,9 +45,9 @@ class Jiffy {
     var dateTime;
     if (input == null && pattern == null) {
       dateTime = DateTime.now();
-    } else if (isDateTime(input)) {
+    } else if (input is DateTime) {
       dateTime = input;
-    } else if (isJiffy(input)) {
+    } else if (input is Jiffy) {
       dateTime = input.dateTime;
     } else if (input is Map) {
       dateTime = _parseMap(input);
@@ -565,25 +565,45 @@ class Jiffy {
     return dateTime.millisecondsSinceEpoch < startOfMs;
   }
 
-  bool isSame(var input, [Units units = Units.MILLISECOND]) {
-    var dateTime = _parse(input);
-    if (units == Units.MILLISECOND) {
-      return valueOf() == dateTime.millisecondsSinceEpoch;
+  /// Complete matching of the inputs
+  @override
+  bool operator ==(other) {
+    if (other is Jiffy) {
+      return valueOf() == other.valueOf();
     }
+    var dateTime = _parse(other);
+    return valueOf() == dateTime.millisecondsSinceEpoch;
+  }
+
+  /// Partial matching depending on unit
+  bool isSimilar(var input, [Units units = Units.MILLISECOND]) {
+    var dt = _parse(input);
+
+    if (units == Units.MILLISECOND) {
+      return valueOf() == dt.millisecondsSinceEpoch;
+    }
+
     var startOfMs = (clone()..startOf(units)).valueOf();
     var endOfMs = (clone()..endOf(units)).valueOf();
-    var dateTimeMs = dateTime.millisecondsSinceEpoch;
+    var dateTimeMs = dt.millisecondsSinceEpoch;
     return startOfMs <= dateTimeMs && dateTimeMs <= endOfMs;
   }
 
   bool isSameOrBefore(var input, [Units units = Units.MILLISECOND]) {
-    var dateTime = _parse(input);
-    return isSame(dateTime, units) || isBefore(dateTime, units);
+    var dt = _parse(input);
+    if (units == Units.MILLISECOND) {
+      return (dateTime == dt) || isBefore(dt, units);
+    }
+    return isSimilar(dt, units) || isBefore(dt, units);
   }
 
   bool isSameOrAfter(var input, [Units units = Units.MILLISECOND]) {
-    var dateTime = _parse(input);
-    return isSame(dateTime, units) || isAfter(dateTime, units);
+    var dt = _parse(input);
+
+    if (units == Units.MILLISECOND) {
+      return (dateTime == dt) || isAfter(dt, units);
+    }
+    return isSimilar(dt, units) || isAfter(dt, units);
   }
 
   bool isBetween(var inputFrom, var inputTo,
@@ -597,8 +617,4 @@ class Jiffy {
       (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
 
   bool get isLeapYear => _isLeapYear(_dateTime.year);
-
-  static bool isJiffy(var input) => input is Jiffy;
-
-  static bool isDateTime(var input) => input is DateTime;
 }

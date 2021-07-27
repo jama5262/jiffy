@@ -29,9 +29,9 @@ void main() {
       var jiffy1 = Jiffy('2010-10-20', 'yyyy-MM-dd');
       var jiffy2 = Jiffy('2009-12-31', 'yyyy-MM-dd');
       var jiffy3 = Jiffy('2010-01-01', 'yyyy-MM-dd');
-      expect(jiffy1.isSame(Jiffy('2010-10-20', 'yyyy-MM-dd')), true);
-      expect(jiffy1.isSame(jiffy2, Units.YEAR), false);
-      expect(jiffy1.isSame(jiffy3, Units.YEAR), true);
+      expect(jiffy1 == Jiffy('2010-10-20', 'yyyy-MM-dd'), true);
+      expect(jiffy1.isSimilar(jiffy2, Units.YEAR), false);
+      expect(jiffy1.isSimilar(jiffy3, Units.YEAR), true);
     });
     test(
         'test Jiffy().isSameOrBefore() method with parsing date time should return true or false if date time is same or before',
@@ -72,14 +72,14 @@ void main() {
     test(
         'test Jiffy().isJiffy() method with parsing date time should return true or false if date time is Jiffy object',
         () {
-      expect(Jiffy.isJiffy(DateTime.now()), false);
-      expect(Jiffy.isJiffy(Jiffy()), true);
+      expect(DateTime.now() is Jiffy, false);
+      expect(Jiffy() is Jiffy, true);
     });
     test(
         'test Jiffy().isDateTime() method with parsing date time should return true or false if date time is DateTime object',
         () {
-      expect(Jiffy.isDateTime(Jiffy()), false);
-      expect(Jiffy.isDateTime(DateTime.now()), true);
+      expect(Jiffy() is DateTime, false);
+      expect(DateTime.now() is DateTime, true);
     });
   });
 }

@@ -57,7 +57,7 @@ Future<int> main() async {
 //  MANIPULATING DATES
   Jiffy().add(duration: Duration(days: 1)).yMMMMd; // October 20, 2019
 
-  Jiffy().subtract(days: 1).yMMMMd; // October 18, 2019
+  Jiffy().subtract(duration: Duration()).yMMMMd; // October 18, 2019
 
 // LOCALES
 // The locale method always return a future

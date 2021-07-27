@@ -153,7 +153,7 @@ void main() {
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')
-                ..subtract(hours: 2),
+                ..subtract(duration: Duration(hours: 2)),
               Units.DAY,
               true),
           0.08333333333333333);
@@ -169,7 +169,8 @@ void main() {
           0);
       expect(
           Jiffy(DateTime(2019, 10, 16, 23)).diff(
-              Jiffy(DateTime(2019, 10, 16, 23))..add(days: 2, hours: 23),
+              Jiffy(DateTime(2019, 10, 16, 23))
+                ..add(duration: Duration(days: 2, hours: 23)),
               Units.WEEK,
               true),
           -0.4226190476190476);
