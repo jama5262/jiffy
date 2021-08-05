@@ -75,8 +75,8 @@ Jiffy("2021-5-25"); // A calendar date part
 Jiffy("2021/5/25"); // A calendar date part separated by slash "/"
 Jiffy("2021525"); // Basic (short) full date
 Jiffy("2021-5-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
-Jiffy("2021-5-25T12:00:00.000"); // ISO dart format
-Jiffy("2021-5-25T12:00:00.000Z"); // ISO dart format (UTC)
+Jiffy("2021-5-25T12:00:00.000"); // ISO date format
+Jiffy("2021-5-25T12:00:00.000Z"); // ISO date format (UTC)
 ```
 
 ### String Formatting
