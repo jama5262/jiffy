@@ -65,7 +65,7 @@ Map<String, Locale> _availableLocales = {
   'pl': PlLocale(StartOfWeek.MONDAY),
   'tr': TrLocale(StartOfWeek.MONDAY),
   'sv': SvLocale(StartOfWeek.SUNDAY),
-  'nb': NbLocale(StartOfWeek.SUNDAY),
+  'nb': NbLocale(StartOfWeek.MONDAY),
   'fa': FaLocale(true, StartOfWeek.SATURDAY),
 };
 
