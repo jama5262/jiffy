@@ -19,6 +19,7 @@ void main() {
       expect(locales, contains('de'));
       expect(locales, contains('zh_cn'));
       expect(locales, contains('ru'));
+      expect(locales, contains('uk'));
       expect(locales, contains('az'));
     });
   });
@@ -315,6 +316,25 @@ void main() {
       expect(locale.ordinals(), null);
     });
     test(
+        'test Jiffy.locale() method with parsing uk locale should return correct date time in uk locale',
+        () async {
+      var locale = await Jiffy.locale('uk');
+      expect(jiffy1.fromNow(), 'декілька секунд тому');
+      expect(jiffy2.fromNow(), 'через декілька секунд');
+      expect(jiffy3.fromNow(), 'хвилину тому');
+      expect(jiffy5.fromNow(), '10 хвилин тому');
+      expect(jiffy6.fromNow(), 'годину тому');
+      expect(jiffy7.fromNow(), '10 годин тому');
+      expect(jiffy8.fromNow(), 'день тому');
+      expect(jiffy9.fromNow(), '10 днів тому');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'місяць тому');
+      expect(jiffy11.fromNow(), '10 місяців тому');
+      expect(jiffy12.fromNow(), 'рік тому');
+      expect(jiffy13.fromNow(), '10 років тому');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), null);
+    });
+    test(
         'test Jiffy.locale() method with parsing az locale should return correct date time in az locale',
         () async {
       var locale = await Jiffy.locale('az');
@@ -465,6 +485,63 @@ void main() {
       expect(jiffy13.fromNow(), '۱۰ سال  پیش');
       expect(locale.startOfWeek(), StartOfWeek.SATURDAY);
       expect(locale.ordinals(), ['م', 'م', 'م', 'م']);
+    });
+    test(
+        'test Jiffy.locale() method with parsing bn locale should return correct date time in bn locale',
+        () async {
+      var locale = await Jiffy.locale('bn');
+      expect(jiffy1.fromNow(), 'কিছু মুহূর্ত আগে');
+      expect(jiffy2.fromNow(), 'কিছু মুহূর্ত পরে');
+      expect(jiffy3.fromNow(), 'এক মিনিট আগে');
+      expect(jiffy5.fromNow(), '১০ মিনিট আগে');
+      expect(jiffy6.fromNow(), 'এক ঘন্টা আগে');
+      expect(jiffy7.fromNow(), '১০ ঘন্টা আগে');
+      expect(jiffy8.fromNow(), 'এক দিন আগে');
+      expect(jiffy9.fromNow(), '১০ দিন আগে');
+      expect(jiffy10.from(Jiffy([2019, 10, 01])), 'এক মাস আগে');
+      expect(jiffy11.fromNow(), '১০ মাস আগে');
+      expect(jiffy12.fromNow(), 'এক বছর আগে');
+      expect(jiffy13.fromNow(), '১০ বছর আগে');
+      expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+      expect(locale.ordinals(), null);
+    });
+    test(
+        'test Jiffy.locale() method with parsing nl locale should return correct date time in nl locale',
+        () async {
+      var locale = await Jiffy.locale('nl');
+      expect(jiffy1.fromNow(), 'een ogenblik geleden');
+      expect(jiffy2.fromNow(), 'op dit moment');
+      expect(jiffy3.fromNow(), 'een minuut geleden');
+      expect(jiffy5.fromNow(), '10 minuten geleden');
+      expect(jiffy6.fromNow(), 'een uur geleden');
+      expect(jiffy7.fromNow(), '10 uur geleden');
+      expect(jiffy8.fromNow(), 'een dag geleden');
+      expect(jiffy9.fromNow(), '10 dagen geleden');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'een maand geleden');
+      expect(jiffy11.fromNow(), '10 maanden geleden');
+      expect(jiffy12.fromNow(), 'een jaar geleden');
+      expect(jiffy13.fromNow(), '10 jaar geleden');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), ['.', '.', '.', '.']);
+    });
+    test(
+        'test Jiffy.locale() method with parsing th locale should return correct date time in th locale',
+        () async {
+      var locale = await Jiffy.locale('th');
+      expect(jiffy1.fromNow(), 'ไม่กี่วินาทีที่แล้ว');
+      expect(jiffy2.fromNow(), 'อีกไม่กี่วินาที');
+      expect(jiffy3.fromNow(), '1 นาทีที่แล้ว');
+      expect(jiffy5.fromNow(), '10 นาทีที่แล้ว');
+      expect(jiffy6.fromNow(), '1 ชั่วโมงที่แล้ว');
+      expect(jiffy7.fromNow(), '10 ชั่วโมงที่แล้ว');
+      expect(jiffy8.fromNow(), '1 วันที่แล้ว');
+      expect(jiffy9.fromNow(), '10 วันที่แล้ว');
+      expect(jiffy10.from(Jiffy([2019, 10, 01])), '1 เดือนที่แล้ว');
+      expect(jiffy11.fromNow(), '10 เดือนที่แล้ว');
+      expect(jiffy12.fromNow(), '1 ปีที่แล้ว');
+      expect(jiffy13.fromNow(), '10 ปีที่แล้ว');
+      expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+      expect(locale.ordinals(), null);
     });
   });
 }
