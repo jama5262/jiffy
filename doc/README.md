@@ -75,8 +75,8 @@ Jiffy("2021-5-25"); // A calendar date part
 Jiffy("2021/5/25"); // A calendar date part separated by slash "/"
 Jiffy("2021525"); // Basic (short) full date
 Jiffy("2021-5-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
-Jiffy("2021-5-25T12:00:00.000"); // ISO dart format
-Jiffy("2021-5-25T12:00:00.000Z"); // ISO dart format (UTC)
+Jiffy("2021-5-25T12:00:00.000"); // ISO date format
+Jiffy("2021-5-25T12:00:00.000Z"); // ISO date format (UTC)
 ```
 
 ### String Formatting
@@ -103,7 +103,7 @@ Jiffy("2021-5-25", "yyyy-MM-dd").yMMMMd; // May 25, 2021
 
 ### Maps
 You can also create a Jiffy from a Map, Supported key pairs are,
- 
+
 `[ year, month, day, hour, minute, second and millisecond ]`. See below
 ```dart
 Jiffy({
@@ -552,6 +552,8 @@ Below are the locales that are supported in Jiffy. More will be added
 | Norwegian | nb |
 | Persian | fa |
 | Azerbaijani | az |
+| Dutch | nl |
+| Thailand | th |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 

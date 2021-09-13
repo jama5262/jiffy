@@ -7,7 +7,7 @@ class UkLocale extends Locale {
   UkLocale(this.strtOfWeek);
 
   @override
-  RelativeTime relativeTime() => RuRelativeTime();
+  RelativeTime relativeTime() => UkRelativeTime();
 
   @override
   List<String>? ordinals() => null;
@@ -16,7 +16,7 @@ class UkLocale extends Locale {
   StartOfWeek startOfWeek() => strtOfWeek;
 }
 
-class RuRelativeTime extends RelativeTime {
+class UkRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
@@ -78,7 +78,7 @@ String _convert(int number, String type) {
       case 'hours':
         return 'години';
       case 'days':
-        return 'дня';
+        return 'дні';
       case 'months':
         return 'місяці';
       case 'years':
