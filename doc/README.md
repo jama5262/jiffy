@@ -542,6 +542,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Italian  | it / it_ch |
 | Korean  | ko |
 | Russian  | ru |
+| Ukrainian  | uk |
 | Hindi  | hi |
 | Arabic  | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma / ar_tn |
 | Portuguese  | pt / pt_br |
