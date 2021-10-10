@@ -20,7 +20,7 @@ class FiRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
-  String prefixFromNow() => 'päästä';
+  String prefixFromNow() => '';
   @override
   String suffixAgo() => 'sitten';
   @override

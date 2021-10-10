@@ -554,6 +554,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Azerbaijani | az |
 | Dutch | nl |
 | Thailand | th |
+| Finnish | fi |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 

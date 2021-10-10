@@ -543,5 +543,24 @@ void main() {
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
       expect(locale.ordinals(), null);
     });
+    test(
+        'test Jiffy.locale() method with parsing fi locale should return correct date time in fi locale',
+            () async {
+          var locale = await Jiffy.locale('fi');
+          expect(jiffy1.fromNow(), 'muutama sekunti sitten');
+          expect(jiffy2.fromNow(), 'muutama sekunti');
+          expect(jiffy3.fromNow(), 'yksi minuutti sitten');
+          expect(jiffy5.fromNow(), '10 minuuttia sitten');
+          expect(jiffy6.fromNow(), 'yksi tunti sitten');
+          expect(jiffy7.fromNow(), '10 tuntia sitten');
+          expect(jiffy8.fromNow(), 'yksi päivä sitten');
+          expect(jiffy9.fromNow(), '10 päivää sitten');
+          expect(jiffy10.from(Jiffy('2019-10-01')), 'yksi kuukausi sitten');
+          expect(jiffy11.fromNow(), '10 kuukautta sitten');
+          expect(jiffy12.fromNow(), 'yksi vuosi sitten');
+          expect(jiffy13.fromNow(), '10 vuotta sitten');
+          expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+          expect(locale.ordinals(), null);
+        });
   });
 }
