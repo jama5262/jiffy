@@ -3,7 +3,7 @@
 [![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v4.1.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub-v5.0.0-blue)](https://pub.dev/packages/jiffy)
 [![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
 
 
@@ -75,8 +75,8 @@ Jiffy("2021-5-25"); // A calendar date part
 Jiffy("2021/5/25"); // A calendar date part separated by slash "/"
 Jiffy("2021525"); // Basic (short) full date
 Jiffy("2021-5-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
-Jiffy("2021-5-25T12:00:00.000"); // ISO dart format
-Jiffy("2021-5-25T12:00:00.000Z"); // ISO dart format (UTC)
+Jiffy("2021-5-25T12:00:00.000"); // ISO date format
+Jiffy("2021-5-25T12:00:00.000Z"); // ISO date format (UTC)
 ```
 
 ### String Formatting
@@ -103,7 +103,7 @@ Jiffy("2021-5-25", "yyyy-MM-dd").yMMMMd; // May 25, 2021
 
 ### Maps
 You can also create a Jiffy from a Map, Supported key pairs are,
- 
+
 `[ year, month, day, hour, minute, second and millisecond ]`. See below
 ```dart
 Jiffy({
@@ -123,15 +123,15 @@ Jiffy({
 Jiffy can also parse timestamp milliseconds and seconds. Just call `Jiffy.unix()` which return a dart Datetime. See below
 ```dart
 // Parsing a timestamp in milliseconds
-Jiffy.unix(1318781876406);
+Jiffy.unixFromMillisecondsSinceEpoch(1318781876406);
 
 // Parsing a timestamp in seconds
-Jiffy.unix(1318781876).format(); // 2011-10-16T19:17:56.000
+Jiffy.unixFromSecondsSinceEpoch(1318781876).format(); // 2011-10-16T19:17:56.000
 ```
 
-**_Note: `Jiffy.unix()` returns a timestamp base on local time. You can also get it in UTC which returns a UTC in dart Datetime. See below_**
+**_Note: `Jiffy.unixFromMillisecondsSinceEpoch() or Jiffy.unixFromSecondsSinceEpoch` returns a timestamp base on local time. You can also get it in UTC which returns a UTC in dart Datetime. See below_**
 ```dart
-Jiffy.unix(1318781876406).utc();
+Jiffy.unixFromMillisecondsSinceEpoch(1318781876406).utc();
 ```
 
 ### Jiffy Cloning
@@ -542,6 +542,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Italian  | it / it_ch |
 | Korean  | ko |
 | Russian  | ru |
+| Ukrainian  | uk |
 | Hindi  | hi |
 | Arabic  | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma / ar_tn |
 | Portuguese  | pt / pt_br |
@@ -551,6 +552,8 @@ Below are the locales that are supported in Jiffy. More will be added
 | Norwegian | nb |
 | Persian | fa |
 | Azerbaijani | az |
+| Dutch | nl |
+| Thailand | th |
 
 Getting and setting locales in Jiffy **_always returns a future_**
 

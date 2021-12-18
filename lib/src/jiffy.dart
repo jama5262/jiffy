@@ -22,14 +22,15 @@ class Jiffy {
     _initializeLocale();
   }
 
-  Jiffy.unix(int timestamp) {
-    var timestampLength = timestamp.toString().length;
-    if (timestampLength != 10 && timestampLength != 13) {
-      throw JiffyException(
-              'The timestamp passed must be in seconds or millisecods e.g. 1570963450 or 1570963450123')
-          .cause;
-    }
-    if (timestampLength == 10) timestamp *= 1000;
+  Jiffy.unixFromSecondsSinceEpoch(int timestamp) {
+    _unix(timestamp * 1000);
+  }
+
+  Jiffy.unixFromMillisecondsSinceEpoch(int timestamp) {
+    _unix(timestamp);
+  }
+
+  void _unix(int timestamp) {
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
   }
 

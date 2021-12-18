@@ -151,28 +151,18 @@ void main() {
     test(
         'test Jiffy.unix() instance with parsing timestamp in seconds should set date time',
         () {
-      expect(Jiffy.unix(1570963450).year,
+      expect(Jiffy.unixFromSecondsSinceEpoch(1570963450).year,
           DateTime.fromMillisecondsSinceEpoch(1570963450000).year);
-      expect(Jiffy.unix(1570963450).month,
+      expect(Jiffy.unixFromSecondsSinceEpoch(1570963450).month,
           DateTime.fromMillisecondsSinceEpoch(1570963450000).month);
     });
     test(
         'test Jiffy.unix() instance with parsing timestamp in milliseconds should set date time',
         () {
-      expect(Jiffy.unix(1570963450000).year,
+      expect(Jiffy.unixFromMillisecondsSinceEpoch(1570963450000).year,
           DateTime.fromMillisecondsSinceEpoch(1570963450000).year);
-      expect(Jiffy.unix(1570963450000).month,
+      expect(Jiffy.unixFromMillisecondsSinceEpoch(1570963450000).month,
           DateTime.fromMillisecondsSinceEpoch(1570963450000).month);
-    });
-    test(
-        'test Jiffy.unix() instance with parsing timestamp not in seconds or milliseconds should return exception',
-        () {
-      try {
-        Jiffy.unix(157096345);
-      } catch (e) {
-        expect(e.toString(),
-            'JiffyException: The timestamp passed must be in seconds or millisecods e.g. 1570963450 or 1570963450123');
-      }
     });
   });
 }
