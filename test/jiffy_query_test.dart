@@ -1,5 +1,4 @@
 import 'package:jiffy/jiffy.dart';
-import 'package:jiffy/src/enums/units.dart';
 import 'package:test/test.dart';
 
 void main() {
