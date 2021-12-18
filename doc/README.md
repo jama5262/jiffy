@@ -123,15 +123,15 @@ Jiffy({
 Jiffy can also parse timestamp milliseconds and seconds. Just call `Jiffy.unix()` which return a dart Datetime. See below
 ```dart
 // Parsing a timestamp in milliseconds
-Jiffy.unix(1318781876406);
+Jiffy.unixFromMillisecondsSinceEpoch(1318781876406);
 
 // Parsing a timestamp in seconds
-Jiffy.unix(1318781876).format(); // 2011-10-16T19:17:56.000
+Jiffy.unixFromSecondsSinceEpoch(1318781876).format(); // 2011-10-16T19:17:56.000
 ```
 
-**_Note: `Jiffy.unix()` returns a timestamp base on local time. You can also get it in UTC which returns a UTC in dart Datetime. See below_**
+**_Note: `Jiffy.unixFromMillisecondsSinceEpoch() or Jiffy.unixFromSecondsSinceEpoch` returns a timestamp base on local time. You can also get it in UTC which returns a UTC in dart Datetime. See below_**
 ```dart
-Jiffy.unix(1318781876406).utc();
+Jiffy.unixFromMillisecondsSinceEpoch(1318781876406).utc();
 ```
 
 ### Jiffy Cloning
