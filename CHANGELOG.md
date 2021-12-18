@@ -1,3 +1,31 @@
+## 5.0.0
+
+### Major Changes
+
+1. Updated `Jiffy.unix()` to be more specific to seconds and milliseconds timestamps
+
+Previously
+```dart
+// Parsing a timestamp in milliseconds
+Jiffy.unix(1318781876406);
+
+// Parsing a timestamp in seconds
+Jiffy.unix(1318781876).format(); // 2011-10-16T19:17:56.000
+```
+Now
+```dart
+// Parsing a timestamp in milliseconds
+Jiffy.unixFromMillisecondsSinceEpoch(1318781876406);
+
+// Parsing a timestamp in seconds
+Jiffy.unixFromSecondsSinceEpoch(1318781876).format(); // 2011-10-16T19:17:56.000
+```
+
+2. Added Ukranian `uk` locale contributed by [yarmat](https://github.com/yarmat)
+3. Added Dutch `nl` locale contributed by [diegonuja](https://github.com/diegonuja)
+4. Added Thailand `th` locale contributed by [srithong](https://github.com/srithong)
+5. Minor bug fixes from [calvintam236](https://github.com/calvintam236)
+
 ## 4.1.0
 
 ### Minor Changes

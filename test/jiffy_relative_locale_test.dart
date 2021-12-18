@@ -509,8 +509,8 @@ void main() {
         'test Jiffy.locale() method with parsing nl locale should return correct date time in nl locale',
         () async {
       var locale = await Jiffy.locale('nl');
-      expect(jiffy1.fromNow(), 'een ogenblik geleden');
-      expect(jiffy2.fromNow(), 'op dit moment');
+      expect(jiffy1.fromNow(), 'een paar seconden geleden');
+      expect(jiffy2.fromNow(), 'over een paar seconden');
       expect(jiffy3.fromNow(), 'een minuut geleden');
       expect(jiffy5.fromNow(), '10 minuten geleden');
       expect(jiffy6.fromNow(), 'een uur geleden');
