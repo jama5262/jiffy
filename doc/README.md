@@ -536,6 +536,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Spanish  | es / es_do / es_us |
 | Chinese  | zh / zh_cn / zh_hk / zh_tw |
 | Japanese  | ja |
+| Danish  | da / da_dk |
 | German  | de / de_at / de_ch |
 | French  | fr / fr_ch / fr_ca |
 | Indonesian  | id |
