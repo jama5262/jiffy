@@ -1,5 +1,6 @@
 import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/locale/arLocale.dart';
+import 'package:jiffy/src/locale/daLocale.dart';
 import 'package:jiffy/src/locale/deLocale.dart';
 import 'package:jiffy/src/locale/enLocale.dart';
 import 'package:jiffy/src/locale/esLocale.dart';
@@ -45,6 +46,8 @@ Map<String, Locale> _availableLocales = {
   'zh_cn': ZhCnLocale(StartOfWeek.SUNDAY),
   'zh_hk': ZhLocale(StartOfWeek.SUNDAY),
   'zh_tw': ZhLocale(StartOfWeek.SUNDAY),
+  'da': DaLocale(StartOfWeek.MONDAY),
+  'da_dk': DaLocale(StartOfWeek.MONDAY),
   'de': DeLocale(StartOfWeek.MONDAY),
   'de_de': DeLocale(StartOfWeek.MONDAY),
   'de_at': DeLocale(StartOfWeek.MONDAY),
