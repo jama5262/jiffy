@@ -286,6 +286,14 @@ class Jiffy {
       case Units.MONTH:
         _dateTime = DateTime(_dateTime.year, _dateTime.month, 1);
         break;
+      case Units.QUARTER_YEAR:
+        _dateTime = DateTime(
+            _dateTime.year, _lastMonthOfQuarter(_dateTime.month) - 2, 1);
+        break;
+      case Units.HALF_YEAR:
+        _dateTime = DateTime(
+            _dateTime.year, _lastMonthOfHalfYear(_dateTime.month) - 5, 1);
+        break;
       case Units.YEAR:
         _dateTime = DateTime(_dateTime.year);
         break;
@@ -327,12 +335,18 @@ class Jiffy {
             DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
         break;
       case Units.MONTH:
-        var date = _daysInMonthArray[_dateTime.month];
-        if (_isLeapYear(_dateTime.year) && _dateTime.month == 2) {
-          date = 29;
-        }
-        _dateTime =
-            DateTime(_dateTime.year, _dateTime.month, date, 23, 59, 59, 999);
+        _dateTime = DateTime(_dateTime.year, _dateTime.month,
+            _daysInMonth(_dateTime.year, _dateTime.month), 23, 59, 59, 999);
+        break;
+      case Units.QUARTER_YEAR:
+        final month = _lastMonthOfQuarter(_dateTime.month);
+        _dateTime = DateTime(_dateTime.year, month,
+            _daysInMonth(_dateTime.year, month), 23, 59, 59, 999);
+        break;
+      case Units.HALF_YEAR:
+        final month = _lastMonthOfHalfYear(_dateTime.month);
+        _dateTime = DateTime(_dateTime.year, month,
+            _daysInMonth(_dateTime.year, month), 23, 59, 59, 999);
         break;
       case Units.YEAR:
         _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
@@ -369,6 +383,18 @@ class Jiffy {
     var result = _daysInMonthArray[month];
     if (month == 2 && _isLeapYear(year)) result++;
     return result;
+  }
+
+  int _lastMonthOfQuarter(int currentMonth) {
+    return _lastMonthOfFractionYear(currentMonth, fractionSize: 3);
+  }
+
+  int _lastMonthOfHalfYear(int currentMonth) {
+    return _lastMonthOfFractionYear(currentMonth, fractionSize: 6);
+  }
+
+  int _lastMonthOfFractionYear(int currentMonth, {required int fractionSize}) {
+    return (currentMonth / fractionSize).ceil() * fractionSize;
   }
 
   DateTime _addMonths(DateTime from, int months) {
@@ -504,6 +530,12 @@ class Jiffy {
         break;
       case Units.MONTH:
         diff = _monthDiff(_dateTime, dateTime);
+        break;
+      case Units.QUARTER_YEAR:
+        diff = _monthDiff(_dateTime, dateTime) / 3;
+        break;
+      case Units.HALF_YEAR:
+        diff = _monthDiff(_dateTime, dateTime) / 6;
         break;
       case Units.YEAR:
         diff = _monthDiff(_dateTime, dateTime) / 12;

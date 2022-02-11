@@ -253,6 +253,26 @@ void main() {
           '2019-10-01 00:00:00.000');
     });
     test(
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in quarter-years',
+        () {
+      expect(
+          (Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..startOf(Units.QUARTER_YEAR))
+              .dateTime
+              .toString(),
+          '2019-10-01 00:00:00.000');
+    });
+    test(
+        'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in half-years',
+        () {
+      expect(
+          (Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..startOf(Units.HALF_YEAR))
+              .dateTime
+              .toString(),
+          '2019-07-01 00:00:00.000');
+    });
+    test(
         'test Jiffy().startOf() method with parsing date time should add and return correct start of date time in years',
         () {
       expect(
@@ -342,6 +362,62 @@ void main() {
               .dateTime
               .toString(),
           '2016-02-29 23:59:59.999');
+    });
+    test(
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in quarter-years',
+        () {
+      expect(
+          (Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.QUARTER_YEAR))
+              .dateTime
+              .toString(),
+          '2019-12-31 23:59:59.999');
+      expect(
+          (Jiffy('2019-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.QUARTER_YEAR))
+              .dateTime
+              .toString(),
+          '2019-03-31 23:59:59.999');
+      expect(
+          (Jiffy('2016-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.QUARTER_YEAR))
+              .dateTime
+              .toString(),
+          '2016-03-31 23:59:59.999');
+      expect(
+          (Jiffy('2016-04-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.QUARTER_YEAR))
+              .dateTime
+              .toString(),
+          '2016-06-30 23:59:59.999');
+    });
+    test(
+        'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in half-years',
+        () {
+      expect(
+          (Jiffy('2019-10-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.HALF_YEAR))
+              .dateTime
+              .toString(),
+          '2019-12-31 23:59:59.999');
+      expect(
+          (Jiffy('2019-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.HALF_YEAR))
+              .dateTime
+              .toString(),
+          '2019-06-30 23:59:59.999');
+      expect(
+          (Jiffy('2016-02-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.HALF_YEAR))
+              .dateTime
+              .toString(),
+          '2016-06-30 23:59:59.999');
+      expect(
+          (Jiffy('2016-04-13 13:12:12', 'yyyy-MM-dd hh:mm:ss')
+                ..endOf(Units.HALF_YEAR))
+              .dateTime
+              .toString(),
+          '2016-06-30 23:59:59.999');
     });
     test(
         'test Jiffy().endOf() method with parsing date time should add and return correct end of date time in years',

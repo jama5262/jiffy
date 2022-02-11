@@ -184,11 +184,49 @@ void main() {
       expect(
           Jiffy([2019, 10, 16, 22]).diff(
               Jiffy([2019, 10, 16, 22])..add(weeks: 2), Units.MONTH, true),
-          -0.45161290322580644);
+          -0.45100671140939597);
       expect(
           Jiffy([2019, 10, 16, 22]).diff(
               Jiffy([2019, 10, 16, 22])..add(months: 2), Units.MONTH, true),
           -2.0);
+    });
+    test(
+        'test Jiffy().diff() method with parsing date time should return correct date time in quarter-years',
+        () {
+      expect(
+          Jiffy([2019, 10, 20, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
+              Units.QUARTER_YEAR),
+          0);
+      expect(
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(weeks: 2),
+              Units.QUARTER_YEAR,
+              true),
+          -0.15033557046979865);
+      expect(
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(months: 2),
+              Units.QUARTER_YEAR,
+              true),
+          -0.6666666666666666);
+    });
+    test(
+        'test Jiffy().diff() method with parsing date time should return correct date time in half-years',
+        () {
+      expect(
+          Jiffy([2019, 10, 20, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(duration: Duration(seconds: 1)),
+              Units.HALF_YEAR),
+          0);
+      expect(
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(weeks: 2), Units.HALF_YEAR, true),
+          -0.07516778523489932);
+      expect(
+          Jiffy([2019, 10, 16, 22]).diff(
+              Jiffy([2019, 10, 16, 22])..add(months: 2), Units.HALF_YEAR, true),
+          -0.3333333333333333);
     });
     test(
         'test Jiffy().diff() method with parsing date time should return correct date time in years',
@@ -205,7 +243,7 @@ void main() {
                 ..add(weeks: 2),
               Units.YEAR,
               true),
-          -0.03763440860215054);
+          -0.03758389261744966);
       expect(
           Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a').diff(
               Jiffy('2019, 10, 16 10:00:00 pm', 'yyyy, MM, dd h:mm:ss a')

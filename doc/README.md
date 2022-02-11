@@ -285,7 +285,7 @@ This set the Jiffy date time to a specific unit in time in terms of years, month
 
 The units that are available are,
 
-`[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.YEAR ]`
+`[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.QUARTER_YEAR, Units.HALF_YEAR, Units.YEAR ]`
 
 ```dart
 Jiffy().startOf(Units.YEAR);    // Set to January 1st, 12:00 am this year
@@ -309,6 +309,8 @@ This set the Jiffy date time to a specific unit in time in terms of years, month
 
 ```dart
 Jiffy().endOf(Units.YEAR);    // Set to December 31st, 23:59:59:999 this year
+Jiffy().endOf(Units.QUARTER_YEAR);   // Set to the end of this quarter, 23:59:59:999
+Jiffy().endOf(Units.HALF_YEAR);   // Set to the end of this half-year, 23:59:59:999
 Jiffy().endOf(Units.MONTH);   // Set to the end of this month, 23:59:59:999
 Jiffy().endOf(Units.WEEK);    // Set to the end day of this week, 23:59:59:999
 Jiffy().endOf(Units.DAY);     // Set to 23:59:59:999 today
@@ -371,7 +373,7 @@ jiff1.diff(jiffy2); // 86400000
 ```
 Getting difference in another unit of measurement. The units that are available are,
 
-`[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.YEAR ]`
+`[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.QUARTER_YEAR, Units.HALF_YEAR, Units.YEAR ]`
 ```dart
 Jiffy([2007, 1, 28]).diff([2017, 1, 29], Units.DAY); // -3654
 ```
