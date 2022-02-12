@@ -10,6 +10,11 @@ void main() {
       expect(locales, isList);
     });
 
+    test('test should use locale parameter parse instantly', () {
+      var result = Jiffy('2019-09-01', null, 'tr');
+      expect(result.from('2019-10-01'), 'bir ay önce');
+    });
+
     test(
         'test show all available locales contains locales en, fr, de, zn_ch, ru, az',
         () {
