@@ -567,5 +567,24 @@ void main() {
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
       expect(locale.ordinals(), ['.', '.', '.', '.']);
     });
+    test(
+        'test Jiffy.locale() method with parsing da locale should return correct date time in da locale',
+        () async {
+      var locale = await Jiffy.locale('da');
+      expect(jiffy1.fromNow(), 'nogle sekunder siden');
+      expect(jiffy2.fromNow(), 'om nogle sekunder');
+      expect(jiffy3.fromNow(), 'ét minut siden');
+      expect(jiffy5.fromNow(), '10 minutter siden');
+      expect(jiffy6.fromNow(), 'én time siden');
+      expect(jiffy7.fromNow(), '10 timer siden');
+      expect(jiffy8.fromNow(), 'én dag siden');
+      expect(jiffy9.fromNow(), '10 dage siden');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'én måned siden');
+      expect(jiffy11.fromNow(), '10 måneder siden');
+      expect(jiffy12.fromNow(), 'ét år siden');
+      expect(jiffy13.fromNow(), '10 år siden');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), null);
+    });
   });
 }
