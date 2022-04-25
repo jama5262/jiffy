@@ -1,4 +1,5 @@
 import 'package:jiffy/jiffy.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -64,6 +65,75 @@ void main() {
       expect(Jiffy('2019, 10, 16 3:30 PM', 'yyyy, MM, dd hh:mm a').jms,
           '3:30:00 PM');
     });
+  });
+
+  group('Test format and default format datetime methods with locale parameter', () {
+    test(
+        'initial intl',
+            () async {
+          await initializeDateFormatting();
+        });
+    test(
+        'test Jiffy().format get method with parsing date time and locale parameter should return correct date time string',
+            () {
+          expect(Jiffy('20191016', null, 'zh_CN').format('MMMM dd, yyyy'), '十月 16, 2019');
+          expect(Jiffy('2019-10-16 12:00', null, 'zh_CN').format('[Today is] dd MMM'),
+              'Today is 16 10月');
+          expect(Jiffy('2019-10-16T00:00:00.000', null, 'zh_CN').format('MMMMEEEEd'),
+              '10月16日星期三');
+          expect(Jiffy('2019/10/16', null, 'zh_CN').format(), '2019-10-16T00:00:00.000');
+        });
+    test(
+        'test Jiffy().format get method with parsing ordianl date time and locale parameter should return correct date time string',
+            () {
+          expect(Jiffy([2019, 10, 1], null, 'zh_CN').format('MMM do yy'), '10月 1日 19');
+          expect(Jiffy([2019, 10, 2], null, 'zh_CN').format('MMM do yy'), '10月 2日 19');
+          expect(Jiffy([2019, 10, 3], null, 'zh_CN').format('MMM do yy'), '10月 3日 19');
+          expect(Jiffy([2019, 10, 10], null, 'zh_CN').format('MMM do yy'), '10月 10日 19');
+          expect(Jiffy([2019, 10, 21], null, 'zh_CN').format('MMM do yy'), '10月 21日 19');
+        });
+    test(
+        'test Jiffy().defaultDatetime get method with parsing date time and locale parameter should return correct date time string',
+            () {
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').E, '周三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').EEEE, '星期三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').LLL, '10月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').LLLL, '十月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').Md, '10/16');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MEd, '10/16周三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MMM, '10月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MMMd, '10月16日');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MMMEd, '10月16日周三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MMMM, '十月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MMMMd, '10月16日');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').MMMMEEEEd, '10月16日星期三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').QQQ, '4季度');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').QQQQ, '第四季度');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yM, '2019年10月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMd, '2019/10/16');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMEd, '2019/10/16周三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMM, '2019年10月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMd, '2019年10月16日');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMdjm, '2019年10月16日 上午12:00');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMEd, '2019年10月16日周三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMEdjm, '2019年10月16日周三 上午12:00');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMM, '2019年10月');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMMd, '2019年10月16日');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMMdjm, '2019年10月16日 上午12:00');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMMEEEEd, '2019年10月16日星期三');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yMMMMEEEEdjm,
+              '2019年10月16日星期三 上午12:00');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yQQQ, '2019年第4季度');
+          expect(Jiffy([2019, 10, 16], null, 'zh_CN').yQQQQ, '2019年第4季度');
+          expect(Jiffy('2019, 10, 16 3:30 AM', 'yyyy, MM, dd hh:mm a', 'zh_CN').Hm, '03:30');
+          expect(Jiffy('2019, 10, 16 3:30 am', 'yyyy, MM, dd hh:mm a', 'zh_CN').Hms,
+              '03:30:00');
+          expect(Jiffy('2019, 10, 16 3:30 pm', 'yyyy, MM, dd hh:mm a', 'zh_CN').j, '下午3时');
+          expect(
+              Jiffy('2019, 10, 16 3:30 am', 'yyyy, MM, dd hh:mm a', 'zh_CN').jm, '上午3:30');
+          expect(Jiffy('2019, 10, 16 3:30 PM', 'yyyy, MM, dd hh:mm a', 'zh_CN').jms,
+              '下午3:30:00');
+        });
   });
 
   group('Test Jiffy.fromNow() and Jiffy.from() datetime methods', () {
