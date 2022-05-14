@@ -138,13 +138,16 @@ class Jiffy {
     _defaultLocale.code = currentLocale.toLowerCase();
   }
 
-  static Future<Locale> locale([String? locale]) async {
+  static Future<Locale> locale([String? locale, bool? enDigits]) async {
     _initializeLocale();
     if (locale != null) {
       if (isLocalAvailable(locale)) {
         throw JiffyException(
                 'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
             .cause;
+      }
+      if(enDigits != null){
+        DateFormat.useNativeDigitsByDefaultFor(locale, enDigits);
       }
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
