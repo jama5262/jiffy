@@ -67,7 +67,7 @@ Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
 Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
-## Locale Support
+## Locale Support with keep English numbers option
 ```dart
 //  The locale method always return a future
 //  To get locale (The default locale is English)
@@ -77,8 +77,10 @@ await (Jiffy.locale()).code; // en
 await Jiffy.locale("fr");
 Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
 
-await Jiffy.locale("ar");
-Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
+// Now you can have an option when change the locale to keep the english numbers (1,2,3,...) 
+
+await Jiffy.locale("ar", false);
+Jiffy().yMMMMEEEEdjm; // السبت، 19 أكتوبر 2019 7:27 م
 
 await Jiffy.locale("zh_cn");
 Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
