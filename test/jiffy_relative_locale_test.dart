@@ -543,5 +543,24 @@ void main() {
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
       expect(locale.ordinals(), null);
     });
+    test(
+        'test Jiffy.locale() method with parsing mn locale should return correct date time in mn locale',
+        () async {
+      var locale = await Jiffy.locale('mn');
+      expect(jiffy1.fromNow(), 'хэдэн хормын өмнө');
+      expect(jiffy2.fromNow(), 'хэдэн хормын дараа');
+      expect(jiffy3.fromNow(), '1 минутын өмнө');
+      expect(jiffy5.fromNow(), '10 минутын өмнө');
+      expect(jiffy6.fromNow(), '1 цагийн өмнө');
+      expect(jiffy7.fromNow(), '10 цагийн өмнө');
+      expect(jiffy8.fromNow(), '1 өдрийн өмнө');
+      expect(jiffy9.fromNow(), '10 өдрийн өмнө');
+      expect(jiffy10.from(Jiffy('2019-10-01')), '1 сарын өмнө');
+      expect(jiffy11.fromNow(), '10 сарын өмнө');
+      expect(jiffy12.fromNow(), '1 жилийн өмнө');
+      expect(jiffy13.fromNow(), '10 жилийн өмнө');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), ['-р', '-р', '-р', '-р']);
+    });
   });
 }
