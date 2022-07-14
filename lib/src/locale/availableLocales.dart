@@ -6,6 +6,7 @@ import 'package:jiffy/src/locale/esLocale.dart';
 import 'package:jiffy/src/locale/faLocale.dart';
 import 'package:jiffy/src/locale/frLocale.dart';
 import 'package:jiffy/src/locale/hiLocale.dart';
+import 'package:jiffy/src/locale/huLocale.dart';
 import 'package:jiffy/src/locale/idLocale.dart';
 import 'package:jiffy/src/locale/itLocale.dart';
 import 'package:jiffy/src/locale/jaLocale.dart';
@@ -66,6 +67,8 @@ Map<String, Locale> _availableLocales = {
   'ru': RuLocale(StartOfWeek.MONDAY),
   'uk': UkLocale(StartOfWeek.MONDAY),
   'hi': HiLocale(StartOfWeek.SUNDAY),
+  'hu': HuLocale(StartOfWeek.MONDAY),
+  'hu_hu': HuLocale(StartOfWeek.MONDAY),
   'pt': PtLocale(StartOfWeek.MONDAY),
   'pt_br': PtLocale(StartOfWeek.SUNDAY),
   'pl': PlLocale(StartOfWeek.MONDAY),

@@ -10,6 +10,11 @@ void main() {
       expect(locales, isList);
     });
 
+    test('test should use locale parameter parse instantly', () {
+      var result = Jiffy('2019-09-01', null, 'tr');
+      expect(result.from('2019-10-01'), 'bir ay önce');
+    });
+
     test(
         'test show all available locales contains locales en, fr, de, zn_ch, ru, az',
         () {
@@ -542,6 +547,25 @@ void main() {
       expect(jiffy13.fromNow(), '10 ปีที่แล้ว');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
       expect(locale.ordinals(), null);
+    });
+    test(
+        'test Jiffy.locale() method with parsing hu locale should return correct date time in hu locale',
+        () async {
+      var locale = await Jiffy.locale('hu');
+      expect(jiffy1.fromNow(), 'néhány másodperccel ezelőtt');
+      expect(jiffy2.fromNow(), 'néhány másodperccel ezután');
+      expect(jiffy3.fromNow(), 'egy perccel ezelőtt');
+      expect(jiffy5.fromNow(), '10 perccel ezelőtt');
+      expect(jiffy6.fromNow(), 'egy órával ezelőtt');
+      expect(jiffy7.fromNow(), '10 órával ezelőtt');
+      expect(jiffy8.fromNow(), 'egy nappal ezelőtt');
+      expect(jiffy9.fromNow(), '10 nappal ezelőtt');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'egy hónappal ezelőtt');
+      expect(jiffy11.fromNow(), '10 hónappal ezelőtt');
+      expect(jiffy12.fromNow(), 'egy évvel ezelőtt');
+      expect(jiffy13.fromNow(), '10 évvel ezelőtt');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), ['.', '.', '.', '.']);
     });
     test(
         'test Jiffy.locale() method with parsing mn locale should return correct date time in mn locale',

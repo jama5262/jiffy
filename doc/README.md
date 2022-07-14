@@ -539,6 +539,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | German  | de / de_at / de_ch |
 | French  | fr / fr_ch / fr_ca |
 | Indonesian  | id |
+| Hungarian  | hu / hu_hu |
 | Italian  | it / it_ch |
 | Korean  | ko |
 | Russian  | ru |

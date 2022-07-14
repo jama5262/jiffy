@@ -17,9 +17,9 @@ class Jiffy {
 
   DateTime get dateTime => _dateTime;
 
-  Jiffy([var input, String? pattern]) {
+  Jiffy([var input, String? pattern, String? locale]) {
     _initializeDateTime(input, pattern);
-    _initializeLocale();
+    _initializeLocale(locale);
   }
 
   Jiffy.unixFromSecondsSinceEpoch(int timestamp) {
@@ -132,8 +132,8 @@ class Jiffy {
     }
   }
 
-  static void _initializeLocale() {
-    var currentLocale = Intl.getCurrentLocale();
+  static void _initializeLocale([String? locale]) {
+    var currentLocale = locale ?? Intl.getCurrentLocale();
     _defaultLocale = getLocale(currentLocale);
     _defaultLocale.code = currentLocale.toLowerCase();
   }
