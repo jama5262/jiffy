@@ -41,6 +41,8 @@ Jiffy().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
 ```dart
 Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 9 years ago
 
+Jiffy("2020-01-01", "yyyy-MM-dd").from(Jiffy("2021-12-31", "yyyy-MM-dd"), maxRelativeTimeUnit: Units.MONTH); // 24 months ago
+
 Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
 
 Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours

@@ -1,5 +1,6 @@
 import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/locale/relativeTime.dart';
+import 'package:jiffy/src/enums/units.dart';
 
 abstract class Locale {
   late String code;
@@ -11,7 +12,11 @@ abstract class Locale {
 
   StartOfWeek startOfWeek();
 
-  String getRelativeTime(DateTime date1, [DateTime? date2]) {
+  String getRelativeTime(
+    DateTime date1, {
+    DateTime? date2,
+    Units? maxRelativeTimeUnit = Units.YEAR, // ONLY SUPPORT MINUTE, HOUR, DAY, MONTH, YEAR
+  }) {
     final relative = relativeTime();
     final _date2 = date2 ?? DateTime.now();
     final _allowFromNow = _date2.isBefore(date1);
@@ -40,19 +45,19 @@ abstract class Locale {
       result = relative.lessThanOneMinute(seconds.round());
     } else if (seconds < 90) {
       result = relative.aboutAMinute(minutes.round());
-    } else if (minutes < 45) {
+    } else if (minutes < 45 || (minutes >= 45 && maxRelativeTimeUnit == Units.MINUTE)) {
       result = relative.minutes(minutes.round());
     } else if (minutes < 90) {
       result = relative.aboutAnHour(minutes.round());
-    } else if (hours < 24) {
+    } else if (hours < 24 || (hours >= 24 && maxRelativeTimeUnit == Units.HOUR)) {
       result = relative.hours(hours.round());
     } else if (hours < 48) {
       result = relative.aDay(hours.round());
-    } else if (days < 30) {
+    } else if (days < 30 || (days >= 30 && maxRelativeTimeUnit == Units.DAY)) {
       result = relative.days(days.round());
     } else if (days < 60) {
       result = relative.aboutAMonth(days.round());
-    } else if (days < 365) {
+    } else if (days < 365 || (days >= 365 && maxRelativeTimeUnit == Units.MONTH)) {
       result = relative.months(months.round());
     } else if (years < 2) {
       result = relative.aboutAYear(months.round());

@@ -77,6 +77,14 @@ void main() {
       expect(jiffy2.fromNow(), 'a year ago');
     });
     test(
+        'test Jiffy().fromNow() with maxRelativeTimeUnit method with parsing date time should return correct relative date time string',
+        () {
+      var jiffy1 = Jiffy()..add(duration: Duration(hours: 20));
+      expect(jiffy1.fromNow(maxRelativeTimeUnit: Units.MINUTE), 'in 1200 minutes');
+      var jiffy2 = Jiffy()..subtract(months: 20);
+      expect(jiffy2.fromNow(maxRelativeTimeUnit: Units.MONTH), '20 months ago');
+    });
+    test(
         'test Jiffy().from() method with parsing date time should return correct relative date time string',
         () {
       var jiffy1 = Jiffy([2019, 10, 16]);
@@ -85,6 +93,16 @@ void main() {
       expect(Jiffy('2019, 10, 20', 'yyyy, MM, dd').from(jiffy2), '6 days ago');
       var jiffy3 = Jiffy([2019, 10, 16])..subtract(months: 20);
       expect(Jiffy('2019, 10, 20', 'yyyy, MM, dd').from(jiffy3), 'in a year');
+    });
+    test(
+        'test Jiffy().from() with maxRelativeTimeUnit method with parsing date time should return correct relative date time string',
+        () {
+      var jiffy1 = Jiffy([2019, 10, 16]);
+      expect(Jiffy('2019, 10, 20', 'yyyy, MM, dd').from(jiffy1, maxRelativeTimeUnit: Units.HOUR), 'in 96 hours');
+      var jiffy2 = Jiffy([2019, 10, 16])..add(months: 10);
+      expect(Jiffy('2019, 10, 20', 'yyyy, MM, dd').from(jiffy2, maxRelativeTimeUnit: Units.DAY), '301 days ago');
+      var jiffy3 = Jiffy('2021-12-31', 'yyyy-MM-dd');
+      expect(Jiffy('2020-01-01', 'yyyy-MM-dd').from(jiffy3, maxRelativeTimeUnit: Units.MONTH), '24 months ago');
     });
   });
 

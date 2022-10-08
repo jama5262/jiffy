@@ -16,13 +16,21 @@ Future<int> main() async {
   Jiffy([2019, 10, 19]).yMMMMd; // January 19, 2021
 
 // Using maps
-  Jiffy({'year': 2019, 'month': 10, 'day': 19, 'hour': 19})
-      .yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
+  Jiffy({'year': 2019, 'month': 10, 'day': 19, 'hour': 19}).yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
 
   // 'From Now' implementation
   Jiffy('2007-1-29').fromNow(); // 14 years ago
   Jiffy([2022, 10, 29]).fromNow(); // in a year
   Jiffy(DateTime(2050, 10, 29)).fromNow(); // in 30 years
+  
+  // 'From Now' with maxRelativeTimeUnit
+  Jiffy('2030-12-31').fromNow(maxRelativeTimeUnit: Units.MONTH); // 108 months
+  Jiffy('2021-12-31').fromNow(maxRelativeTimeUnit: Units.MINUTE); // 59794 minutes ago
+  Jiffy('2021-12-31').fromNow(maxRelativeTimeUnit: Units.HOUR); // 997 hours ago
+  Jiffy('2021-12-31').fromNow(maxRelativeTimeUnit: Units.DAY); // 42 days ago
+  Jiffy('2020-12-31').fromNow(maxRelativeTimeUnit: Units.MONTH); // 14 months ago
+  Jiffy('2000-12-31').fromNow(maxRelativeTimeUnit: Units.MONTH); // 257 months ago
+  Jiffy('2000-12-31').fromNow(maxRelativeTimeUnit: Units.YEAR); // 21 years ago
 
   Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
 
@@ -33,6 +41,7 @@ Future<int> main() async {
   jiffy2.from(jiffy3); // a day ago
 
   jiffy2.from([2017, 1, 30]); // 2 days ago
+  jiffy2.from([2017, 1, 30], maxRelativeTimeUnit: Units.MONTH); // 122 months ago
 
 //  Displaying the 'Difference' between two date times
 //  By default, 'diff' method, get the difference in milliseconds
