@@ -25,6 +25,7 @@ import 'package:jiffy/src/locale/zhCnLocale.dart';
 import 'package:jiffy/src/locale/zhLocale.dart';
 import 'package:jiffy/src/locale/bnLocale.dart';
 
+
 Map<String, Locale> _availableLocales = {
   'en': EnLocale(StartOfWeek.SUNDAY),
   'en_us': EnLocale(StartOfWeek.SUNDAY),
@@ -77,7 +78,68 @@ Map<String, Locale> _availableLocales = {
   'th': ThLocale(StartOfWeek.SUNDAY)
 };
 
-Locale getLocale(String locale) {
+//this method is more flexible and gives the option "replcaeNum" to keep the enDigits (1,2,3,...) when returning the locale
+Locale availableLocalesWithReplaceNumAsAnOption(String locale, bool replaceNum){
+  Map<String, Locale> availableLocalesWithEnDigitsAsOption = {
+    'en': EnLocale(StartOfWeek.SUNDAY),
+    'en_us': EnLocale(StartOfWeek.SUNDAY),
+    'en_sg': EnLocale(StartOfWeek.SUNDAY),
+    'en_au': EnLocale(StartOfWeek.SUNDAY),
+    'en_ca': EnLocale(StartOfWeek.SUNDAY),
+    'en_gb': EnLocale(StartOfWeek.MONDAY),
+    'en_ie': EnLocale(StartOfWeek.MONDAY),
+    'en_il': EnLocale(StartOfWeek.SUNDAY),
+    'en_nz': EnLocale(StartOfWeek.SUNDAY),
+    'es': EsLocale(StartOfWeek.MONDAY),
+    'es_do': EsLocale(StartOfWeek.MONDAY),
+    'es_us': EsLocale(StartOfWeek.SUNDAY),
+    'fr': FrLocale(StartOfWeek.MONDAY),
+    'fr_ch': FrLocale(StartOfWeek.MONDAY),
+    'fr_ca': FrLocale(StartOfWeek.SUNDAY),
+    'zh': ZhCnLocale(StartOfWeek.SUNDAY),
+    'zh_cn': ZhCnLocale(StartOfWeek.SUNDAY),
+    'zh_hk': ZhLocale(StartOfWeek.SUNDAY),
+    'zh_tw': ZhLocale(StartOfWeek.SUNDAY),
+    'de': DeLocale(StartOfWeek.MONDAY),
+    'de_de': DeLocale(StartOfWeek.MONDAY),
+    'de_at': DeLocale(StartOfWeek.MONDAY),
+    'de_ch': DeLocale(StartOfWeek.MONDAY),
+    'it': ItLocale(StartOfWeek.MONDAY),
+    'it_ch': ItLocale(StartOfWeek.MONDAY),
+    'ar': ArLyLocale(replaceNum, StartOfWeek.SATURDAY),
+    'ar_ly': ArLyLocale(replaceNum, StartOfWeek.SATURDAY),
+    'ar_dz': ArSaMaDzKwTnLocale(replaceNum, StartOfWeek.SUNDAY),
+    'ar_kw': ArSaMaDzKwTnLocale(replaceNum, StartOfWeek.SUNDAY),
+    'ar_sa': ArSaMaDzKwTnLocale(replaceNum, StartOfWeek.SUNDAY),
+    'ar_ma': ArSaMaDzKwTnLocale(replaceNum, StartOfWeek.SATURDAY),
+    'ar_tn': ArSaMaDzKwTnLocale(replaceNum, StartOfWeek.SATURDAY),
+    'az': AzLocale(StartOfWeek.MONDAY),
+    'id': IdLocale(StartOfWeek.SUNDAY),
+    'ja': JaLocale(StartOfWeek.SUNDAY),
+    'ko': KoLocale(StartOfWeek.SUNDAY),
+    'ru': RuLocale(StartOfWeek.MONDAY),
+    'uk': UkLocale(StartOfWeek.MONDAY),
+    'hi': HiLocale(StartOfWeek.SUNDAY),
+    'pt': PtLocale(StartOfWeek.MONDAY),
+    'pt_br': PtLocale(StartOfWeek.SUNDAY),
+    'pl': PlLocale(StartOfWeek.MONDAY),
+    'tr': TrLocale(StartOfWeek.MONDAY),
+    'sv': SvLocale(StartOfWeek.MONDAY),
+    'nb': NbLocale(StartOfWeek.MONDAY),
+    'fa': FaLocale(replaceNum, StartOfWeek.SATURDAY),
+    'bn': BnLocale(StartOfWeek.SUNDAY),
+    'nl': NlLocale(StartOfWeek.MONDAY),
+    'th': ThLocale(StartOfWeek.SUNDAY)
+  };
+
+
+  return availableLocalesWithEnDigitsAsOption[locale.toLowerCase()] ?? EnLocale(StartOfWeek.SUNDAY);
+}
+
+Locale getLocale(String locale,{bool? enDigits}) {
+  if(enDigits != null){
+    return availableLocalesWithReplaceNumAsAnOption(locale,enDigits);
+  }
   return _availableLocales[locale.toLowerCase()] ??
       EnLocale(StartOfWeek.SUNDAY);
 }
