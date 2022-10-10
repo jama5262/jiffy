@@ -514,8 +514,8 @@ void main() {
         'test Jiffy.locale() method with parsing nl locale should return correct date time in nl locale',
         () async {
       var locale = await Jiffy.locale('nl');
-      expect(jiffy1.fromNow(), 'een ogenblik geleden');
-      expect(jiffy2.fromNow(), 'op dit moment');
+      expect(jiffy1.fromNow(), 'een paar seconden geleden');
+      expect(jiffy2.fromNow(), 'over een paar seconden');
       expect(jiffy3.fromNow(), 'een minuut geleden');
       expect(jiffy5.fromNow(), '10 minuten geleden');
       expect(jiffy6.fromNow(), 'een uur geleden');
@@ -566,6 +566,25 @@ void main() {
       expect(jiffy13.fromNow(), '10 évvel ezelőtt');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
       expect(locale.ordinals(), ['.', '.', '.', '.']);
+    });
+    test(
+        'test Jiffy.locale() method with parsing mn locale should return correct date time in mn locale',
+        () async {
+      var locale = await Jiffy.locale('mn');
+      expect(jiffy1.fromNow(), 'хэдэн хормын өмнө');
+      expect(jiffy2.fromNow(), 'хэдэн хормын дараа');
+      expect(jiffy3.fromNow(), '1 минутын өмнө');
+      expect(jiffy5.fromNow(), '10 минутын өмнө');
+      expect(jiffy6.fromNow(), '1 цагийн өмнө');
+      expect(jiffy7.fromNow(), '10 цагийн өмнө');
+      expect(jiffy8.fromNow(), '1 өдрийн өмнө');
+      expect(jiffy9.fromNow(), '10 өдрийн өмнө');
+      expect(jiffy10.from(Jiffy('2019-10-01')), '1 сарын өмнө');
+      expect(jiffy11.fromNow(), '10 сарын өмнө');
+      expect(jiffy12.fromNow(), '1 жилийн өмнө');
+      expect(jiffy13.fromNow(), '10 жилийн өмнө');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), ['-р', '-р', '-р', '-р']);
     });
   });
 }

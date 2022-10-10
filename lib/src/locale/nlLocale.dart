@@ -20,14 +20,13 @@ class NlRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
-  String prefixFromNow() => '';
+  String prefixFromNow() => 'over';
   @override
   String suffixAgo() => 'geleden';
   @override
   String suffixFromNow() => '';
   @override
-  String lessThanOneMinute(int seconds) =>
-      seconds > 0 ? 'op dit moment' : 'een ogenblik';
+  String lessThanOneMinute(int seconds) => 'een paar seconden';
   @override
   String aboutAMinute(int minutes) => 'een minuut';
   @override
