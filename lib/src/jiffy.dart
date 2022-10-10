@@ -58,7 +58,7 @@ class Jiffy {
       dateTime = _parseString(input, pattern);
     } else {
       throw JiffyException(
-              'Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters')
+          'Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters')
           .cause;
     }
     return dateTime;
@@ -72,25 +72,39 @@ class Jiffy {
       return DateTime.now();
     } else {
       return DateTime(
-          input['year'] ?? input['years'] ?? input['y'] ?? DateTime.now().year,
+          input['year'] ?? input['years'] ?? input['y'] ?? DateTime
+              .now()
+              .year,
           input['month'] ??
               input['months'] ??
               input['M'] ??
-              DateTime.now().month,
-          input['day'] ?? input['days'] ?? input['d'] ?? DateTime.now().day,
-          input['hour'] ?? input['hours'] ?? input['h'] ?? DateTime.now().hour,
+              DateTime
+                  .now()
+                  .month,
+          input['day'] ?? input['days'] ?? input['d'] ?? DateTime
+              .now()
+              .day,
+          input['hour'] ?? input['hours'] ?? input['h'] ?? DateTime
+              .now()
+              .hour,
           input['minute'] ??
               input['minutes'] ??
               input['m'] ??
-              DateTime.now().minute,
+              DateTime
+                  .now()
+                  .minute,
           input['second'] ??
               input['seconds'] ??
               input['s'] ??
-              DateTime.now().second,
+              DateTime
+                  .now()
+                  .second,
           input['millisecond'] ??
               input['milliseconds'] ??
               input['ms'] ??
-              DateTime.now().millisecond);
+              DateTime
+                  .now()
+                  .millisecond);
     }
   }
 
@@ -127,7 +141,7 @@ class Jiffy {
       }));
     } else {
       throw JiffyException(
-              'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
+          'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
           .cause;
     }
   }
@@ -138,17 +152,24 @@ class Jiffy {
     _defaultLocale.code = currentLocale.toLowerCase();
   }
 
-  static Future<Locale> locale([String? locale]) async {
+  static Future<Locale> locale([String? locale, bool? enDigits]) async {
     _initializeLocale();
     if (locale != null) {
       if (isLocalAvailable(locale)) {
         throw JiffyException(
-                'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
+            'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
             .cause;
       }
+
+      if (enDigits != null) {
+        DateFormat.useNativeDigitsByDefaultFor(locale, enDigits);
+      }
+
       await initializeDateFormatting();
       Intl.defaultLocale = locale;
-      _defaultLocale = getLocale(locale);
+      enDigits != null
+          ? _defaultLocale = getLocale(locale, enDigits: enDigits)
+          : _defaultLocale = getLocale(locale);
       _defaultLocale.code = locale.toLowerCase();
     }
     return Future.value(_defaultLocale);
@@ -306,25 +327,56 @@ class Jiffy {
             _dateTime.millisecond);
         break;
       case Units.SECOND:
-        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
-            _dateTime.hour, _dateTime.minute, _dateTime.second, 999);
+        _dateTime = DateTime(
+            _dateTime.year,
+            _dateTime.month,
+            _dateTime.day,
+            _dateTime.hour,
+            _dateTime.minute,
+            _dateTime.second,
+            999);
         break;
       case Units.MINUTE:
-        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
-            _dateTime.hour, _dateTime.minute, 59, 999);
+        _dateTime = DateTime(
+            _dateTime.year,
+            _dateTime.month,
+            _dateTime.day,
+            _dateTime.hour,
+            _dateTime.minute,
+            59,
+            999);
         break;
       case Units.HOUR:
-        _dateTime = DateTime(_dateTime.year, _dateTime.month, _dateTime.day,
-            _dateTime.hour, 59, 59, 999);
+        _dateTime = DateTime(
+            _dateTime.year,
+            _dateTime.month,
+            _dateTime.day,
+            _dateTime.hour,
+            59,
+            59,
+            999);
         break;
       case Units.DAY:
         _dateTime = DateTime(
-            _dateTime.year, _dateTime.month, _dateTime.day, 23, 59, 59, 999);
+            _dateTime.year,
+            _dateTime.month,
+            _dateTime.day,
+            23,
+            59,
+            59,
+            999);
         break;
       case Units.WEEK:
         var newDate = _dateTime.add(Duration(days: DateTime.daysPerWeek - day));
         _dateTime =
-            DateTime(newDate.year, newDate.month, newDate.day, 23, 59, 59, 999);
+            DateTime(
+                newDate.year,
+                newDate.month,
+                newDate.day,
+                23,
+                59,
+                59,
+                999);
         break;
       case Units.MONTH:
         var date = _daysInMonthArray[_dateTime.month];
@@ -332,10 +384,24 @@ class Jiffy {
           date = 29;
         }
         _dateTime =
-            DateTime(_dateTime.year, _dateTime.month, date, 23, 59, 59, 999);
+            DateTime(
+                _dateTime.year,
+                _dateTime.month,
+                date,
+                23,
+                59,
+                59,
+                999);
         break;
       case Units.YEAR:
-        _dateTime = DateTime(_dateTime.year, 12, 31, 23, 59, 59, 999);
+        _dateTime = DateTime(
+            _dateTime.year,
+            12,
+            31,
+            23,
+            59,
+            59,
+            999);
         break;
     }
     return clone();
@@ -382,11 +448,25 @@ class Jiffy {
     }
     final newDay = min(from.day, _daysInMonth(newYear, newMonth));
     if (from.isUtc) {
-      return DateTime.utc(newYear, newMonth, newDay, from.hour, from.minute,
-          from.second, from.millisecond, from.microsecond);
+      return DateTime.utc(
+          newYear,
+          newMonth,
+          newDay,
+          from.hour,
+          from.minute,
+          from.second,
+          from.millisecond,
+          from.microsecond);
     } else {
-      return DateTime(newYear, newMonth, newDay, from.hour, from.minute,
-          from.second, from.millisecond, from.microsecond);
+      return DateTime(
+          newYear,
+          newMonth,
+          newDay,
+          from.hour,
+          from.minute,
+          from.second,
+          from.millisecond,
+          from.microsecond);
     }
   }
 
@@ -553,7 +633,8 @@ class Jiffy {
     if (units == Units.MILLISECOND) {
       return valueOf() < dateTime.millisecondsSinceEpoch;
     }
-    var endOfMs = (clone()..endOf(units)).valueOf();
+    var endOfMs = (clone()
+      ..endOf(units)).valueOf();
     return endOfMs < dateTime.millisecondsSinceEpoch;
   }
 
@@ -562,7 +643,8 @@ class Jiffy {
     if (units == Units.MILLISECOND) {
       return valueOf() > dateTime.millisecondsSinceEpoch;
     }
-    var startOfMs = (clone()..startOf(units)).valueOf();
+    var startOfMs = (clone()
+      ..startOf(units)).valueOf();
     return dateTime.millisecondsSinceEpoch < startOfMs;
   }
 
@@ -571,8 +653,10 @@ class Jiffy {
     if (units == Units.MILLISECOND) {
       return valueOf() == dateTime.millisecondsSinceEpoch;
     }
-    var startOfMs = (clone()..startOf(units)).valueOf();
-    var endOfMs = (clone()..endOf(units)).valueOf();
+    var startOfMs = (clone()
+      ..startOf(units)).valueOf();
+    var endOfMs = (clone()
+      ..endOf(units)).valueOf();
     var dateTimeMs = dateTime.millisecondsSinceEpoch;
     return startOfMs <= dateTimeMs && dateTimeMs <= endOfMs;
   }
