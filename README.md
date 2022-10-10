@@ -67,7 +67,7 @@ Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
 Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
 ```
 
-## Locale Support with keep English numbers option
+## Locale Support with keep English numbers as an option for all available locales
 ```dart
 //  The locale method always return a future
 //  To get locale (The default locale is English)
