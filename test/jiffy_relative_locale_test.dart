@@ -543,5 +543,25 @@ void main() {
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
       expect(locale.ordinals(), null);
     });
+
+    test(
+        'test Jiffy.locale() method with parsing ta locale should return correct date time in ta locale',
+        () async {
+      var locale = await Jiffy.locale('ta');
+      expect(jiffy1.fromNow(), 'சில வினாடிகள் முன்');
+      expect(jiffy2.fromNow(), 'சில வினாடிகள்');
+      expect(jiffy3.fromNow(), 'ஒரு நிமிடம் முன்');
+      expect(jiffy5.fromNow(), '10 நிமிடங்கள் முன்');
+      expect(jiffy6.fromNow(), 'ஒரு மணி நேரம் முன்');
+      expect(jiffy7.fromNow(), '10 மணி நேரம் முன்');
+      expect(jiffy8.fromNow(), 'ஒரு நாள் முன்');
+      expect(jiffy9.fromNow(), '10 நாட்கள் முன்');
+      expect(jiffy10.from(Jiffy('2019-10-01')), 'ஒரு மாதம் முன்');
+      expect(jiffy11.fromNow(), '10 மாதங்கள் முன்');
+      expect(jiffy12.fromNow(), 'ஒரு வருடம் முன்');
+      expect(jiffy13.fromNow(), '10 ஆண்டுகள் முன்');
+      expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+      expect(locale.ordinals(), ['வது', 'வது', 'வது', 'வது']);
+    });
   });
 }
