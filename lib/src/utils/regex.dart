@@ -1,3 +1,4 @@
+// todo move this implemetation to the parse file
 bool matchDartStringDateTime(String input) {
   return RegExp(
           r'\d{4}-\d{1,2}-\d{1,2} \d{1,2}(:\d{1,2})?(:\d{1,2})?(.\d+)?(Z?)')

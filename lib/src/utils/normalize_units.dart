@@ -1,5 +1,6 @@
 import 'package:jiffy/src/utils/exception.dart';
 
+// todo delete this file
 String normalizeUnits(String unit) {
   var lowerCaseUnit = unit.toLowerCase();
   if (lowerCaseUnit == 'millisecond' ||
