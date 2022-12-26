@@ -1,7 +1,8 @@
 import 'package:intl/intl.dart';
-import 'package:jiffy/jiffy.dart';
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/utils/exception.dart';
+
+import 'enums/units.dart';
+import 'locale/locale.dart';
+import 'utils/exception.dart';
 
 class Parser {
   DateTime fromString(String input, String? pattern, Locale locale) {
