@@ -43,7 +43,7 @@ String validateUnits(String unit) {
   if (unit == '0') {
     throw JiffyException(
             'Invalid unit passed, the following units are available "year", "month", "week", "day", "hour", "minute", "second", "millisecond"')
-        .cause;
+        .message;
   }
   return unit;
 }
