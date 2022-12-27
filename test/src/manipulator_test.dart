@@ -86,21 +86,15 @@ void main() {
       final minutes = 4;
       final hours = 2;
       final days = 3;
+      final weeks = 1;
       final months = 4;
       final years = 2;
 
-      final expectedDateTime = DateTime(2000, 1, 26, 14, 15, 25, 323, 556);
+      final expectedDateTime = DateTime(2000, 2, 3, 14, 15, 25, 323, 556);
 
       // Execute
-      final actualDateTime = underTest.add(dateTime,
-          microseconds: microseconds,
-          milliseconds: milliseconds,
-          seconds: seconds,
-          minutes: minutes,
-          hours: hours,
-          days: days,
-          months: months,
-          years: years);
+      final actualDateTime = underTest.add(dateTime, microseconds, milliseconds,
+          seconds, minutes, hours, days, weeks, months, years);
 
       // Verify
       expect(actualDateTime, expectedDateTime);
@@ -115,21 +109,15 @@ void main() {
       final minutes = 4;
       final hours = 2;
       final days = 3;
+      final weeks = 1;
       final months = 4;
       final years = 2;
 
-      final expectedDateTime = DateTime(1995, 5, 20, 10, 7, 19, 23, 356);
+      final expectedDateTime = DateTime(1995, 5, 13, 10, 7, 19, 23, 356);
 
       // Execute
-      final actualDateTime = underTest.subtract(dateTime,
-          microseconds: microseconds,
-          milliseconds: milliseconds,
-          seconds: seconds,
-          minutes: minutes,
-          hours: hours,
-          days: days,
-          months: months,
-          years: years);
+      final actualDateTime = underTest.subtract(dateTime, microseconds,
+          milliseconds, seconds, minutes, hours, days, weeks, months, years);
 
       // Verify
       expect(actualDateTime, expectedDateTime);

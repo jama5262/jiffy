@@ -10,9 +10,8 @@ class Query {
 
   Query(this.getter, this.manipulator);
 
-  bool isBefore(
-      DateTime firstDateTime, DateTime secondDateTime, StartOfWeek startOfWeek,
-      [Units unit = Units.MICROSECOND]) {
+  bool isBefore(DateTime firstDateTime, DateTime secondDateTime, Units unit,
+      StartOfWeek startOfWeek) {
     final secondDateTimeMicrosecondsSinceEpoch =
         getter.microsecondsSinceEpoch(secondDateTime);
 
@@ -29,9 +28,8 @@ class Query {
         secondDateTimeMicrosecondsSinceEpoch;
   }
 
-  bool isAfter(
-      DateTime firstDateTime, DateTime secondDateTime, StartOfWeek startOfWeek,
-      [Units unit = Units.MICROSECOND]) {
+  bool isAfter(DateTime firstDateTime, DateTime secondDateTime, Units unit,
+      StartOfWeek startOfWeek) {
     final secondDateTimeMicrosecondsSinceEpoch =
         getter.microsecondsSinceEpoch(secondDateTime);
 
@@ -48,9 +46,8 @@ class Query {
         startOfFirstDateTimeMicrosecondsSinceEpoch;
   }
 
-  bool isSame(
-      DateTime firstDateTime, DateTime secondDateTime, StartOfWeek startOfWeek,
-      [Units unit = Units.MICROSECOND]) {
+  bool isSame(DateTime firstDateTime, DateTime secondDateTime, Units unit,
+      StartOfWeek startOfWeek) {
     final secondDateTimeMicrosecondsSinceEpoch =
         getter.microsecondsSinceEpoch(secondDateTime);
 
@@ -72,25 +69,22 @@ class Query {
             endOfFirstDateTimeMicrosecondsSinceEpoch;
   }
 
-  bool isSameOrBefore(
-      DateTime firstDateTime, DateTime secondDateTime, StartOfWeek startOfWeek,
-      [Units unit = Units.MICROSECOND]) {
-    return isSame(firstDateTime, secondDateTime, startOfWeek, unit) ||
-        isBefore(firstDateTime, secondDateTime, startOfWeek, unit);
+  bool isSameOrBefore(DateTime firstDateTime, DateTime secondDateTime,
+      Units unit, StartOfWeek startOfWeek) {
+    return isSame(firstDateTime, secondDateTime, unit, startOfWeek) ||
+        isBefore(firstDateTime, secondDateTime, unit, startOfWeek);
   }
 
-  bool isSameOrAfter(
-      DateTime firstDateTime, DateTime secondDateTime, StartOfWeek startOfWeek,
-      [Units unit = Units.MICROSECOND]) {
-    return isSame(firstDateTime, secondDateTime, startOfWeek, unit) ||
-        isAfter(firstDateTime, secondDateTime, startOfWeek, unit);
+  bool isSameOrAfter(DateTime firstDateTime, DateTime secondDateTime,
+      Units unit, StartOfWeek startOfWeek) {
+    return isSame(firstDateTime, secondDateTime, unit, startOfWeek) ||
+        isAfter(firstDateTime, secondDateTime, unit, startOfWeek);
   }
 
   bool isBetween(DateTime firstDateTime, DateTime secondDateTime,
-      DateTime thirdDateTime, StartOfWeek startOfWeek,
-      [Units unit = Units.MICROSECOND]) {
-    return isAfter(firstDateTime, secondDateTime, startOfWeek, unit) &&
-        isBefore(firstDateTime, thirdDateTime, startOfWeek, unit);
+      DateTime thirdDateTime, Units unit, StartOfWeek startOfWeek) {
+    return isAfter(firstDateTime, secondDateTime, unit, startOfWeek) &&
+        isBefore(firstDateTime, thirdDateTime, unit, startOfWeek);
   }
 
   static bool isLeapYear(int year) {

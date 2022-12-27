@@ -15,17 +15,16 @@ class Manipulator {
   }
 
   DateTime add(
-    DateTime dateTime, {
-    int microseconds = 0,
-    int milliseconds = 0,
-    int seconds = 0,
-    int minutes = 0,
-    int hours = 0,
-    int days = 0,
-    int weeks = 0,
-    int months = 0,
-    int years = 0,
-  }) {
+      DateTime dateTime,
+      int microseconds,
+      int milliseconds,
+      int seconds,
+      int minutes,
+      int hours,
+      int days,
+      int weeks,
+      int months,
+      int years) {
     var newDateTime = dateTime.add(Duration(
       days: days + (weeks * 7),
       hours: hours,
@@ -44,17 +43,16 @@ class Manipulator {
   }
 
   DateTime subtract(
-    DateTime dateTime, {
-    int microseconds = 0,
-    int milliseconds = 0,
-    int seconds = 0,
-    int minutes = 0,
-    int hours = 0,
-    int days = 0,
-    int weeks = 0,
-    int months = 0,
-    int years = 0,
-  }) {
+      DateTime dateTime,
+      int microseconds,
+      int milliseconds,
+      int seconds,
+      int minutes,
+      int hours,
+      int days,
+      int weeks,
+      int months,
+      int years) {
     var newDateTime = dateTime.subtract(Duration(
       days: days + (weeks * 7),
       hours: hours,
@@ -108,10 +106,8 @@ class Manipulator {
         newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day);
         break;
       case Units.WEEK:
-        var newDate = subtractDuration(
-            dateTime,
-            Duration(
-                days: getter.dayOfWeek(dateTime, startOfWeek) - 1));
+        var newDate = subtractDuration(dateTime,
+            Duration(days: getter.dayOfWeek(dateTime, startOfWeek) - 1));
         newDateTime = DateTime(newDate.year, newDate.month, newDate.day);
         break;
       case Units.MONTH:
@@ -205,8 +201,8 @@ class Manipulator {
       newYear++;
       newMonth -= 12;
     }
-    final newDay = min(
-        dateTime.day, getter.daysInMonth(DateTime(newYear, newMonth)));
+    final newDay =
+        min(dateTime.day, getter.daysInMonth(DateTime(newYear, newMonth)));
     return DateTime(newYear, newMonth, newDay, dateTime.hour, dateTime.minute,
         dateTime.second, dateTime.millisecond, dateTime.microsecond);
   }

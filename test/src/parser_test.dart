@@ -6,6 +6,8 @@ import 'package:jiffy/src/utils/exception.dart';
 import 'package:test/test.dart';
 
 void main() {
+  // todo test parsing am and pm
+
   final underTest = Parser();
 
   group('Test parsing datetime from string', () {
