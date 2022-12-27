@@ -6,7 +6,15 @@ import 'query.dart';
 class Getter {
   int microsecond(DateTime dateTime) => dateTime.microsecond;
 
+  int microsecondsSinceEpoch(DateTime dateTime) {
+    return dateTime.microsecondsSinceEpoch;
+  }
+
   int millisecond(DateTime dateTime) => dateTime.millisecond;
+
+  int millisecondsSinceEpoch(DateTime dateTime) {
+    return dateTime.millisecondsSinceEpoch;
+  }
 
   int second(DateTime dateTime) => dateTime.second;
 

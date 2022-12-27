@@ -19,6 +19,18 @@ void main() {
       expect(actualMicrosecond, expectedMicrosecond);
     });
 
+    test('Should successfully get microsecondsSinceEpoch', () {
+      // Setup
+      final expectedMicrosecondsSinceEpoch = dateTime.microsecondsSinceEpoch;
+
+      // Execute
+      final actualMicrosecondsSinceEpoch =
+          underTest.microsecondsSinceEpoch(dateTime);
+
+      // Verify
+      expect(actualMicrosecondsSinceEpoch, expectedMicrosecondsSinceEpoch);
+    });
+
     test('Should successfully get millisecond', () {
       // Setup
       final expectedMillisecond = dateTime.millisecond;
@@ -28,6 +40,18 @@ void main() {
 
       // Verify
       expect(actualMillisecond, expectedMillisecond);
+    });
+
+    test('Should successfully get millisecondsSinceEpoch', () {
+      // Setup
+      final expectedMillisecondsSinceEpoch = dateTime.millisecondsSinceEpoch;
+
+      // Execute
+      final actualMillisecondsSinceEpoch =
+          underTest.millisecondsSinceEpoch(dateTime);
+
+      // Verify
+      expect(actualMillisecondsSinceEpoch, expectedMillisecondsSinceEpoch);
     });
 
     test('Should successfully get second', () {
