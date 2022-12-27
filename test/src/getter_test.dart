@@ -1,19 +1,19 @@
-import 'package:jiffy/src/date_time_getter.dart';
+import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final underTest = DateTimeGetter();
+  final underTest = Getter();
 
-  group('Test basic DateTime getters', () {
-    final _dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
+  group('Test basic datetime getters', () {
+    final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
 
     test('Should successfully get microsecond', () {
       // Setup
-      final expectedMicrosecond = _dateTime.microsecond;
+      final expectedMicrosecond = dateTime.microsecond;
 
       // Execute
-      final actualMicrosecond = underTest.microsecond(_dateTime);
+      final actualMicrosecond = underTest.microsecond(dateTime);
 
       // Verify
       expect(actualMicrosecond, expectedMicrosecond);
@@ -21,10 +21,10 @@ void main() {
 
     test('Should successfully get millisecond', () {
       // Setup
-      final expectedMillisecond = _dateTime.millisecond;
+      final expectedMillisecond = dateTime.millisecond;
 
       // Execute
-      final actualMillisecond = underTest.millisecond(_dateTime);
+      final actualMillisecond = underTest.millisecond(dateTime);
 
       // Verify
       expect(actualMillisecond, expectedMillisecond);
@@ -32,10 +32,10 @@ void main() {
 
     test('Should successfully get second', () {
       // Setup
-      final expectedSecond = _dateTime.second;
+      final expectedSecond = dateTime.second;
 
       // Execute
-      final actualSecond = underTest.second(_dateTime);
+      final actualSecond = underTest.second(dateTime);
 
       // Verify
       expect(actualSecond, expectedSecond);
@@ -43,10 +43,10 @@ void main() {
 
     test('Should successfully get minute', () {
       // Setup
-      final expectedMinute = _dateTime.minute;
+      final expectedMinute = dateTime.minute;
 
       // Execute
-      final actualMinute = underTest.minute(_dateTime);
+      final actualMinute = underTest.minute(dateTime);
 
       // Verify
       expect(actualMinute, expectedMinute);
@@ -54,10 +54,10 @@ void main() {
 
     test('Should successfully get hour', () {
       // Setup
-      final expectedHour = _dateTime.hour;
+      final expectedHour = dateTime.hour;
 
       // Execute
-      final actualHour = underTest.hour(_dateTime);
+      final actualHour = underTest.hour(dateTime);
 
       // Verify
       expect(actualHour, expectedHour);
@@ -65,10 +65,10 @@ void main() {
 
     test('Should successfully get date', () {
       // Setup
-      final expectedDate = _dateTime.day;
+      final expectedDate = dateTime.day;
 
       // Execute
-      final actualDate = underTest.date(_dateTime);
+      final actualDate = underTest.date(dateTime);
 
       // Verify
       expect(actualDate, expectedDate);
@@ -76,10 +76,10 @@ void main() {
 
     test('Should successfully get month', () {
       // Setup
-      final expectedMonth = _dateTime.month;
+      final expectedMonth = dateTime.month;
 
       // Execute
-      final actualMonth = underTest.month(_dateTime);
+      final actualMonth = underTest.month(dateTime);
 
       // Verify
       expect(actualMonth, expectedMonth);
@@ -87,10 +87,10 @@ void main() {
 
     test('Should successfully get year', () {
       // Setup
-      final expectedYear = _dateTime.year;
+      final expectedYear = dateTime.year;
 
       // Execute
-      final actualYear = underTest.year(_dateTime);
+      final actualYear = underTest.year(dateTime);
 
       // Verify
       expect(actualYear, expectedYear);
@@ -168,7 +168,7 @@ void main() {
 
   test('Should successfully get all days in month', () {
     // Setup
-    final underTest = DateTimeGetter.daysInMonthArray;
+    final underTest = Getter.daysInMonthArray;
 
     // Verify
     expect(underTest.length, 13);

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'enums/startOfWeek.dart';
 import 'query.dart';
 
-class DateTimeGetter {
+class Getter {
   int microsecond(DateTime dateTime) => dateTime.microsecond;
 
   int millisecond(DateTime dateTime) => dateTime.millisecond;
