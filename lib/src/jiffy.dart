@@ -1,5 +1,6 @@
 import 'dart:math';
 
+// todo import Jiffy classes not as packages
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/src/enums/startOfWeek.dart';
@@ -12,24 +13,60 @@ import 'package:jiffy/src/utils/regex.dart';
 import 'package:jiffy/src/utils/replace.dart';
 
 class Jiffy {
-  late DateTime _dateTime;
   static late Locale _defaultLocale;
+  late DateTime _dateTime;
 
+  // todo check if you can move this line to the display getters
   DateTime get dateTime => _dateTime;
 
+  // todo remove this constructor and only have secondary constructors for all
+  // types of inputs, list, maps, string
+  // maybe the default constructor can take in the DateTime class
   Jiffy([var input, String? pattern, String? locale]) {
     _initializeDateTime(input, pattern);
     _initializeLocale(locale);
   }
 
+  // Jiffy.now({String? locale}) {
+  //   _initializeLocale(locale);
+  //   _dateTime = DateTime.now();
+  // }
+
+  // Jiffy.fromDateTime(DateTime input) {
+  //   _dateTime = input;
+  // }
+  //
+  // Jiffy.fromJiffy(Jiffy input) {
+  //   _dateTime = input.dateTime;
+  // }
+  //
+  // Jiffy.fromString(String input, {String? pattern, String? locale}) {
+  //     final defaultLocale = _initializeLocale(locale);
+  //     _dateTime = _parse.fromString(input, pattern, defaultLocale);
+  // }
+  //
+  // Jiffy.fromList(List<int> input, {String? locale}) {
+  //   _initializeLocale(locale);
+  //   _dateTime = _parse.fromList(input);
+  // }
+  //
+  // Jiffy.fromMap(Map<Units, int> input, {String? locale}) {
+  //   _initializeLocale(locale);
+  //   _dateTime = _parse.fromMap(input);
+  // }
+
+  // todo move this function below the milliseconds epoch
   Jiffy.unixFromSecondsSinceEpoch(int timestamp) {
+    // todo update this function to call the milliseconds epoch
     _unix(timestamp * 1000);
   }
 
+  // todo move this function a little bit lower
   Jiffy.unixFromMillisecondsSinceEpoch(int timestamp) {
     _unix(timestamp);
   }
 
+  // todo remove this functions and make the milliseconds epoch the main one
   void _unix(int timestamp) {
     _dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
   }
@@ -42,6 +79,7 @@ class Jiffy {
     _dateTime = _parse(input, pattern);
   }
 
+  // todo remove this parse and make the secondary constructors call them
   DateTime _parse(var input, [String? pattern]) {
     var dateTime;
     if (input == null && pattern == null) {
@@ -59,13 +97,15 @@ class Jiffy {
     } else {
       throw JiffyException(
               'Jiffy only accepts String, List, Map, DateTime or Jiffy itself as parameters')
-          .cause;
+          .message;
     }
     return dateTime;
   }
 
+  // todo move all parsing functionality to its own file
   DateTime _parseMap(Map input) {
     input.forEach((key, value) {
+      // todo remove this and start using  Map<Units, int> types
       validateUnits(key);
     });
     if (input.isEmpty) {
@@ -128,37 +168,46 @@ class Jiffy {
     } else {
       throw JiffyException(
               'Date time not recognized, a pattern must be passed, e.g. Jiffy("12, Oct", "dd, MMM")')
-          .cause;
+          .message;
     }
   }
 
+  // todo move this to its own file
   static void _initializeLocale([String? locale]) {
+    // todo rename this variable to system locale
     var currentLocale = locale ?? Intl.getCurrentLocale();
     _defaultLocale = getLocale(currentLocale);
     _defaultLocale.code = currentLocale.toLowerCase();
   }
 
   static Future<Locale> locale([String? locale]) async {
+    // todo not sure why this is here
     _initializeLocale();
     if (locale != null) {
+      // todo reverse this return type by adding !
       if (isLocalAvailable(locale)) {
+        // todo update this to add link to document for all list of available locales
         throw JiffyException(
                 'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
-            .cause;
+            .message;
       }
       await initializeDateFormatting();
+      // todo find a way to list all Intl locales and confirm if it exists, else throw error locale not supported
       Intl.defaultLocale = locale;
+      // todo rethink how we set this again, I don't think its done right
       _defaultLocale = getLocale(locale);
       _defaultLocale.code = locale.toLowerCase();
     }
     return Future.value(_defaultLocale);
   }
 
+  // todo remove this function, has no purpose
   static List<String> getAllAvailableLocales() {
     return getAllLocales();
   }
 
 //  GET
+  // todo move this to its own file
   int get millisecond => _dateTime.millisecond;
 
   int get second => _dateTime.second;
@@ -200,6 +249,7 @@ class Jiffy {
   int get year => _dateTime.year;
 
 //  MANIPULATE
+  // todo have separate function for duration and the others
   Jiffy add({
     Duration duration = Duration.zero,
     int years = 0,
@@ -212,6 +262,7 @@ class Jiffy {
     int milliseconds = 0,
     int microseconds = 0,
   }) {
+    // todo rethink about this implemetation, it don't like it
     _dateTime = _dateTime.add(duration);
     _dateTime = _dateTime.add(Duration(
       days: days + (weeks * 7),
@@ -252,8 +303,10 @@ class Jiffy {
     return clone();
   }
 
+  // todo have a separate file for this implementation
   Jiffy startOf(Units units) {
     switch (units) {
+      case Units.MICROSECOND:
       case Units.MILLISECOND:
         _dateTime = DateTime(
             _dateTime.year,
@@ -290,11 +343,13 @@ class Jiffy {
         _dateTime = DateTime(_dateTime.year);
         break;
     }
+    // todo stop returning this
     return clone();
   }
 
   Jiffy endOf(Units units) {
     switch (units) {
+      case Units.MICROSECOND:
       case Units.MILLISECOND:
         _dateTime = DateTime(
             _dateTime.year,
@@ -391,6 +446,7 @@ class Jiffy {
   }
 
 //  DISPLAY
+  // todo have a separate file for this implementation
   String format([String? pattern]) {
     if (pattern == null) return _dateTime.toIso8601String();
     var ordinal = _defaultLocale.ordinal(_dateTime.day);
@@ -399,6 +455,7 @@ class Jiffy {
     return DateFormat(newPattern).format(_dateTime);
   }
 
+  // todo have this getters in small lower case letters
   String get E => DateFormat.E().format(_dateTime);
 
   String get EEEE => DateFormat.EEEE().format(_dateTime);
@@ -467,15 +524,20 @@ class Jiffy {
 
   String get jms => DateFormat.jms().format(_dateTime);
 
+  // todo use timeago library
   String fromNow({Units? maxRelativeTimeUnit}) {
-    return _defaultLocale.getRelativeTime(_dateTime, maxRelativeTimeUnit: maxRelativeTimeUnit);
+    return _defaultLocale.getRelativeTime(_dateTime,
+        maxRelativeTimeUnit: maxRelativeTimeUnit);
   }
 
+  // todo have multiple functions that accept list, map and string
   String from(var input, {Units? maxRelativeTimeUnit}) {
     var dateTime = _parse(input);
-    return _defaultLocale.getRelativeTime(_dateTime, date2: dateTime, maxRelativeTimeUnit: maxRelativeTimeUnit);
+    return _defaultLocale.getRelativeTime(_dateTime,
+        date2: dateTime, maxRelativeTimeUnit: maxRelativeTimeUnit);
   }
 
+  // todo have multiple functions that accept list, map and string
   num diff(var input, [Units units = Units.MILLISECOND, bool asFloat = false]) {
     var dateTime = _parse(input);
     num diff;
@@ -484,6 +546,8 @@ class Jiffy {
     var dt2 = dateTime.millisecondsSinceEpoch;
 
     switch (units) {
+      // todo add implemnetation for the microsecond
+      case Units.MICROSECOND:
       case Units.MILLISECOND:
         diff = dt1 - dt2;
         break;
@@ -539,15 +603,18 @@ class Jiffy {
     }
   }
 
+  // todo check if we need this
   int valueOf() {
     return _dateTime.millisecondsSinceEpoch;
   }
 
+  // todo check if we need this
   int unix() {
     return (_dateTime.millisecondsSinceEpoch / 1000).round();
   }
 
 //  QUERY
+  // todo move this implemetation to a separate file
   bool isBefore(var input, [Units units = Units.MILLISECOND]) {
     var dateTime = _parse(input);
     if (units == Units.MILLISECOND) {
@@ -599,7 +666,9 @@ class Jiffy {
 
   bool get isLeapYear => _isLeapYear(_dateTime.year);
 
+  // todo do we need this
   static bool isJiffy(var input) => input is Jiffy;
 
+  // todo do we need this
   static bool isDateTime(var input) => input is DateTime;
 }

@@ -85,10 +85,13 @@ Locale getLocale(String locale) {
       EnLocale(StartOfWeek.SUNDAY);
 }
 
+// todo make this return a true
 bool isLocalAvailable(String locale) {
   return !_availableLocales.containsKey(locale.toLowerCase());
 }
 
+// todo remove this function, it has no purpose
+// all available locales can be maintained in the documentation
 List<String> getAllLocales() {
   return _availableLocales.keys.toList();
 }

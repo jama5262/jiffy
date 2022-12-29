@@ -1,5 +1,6 @@
 import 'package:jiffy/src/utils/exception.dart';
 
+// todo delete this file
 String normalizeUnits(String unit) {
   var lowerCaseUnit = unit.toLowerCase();
   if (lowerCaseUnit == 'millisecond' ||
@@ -42,7 +43,7 @@ String validateUnits(String unit) {
   if (unit == '0') {
     throw JiffyException(
             'Invalid unit passed, the following units are available "year", "month", "week", "day", "hour", "minute", "second", "millisecond"')
-        .cause;
+        .message;
   }
   return unit;
 }

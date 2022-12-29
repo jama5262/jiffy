@@ -6,6 +6,8 @@ abstract class Locale {
   late String code;
 
   // If a locale does not have ordinals return null
+  // todo have a fixed size list
+  // List.from(['st', 'nd', 'rd', 'th'], growable: false);
   List<String>? ordinals();
 
   RelativeTime relativeTime();
