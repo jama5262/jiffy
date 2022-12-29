@@ -111,7 +111,7 @@ class Manipulator {
         newDateTime = DateTime(newDate.year, newDate.month, newDate.day);
         break;
       case Units.MONTH:
-        newDateTime = DateTime(dateTime.year, dateTime.month, 1);
+        newDateTime = DateTime(dateTime.year, dateTime.month);
         break;
       case Units.YEAR:
         newDateTime = DateTime(dateTime.year);
@@ -185,13 +185,9 @@ class Manipulator {
     return newDateTime;
   }
 
-  DateTime toLocal(DateTime dateTime) {
-    return dateTime.toLocal();
-  }
+  DateTime toLocal(DateTime dateTime) => dateTime.toLocal();
 
-  DateTime toUtc(DateTime dateTime) {
-    return dateTime.toUtc();
-  }
+  DateTime toUtc(DateTime dateTime) => dateTime.toUtc();
 
   DateTime _addMonths(DateTime dateTime, int months) {
     final modMonths = months % 12;

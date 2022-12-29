@@ -1,18 +1,17 @@
 import 'package:intl/intl.dart';
 
 import 'enums/units.dart';
-import 'locale/locale.dart';
 import 'utils/exception.dart';
 
 class Parser {
-  DateTime fromString(String input, String? pattern, Locale locale) {
+  DateTime fromString(String input, String? pattern, List<String> ordinals) {
     if (pattern != null) {
       if (pattern.trim().isEmpty) {
         throw JiffyException('The provided pattern for `$input` cannot '
             'be empty');
       }
       return parseString(
-          _replaceParseInput(input, locale), _replacePatternInput(pattern));
+          _replaceParseInput(input, ordinals), _replacePatternInput(pattern));
     }
 
     if (_matchesHyphenStringDateTime(input)) {
@@ -64,7 +63,8 @@ class Parser {
     try {
       return DateFormat(pattern).parse(input);
     } on FormatException catch (e) {
-      throw JiffyException(e.toString());
+      throw JiffyException('Could not parse input `$input`, failed with the '
+          'following error: ${e.toString()}');
     }
   }
 
@@ -72,18 +72,18 @@ class Parser {
     return pattern.replaceFirst('do', 'd');
   }
 
-  String _replaceParseInput(String input, Locale locale) {
+  String _replaceParseInput(String input, List<String> ordinals) {
     return input
         .replaceFirst(' pm', ' PM')
         .replaceFirst(' am', ' AM')
-        .replaceFirst(_matchesOrdinalDates(locale), '');
+        .replaceFirst(_matchesOrdinalDates(ordinals), '');
   }
 
   // todo fix this regex replacement of the ordinals when there is a space between
   // example `12 th`
-  Pattern _matchesOrdinalDates(Locale locale) {
-    final ordinals = locale.ordinals()!.join('|');
-    return RegExp(r'(?<=[0-9])(?:' + ordinals + ')');
+  // todo test if empty ordinals are provided
+  Pattern _matchesOrdinalDates(List<String> ordinals) {
+    return RegExp(r'(?<=[0-9])(?:' + ordinals.join('|') + ')');
   }
 
   bool _matchesHyphenStringDateTime(String input) {

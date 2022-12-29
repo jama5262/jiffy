@@ -1,26 +1,36 @@
-import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/enums/units.dart';
-import 'package:jiffy/src/locale/enLocale.dart';
 import 'package:jiffy/src/parser.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:test/test.dart';
 
 void main() {
-  // todo test parsing am and pm
-
   final underTest = Parser();
 
   group('Test parsing datetime from string', () {
     test('Should successfully parse datetime without a pattern', () {});
 
-    for (var testData in validParseToStringWithPatternTestData()) {
+    for (var testData in fromStringWithPatternTestData()) {
       test('Should successfully parse datetime from pattern', () {
         // Setup
-        final locale = EnLocale(StartOfWeek.MONDAY);
+        final ordinals = ['st', 'nd', 'rd', 'th'];
 
         // Execute
         final actualDateTime = underTest.fromString(
-            testData['input'], testData['pattern'], locale);
+            testData['input'], testData['pattern'], ordinals);
+
+        // Verify
+        expect(actualDateTime, testData['expected']);
+      });
+    }
+
+    for (var testData in fromStringWithPatternAMAndPMTestData()) {
+      test('Should successfully parse datetime if pattern contains am pm', () {
+        // Setup
+        final ordinals = ['st', 'nd', 'rd', 'th'];
+
+        // Execute
+        final actualDateTime = underTest.fromString(
+            testData['input'], testData['pattern'], ordinals);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -31,14 +41,14 @@ void main() {
       // Setup
       final input = '2022-12-25';
       final pattern = '';
-      final locale = EnLocale(StartOfWeek.MONDAY);
+      final ordinals = ['st', 'nd', 'rd', 'th'];
 
       final expectedExceptionMessage = 'The provided pattern for `$input` '
           'cannot be empty';
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, locale),
+          () => underTest.fromString(input, pattern, ordinals),
           throwsA(isA<JiffyException>().having((e) => e.message, 'message',
               contains(expectedExceptionMessage))));
     });
@@ -47,41 +57,42 @@ void main() {
       // Setup
       final input = '2022-12-25';
       final pattern = 'invalid-pattern';
-      final locale = EnLocale(StartOfWeek.MONDAY);
+      final ordinals = ['st', 'nd', 'rd', 'th'];
 
-      final expectedExceptionMessage = 'JiffyException: ';
+      final expectedExceptionMessage = 'JiffyException: Could not parse input '
+          '`$input`, failed with the following error:';
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, locale),
+          () => underTest.fromString(input, pattern, ordinals),
           throwsA(isA<JiffyException>().having((e) => e.message, 'message',
               contains(expectedExceptionMessage))));
     });
 
-    for (var testData in validParseToStringWithBasicDateTimeTestData()) {
+    for (var testData in fromStringWithBasicDateTimeTestData()) {
       test('Should successfully parse basic datetime format', () {
         // Setup
         final pattern = null;
-        final locale = EnLocale(StartOfWeek.MONDAY);
+        final ordinals = ['st', 'nd', 'rd', 'th'];
 
         // Execute
         final actualDateTime =
-            underTest.fromString(testData['input'], pattern, locale);
+            underTest.fromString(testData['input'], pattern, ordinals);
 
         // Verify
         expect(actualDateTime, testData['expected']);
       });
     }
 
-    for (var testData in validParseToStringWithDateTimeAndISOTestData()) {
+    for (var testData in fromStringWithDateTimeAndISOTestData()) {
       test('Should successfully parse DateTime and ISO datetime format', () {
         // Setup
         final pattern = null;
-        final locale = EnLocale(StartOfWeek.MONDAY);
+        final ordinals = ['st', 'nd', 'rd', 'th'];
 
         // Execute
         final actualDateTime =
-            underTest.fromString(testData['input'], pattern, locale);
+            underTest.fromString(testData['input'], pattern, ordinals);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -92,21 +103,21 @@ void main() {
       // Setup
       final input = 'invalid-input-date-time';
       final pattern = null;
-      final locale = EnLocale(StartOfWeek.MONDAY);
+      final ordinals = ['st', 'nd', 'rd', 'th'];
 
       final expectedExceptionMessage = 'Could not read date time `$input`, '
           'try using a pattern, e.g. Jiffy("12, Oct", "dd, MMM")';
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, locale),
+          () => underTest.fromString(input, pattern, ordinals),
           throwsA(isA<JiffyException>().having((e) => e.message, 'message',
               contains(expectedExceptionMessage))));
     });
   });
 
   group('Test parsing datetime from list', () {
-    for (var testData in validParseToListTestData()) {
+    for (var testData in fromListTestData()) {
       test('Should successfully parse datetime as list', () {
         // Execute
         final actualDateTime = underTest.fromList(testData['input']);
@@ -169,7 +180,7 @@ void main() {
   });
 }
 
-List<Map<String, dynamic>> validParseToStringWithPatternTestData() {
+List<Map<String, dynamic>> fromStringWithPatternTestData() {
   return [
     {
       'input': '1997 Sep 23th',
@@ -189,7 +200,32 @@ List<Map<String, dynamic>> validParseToStringWithPatternTestData() {
   ];
 }
 
-List<Map<String, dynamic>> validParseToStringWithBasicDateTimeTestData() {
+List<Map<String, dynamic>> fromStringWithPatternAMAndPMTestData() {
+  return [
+    {
+      'input': '1997 Sep 23th 3:14 pm',
+      'pattern': 'yyyy MMM do h:mm a',
+      'expected': DateTime(1997, 9, 23, 15, 14)
+    },
+    {
+      'input': '1997 Sep 23th 3 pm',
+      'pattern': 'yyyy MMM do h a',
+      'expected': DateTime(1997, 9, 23, 15, 0)
+    },
+    {
+      'input': '1997 Sep 23th 3:14 am',
+      'pattern': 'yyyy MMM do h:mm a',
+      'expected': DateTime(1997, 9, 23, 3, 14)
+    },
+    {
+      'input': '1997 Sep 23th 3 am',
+      'pattern': 'yyyy MMM do h a',
+      'expected': DateTime(1997, 9, 23, 3, 0)
+    },
+  ];
+}
+
+List<Map<String, dynamic>> fromStringWithBasicDateTimeTestData() {
   return [
     {'input': '1997-09-23', 'expected': DateTime(1997, 9, 23)},
     {'input': '1997-9-02', 'expected': DateTime(1997, 9, 2)},
@@ -200,7 +236,7 @@ List<Map<String, dynamic>> validParseToStringWithBasicDateTimeTestData() {
   ];
 }
 
-List<Map<String, dynamic>> validParseToStringWithDateTimeAndISOTestData() {
+List<Map<String, dynamic>> fromStringWithDateTimeAndISOTestData() {
   return [
     {
       'input': '2022-12-26 11:18:12.946621',
@@ -213,7 +249,7 @@ List<Map<String, dynamic>> validParseToStringWithDateTimeAndISOTestData() {
   ];
 }
 
-List<Map<String, dynamic>> validParseToListTestData() {
+List<Map<String, dynamic>> fromListTestData() {
   return [
     {
       'input': [1997],
