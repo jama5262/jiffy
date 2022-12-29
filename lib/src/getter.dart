@@ -56,7 +56,7 @@ class Getter {
     return int.parse(DateFormat('Q').format(dateTime));
   }
 
-  // todo see if you can use a parse and formatter class
+  // todo see if you can use a formatter class
   int dayOfYear(DateTime dateTime) {
     return int.parse(DateFormat('D').format(dateTime));
   }

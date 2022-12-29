@@ -1,9 +1,14 @@
 import 'package:intl/intl.dart';
 
 import 'enums/units.dart';
+import 'getter.dart';
 import 'utils/exception.dart';
 
 class Parser {
+  final Getter getter;
+
+  Parser(this.getter);
+
   DateTime fromString(String input, String? pattern, List<String> ordinals) {
     if (pattern != null) {
       if (pattern.trim().isEmpty) {
@@ -49,14 +54,14 @@ class Parser {
       throw JiffyException('The provided datetime map cannot be empty');
     }
     return DateTime(
-        input[Units.YEAR] ?? DateTime.now().year,
-        input[Units.MONTH] ?? DateTime.now().month,
-        input[Units.DAY] ?? DateTime.now().day,
-        input[Units.HOUR] ?? DateTime.now().hour,
-        input[Units.MINUTE] ?? DateTime.now().minute,
-        input[Units.SECOND] ?? DateTime.now().second,
-        input[Units.MILLISECOND] ?? DateTime.now().millisecond,
-        input[Units.MICROSECOND] ?? DateTime.now().microsecond);
+        input[Units.YEAR] ?? getter.year(DateTime.now()),
+        input[Units.MONTH] ?? getter.month(DateTime.now()),
+        input[Units.DAY] ?? getter.date(DateTime.now()),
+        input[Units.HOUR] ?? getter.hour(DateTime.now()),
+        input[Units.MINUTE] ?? getter.minute(DateTime.now()),
+        input[Units.SECOND] ?? getter.second(DateTime.now()),
+        input[Units.MILLISECOND] ?? getter.millisecond(DateTime.now()),
+        input[Units.MICROSECOND] ?? getter.microsecond(DateTime.now()));
   }
 
   DateTime parseString(String input, String pattern) {

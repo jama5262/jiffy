@@ -1,10 +1,12 @@
 import 'package:jiffy/src/enums/units.dart';
+import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/parser.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final underTest = Parser();
+  final getter = Getter();
+  final underTest = Parser(getter);
 
   group('Test parsing datetime from string', () {
     test('Should successfully parse datetime without a pattern', () {});
