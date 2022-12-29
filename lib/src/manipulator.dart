@@ -71,50 +71,61 @@ class Manipulator {
     switch (unit) {
       case Units.MICROSECOND:
         newDateTime = DateTime(
-            dateTime.year,
-            dateTime.month,
-            dateTime.day,
-            dateTime.hour,
-            dateTime.minute,
-            dateTime.second,
-            dateTime.millisecond,
-            dateTime.microsecond);
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            getter.second(dateTime),
+            getter.millisecond(dateTime),
+            getter.microsecond(dateTime));
         break;
       case Units.MILLISECOND:
         newDateTime = DateTime(
-            dateTime.year,
-            dateTime.month,
-            dateTime.day,
-            dateTime.hour,
-            dateTime.minute,
-            dateTime.second,
-            dateTime.millisecond);
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            getter.second(dateTime),
+            getter.millisecond(dateTime));
         break;
       case Units.SECOND:
-        newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day,
-            dateTime.hour, dateTime.minute, dateTime.second);
+        newDateTime = DateTime(
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            getter.second(dateTime));
         break;
       case Units.MINUTE:
-        newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day,
-            dateTime.hour, dateTime.minute);
+        newDateTime = DateTime(
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime));
         break;
       case Units.HOUR:
-        newDateTime = DateTime(
-            dateTime.year, dateTime.month, dateTime.day, dateTime.hour);
+        newDateTime = DateTime(getter.year(dateTime), getter.month(dateTime),
+            getter.date(dateTime), getter.hour(dateTime));
         break;
       case Units.DAY:
-        newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day);
+        newDateTime = DateTime(getter.year(dateTime), getter.month(dateTime),
+            getter.date(dateTime));
         break;
       case Units.WEEK:
         var newDate = subtractDuration(dateTime,
             Duration(days: getter.dayOfWeek(dateTime, startOfWeek) - 1));
-        newDateTime = DateTime(newDate.year, newDate.month, newDate.day);
+        newDateTime = DateTime(
+            getter.year(newDate), getter.month(newDate), getter.date(newDate));
         break;
       case Units.MONTH:
-        newDateTime = DateTime(dateTime.year, dateTime.month);
+        newDateTime = DateTime(getter.year(dateTime), getter.month(dateTime));
         break;
       case Units.YEAR:
-        newDateTime = DateTime(dateTime.year);
+        newDateTime = DateTime(getter.year(dateTime));
         break;
     }
     return newDateTime;
@@ -125,41 +136,55 @@ class Manipulator {
     switch (unit) {
       case Units.MICROSECOND:
         newDateTime = DateTime(
-            dateTime.year,
-            dateTime.month,
-            dateTime.day,
-            dateTime.hour,
-            dateTime.minute,
-            dateTime.second,
-            dateTime.millisecond,
-            dateTime.microsecond);
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            getter.second(dateTime),
+            getter.millisecond(dateTime),
+            getter.microsecond(dateTime));
         break;
       case Units.MILLISECOND:
         newDateTime = DateTime(
-            dateTime.year,
-            dateTime.month,
-            dateTime.day,
-            dateTime.hour,
-            dateTime.minute,
-            dateTime.second,
-            dateTime.millisecond,
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            getter.second(dateTime),
+            getter.millisecond(dateTime),
             999);
         break;
       case Units.SECOND:
-        newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day,
-            dateTime.hour, dateTime.minute, dateTime.second, 999, 999);
+        newDateTime = DateTime(
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            getter.second(dateTime),
+            999,
+            999);
         break;
       case Units.MINUTE:
-        newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day,
-            dateTime.hour, dateTime.minute, 59, 999, 999);
+        newDateTime = DateTime(
+            getter.year(dateTime),
+            getter.month(dateTime),
+            getter.date(dateTime),
+            getter.hour(dateTime),
+            getter.minute(dateTime),
+            59,
+            999,
+            999);
         break;
       case Units.HOUR:
-        newDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day,
-            dateTime.hour, 59, 59, 999, 999);
+        newDateTime = DateTime(getter.year(dateTime), getter.month(dateTime),
+            getter.date(dateTime), getter.hour(dateTime), 59, 59, 999, 999);
         break;
       case Units.DAY:
-        newDateTime = DateTime(
-            dateTime.year, dateTime.month, dateTime.day, 23, 59, 59, 999, 999);
+        newDateTime = DateTime(getter.year(dateTime), getter.month(dateTime),
+            getter.date(dateTime), 23, 59, 59, 999, 999);
         break;
       case Units.WEEK:
         var newDate = addDuration(
@@ -167,19 +192,21 @@ class Manipulator {
             Duration(
                 days: DateTime.daysPerWeek -
                     getter.dayOfWeek(dateTime, startOfWeek)));
-        newDateTime = DateTime(
-            newDate.year, newDate.month, newDate.day, 23, 59, 59, 999, 999);
+        newDateTime = DateTime(getter.year(newDate), getter.month(newDate),
+            getter.date(newDate), 23, 59, 59, 999, 999);
         break;
       case Units.MONTH:
-        var endMonthDate = Getter.daysInMonthArray[dateTime.month];
-        if (Query.isLeapYear(dateTime.year) && dateTime.month == 2) {
+        var endMonthDate = Getter.daysInMonthArray[getter.month(dateTime)];
+        if (Query.isLeapYear(getter.year(dateTime)) &&
+            getter.month(dateTime) == 2) {
           endMonthDate = 29;
         }
-        newDateTime = DateTime(
-            dateTime.year, dateTime.month, endMonthDate, 23, 59, 59, 999, 999);
+        newDateTime = DateTime(getter.year(dateTime), getter.month(dateTime),
+            endMonthDate, 23, 59, 59, 999, 999);
         break;
       case Units.YEAR:
-        newDateTime = DateTime(dateTime.year, 12, 31, 23, 59, 59, 999, 999);
+        newDateTime =
+            DateTime(getter.year(dateTime), 12, 31, 23, 59, 59, 999, 999);
         break;
     }
     return newDateTime;
@@ -191,15 +218,22 @@ class Manipulator {
 
   DateTime _addMonths(DateTime dateTime, int months) {
     final modMonths = months % 12;
-    var newYear = dateTime.year + ((months - modMonths) ~/ 12);
-    var newMonth = dateTime.month + modMonths;
+    var newYear = getter.year(dateTime) + ((months - modMonths) ~/ 12);
+    var newMonth = getter.month(dateTime) + modMonths;
     if (newMonth > 12) {
       newYear++;
       newMonth -= 12;
     }
-    final newDay =
-        min(dateTime.day, getter.daysInMonth(DateTime(newYear, newMonth)));
-    return DateTime(newYear, newMonth, newDay, dateTime.hour, dateTime.minute,
-        dateTime.second, dateTime.millisecond, dateTime.microsecond);
+    final newDay = min(
+        getter.date(dateTime), getter.daysInMonth(DateTime(newYear, newMonth)));
+    return DateTime(
+        newYear,
+        newMonth,
+        newDay,
+        getter.hour(dateTime),
+        getter.minute(dateTime),
+        getter.second(dateTime),
+        getter.millisecond(dateTime),
+        getter.microsecond(dateTime));
   }
 }
