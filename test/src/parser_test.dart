@@ -202,21 +202,21 @@ List<Map<String, dynamic>> fromStringWithPatternAMAndPMTestData() {
       'pattern': 'yyyy MMM do h:mm a',
       'expected': DateTime(1997, 9, 23, 15, 14)
     },
-    // {
-    //   'input': '1997 Sep 23th 3 pm',
-    //   'pattern': 'yyyy MMM do h a',
-    //   'expected': DateTime(1997, 9, 23, 15, 0)
-    // },
-    // {
-    //   'input': '1997 Sep 23th 3:14 am',
-    //   'pattern': 'yyyy MMM do h:mm a',
-    //   'expected': DateTime(1997, 9, 23, 3, 14)
-    // },
-    // {
-    //   'input': '1997 Sep 23th 3 am',
-    //   'pattern': 'yyyy MMM do h a',
-    //   'expected': DateTime(1997, 9, 23, 3, 0)
-    // },
+    {
+      'input': '1997 Sep 23th 3 pm',
+      'pattern': 'yyyy MMM do h a',
+      'expected': DateTime(1997, 9, 23, 15, 0)
+    },
+    {
+      'input': '1997 Sep 23th 3:14 am',
+      'pattern': 'yyyy MMM do h:mm a',
+      'expected': DateTime(1997, 9, 23, 3, 14)
+    },
+    {
+      'input': '1997 Sep 23th 3 am',
+      'pattern': 'yyyy MMM do h a',
+      'expected': DateTime(1997, 9, 23, 3, 0)
+    },
   ];
 }
 
