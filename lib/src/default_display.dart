@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 class DefaultDisplay {
   // todo add examples as docs comments here
   // check of doc comments from here will be shown or is it from the jiffy file
+  // todo also test in other locales e.g E(locale).format
   String E(DateTime dateTime) => DateFormat.E().format(dateTime);
 
   String EEEE(DateTime dateTime) => DateFormat.EEEE().format(dateTime);
