@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 
 import 'getter.dart';
 import 'enums/units.dart';
+import 'locale/locale.dart';
 import 'manipulator.dart';
 import 'utils/exception.dart';
 
@@ -13,13 +14,20 @@ class Display {
 
   String formatToISO8601(DateTime dateTime) => dateTime.toIso8601String();
 
-  String format(DateTime dateTime, String pattern, String ordinal) {
-    final escapedPattern = _replaceEscapePattern(pattern);
-    final newPattern = _replaceOrdinalDatePattern(escapedPattern, ordinal);
+  String format(DateTime dateTime, String pattern, Locale locale) {
+    if (pattern.trim().isEmpty) {
+      throw JiffyException('The provided pattern for datetime `$dateTime` '
+          'cannot be blank');
+    }
     try {
+      final escapedPattern = _replaceEscapePattern(pattern);
+      final ordinal = locale.ordinal(getter.date(dateTime));
+      final newPattern = _replaceOrdinalDatePattern(escapedPattern, ordinal);
       return DateFormat(newPattern).format(dateTime);
-    } on Exception catch (e) {
-      throw JiffyException(e.toString());
+    } catch (error, stackTrace) {
+      throw JiffyException('The pattern `$pattern` might be invalid: \n'
+          'Error: $error'
+          'Stack Trace: $stackTrace');
     }
   }
 
@@ -72,25 +80,30 @@ class Display {
   }
 
   String _replaceEscapePattern(String input) {
-    return input.replaceAll('[', '\'').replaceAll(']', '\'');
+    return input
+        .replaceAll('\'', '\'\'')
+        .replaceAll('[', '\'')
+        .replaceAll(']', '\'');
   }
 
-  String _replaceOrdinalDatePattern(String input, String suffix) {
-    final regex = _matchesOrdinalDatePattern().allMatches(input);
+  String _replaceOrdinalDatePattern(String input, String ordinal) {
+    var matches = _matchesOrdinalDatePattern(input);
     var pattern = input;
-    regex.forEach((match) {
-      if (match.group(1) == 'do') {
-        pattern = input.replaceRange(
-            match.start, match.end, 'd${suffix.isNotEmpty ? "'$suffix'" : ''}');
-      }
-    });
+
+    while (matches.isNotEmpty) {
+      final match = matches.first;
+      pattern = pattern.replaceRange(
+          match.start, match.end, 'd${ordinal.isNotEmpty ? "'$ordinal'" : ''}');
+      matches = _matchesOrdinalDatePattern(pattern);
+    }
     return pattern;
   }
 
-  // todo understand what this regex pattern does
-  Pattern _matchesOrdinalDatePattern() {
-    return RegExp(
-        '''(?<unquote>[^"'\\s]\\w*)|(?:["][^"]+?["])|(?:['][^']+?['])''');
+  List<Match> _matchesOrdinalDatePattern(String input) {
+    return RegExp('''\'[^\']*\'|(do)''')
+        .allMatches(input)
+        .where((match) => match.group(1) == 'do')
+        .toList();
   }
 
   num _monthDiff(DateTime firstDateTime, DateTime secondDateTime) {
@@ -127,13 +140,7 @@ class Display {
     return -(monthDiff + offset);
   }
 
-  int _absFloor(num number) {
-    if (number < 0) {
-      return number.ceil();
-    } else {
-      return number.floor();
-    }
-  }
+  int _absFloor(num number) => number < 0 ? number.ceil() : number.floor();
 
   DateTime _addMonths(DateTime dateTime, int months) {
     return manipulator.add(dateTime, 0, 0, 0, 0, 0, 0, 0, months, 0);

@@ -1,5 +1,7 @@
+import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/enums/units.dart';
 import 'package:jiffy/src/getter.dart';
+import 'package:jiffy/src/locale/enLocale.dart';
 import 'package:jiffy/src/parser.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:test/test.dart';
@@ -8,17 +10,16 @@ void main() {
   final getter = Getter();
   final underTest = Parser(getter);
 
+  final locale = EnLocale(StartOfWeek.MONDAY);
+
   group('Test parsing datetime from string', () {
     test('Should successfully parse datetime without a pattern', () {});
 
     for (var testData in fromStringWithPatternTestData()) {
       test('Should successfully parse datetime from pattern', () {
-        // Setup
-        final ordinals = ['st', 'nd', 'rd', 'th'];
-
         // Execute
         final actualDateTime = underTest.fromString(
-            testData['input'], testData['pattern'], ordinals);
+            testData['input'], testData['pattern'], locale);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -27,12 +28,9 @@ void main() {
 
     for (var testData in fromStringWithPatternAMAndPMTestData()) {
       test('Should successfully parse datetime if pattern contains am pm', () {
-        // Setup
-        final ordinals = ['st', 'nd', 'rd', 'th'];
-
         // Execute
         final actualDateTime = underTest.fromString(
-            testData['input'], testData['pattern'], ordinals);
+            testData['input'], testData['pattern'], locale);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -43,14 +41,13 @@ void main() {
       // Setup
       final input = '2022-12-25';
       final pattern = '';
-      final ordinals = ['st', 'nd', 'rd', 'th'];
 
       final expectedExceptionMessage = 'The provided pattern for `$input` '
-          'cannot be empty';
+          'cannot be blank';
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, ordinals),
+          () => underTest.fromString(input, pattern, locale),
           throwsA(isA<JiffyException>().having((e) => e.message, 'message',
               contains(expectedExceptionMessage))));
     });
@@ -59,14 +56,13 @@ void main() {
       // Setup
       final input = '2022-12-25';
       final pattern = 'invalid-pattern';
-      final ordinals = ['st', 'nd', 'rd', 'th'];
 
       final expectedExceptionMessage = 'JiffyException: Could not parse input '
           '`$input`, failed with the following error:';
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, ordinals),
+          () => underTest.fromString(input, pattern, locale),
           throwsA(isA<JiffyException>().having((e) => e.message, 'message',
               contains(expectedExceptionMessage))));
     });
@@ -75,11 +71,10 @@ void main() {
       test('Should successfully parse basic datetime format', () {
         // Setup
         final pattern = null;
-        final ordinals = ['st', 'nd', 'rd', 'th'];
 
         // Execute
         final actualDateTime =
-            underTest.fromString(testData['input'], pattern, ordinals);
+            underTest.fromString(testData['input'], pattern, locale);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -90,11 +85,10 @@ void main() {
       test('Should successfully parse DateTime and ISO datetime format', () {
         // Setup
         final pattern = null;
-        final ordinals = ['st', 'nd', 'rd', 'th'];
 
         // Execute
         final actualDateTime =
-            underTest.fromString(testData['input'], pattern, ordinals);
+            underTest.fromString(testData['input'], pattern, locale);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -105,14 +99,13 @@ void main() {
       // Setup
       final input = 'invalid-input-date-time';
       final pattern = null;
-      final ordinals = ['st', 'nd', 'rd', 'th'];
 
       final expectedExceptionMessage = 'Could not read date time `$input`, '
           'try using a pattern, e.g. Jiffy("12, Oct", "dd, MMM")';
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, ordinals),
+          () => underTest.fromString(input, pattern, locale),
           throwsA(isA<JiffyException>().having((e) => e.message, 'message',
               contains(expectedExceptionMessage))));
     });
