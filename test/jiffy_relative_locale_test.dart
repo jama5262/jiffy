@@ -71,7 +71,7 @@ void main() {
       expect(jiffy12.fromNow(), 'منذ عام واحد');
       expect(jiffy13.fromNow(), 'منذ ۱۰ أعوام ');
       expect(locale.startOfWeek(), StartOfWeek.SATURDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing ar-dz/kw/ma/tn locale should return correct date time in ar-dz locale',
@@ -90,7 +90,7 @@ void main() {
       expect(jiffy12.fromNow(), 'منذ سنة');
       expect(jiffy13.fromNow(), 'منذ 10 سنوات ');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing ar-sa locale should return correct date time in ar-sa locale',
@@ -109,7 +109,7 @@ void main() {
       expect(jiffy12.fromNow(), 'منذ سنة');
       expect(jiffy13.fromNow(), 'منذ ۱۰ سنوات ');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing de/de-at/de-ch locale should return correct date time in de/de-at/de-ch locale',
@@ -166,7 +166,7 @@ void main() {
       expect(jiffy12.fromNow(), 'satu tahun yang lalu');
       expect(jiffy13.fromNow(), '10 tahun yang lalu');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing es locale should return correct date time in es locale',
@@ -223,7 +223,7 @@ void main() {
       expect(jiffy12.fromNow(), 'एक वर्ष पहले');
       expect(jiffy13.fromNow(), '10 वर्ष पहले');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing it locale should return correct date time in it locale',
@@ -318,7 +318,7 @@ void main() {
       expect(jiffy12.fromNow(), 'год назад');
       expect(jiffy13.fromNow(), '10 лет назад');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing uk locale should return correct date time in uk locale',
@@ -337,7 +337,7 @@ void main() {
       expect(jiffy12.fromNow(), 'рік тому');
       expect(jiffy13.fromNow(), '10 років тому');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing az locale should return correct date time in az locale',
@@ -356,27 +356,27 @@ void main() {
       expect(jiffy12.fromNow(), 'il geri');
       expect(jiffy13.fromNow(), '10 il geri');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
-    test(
-        'test Jiffy.locale() method with parsing zh-cn locale should return correct date time in zh-cn locale',
-        () async {
-      var locale = await Jiffy.locale('zh');
-      expect(jiffy1.fromNow(), '几秒前');
-      expect(jiffy2.fromNow(), '几秒内');
-      expect(jiffy3.fromNow(), '1 分钟前');
-      expect(jiffy5.fromNow(), '10 分钟前');
-      expect(jiffy6.fromNow(), '1 小时前');
-      expect(jiffy7.fromNow(), '10 小时前');
-      expect(jiffy8.fromNow(), '1 天前');
-      expect(jiffy9.fromNow(), '10 天前');
-      expect(jiffy10.from(Jiffy('2019-10-01')), '1 个月前');
-      expect(jiffy11.fromNow(), '10 个月前');
-      expect(jiffy12.fromNow(), '1 年前');
-      expect(jiffy13.fromNow(), '10 年前');
-      expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), ['日', '日', '日', '日']);
-    });
+    // test(
+    //     'test Jiffy.locale() method with parsing zh-cn locale should return correct date time in zh-cn locale',
+    //     () async {
+    //   var locale = await Jiffy.locale('zh');
+    //   expect(jiffy1.fromNow(), '几秒前');
+    //   expect(jiffy2.fromNow(), '几秒内');
+    //   expect(jiffy3.fromNow(), '1 分钟前');
+    //   expect(jiffy5.fromNow(), '10 分钟前');
+    //   expect(jiffy6.fromNow(), '1 小时前');
+    //   expect(jiffy7.fromNow(), '10 小时前');
+    //   expect(jiffy8.fromNow(), '1 天前');
+    //   expect(jiffy9.fromNow(), '10 天前');
+    //   expect(jiffy10.from(Jiffy('2019-10-01')), '1 个月前');
+    //   expect(jiffy11.fromNow(), '10 个月前');
+    //   expect(jiffy12.fromNow(), '1 年前');
+    //   expect(jiffy13.fromNow(), '10 年前');
+    //   expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
+    //   expect(locale.ordinals(), ['日', '日', '日', '日']);
+    // });
     test(
         'test Jiffy.locale() method with parsing zh-hk/tw locale should return correct date time in zh-hk/tw locale',
         () async {
@@ -432,7 +432,7 @@ void main() {
       expect(jiffy12.fromNow(), 'bir yıl önce');
       expect(jiffy13.fromNow(), '10 yıl önce');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing sv locale should return correct date time in sv locale',
@@ -451,7 +451,7 @@ void main() {
       expect(jiffy12.fromNow(), 'ett år sedan');
       expect(jiffy13.fromNow(), '10 år sedan');
       expect(locale.startOfWeek(), StartOfWeek.MONDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing nb locale should return correct date time in nb locale',
@@ -508,7 +508,7 @@ void main() {
       expect(jiffy12.fromNow(), 'এক বছর আগে');
       expect(jiffy13.fromNow(), '১০ বছর আগে');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing nl locale should return correct date time in nl locale',
@@ -546,7 +546,7 @@ void main() {
       expect(jiffy12.fromNow(), '1 ปีที่แล้ว');
       expect(jiffy13.fromNow(), '10 ปีที่แล้ว');
       expect(locale.startOfWeek(), StartOfWeek.SUNDAY);
-      expect(locale.ordinals(), null);
+      expect(locale.ordinals(), ['', '', '', '']);
     });
     test(
         'test Jiffy.locale() method with parsing hu locale should return correct date time in hu locale',

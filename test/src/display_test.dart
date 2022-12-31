@@ -1,8 +1,7 @@
 import 'package:jiffy/src/display.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/enums/units.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/locale/enLocale.dart';
+import 'package:jiffy/src/locale/locales/enLocale.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:test/test.dart';
@@ -31,7 +30,7 @@ void main() {
     for (var testData in formatWithPatternDateTimeTestData()) {
       test('Should successfully format datetime when pattern is provided', () {
         // Setup
-        final locale = EnLocale(StartOfWeek.MONDAY);
+        final locale = EnLocale();
 
         // Execute
         final actualFormat =
@@ -45,7 +44,7 @@ void main() {
     for (var testData in formatWithEscapedPatternDateTimeTestData()) {
       test('Should successfully format datetime with escaped pattern', () {
         // Setup
-        final locale = EnLocale(StartOfWeek.MONDAY);
+        final locale = EnLocale();
 
         // Execute
         final actualFormat =
@@ -59,7 +58,7 @@ void main() {
     for (var testData in formatWithOrdinalPatternDateTimeTestData()) {
       test('Should successfully format datetime with ordinal pattern', () {
         // Setup
-        final locale = EnLocale(StartOfWeek.MONDAY);
+        final locale = EnLocale();
 
         // Execute
         final actualFormat =
@@ -74,7 +73,7 @@ void main() {
       // Setup
       final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
       final pattern = '';
-      final locale = EnLocale(StartOfWeek.MONDAY);
+      final locale = EnLocale();
 
       final expectedExceptionMessage = 'The provided pattern for datetime '
           '`$dateTime` cannot be blank';
@@ -90,7 +89,7 @@ void main() {
       // Setup
       final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
       final pattern = 'invalid-pattern';
-      final locale = EnLocale(StartOfWeek.MONDAY);
+      final locale = EnLocale();
 
       final expectedExceptionMessage =
           'The pattern `$pattern` might be invalid';
@@ -103,7 +102,7 @@ void main() {
     });
   });
 
-  group('Test diff', () {
+  group('Test diff between two datetime', () {
     for (var testData in diffDateTimeTestData()) {
       test('Should successfully get difference between two datetime', () {
         // Setup

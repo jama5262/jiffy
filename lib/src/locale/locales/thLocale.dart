@@ -1,19 +1,19 @@
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/locale/relativeTime.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
+import '../../enums/startOfWeek.dart';
+import '../locale.dart';
+import '../relativeTime.dart';
 
 class ThLocale extends Locale {
-  StartOfWeek strtOfWeek;
-  ThLocale(this.strtOfWeek);
+  @override
+  String code() => 'th';
+
+  @override
+  List<String> ordinals() => List.from(['', '', '', ''], growable: false);
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
   RelativeTime relativeTime() => ThRelativeTime();
-
-  @override
-  List<String>? ordinals() => null;
-
-  @override
-  StartOfWeek startOfWeek() => strtOfWeek;
 }
 
 class ThRelativeTime extends RelativeTime {

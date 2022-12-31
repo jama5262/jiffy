@@ -1,23 +1,27 @@
-import 'package:jiffy/src/enums/startOfWeek.dart';
-import 'package:jiffy/src/locale/relativeTime.dart';
-import 'package:jiffy/src/enums/units.dart';
+import 'package:timeago/timeago.dart' as timeago;
+
+import '../enums/startOfWeek.dart';
+import '../enums/units.dart';
+import 'relativeTime.dart';
 
 abstract class Locale {
-  late String code;
+  String code();
 
-  // If a locale does not have ordinals return null
-  // todo have a fixed size list
-  // List.from(['st', 'nd', 'rd', 'th'], growable: false);
-  List<String>? ordinals();
+  List<String> ordinals();
+
+  StartOfWeek startOfWeek();
 
   RelativeTime relativeTime();
 
-  StartOfWeek startOfWeek();
+  String getRelativeTime2(DateTime firstDateTime, DateTime secondDateTime) {
+    return timeago.format(firstDateTime, clock: secondDateTime);
+  }
 
   String getRelativeTime(
     DateTime date1, {
     DateTime? date2,
-    Units? maxRelativeTimeUnit = Units.YEAR, // ONLY SUPPORT MINUTE, HOUR, DAY, MONTH, YEAR
+    Units? maxRelativeTimeUnit =
+        Units.YEAR, // ONLY SUPPORT MINUTE, HOUR, DAY, MONTH, YEAR
   }) {
     final relative = relativeTime();
     final _date2 = date2 ?? DateTime.now();
@@ -47,11 +51,13 @@ abstract class Locale {
       result = relative.lessThanOneMinute(seconds.round());
     } else if (seconds < 90) {
       result = relative.aboutAMinute(minutes.round());
-    } else if (minutes < 45 || (minutes >= 45 && maxRelativeTimeUnit == Units.MINUTE)) {
+    } else if (minutes < 45 ||
+        (minutes >= 45 && maxRelativeTimeUnit == Units.MINUTE)) {
       result = relative.minutes(minutes.round());
     } else if (minutes < 90) {
       result = relative.aboutAnHour(minutes.round());
-    } else if (hours < 24 || (hours >= 24 && maxRelativeTimeUnit == Units.HOUR)) {
+    } else if (hours < 24 ||
+        (hours >= 24 && maxRelativeTimeUnit == Units.HOUR)) {
       result = relative.hours(hours.round());
     } else if (hours < 48) {
       result = relative.aDay(hours.round());
@@ -59,7 +65,8 @@ abstract class Locale {
       result = relative.days(days.round());
     } else if (days < 60) {
       result = relative.aboutAMonth(days.round());
-    } else if (days < 365 || (days >= 365 && maxRelativeTimeUnit == Units.MONTH)) {
+    } else if (days < 365 ||
+        (days >= 365 && maxRelativeTimeUnit == Units.MONTH)) {
       result = relative.months(months.round());
     } else if (years < 2) {
       result = relative.aboutAYear(months.round());
@@ -73,11 +80,10 @@ abstract class Locale {
   }
 
   String ordinal(int day) {
-    if (ordinals() == null) return '';
-    var suffix = ordinals()!.last;
+    var suffix = ordinals().last;
     var digit = day % 10;
     if ((digit > 0 && digit < 4) && (day < 11 || day > 13)) {
-      suffix = ordinals()![digit - 1];
+      suffix = ordinals()[digit - 1];
     }
     return suffix;
   }
