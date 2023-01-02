@@ -1,5 +1,3 @@
-import 'package:timeago/timeago.dart' as timeago;
-
 import '../enums/startOfWeek.dart';
 import '../enums/units.dart';
 import 'relativeTime.dart';
@@ -12,10 +10,6 @@ abstract class Locale {
   StartOfWeek startOfWeek();
 
   RelativeTime relativeTime();
-
-  String getRelativeTime2(DateTime firstDateTime, DateTime secondDateTime) {
-    return timeago.format(firstDateTime, clock: secondDateTime);
-  }
 
   String getRelativeTime(
     DateTime date1, {

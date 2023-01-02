@@ -12,8 +12,6 @@ void main() {
   final locale = EnLocale();
 
   group('Test parsing datetime from string', () {
-    test('Should successfully parse datetime without a pattern', () {});
-
     for (var testData in fromStringWithPatternTestData()) {
       test('Should successfully parse datetime from pattern', () {
         // Execute
