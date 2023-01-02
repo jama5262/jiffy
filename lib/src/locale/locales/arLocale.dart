@@ -1,41 +1,88 @@
-import 'package:jiffy/src/enums/startOfWeek.dart';
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/locale/relativeTime.dart';
-import 'package:jiffy/src/utils/replace.dart';
+import '../../enums/startOfWeek.dart';
+import '../../utils/replace.dart';
+import '../locale.dart';
+import '../relativeTime.dart';
 
-class ArLyLocale extends Locale {
-  bool replaceNum;
-  StartOfWeek strtOfWeek;
-  ArLyLocale(this.replaceNum, this.strtOfWeek);
+class ArLocale extends Locale {
+  @override
+  String code() => 'ar';
 
   @override
-  RelativeTime relativeTime() => ArLyRelativeTime(replaceNum);
+  List<String> ordinals() => List.from(['', '', '', ''], growable: false);
 
   @override
-  List<String>? ordinals() => null;
+  StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
 
   @override
-  StartOfWeek startOfWeek() => strtOfWeek;
+  RelativeTime relativeTime() => ArRelativeTime(true);
 }
 
-class ArSaMaDzKwTnLocale extends Locale {
-  bool replaceNum;
-  StartOfWeek strtOfWeek;
-  ArSaMaDzKwTnLocale(this.replaceNum, this.strtOfWeek);
+class ArLyLocale extends ArLocale {
+  @override
+  String code() => 'ar_ly';
 
   @override
-  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(replaceNum);
-
-  @override
-  List<String>? ordinals() => null;
-
-  @override
-  StartOfWeek startOfWeek() => strtOfWeek;
+  RelativeTime relativeTime() => ArRelativeTime(false);
 }
 
-class ArLyRelativeTime extends RelativeTime {
+class ArDzLocale extends ArLocale {
+  @override
+  String code() => 'ar_dz';
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+
+  @override
+  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+}
+
+class ArKwLocale extends ArLocale {
+  @override
+  String code() => 'ar_kw';
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+
+  @override
+  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+}
+
+class ArSaLocale extends ArLocale {
+  @override
+  String code() => 'ar_sa';
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+
+  @override
+  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(true);
+}
+
+class ArMaLocale extends ArLocale {
+  @override
+  String code() => 'ar_ma';
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
+
+  @override
+  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+}
+
+class ArTnLocale extends ArLocale {
+  @override
+  String code() => 'ar_tn';
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
+
+  @override
+  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+}
+
+class ArRelativeTime extends RelativeTime {
   bool replaceNum;
-  ArLyRelativeTime(this.replaceNum);
+  ArRelativeTime(this.replaceNum);
 
   @override
   String prefixAgo() => 'منذ';

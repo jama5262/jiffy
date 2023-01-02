@@ -174,18 +174,26 @@ class Jiffy {
 
   // todo move this to its own file
   static void _initializeLocale([String? locale]) {
-    // todo rename this variable to system locale
-    var currentLocale = locale ?? Intl.getCurrentLocale();
-    _defaultLocale = getLocale(currentLocale);
-    _defaultLocale.code = currentLocale.toLowerCase();
+    var defaultLocale;
+    if (locale != null) {
+      if (!isLocalAvailable(locale)) {
+        throw JiffyException('_message');
+      }
+      defaultLocale = locale;
+    } else {
+      // todo add comment if system locale does not exist, the default is en_us
+      defaultLocale = Intl.getCurrentLocale();
+    }
+    _defaultLocale = getLocale(defaultLocale);
   }
 
+  // todo have a getter and setter for the locale class
+  // todo this is not going to work
   static Future<Locale> locale([String? locale]) async {
     // todo not sure why this is here
     _initializeLocale();
     if (locale != null) {
-      // todo reverse this return type by adding !
-      if (isLocalAvailable(locale)) {
+      if (!isLocalAvailable(locale)) {
         // todo update this to add link to document for all list of available locales
         throw JiffyException(
                 'The locale "$locale" does not exist in Jiffy, run Jiffy.getAllAvailableLocales() for more locales')
@@ -196,7 +204,6 @@ class Jiffy {
       Intl.defaultLocale = locale;
       // todo rethink how we set this again, I don't think its done right
       _defaultLocale = getLocale(locale);
-      _defaultLocale.code = locale.toLowerCase();
     }
     return Future.value(_defaultLocale);
   }

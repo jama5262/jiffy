@@ -1,93 +1,89 @@
-import 'package:jiffy/src/enums/startOfWeek.dart';
-import 'package:jiffy/src/locale/arLocale.dart';
-import 'package:jiffy/src/locale/deLocale.dart';
-import 'package:jiffy/src/locale/enLocale.dart';
-import 'package:jiffy/src/locale/esLocale.dart';
-import 'package:jiffy/src/locale/faLocale.dart';
-import 'package:jiffy/src/locale/frLocale.dart';
-import 'package:jiffy/src/locale/hiLocale.dart';
-import 'package:jiffy/src/locale/huLocale.dart';
-import 'package:jiffy/src/locale/idLocale.dart';
-import 'package:jiffy/src/locale/itLocale.dart';
-import 'package:jiffy/src/locale/jaLocale.dart';
-import 'package:jiffy/src/locale/koLocale.dart';
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/locale/nbLocale.dart';
-import 'package:jiffy/src/locale/nlLocale.dart';
-import 'package:jiffy/src/locale/plLocale.dart';
-import 'package:jiffy/src/locale/ptLocale.dart';
-import 'package:jiffy/src/locale/ruLocale.dart';
-import 'package:jiffy/src/locale/thLocale.dart';
-import 'package:jiffy/src/locale/ukLocale.dart';
-import 'package:jiffy/src/locale/azLocale.dart';
-import 'package:jiffy/src/locale/svLocale.dart';
-import 'package:jiffy/src/locale/trLocale.dart';
-import 'package:jiffy/src/locale/zhCnLocale.dart';
-import 'package:jiffy/src/locale/zhLocale.dart';
-import 'package:jiffy/src/locale/bnLocale.dart';
+import 'locale.dart';
+import 'locales/arLocale.dart';
+import 'locales/deLocale.dart';
+import 'locales/enLocale.dart';
+import 'locales/esLocale.dart';
+import 'locales/faLocale.dart';
+import 'locales/frLocale.dart';
+import 'locales/hiLocale.dart';
+import 'locales/huLocale.dart';
+import 'locales/idLocale.dart';
+import 'locales/itLocale.dart';
+import 'locales/jaLocale.dart';
+import 'locales/koLocale.dart';
+import 'locales/nbLocale.dart';
+import 'locales/nlLocale.dart';
+import 'locales/plLocale.dart';
+import 'locales/ptLocale.dart';
+import 'locales/ruLocale.dart';
+import 'locales/thLocale.dart';
+import 'locales/ukLocale.dart';
+import 'locales/azLocale.dart';
+import 'locales/svLocale.dart';
+import 'locales/trLocale.dart';
+import 'locales/zhLocale.dart';
+import 'locales/bnLocale.dart';
 
 Map<String, Locale> _availableLocales = {
-  'en': EnLocale(StartOfWeek.SUNDAY),
-  'en_us': EnLocale(StartOfWeek.SUNDAY),
-  'en_sg': EnLocale(StartOfWeek.SUNDAY),
-  'en_au': EnLocale(StartOfWeek.SUNDAY),
-  'en_ca': EnLocale(StartOfWeek.SUNDAY),
-  'en_gb': EnLocale(StartOfWeek.MONDAY),
-  'en_ie': EnLocale(StartOfWeek.MONDAY),
-  'en_il': EnLocale(StartOfWeek.SUNDAY),
-  'en_nz': EnLocale(StartOfWeek.SUNDAY),
-  'es': EsLocale(StartOfWeek.MONDAY),
-  'es_do': EsLocale(StartOfWeek.MONDAY),
-  'es_us': EsLocale(StartOfWeek.SUNDAY),
-  'fr': FrLocale(StartOfWeek.MONDAY),
-  'fr_ch': FrLocale(StartOfWeek.MONDAY),
-  'fr_ca': FrLocale(StartOfWeek.SUNDAY),
-  'zh': ZhCnLocale(StartOfWeek.SUNDAY),
-  'zh_cn': ZhCnLocale(StartOfWeek.SUNDAY),
-  'zh_hk': ZhLocale(StartOfWeek.SUNDAY),
-  'zh_tw': ZhLocale(StartOfWeek.SUNDAY),
-  'de': DeLocale(StartOfWeek.MONDAY),
-  'de_de': DeLocale(StartOfWeek.MONDAY),
-  'de_at': DeLocale(StartOfWeek.MONDAY),
-  'de_ch': DeLocale(StartOfWeek.MONDAY),
-  'it': ItLocale(StartOfWeek.MONDAY),
-  'it_ch': ItLocale(StartOfWeek.MONDAY),
-  'ar': ArLyLocale(true, StartOfWeek.SATURDAY),
-  'ar_ly': ArLyLocale(false, StartOfWeek.SATURDAY),
-  'ar_dz': ArSaMaDzKwTnLocale(false, StartOfWeek.SUNDAY),
-  'ar_kw': ArSaMaDzKwTnLocale(false, StartOfWeek.SUNDAY),
-  'ar_sa': ArSaMaDzKwTnLocale(true, StartOfWeek.SUNDAY),
-  'ar_ma': ArSaMaDzKwTnLocale(false, StartOfWeek.SATURDAY),
-  'ar_tn': ArSaMaDzKwTnLocale(false, StartOfWeek.SATURDAY),
-  'az': AzLocale(StartOfWeek.MONDAY),
-  'id': IdLocale(StartOfWeek.SUNDAY),
-  'ja': JaLocale(StartOfWeek.SUNDAY),
-  'ko': KoLocale(StartOfWeek.SUNDAY),
-  'ru': RuLocale(StartOfWeek.MONDAY),
-  'uk': UkLocale(StartOfWeek.MONDAY),
-  'hi': HiLocale(StartOfWeek.SUNDAY),
-  'hu': HuLocale(StartOfWeek.MONDAY),
-  'hu_hu': HuLocale(StartOfWeek.MONDAY),
-  'pt': PtLocale(StartOfWeek.MONDAY),
-  'pt_br': PtLocale(StartOfWeek.SUNDAY),
-  'pl': PlLocale(StartOfWeek.MONDAY),
-  'tr': TrLocale(StartOfWeek.MONDAY),
-  'sv': SvLocale(StartOfWeek.MONDAY),
-  'nb': NbLocale(StartOfWeek.MONDAY),
-  'fa': FaLocale(true, StartOfWeek.SATURDAY),
-  'bn': BnLocale(StartOfWeek.SUNDAY),
-  'nl': NlLocale(StartOfWeek.MONDAY),
-  'th': ThLocale(StartOfWeek.SUNDAY)
+  'en': EnLocale(),
+  'en_us': EnUsLocale(),
+  'en_sg': EnSgLocale(),
+  'en_au': EnAuLocale(),
+  'en_ca': EnCaLocale(),
+  'en_gb': EnGbLocale(),
+  'en_ie': EnIeLocale(),
+  'en_il': EnLiLocale(),
+  'en_nz': EnNzLocale(),
+  'es': EsLocale(),
+  'es_do': EsDoLocale(),
+  'es_us': EsUsLocale(),
+  'fr': FrLocale(),
+  'fr_ch': FrChLocale(),
+  'fr_ca': FrCaLocale(),
+  'zh': ZhLocale(),
+  'zh_cn': ZhCnLocale(),
+  'zh_hk': ZhHkLocale(),
+  'zh_tw': ZhTwLocale(),
+  'de': DeLocale(),
+  'de_de': DeDeLocale(),
+  'de_at': DeAtLocale(),
+  'de_ch': DeChLocale(),
+  'it': ItLocale(),
+  'it_ch': ItChLocale(),
+  'ar': ArLocale(),
+  'ar_ly': ArLyLocale(),
+  'ar_dz': ArDzLocale(),
+  'ar_kw': ArKwLocale(),
+  'ar_sa': ArSaLocale(),
+  'ar_ma': ArMaLocale(),
+  'ar_tn': ArTnLocale(),
+  'az': AzLocale(),
+  'id': IdLocale(),
+  'ja': JaLocale(),
+  'ko': KoLocale(),
+  'ru': RuLocale(),
+  'uk': UkLocale(),
+  'hi': HiLocale(),
+  'hu': HuLocale(),
+  'hu_hu': HuHuLocale(),
+  'pt': PtLocale(),
+  'pt_br': PtBrLocale(),
+  'pl': PlLocale(),
+  'tr': TrLocale(),
+  'sv': SvLocale(),
+  'nb': NbLocale(),
+  'fa': FaLocale(),
+  'bn': BnLocale(),
+  'nl': NlLocale(),
+  'th': ThLocale()
 };
 
 Locale getLocale(String locale) {
-  return _availableLocales[locale.toLowerCase()] ??
-      EnLocale(StartOfWeek.SUNDAY);
+  return _availableLocales[locale.toLowerCase()] ?? _availableLocales['en_us']!;
 }
 
-// todo make this return a true
 bool isLocalAvailable(String locale) {
-  return !_availableLocales.containsKey(locale.toLowerCase());
+  return _availableLocales.containsKey(locale.toLowerCase());
 }
 
 // todo remove this function, it has no purpose

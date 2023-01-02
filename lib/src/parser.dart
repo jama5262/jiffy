@@ -16,7 +16,7 @@ class Parser {
         throw JiffyException('The provided pattern for `$input` cannot '
             'be blank');
       }
-      final ordinals = locale.ordinals()!;
+      final ordinals = locale.ordinals();
       return parseString(
           _replaceParseInput(input, ordinals), _replacePatternInput(pattern));
     }

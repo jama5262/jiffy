@@ -1,27 +1,23 @@
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/locale/relativeTime.dart';
-import 'package:jiffy/src/utils/replace.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
+import '../../enums/startOfWeek.dart';
+import '../../utils/replace.dart';
+import '../locale.dart';
+import '../relativeTime.dart';
 
 class FaLocale extends Locale {
-  bool replaceNum;
-  StartOfWeek strtOfWeek;
-  FaLocale(this.replaceNum, this.strtOfWeek);
+  @override
+  String code() => 'fa';
 
   @override
-  RelativeTime relativeTime() => FaRelativeTime(replaceNum);
+  List<String> ordinals() => List.from(['م', 'م', 'م', 'م'], growable: false);
 
   @override
-  List<String>? ordinals() => ['م', 'م', 'م', 'م'];
+  StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
 
   @override
-  StartOfWeek startOfWeek() => strtOfWeek;
+  RelativeTime relativeTime() => FaRelativeTime();
 }
 
 class FaRelativeTime extends RelativeTime {
-  bool replaceNum;
-  FaRelativeTime(this.replaceNum);
-
   @override
   String prefixAgo() => '';
   @override
@@ -38,7 +34,7 @@ class FaRelativeTime extends RelativeTime {
   String minutes(int minutes) {
     String result;
     result = '$minutes دقیقه ';
-    return replaceNum ? replaceToLocaleNum(result, 'fa') : result;
+    return replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -47,7 +43,7 @@ class FaRelativeTime extends RelativeTime {
   String hours(int hours) {
     String result;
     result = '$hours ساعت ';
-    return replaceNum ? replaceToLocaleNum(result, 'fa') : result;
+    return replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -56,7 +52,7 @@ class FaRelativeTime extends RelativeTime {
   String days(int days) {
     String result;
     result = '$days روز ';
-    return replaceNum ? replaceToLocaleNum(result, 'fa') : result;
+    return replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -65,7 +61,7 @@ class FaRelativeTime extends RelativeTime {
   String months(int months) {
     String result;
     result = '$months ماه ';
-    return replaceNum ? replaceToLocaleNum(result, 'fa') : result;
+    return replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -74,7 +70,7 @@ class FaRelativeTime extends RelativeTime {
   String years(int years) {
     String result;
     result = '$years سال ';
-    return replaceNum ? replaceToLocaleNum(result, 'fa') : result;
+    return replaceToLocaleNum(result, 'fa');
   }
 
   @override

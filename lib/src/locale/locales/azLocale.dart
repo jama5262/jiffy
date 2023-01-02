@@ -1,50 +1,50 @@
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/locale/relativeTime.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
+import '../../enums/startOfWeek.dart';
+import '../locale.dart';
+import '../relativeTime.dart';
 
-class UkLocale extends Locale {
-  StartOfWeek strtOfWeek;
-  UkLocale(this.strtOfWeek);
+class AzLocale extends Locale {
+  @override
+  String code() => 'az';
 
   @override
-  RelativeTime relativeTime() => UkRelativeTime();
+  List<String> ordinals() => List.from(['', '', '', ''], growable: false);
 
   @override
-  List<String>? ordinals() => null;
+  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
 
   @override
-  StartOfWeek startOfWeek() => strtOfWeek;
+  RelativeTime relativeTime() => AzRelativeTime();
 }
 
-class UkRelativeTime extends RelativeTime {
+class AzRelativeTime extends RelativeTime {
   @override
   String prefixAgo() => '';
   @override
-  String prefixFromNow() => 'через';
+  String prefixFromNow() => '';
   @override
-  String suffixAgo() => 'тому';
+  String suffixAgo() => 'geri';
   @override
-  String suffixFromNow() => '';
+  String suffixFromNow() => 'sonra';
   @override
-  String lessThanOneMinute(int seconds) => 'декілька секунд';
+  String lessThanOneMinute(int seconds) => 'bir neçə saniyə';
   @override
-  String aboutAMinute(int minutes) => 'хвилину';
+  String aboutAMinute(int minutes) => 'dəqiqə';
   @override
   String minutes(int minutes) => '$minutes ${_convert(minutes, 'minutes')}';
   @override
-  String aboutAnHour(int minutes) => 'годину';
+  String aboutAnHour(int minutes) => 'saat';
   @override
   String hours(int hours) => '$hours ${_convert(hours, 'hours')}';
   @override
-  String aDay(int hours) => 'день';
+  String aDay(int hours) => 'gün';
   @override
   String days(int days) => '$days ${_convert(days, 'days')}';
   @override
-  String aboutAMonth(int days) => 'місяць';
+  String aboutAMonth(int days) => 'ay';
   @override
   String months(int months) => '$months ${_convert(months, 'months')}';
   @override
-  String aboutAYear(int year) => 'рік';
+  String aboutAYear(int year) => 'il';
   @override
   String years(int years) => '$years ${_convert(years, 'years')}';
   @override
@@ -58,15 +58,15 @@ String _convert(int number, String type) {
   if (mod == 1 && modH != 11) {
     switch (type) {
       case 'minutes':
-        return 'хвилину';
+        return 'dəqiqə';
       case 'hours':
-        return 'годину';
+        return 'saat';
       case 'days':
-        return 'день';
+        return 'gün';
       case 'months':
-        return 'місяць';
+        return 'ay';
       case 'years':
-        return 'рік';
+        return 'il';
       default:
         return '';
     }
@@ -74,30 +74,30 @@ String _convert(int number, String type) {
       !<int>[12, 13, 14].contains(modH)) {
     switch (type) {
       case 'minutes':
-        return 'хвилини';
+        return 'dəqiqə';
       case 'hours':
-        return 'години';
+        return 'saat';
       case 'days':
-        return 'дні';
+        return 'gün';
       case 'months':
-        return 'місяці';
+        return 'ay';
       case 'years':
-        return 'роки';
+        return 'il';
       default:
         return '';
     }
   }
   switch (type) {
     case 'minutes':
-      return 'хвилин';
+      return 'dəqiqə';
     case 'hours':
-      return 'годин';
+      return 'saat';
     case 'days':
-      return 'днів';
+      return 'gün';
     case 'months':
-      return 'місяців';
+      return 'ay';
     case 'years':
-      return 'років';
+      return 'il';
     default:
       return '';
   }

@@ -1,19 +1,66 @@
-import 'package:jiffy/src/locale/locale.dart';
-import 'package:jiffy/src/locale/relativeTime.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
+import '../../enums/startOfWeek.dart';
+import '../locale.dart';
+import '../relativeTime.dart';
 
 class EnLocale extends Locale {
-  StartOfWeek strtOfWeek;
-  EnLocale(this.strtOfWeek);
+  @override
+  String code() => 'en';
+
+  @override
+  List<String> ordinals() =>
+      List.from(['st', 'nd', 'rd', 'th'], growable: false);
+
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
   RelativeTime relativeTime() => EnRelativeTime();
+}
+
+class EnUsLocale extends EnLocale {
+  @override
+  String code() => 'en_us';
+}
+
+class EnSgLocale extends EnLocale {
+  @override
+  String code() => 'en_sg';
+}
+
+class EnAuLocale extends EnLocale {
+  @override
+  String code() => 'en_au';
+}
+
+class EnCaLocale extends EnLocale {
+  @override
+  String code() => 'en_ca';
+}
+
+class EnGbLocale extends EnLocale {
+  @override
+  String code() => 'en_gb';
 
   @override
-  List<String>? ordinals() => ['st', 'nd', 'rd', 'th'];
+  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
+}
+
+class EnIeLocale extends EnLocale {
+  @override
+  String code() => 'en_ie';
 
   @override
-  StartOfWeek startOfWeek() => strtOfWeek;
+  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
+}
+
+class EnLiLocale extends EnLocale {
+  @override
+  String code() => 'en_li';
+}
+
+class EnNzLocale extends EnLocale {
+  @override
+  String code() => 'en_nz';
 }
 
 class EnRelativeTime extends RelativeTime {
