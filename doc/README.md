@@ -361,6 +361,15 @@ jiffy1.from(jiffy2); // a day ago
 
 jiffy1.from([2017, 1, 30]); // 2 days ago
 ```
+### Time without prefix/suffix
+It's also possible to display time from X/Now without prefix and suffix by adding named parameter `withoutPrefixAndSuffix: true`
+```dart
+Jiffy("2007-1-29").fromNow(withoutPrefixAndSuffix: true); // 14 years
+Jiffy([2022, 10, 29]).fromNow(withoutPrefixAndSuffix: true); // a year
+Jiffy(DateTime(2050, 10, 29)).fromNow(withoutPrefixAndSuffix: true); // 30 years
+
+var jiffy = Jiffy().startOf(Units.HOUR).fromNow(withoutPrefixAndSuffix: true); // 9 minutes
+```
 ### Difference
 Used to get the difference between two Jiffy date times. See below
 ```dart

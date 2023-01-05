@@ -532,16 +532,21 @@ class Jiffy {
   String get jms => DateFormat.jms().format(_dateTime);
 
   // todo use timeago library
-  String fromNow({Units? maxRelativeTimeUnit}) {
+  String fromNow(
+      {Units? maxRelativeTimeUnit, bool withoutPrefixAndSuffix = false}) {
     return _defaultLocale.getRelativeTime(_dateTime,
-        maxRelativeTimeUnit: maxRelativeTimeUnit);
+        maxRelativeTimeUnit: maxRelativeTimeUnit,
+        withoutPrefixAndSuffix: withoutPrefixAndSuffix);
   }
 
   // todo have multiple functions that accept list, map and string
-  String from(var input, {Units? maxRelativeTimeUnit}) {
+  String from(var input,
+      {Units? maxRelativeTimeUnit, bool withoutPrefixAndSuffix = false}) {
     var dateTime = _parse(input);
     return _defaultLocale.getRelativeTime(_dateTime,
-        date2: dateTime, maxRelativeTimeUnit: maxRelativeTimeUnit);
+        date2: dateTime,
+        maxRelativeTimeUnit: maxRelativeTimeUnit,
+        withoutPrefixAndSuffix: withoutPrefixAndSuffix);
   }
 
   // todo have multiple functions that accept list, map and string

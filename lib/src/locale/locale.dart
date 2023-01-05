@@ -11,12 +11,12 @@ abstract class Locale {
 
   RelativeTime relativeTime();
 
-  String getRelativeTime(
-    DateTime date1, {
-    DateTime? date2,
-    Units? maxRelativeTimeUnit =
-        Units.YEAR, // ONLY SUPPORT MINUTE, HOUR, DAY, MONTH, YEAR
-  }) {
+  String getRelativeTime(DateTime date1,
+      {DateTime? date2,
+      Units? maxRelativeTimeUnit =
+          Units.YEAR, // ONLY SUPPORT MINUTE, HOUR, DAY, MONTH, YEAR
+      bool withoutPrefixAndSuffix = false
+      }) {
     final relative = relativeTime();
     final _date2 = date2 ?? DateTime.now();
     final _allowFromNow = _date2.isBefore(date1);
@@ -31,6 +31,11 @@ abstract class Locale {
     } else {
       prefix = relative.prefixAgo();
       suffix = relative.suffixAgo();
+    }
+
+    if (withoutPrefixAndSuffix) {
+      prefix = '';
+      suffix = '';
     }
 
     final num seconds = elapsed / 1000;

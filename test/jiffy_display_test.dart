@@ -242,5 +242,38 @@ void main() {
               true),
           -2.0);
     });
+    test(
+        'test Jiffy().fromNow(withoutPrefixAndSuffix: true) should return relative time without prefix and suffix',
+        () {
+      expect(
+          Jiffy(Jiffy().subtract(years: 1))
+              .fromNow(withoutPrefixAndSuffix: true),
+          'a year');
+      expect(
+          Jiffy(Jiffy().subtract(months: 3))
+              .fromNow(withoutPrefixAndSuffix: true),
+          '3 months');
+      expect(
+          Jiffy(Jiffy().subtract(days: 6))
+              .fromNow(withoutPrefixAndSuffix: true),
+          '6 days');
+      expect(
+          Jiffy(Jiffy().subtract(hours: 14))
+              .fromNow(withoutPrefixAndSuffix: true),
+          '14 hours');
+      expect(
+          Jiffy(Jiffy().subtract(minutes: 40))
+              .fromNow(withoutPrefixAndSuffix: true),
+          '40 minutes');
+      expect(
+          Jiffy(Jiffy().subtract(seconds: 5))
+              .fromNow(withoutPrefixAndSuffix: true),
+          'a few seconds');
+      expect(Jiffy(Jiffy().add(years: 3)).fromNow(withoutPrefixAndSuffix: true),
+          '3 years');
+      expect(
+          Jiffy(Jiffy().add(minutes: 15)).fromNow(withoutPrefixAndSuffix: true),
+          '15 minutes');
+    });
   });
 }
