@@ -542,6 +542,7 @@ Below are the locales that are supported in Jiffy. More will be added
 | Hungarian  | hu / hu_hu |
 | Italian  | it / it_ch |
 | Korean  | ko |
+| Uzbek  | uz |
 | Russian  | ru |
 | Ukrainian  | uk |
 | Hindi  | hi |

@@ -15,6 +15,7 @@ import 'locales/nbLocale.dart';
 import 'locales/nlLocale.dart';
 import 'locales/plLocale.dart';
 import 'locales/ptLocale.dart';
+import 'locales/uzLocale.dart';
 import 'locales/ruLocale.dart';
 import 'locales/thLocale.dart';
 import 'locales/ukLocale.dart';
@@ -61,6 +62,7 @@ Map<String, Locale> _availableLocales = {
   'id': IdLocale(),
   'ja': JaLocale(),
   'ko': KoLocale(),
+  'uz': UzLocale(),
   'ru': RuLocale(),
   'uk': UkLocale(),
   'hi': HiLocale(),

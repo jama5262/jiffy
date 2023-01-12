@@ -302,6 +302,25 @@ void main() {
       expect(locale.ordinals(), ['º', 'º', 'º', 'º']);
     });
     test(
+        'test Jiffy.locale() method with parsing uz locale should return correct date time in uz locale',
+            () async {
+          var locale = await Jiffy.locale('uz');
+          expect(jiffy1.fromNow(), 'bir necha soniya oldin');
+          expect(jiffy2.fromNow(), 'bir necha soniya o\ʻtib');
+          expect(jiffy3.fromNow(), '1 daqiqa oldin');
+          expect(jiffy5.fromNow(), '10 daqiqa oldin');
+          expect(jiffy6.fromNow(), '1 soat oldin');
+          expect(jiffy7.fromNow(), '10 soat oldin');
+          expect(jiffy8.fromNow(), '1 kun oldin');
+          expect(jiffy9.fromNow(), '10 kun oldin');
+          expect(jiffy10.from(Jiffy('2019-10-01')), '1 oy oldin');
+          expect(jiffy11.fromNow(), '10 oy oldin');
+          expect(jiffy12.fromNow(), '1 yil oldin');
+          expect(jiffy13.fromNow(), '10 yil oldin');
+          expect(locale.startOfWeek(), StartOfWeek.MONDAY);
+          expect(locale.ordinals(), ['', '', '', '']);
+        });
+    test(
         'test Jiffy.locale() method with parsing ru locale should return correct date time in ru locale',
         () async {
       var locale = await Jiffy.locale('ru');

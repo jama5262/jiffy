@@ -18,6 +18,7 @@ import 'package:jiffy/src/locale/locales/nbLocale.dart';
 import 'package:jiffy/src/locale/locales/nlLocale.dart';
 import 'package:jiffy/src/locale/locales/plLocale.dart';
 import 'package:jiffy/src/locale/locales/ptLocale.dart';
+import 'package:jiffy/src/locale/locales/uzLocale.dart';
 import 'package:jiffy/src/locale/locales/ruLocale.dart';
 import 'package:jiffy/src/locale/locales/svLocale.dart';
 import 'package:jiffy/src/locale/locales/thLocale.dart';
@@ -297,6 +298,13 @@ List<Map<String, dynamic>> localesTestData() {
       'ordinals': ['일', '일', '일', '일'],
       'startOfWeek': StartOfWeek.SUNDAY,
       'relativeTime': KoRelativeTime()
+    },
+    {
+      'locale': UzLocale(),
+      'code': 'uz',
+      'ordinals': ['', '', '', ''],
+      'startOfWeek': StartOfWeek.MONDAY,
+      'relativeTime': UzRelativeTime()
     },
     {
       'locale': RuLocale(),
