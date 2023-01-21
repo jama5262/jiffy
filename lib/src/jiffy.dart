@@ -5,7 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/enums/units.dart';
-import 'package:jiffy/src/locale/availableLocales.dart';
+import 'package:jiffy/src/locale/available_locales.dart';
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/utils/exception.dart';
 import 'package:jiffy/src/utils/normalize_units.dart';

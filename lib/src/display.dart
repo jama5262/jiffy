@@ -35,18 +35,18 @@ class Display {
 
   String fromAsRelativeDateTime(
       DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
-    final isSecondDateTimeNowOrInTheFuture = query.isSameOrBefore(
+    final isFirstDateTimeSameOrBeforeSecondDateTime = query.isSameOrBefore(
         firstDateTime, secondDateTime, Units.MICROSECOND, locale.startOfWeek());
 
-    final relativeTime = locale.relativeTime();
+    final relativeDateTime = locale.relativeDateTime();
     var prefix, suffix;
 
-    if (isSecondDateTimeNowOrInTheFuture) {
-      prefix = relativeTime.prefixFromNow();
-      suffix = relativeTime.suffixFromNow();
+    if (isFirstDateTimeSameOrBeforeSecondDateTime) {
+      prefix = relativeDateTime.prefixFromNow();
+      suffix = relativeDateTime.suffixFromNow();
     } else {
-      prefix = relativeTime.prefixAgo();
-      suffix = relativeTime.suffixAgo();
+      prefix = relativeDateTime.prefixAgo();
+      suffix = relativeDateTime.suffixAgo();
     }
 
     final seconds =
@@ -62,83 +62,33 @@ class Display {
     var result;
 
     if (seconds < 45) {
-      result = relativeTime.lessThanOneMinute(seconds.round());
+      result = relativeDateTime.lessThanOneMinute(seconds.round());
     } else if (seconds < 90) {
-      result = relativeTime.aboutAMinute(minutes.round());
+      result = relativeDateTime.aboutAMinute(minutes.round());
     } else if (minutes < 45) {
-      result = relativeTime.minutes(minutes.round());
+      result = relativeDateTime.minutes(minutes.round());
     } else if (minutes < 90) {
-      result = relativeTime.aboutAnHour(minutes.round());
+      result = relativeDateTime.aboutAnHour(minutes.round());
     } else if (hours < 24) {
-      result = relativeTime.hours(hours.round());
+      result = relativeDateTime.hours(hours.round());
     } else if (hours < 48) {
-      result = relativeTime.aDay(hours.round());
+      result = relativeDateTime.aDay(hours.round());
     } else if (days < 30) {
-      result = relativeTime.days(days.round());
+      result = relativeDateTime.days(days.round());
     } else if (days < 60) {
-      result = relativeTime.aboutAMonth(days.round());
+      result = relativeDateTime.aboutAMonth(days.round());
     } else if (days < 365) {
-      result = relativeTime.months(months.round());
+      result = relativeDateTime.months(months.round());
     } else if (years < 2) {
-      result = relativeTime.aboutAYear(months.round());
+      result = relativeDateTime.aboutAYear(months.round());
     } else {
-      result = relativeTime.years(years.round());
+      result = relativeDateTime.years(years.round());
     }
 
     return [prefix, result, suffix]
         .where((str) => str.isNotEmpty)
-        .join(relativeTime.wordSeparator());
+        .join(relativeDateTime.wordSeparator());
   }
-
-  // String fromAsAbsolute(DateTime firstDateTime, DateTime secondDateTime,
-  //     Units unit, Locale locale) {
-  //   var result;
-  //
-  //   final isSecondDateTimeNowOrInTheFuture = query.isSameOrBefore(
-  //       firstDateTime, secondDateTime, unit, locale.startOfWeek());
-  //   var prefix = '';
-  //   var suffix = '';
-  //
-  //   if (isSecondDateTimeNowOrInTheFuture) {
-  //     prefix = 'in';
-  //   } else {
-  //     suffix = 'ago';
-  //   }
-  //
-  //   final difference = diff(firstDateTime, secondDateTime, unit, true).abs();
-  //
-  //   switch (unit) {
-  //     case Units.MICROSECOND:
-  //       result = '$difference microseconds';
-  //       break;
-  //     case Units.MILLISECOND:
-  //       result = '$difference milliseconds';
-  //       break;
-  //     case Units.SECOND:
-  //       result = '$difference seconds';
-  //       break;
-  //     case Units.MINUTE:
-  //       result = '$difference minutes';
-  //       break;
-  //     case Units.HOUR:
-  //       result = '$difference hours';
-  //       break;
-  //     case Units.DAY:
-  //       result = '$difference days';
-  //       break;
-  //     case Units.WEEK:
-  //       result = '$difference weeks';
-  //       break;
-  //     case Units.MONTH:
-  //       result = '$difference months';
-  //       break;
-  //     case Units.YEAR:
-  //       result = '$difference years';
-  //       break;
-  //   }
-  //
-  //   return [prefix, result, suffix].where((str) => str.isNotEmpty).join(' ');
-  // }
 
   num diff(DateTime firstDateTime, DateTime secondDateTime, Units unit,
       bool asFloat) {

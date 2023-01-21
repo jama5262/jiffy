@@ -1,6 +1,6 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/enums/startOfWeek.dart';
-import 'package:jiffy/src/locale/availableLocales.dart';
+import 'package:jiffy/src/locale/available_locales.dart';
 import 'package:test/test.dart';
 
 void main() {

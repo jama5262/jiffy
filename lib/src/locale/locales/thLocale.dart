@@ -1,6 +1,6 @@
 import '../../enums/startOfWeek.dart';
 import '../locale.dart';
-import '../relativeTime.dart';
+import '../relative_date_time.dart';
 
 class ThLocale extends Locale {
   @override
@@ -13,10 +13,10 @@ class ThLocale extends Locale {
   StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
-  RelativeTime relativeTime() => ThRelativeTime();
+  RelativeDateTime relativeDateTime() => ThRelativeTime();
 }
 
-class ThRelativeTime extends RelativeTime {
+class ThRelativeTime extends RelativeDateTime {
   @override
   String prefixAgo() => '';
   @override
