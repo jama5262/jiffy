@@ -1,4 +1,4 @@
-abstract class RelativeTime {
+abstract class RelativeDateTime {
   String prefixAgo();
   String prefixFromNow();
   String suffixAgo();

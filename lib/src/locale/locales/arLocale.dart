@@ -1,7 +1,7 @@
 import '../../enums/startOfWeek.dart';
 import '../../utils/replace.dart';
 import '../locale.dart';
-import '../relativeTime.dart';
+import '../relative_date_time.dart';
 
 class ArLocale extends Locale {
   @override
@@ -14,7 +14,7 @@ class ArLocale extends Locale {
   StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
 
   @override
-  RelativeTime relativeTime() => ArRelativeTime(true);
+  RelativeDateTime relativeDateTime() => ArRelativeTime(true);
 }
 
 class ArLyLocale extends ArLocale {
@@ -22,7 +22,7 @@ class ArLyLocale extends ArLocale {
   String code() => 'ar_ly';
 
   @override
-  RelativeTime relativeTime() => ArRelativeTime(false);
+  RelativeDateTime relativeDateTime() => ArRelativeTime(false);
 }
 
 class ArDzLocale extends ArLocale {
@@ -33,7 +33,7 @@ class ArDzLocale extends ArLocale {
   StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
-  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+  RelativeDateTime relativeDateTime() => ArSaMaDzKwTnRelativeTime(false);
 }
 
 class ArKwLocale extends ArLocale {
@@ -44,7 +44,7 @@ class ArKwLocale extends ArLocale {
   StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
-  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+  RelativeDateTime relativeDateTime() => ArSaMaDzKwTnRelativeTime(false);
 }
 
 class ArSaLocale extends ArLocale {
@@ -55,7 +55,7 @@ class ArSaLocale extends ArLocale {
   StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
-  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(true);
+  RelativeDateTime relativeDateTime() => ArSaMaDzKwTnRelativeTime(true);
 }
 
 class ArMaLocale extends ArLocale {
@@ -66,7 +66,7 @@ class ArMaLocale extends ArLocale {
   StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
 
   @override
-  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+  RelativeDateTime relativeDateTime() => ArSaMaDzKwTnRelativeTime(false);
 }
 
 class ArTnLocale extends ArLocale {
@@ -77,10 +77,10 @@ class ArTnLocale extends ArLocale {
   StartOfWeek startOfWeek() => StartOfWeek.SATURDAY;
 
   @override
-  RelativeTime relativeTime() => ArSaMaDzKwTnRelativeTime(false);
+  RelativeDateTime relativeDateTime() => ArSaMaDzKwTnRelativeTime(false);
 }
 
-class ArRelativeTime extends RelativeTime {
+class ArRelativeTime extends RelativeDateTime {
   bool replaceNum;
   ArRelativeTime(this.replaceNum);
 
@@ -193,7 +193,7 @@ class ArRelativeTime extends RelativeTime {
   String wordSeparator() => ' ';
 }
 
-class ArSaMaDzKwTnRelativeTime extends RelativeTime {
+class ArSaMaDzKwTnRelativeTime extends RelativeDateTime {
   bool replaceNum;
   ArSaMaDzKwTnRelativeTime(this.replaceNum);
 

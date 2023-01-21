@@ -1,6 +1,6 @@
 import '../../enums/startOfWeek.dart';
 import '../locale.dart';
-import '../relativeTime.dart';
+import '../relative_date_time.dart';
 
 class ZhLocale extends Locale {
   @override
@@ -13,7 +13,7 @@ class ZhLocale extends Locale {
   StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
 
   @override
-  RelativeTime relativeTime() => ZhRelativeTime();
+  RelativeDateTime relativeDateTime() => ZhRelativeTime();
 }
 
 class ZhCnLocale extends ZhLocale {
@@ -21,7 +21,7 @@ class ZhCnLocale extends ZhLocale {
   String code() => 'zh_cn';
 
   @override
-  RelativeTime relativeTime() => ZhCnRelativeTime();
+  RelativeDateTime relativeDateTime() => ZhCnRelativeTime();
 }
 
 class ZhHkLocale extends ZhLocale {
@@ -34,7 +34,7 @@ class ZhTwLocale extends ZhLocale {
   String code() => 'zh_tw';
 }
 
-class ZhRelativeTime extends RelativeTime {
+class ZhRelativeTime extends RelativeDateTime {
   @override
   String prefixAgo() => '';
   @override
@@ -69,7 +69,7 @@ class ZhRelativeTime extends RelativeTime {
   String wordSeparator() => '';
 }
 
-class ZhCnRelativeTime extends RelativeTime {
+class ZhCnRelativeTime extends RelativeDateTime {
   @override
   String prefixAgo() => '';
   @override

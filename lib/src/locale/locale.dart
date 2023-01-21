@@ -1,6 +1,6 @@
 import '../enums/startOfWeek.dart';
 import '../enums/units.dart';
-import 'relativeTime.dart';
+import 'relative_date_time.dart';
 
 abstract class Locale {
   String code();
@@ -9,7 +9,7 @@ abstract class Locale {
 
   StartOfWeek startOfWeek();
 
-  RelativeTime relativeTime();
+  RelativeDateTime relativeDateTime();
 
   String getRelativeTime(
     DateTime date1, {
@@ -17,7 +17,7 @@ abstract class Locale {
     Units? maxRelativeTimeUnit =
         Units.YEAR, // ONLY SUPPORT MINUTE, HOUR, DAY, MONTH, YEAR
   }) {
-    final relative = relativeTime();
+    final relative = relativeDateTime();
     final _date2 = date2 ?? DateTime.now();
     final _allowFromNow = _date2.isBefore(date1);
     var elapsed = _date2.millisecondsSinceEpoch - date1.millisecondsSinceEpoch;
