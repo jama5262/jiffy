@@ -1,6 +1,6 @@
 import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/enums/startOfWeek.dart';
-import 'package:jiffy/src/enums/units.dart';
+import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
@@ -144,7 +144,7 @@ void main() {
     for (var testData in startOfWeekWithLocaleDateTimeTestData()) {
       test('Should successfully get start of week base in local datetime', () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualDateTime = underTest.startOf(
@@ -174,7 +174,7 @@ void main() {
     for (var testData in endOfWeekWithLocaleDateTimeTestData()) {
       test('Should successfully get end of week base in local datetime', () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualDateTime = underTest.endOf(
@@ -223,47 +223,47 @@ List<Map<String, dynamic>> startOfDateTimeTestData() {
   return [
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 0, 0, 0, 0, 0),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedDateTime': DateTime(1997, 9, 23, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedDateTime': DateTime(1997, 9, 22, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedDateTime': DateTime(1997, 9, 1, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedDateTime': DateTime(1997, 1, 1, 0, 0, 0, 0, 0)
     }
   ];
@@ -328,47 +328,47 @@ List<Map<String, dynamic>> endOfDateTimeTestData() {
   return [
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedDateTime': DateTime(1997, 9, 23, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedDateTime': DateTime(1997, 9, 28, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedDateTime': DateTime(1997, 9, 30, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedDateTime': DateTime(1997, 12, 31, 23, 59, 59, 999, 999),
     }
   ];

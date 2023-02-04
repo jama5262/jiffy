@@ -1,37 +1,37 @@
 import 'package:intl/intl.dart';
 
-import 'enums/units.dart';
+import 'enums/unit.dart';
 import 'getter.dart';
 import 'locale/locale.dart';
 import 'utils/exception.dart';
 
 class Parser {
-  final Getter getter;
+  final Getter _getter;
 
-  Parser(this.getter);
+  Parser(this._getter);
 
   DateTime fromString(String input, String? pattern, Locale locale) {
     if (pattern != null) {
       if (pattern.trim().isEmpty) {
-        throw JiffyException('The provided pattern for `$input` cannot '
+        throw JiffyException('The provided pattern for input `$input` cannot '
             'be blank');
       }
       final ordinals = locale.ordinals();
-      return parseString(
+      return _parseString(
           _replaceParseInput(input, ordinals), _replacePatternInput(pattern));
     }
 
     if (_matchesHyphenStringDateTime(input)) {
-      return parseString(input, 'yyyy-MM-dd');
+      return _parseString(input, 'yyyy-MM-dd');
     } else if (_matchesSlashStringDateTime(input)) {
-      return parseString(input, 'yyyy/MM/dd');
+      return _parseString(input, 'yyyy/MM/dd');
     } else if (_matchesDartStringDateTime(input) ||
         _matchesISOStringDateTime(input)) {
       return DateTime.parse(input);
     } else {
       throw JiffyException(
-          'Could not read date time `$input`, try using a pattern, e.g. '
-          'Jiffy("12, Oct", "dd, MMM")');
+          'Could not read date time of input `$input`, try using a pattern, '
+          'e.g. input: "12, Oct", pattern: "dd, MMM"');
     }
   }
 
@@ -51,23 +51,24 @@ class Parser {
         length > 7 ? input[7] : 0);
   }
 
-  DateTime fromMap(Map<Units, int> input) {
+  DateTime fromMap(Map<Unit, int> input) {
     if (input.isEmpty) {
       throw JiffyException('The provided datetime map cannot be empty');
     }
     return DateTime(
-        input[Units.YEAR] ?? getter.year(DateTime.now()),
-        input[Units.MONTH] ?? getter.month(DateTime.now()),
-        input[Units.DAY] ?? getter.date(DateTime.now()),
-        input[Units.HOUR] ?? getter.hour(DateTime.now()),
-        input[Units.MINUTE] ?? getter.minute(DateTime.now()),
-        input[Units.SECOND] ?? getter.second(DateTime.now()),
-        input[Units.MILLISECOND] ?? getter.millisecond(DateTime.now()),
-        input[Units.MICROSECOND] ?? getter.microsecond(DateTime.now()));
+        input[Unit.YEAR] ?? _getter.year(DateTime.now()),
+        input[Unit.MONTH] ?? _getter.month(DateTime.now()),
+        input[Unit.DAY] ?? _getter.date(DateTime.now()),
+        input[Unit.HOUR] ?? _getter.hour(DateTime.now()),
+        input[Unit.MINUTE] ?? _getter.minute(DateTime.now()),
+        input[Unit.SECOND] ?? _getter.second(DateTime.now()),
+        input[Unit.MILLISECOND] ?? _getter.millisecond(DateTime.now()),
+        input[Unit.MICROSECOND] ?? _getter.microsecond(DateTime.now()));
   }
 
-  DateTime parseString(String input, String pattern) {
+  DateTime _parseString(String input, String pattern) {
     try {
+      // todo use utc param here
       return DateFormat(pattern).parse(input);
     } on FormatException catch (e) {
       throw JiffyException('Could not parse input `$input`, failed with the '

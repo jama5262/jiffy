@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 import 'getter.dart';
-import 'enums/units.dart';
+import 'enums/unit.dart';
 import 'locale/locale.dart';
 import 'manipulator.dart';
 import 'query.dart';
@@ -23,8 +23,9 @@ class Display {
     }
     try {
       final escapedPattern = _replaceEscapePattern(pattern);
-      final ordinal = locale.ordinal(getter.date(dateTime));
-      final newPattern = _replaceOrdinalDatePattern(escapedPattern, ordinal);
+      final localeOrdinal = _getLocaleOrdinal(locale, getter.date(dateTime));
+      final newPattern =
+          _replaceLocaleOrdinalDatePattern(escapedPattern, localeOrdinal);
       return DateFormat(newPattern).format(dateTime);
     } catch (error, stackTrace) {
       throw JiffyException('The pattern `$pattern` might be invalid: \n'
@@ -36,7 +37,7 @@ class Display {
   String fromAsRelativeDateTime(
       DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
     final isFirstDateTimeSameOrBeforeSecondDateTime = query.isSameOrBefore(
-        firstDateTime, secondDateTime, Units.MICROSECOND, locale.startOfWeek());
+        firstDateTime, secondDateTime, Unit.MICROSECOND, locale.startOfWeek());
 
     final relativeDateTime = locale.relativeDateTime();
     var prefix, suffix;
@@ -50,14 +51,13 @@ class Display {
     }
 
     final seconds =
-        diff(firstDateTime, secondDateTime, Units.SECOND, false).abs();
+        diff(firstDateTime, secondDateTime, Unit.SECOND, false).abs();
     final minutes =
-        diff(firstDateTime, secondDateTime, Units.MINUTE, false).abs();
-    final hours = diff(firstDateTime, secondDateTime, Units.HOUR, false).abs();
-    final days = diff(firstDateTime, secondDateTime, Units.DAY, false).abs();
-    final months =
-        diff(firstDateTime, secondDateTime, Units.MONTH, false).abs();
-    final years = diff(firstDateTime, secondDateTime, Units.YEAR, false).abs();
+        diff(firstDateTime, secondDateTime, Unit.MINUTE, false).abs();
+    final hours = diff(firstDateTime, secondDateTime, Unit.HOUR, false).abs();
+    final days = diff(firstDateTime, secondDateTime, Unit.DAY, false).abs();
+    final months = diff(firstDateTime, secondDateTime, Unit.MONTH, false).abs();
+    final years = diff(firstDateTime, secondDateTime, Unit.YEAR, false).abs();
 
     var result;
 
@@ -90,7 +90,12 @@ class Display {
         .join(relativeDateTime.wordSeparator());
   }
 
-  num diff(DateTime firstDateTime, DateTime secondDateTime, Units unit,
+  String toAsRelativeDateTime(
+      DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
+    return fromAsRelativeDateTime(secondDateTime, firstDateTime, locale);
+  }
+
+  num diff(DateTime firstDateTime, DateTime secondDateTime, Unit unit,
       bool asFloat) {
     final firstDateTimeMicrosecondsSinceEpoch =
         getter.microsecondsSinceEpoch(firstDateTime);
@@ -102,36 +107,46 @@ class Display {
     var diff;
 
     switch (unit) {
-      case Units.MICROSECOND:
+      case Unit.MICROSECOND:
         diff = diffMicrosecondsSinceEpoch;
         break;
-      case Units.MILLISECOND:
+      case Unit.MILLISECOND:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerMillisecond;
         break;
-      case Units.SECOND:
+      case Unit.SECOND:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerSecond;
         break;
-      case Units.MINUTE:
+      case Unit.MINUTE:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerMinute;
         break;
-      case Units.HOUR:
+      case Unit.HOUR:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerHour;
         break;
-      case Units.DAY:
+      case Unit.DAY:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerDay;
         break;
-      case Units.WEEK:
+      case Unit.WEEK:
         diff = (diffMicrosecondsSinceEpoch / Duration.microsecondsPerDay) / 7;
         break;
-      case Units.MONTH:
+      case Unit.MONTH:
         diff = _monthDiff(firstDateTime, secondDateTime);
         break;
-      case Units.YEAR:
+      case Unit.YEAR:
         diff = _monthDiff(firstDateTime, secondDateTime) / 12;
         break;
     }
 
     return asFloat ? _asFloor(diff) : diff;
+  }
+
+  String _getLocaleOrdinal(Locale locale, int date) {
+    final ordinals = locale.ordinals();
+    var suffix = ordinals.last;
+    final digit = date % 10;
+    if ((digit > 0 && digit < 4) && (date < 11 || date > 13)) {
+      suffix = ordinals[digit - 1];
+    }
+    return suffix;
   }
 
   String _replaceEscapePattern(String input) {
@@ -141,14 +156,14 @@ class Display {
         .replaceAll(']', '\'');
   }
 
-  String _replaceOrdinalDatePattern(String input, String ordinal) {
+  String _replaceLocaleOrdinalDatePattern(String input, String localeOrdinal) {
     var matches = _matchesOrdinalDatePattern(input);
     var pattern = input;
 
     while (matches.isNotEmpty) {
       final match = matches.first;
-      pattern = pattern.replaceRange(
-          match.start, match.end, 'd${ordinal.isNotEmpty ? "'$ordinal'" : ''}');
+      pattern = pattern.replaceRange(match.start, match.end,
+          'd${localeOrdinal.isNotEmpty ? "'$localeOrdinal'" : ''}');
       matches = _matchesOrdinalDatePattern(pattern);
     }
     return pattern;

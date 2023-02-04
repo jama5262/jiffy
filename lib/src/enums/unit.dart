@@ -1,5 +1,4 @@
-// todo reverse so that the year starts
-enum Units {
+enum Unit {
   MICROSECOND,
   MILLISECOND,
   SECOND,

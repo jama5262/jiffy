@@ -1,4 +1,4 @@
-import 'package:jiffy/src/enums/units.dart';
+import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/locale/locales/enLocale.dart';
 import 'package:jiffy/src/parser.dart';
@@ -39,8 +39,8 @@ void main() {
       final input = '2022-12-25';
       final pattern = '';
 
-      final expectedExceptionMessage = 'The provided pattern for `$input` '
-          'cannot be blank';
+      final expectedExceptionMessage = 'The provided pattern for input '
+          '`$input` cannot be blank';
 
       // Execute and Verify
       expect(
@@ -97,8 +97,9 @@ void main() {
       final input = 'invalid-input-date-time';
       final pattern = null;
 
-      final expectedExceptionMessage = 'Could not read date time `$input`, '
-          'try using a pattern, e.g. Jiffy("12, Oct", "dd, MMM")';
+      final expectedExceptionMessage = 'Could not read date time of input'
+          ' `$input`, try using a pattern, e.g. '
+          'input: "12, Oct", pattern: "dd, MMM"';
 
       // Execute and Verify
       expect(
@@ -138,14 +139,14 @@ void main() {
     test('Should successfully parse datetime as map', () {
       // Setup
       final input = {
-        Units.YEAR: 1997,
-        Units.MONTH: 9,
-        Units.DAY: 23,
-        Units.HOUR: 12,
-        Units.MINUTE: 22,
-        Units.SECOND: 11,
-        Units.MILLISECOND: 123,
-        Units.MICROSECOND: 456,
+        Unit.YEAR: 1997,
+        Unit.MONTH: 9,
+        Unit.DAY: 23,
+        Unit.HOUR: 12,
+        Unit.MINUTE: 22,
+        Unit.SECOND: 11,
+        Unit.MILLISECOND: 123,
+        Unit.MICROSECOND: 456,
       };
 
       final expectedDateTime = DateTime(1997, 9, 23, 12, 22, 11, 123, 456);
@@ -158,7 +159,7 @@ void main() {
 
     test('Should throw JiffyException if datetime map is empty', () {
       // Setup
-      final input = <Units, int>{};
+      final input = <Unit, int>{};
 
       final expectedExceptionMessage = 'The provided datetime map cannot '
           'be empty';
