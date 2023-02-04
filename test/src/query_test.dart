@@ -31,7 +31,7 @@ void main() {
           'Should successfully return if datetime is before with start of week',
           () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualIsBefore = underTest.isBefore(testData['firstDateTime'],
@@ -62,7 +62,7 @@ void main() {
       test('Should successfully return if datetime is after with start of week',
           () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualIsAfter = underTest.isAfter(testData['firstDateTime'],
@@ -93,7 +93,7 @@ void main() {
       test('Should successfully return if datetime is same with start of week',
           () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualIsSame = underTest.isSame(testData['firstDateTime'],
@@ -128,7 +128,7 @@ void main() {
           'Should successfully return if datetime is same or before with start of week',
           () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualIsSameOrBefore = underTest.isSameOrBefore(
@@ -166,7 +166,7 @@ void main() {
           'Should successfully return if datetime is same or before with start of week',
           () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualIsSameOrAfter = underTest.isSameOrAfter(
@@ -205,7 +205,7 @@ void main() {
           'Should successfully return if datetime is between with start of week',
           () {
         // Setup
-        final unit = Units.WEEK;
+        final unit = Unit.WEEK;
 
         // Execute
         final actualIsBetween = underTest.isBetween(
@@ -220,6 +220,16 @@ void main() {
       });
     }
   });
+
+  for (var testData in isUtcDateTimeTestData()) {
+    test('Should successfully check if date time is utc', () {
+      // Execute
+      final actualIsUtc = Query.isUtc(testData['dateTime']);
+
+      // Verify
+      expect(actualIsUtc, testData['expectedIsUtc']);
+    });
+  }
 
   for (var testData in isLeapYearTestData()) {
     test('Should successfully check if year is a leap year', () {
@@ -237,169 +247,169 @@ List<Map<String, dynamic>> isBeforeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 1),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 3),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 1),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 3),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 12),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 5),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 8),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 3),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 3),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 2),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1996),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBefore': true
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBefore': false
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBefore': false
     },
   ];
@@ -487,169 +497,169 @@ List<Map<String, dynamic>> isAfterDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 1),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 3),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 1),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 3),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 12),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 5),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 8),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 3),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 3),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 2),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1996),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsAfter': false
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsAfter': true
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsAfter': false
     },
   ];
@@ -737,169 +747,169 @@ List<Map<String, dynamic>> isSameDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 1),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 3),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 1),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 3),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 12),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 5),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 8),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 3),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 3),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997, 2),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSame': true
     },
     {
       'firstDateTime': DateTime(1996),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSame': false
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSame': true
     },
   ];
@@ -987,169 +997,169 @@ List<Map<String, dynamic>> isSameOrBeforeTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 1),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 3),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 1),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 3),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 12),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 5),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 8),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 3),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1997, 3),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997, 2),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1996),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSameOrBefore': true
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSameOrBefore': false
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSameOrBefore': true
     },
   ];
@@ -1237,169 +1247,169 @@ List<Map<String, dynamic>> isSameOrAfterTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 1),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 3),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 1),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 3),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 12),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 5),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 8),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 3),
-      'unit': Units.WEEK,
+      'unit': Unit.WEEK,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1997, 3),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997, 2),
       'secondDateTime': DateTime(1997, 2),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1996),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSameOrAfter': false
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSameOrAfter': true
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1997),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsSameOrAfter': true
     },
   ];
@@ -1488,280 +1498,280 @@ List<Map<String, dynamic>> isBetweenTimeTestData() {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 0),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 4),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 3),
-      'unit': Units.MICROSECOND,
+      'unit': Unit.MICROSECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 0),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 4),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
-      'unit': Units.MILLISECOND,
+      'unit': Unit.MILLISECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 3),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 0),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 3),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 4),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 3),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 3),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 11, 22, 3),
-      'unit': Units.SECOND,
+      'unit': Unit.SECOND,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 3),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 0),
       'secondDateTime': DateTime(1997, 9, 23, 12, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 3),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 4),
       'secondDateTime': DateTime(1997, 9, 23, 12, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 3),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 1),
       'secondDateTime': DateTime(1997, 9, 23, 12, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 3),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 3),
       'secondDateTime': DateTime(1997, 9, 23, 12, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 12, 3),
-      'unit': Units.MINUTE,
+      'unit': Unit.MINUTE,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 3),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 0),
       'secondDateTime': DateTime(1997, 9, 23, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 3),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 4),
       'secondDateTime': DateTime(1997, 9, 23, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 3),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 1),
       'secondDateTime': DateTime(1997, 9, 23, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 3),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 3),
       'secondDateTime': DateTime(1997, 9, 23, 1),
       'thirdDateTime': DateTime(1997, 9, 23, 3),
-      'unit': Units.HOUR,
+      'unit': Unit.HOUR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 1),
       'thirdDateTime': DateTime(1997, 9, 3),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 9, 0),
       'secondDateTime': DateTime(1997, 9, 1),
       'thirdDateTime': DateTime(1997, 9, 3),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 4),
       'secondDateTime': DateTime(1997, 9, 1),
       'thirdDateTime': DateTime(1997, 9, 3),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 1),
       'secondDateTime': DateTime(1997, 9, 1),
       'thirdDateTime': DateTime(1997, 9, 3),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 9, 3),
       'secondDateTime': DateTime(1997, 9, 1),
       'thirdDateTime': DateTime(1997, 9, 3),
-      'unit': Units.DAY,
+      'unit': Unit.DAY,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 2),
       'secondDateTime': DateTime(1997, 1),
       'thirdDateTime': DateTime(1997, 3),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 2),
       'thirdDateTime': DateTime(1997, 4),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 4),
       'secondDateTime': DateTime(1997, 1),
       'thirdDateTime': DateTime(1997, 3),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 1),
       'secondDateTime': DateTime(1997, 1),
       'thirdDateTime': DateTime(1997, 3),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1997, 3),
       'secondDateTime': DateTime(1997, 1),
       'thirdDateTime': DateTime(1997, 3),
-      'unit': Units.MONTH,
+      'unit': Unit.MONTH,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1992),
       'secondDateTime': DateTime(1991),
       'thirdDateTime': DateTime(1993),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBetween': true
     },
     {
       'firstDateTime': DateTime(1991),
       'secondDateTime': DateTime(1992),
       'thirdDateTime': DateTime(1994),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1994),
       'secondDateTime': DateTime(1991),
       'thirdDateTime': DateTime(1993),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1991),
       'secondDateTime': DateTime(1991),
       'thirdDateTime': DateTime(1993),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBetween': false
     },
     {
       'firstDateTime': DateTime(1993),
       'secondDateTime': DateTime(1991),
       'thirdDateTime': DateTime(1993),
-      'unit': Units.YEAR,
+      'unit': Unit.YEAR,
       'expectedIsBetween': false
     },
   ];
@@ -1874,6 +1884,13 @@ List<Map<String, dynamic>> isBetweenDateTimeWithStartOfWeekTestData() {
       'startOfWeek': StartOfWeek.SATURDAY,
       'expectedIsBetween': false
     },
+  ];
+}
+
+List<Map<String, dynamic>> isUtcDateTimeTestData() {
+  return [
+    {'dateTime': DateTime.now(), 'expectedIsUtc': false},
+    {'dateTime': DateTime.now().toUtc(), 'expectedIsUtc': true},
   ];
 }
 

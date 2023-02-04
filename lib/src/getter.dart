@@ -4,6 +4,8 @@ import 'enums/startOfWeek.dart';
 import 'query.dart';
 
 class Getter {
+  DateTime dateTime(DateTime dateTime) => dateTime;
+
   int microsecond(DateTime dateTime) => dateTime.microsecond;
 
   int microsecondsSinceEpoch(DateTime dateTime) {

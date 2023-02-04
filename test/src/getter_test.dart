@@ -8,6 +8,17 @@ void main() {
   group('Test basic datetime getters', () {
     final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
 
+    test('Should successfully get date time', () {
+      // Setup
+      final expectedDateTime = dateTime;
+
+      // Expected
+      final actualDateTime = underTest.dateTime(dateTime);
+
+      // Verify
+      expect(actualDateTime, expectedDateTime);
+    });
+
     test('Should successfully get microsecond', () {
       // Setup
       final expectedMicrosecond = dateTime.microsecond;
