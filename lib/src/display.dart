@@ -36,13 +36,13 @@ class Display {
 
   String fromAsRelativeDateTime(
       DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
-    final isFirstDateTimeSameOrBeforeSecondDateTime = query.isSameOrBefore(
+    final isFirstDateTimeSameOrAfterSecondDateTime = query.isSameOrAfter(
         firstDateTime, secondDateTime, Unit.MICROSECOND, locale.startOfWeek());
 
     final relativeDateTime = locale.relativeDateTime();
     var prefix, suffix;
 
-    if (isFirstDateTimeSameOrBeforeSecondDateTime) {
+    if (isFirstDateTimeSameOrAfterSecondDateTime) {
       prefix = relativeDateTime.prefixFromNow();
       suffix = relativeDateTime.suffixFromNow();
     } else {

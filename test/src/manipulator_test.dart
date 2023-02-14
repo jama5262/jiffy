@@ -27,7 +27,8 @@ void main() {
       final actualDateTime = underTest.addDuration(dateTime, duration);
 
       // Verify
-      expect(actualDateTime, expectedDateTime);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
     });
 
     test('Should successfully add datetime when duration is set to zero', () {
@@ -39,7 +40,8 @@ void main() {
       final actualDateTime = underTest.addDuration(dateTime, duration);
 
       // Verify
-      expect(actualDateTime, dateTime);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          dateTime.microsecondsSinceEpoch);
     });
 
     test('Should successfully subtract datetime using durations', () {
@@ -59,7 +61,8 @@ void main() {
       final actualDateTime = underTest.subtractDuration(dateTime, duration);
 
       // Verify
-      expect(actualDateTime, expectedDateTime);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
     });
 
     test('Should successfully subtract datetime when duration is set to zero',
@@ -72,7 +75,8 @@ void main() {
       final actualDateTime = underTest.subtractDuration(dateTime, duration);
 
       // Verify
-      expect(actualDateTime, dateTime);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          dateTime.microsecondsSinceEpoch);
     });
   });
 
@@ -97,7 +101,8 @@ void main() {
           seconds, minutes, hours, days, weeks, months, years);
 
       // Verify
-      expect(actualDateTime, expectedDateTime);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
     });
 
     test('Should successfully subtract datetime', () {
@@ -120,7 +125,8 @@ void main() {
           milliseconds, seconds, minutes, hours, days, weeks, months, years);
 
       // Verify
-      expect(actualDateTime, expectedDateTime);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
     });
   });
 
@@ -137,7 +143,8 @@ void main() {
             testData['dateTime'], testData['unit'], startOfWeek);
 
         // Verify
-        expect(actualDateTime, testData['expectedDateTime']);
+        expect(actualDateTime.microsecondsSinceEpoch,
+            testData['expectedDateTime'].microsecondsSinceEpoch);
       });
     }
 
@@ -151,7 +158,8 @@ void main() {
             testData['dateTime'], unit, testData['startOfWeek']);
 
         // Verify
-        expect(actualDateTime, testData['expectedDateTime']);
+        expect(actualDateTime.microsecondsSinceEpoch,
+            testData['expectedDateTime'].microsecondsSinceEpoch);
       });
     }
   });
@@ -167,7 +175,8 @@ void main() {
             testData['dateTime'], testData['unit'], startOfWeek);
 
         // Verify
-        expect(actualDateTime, testData['expectedDateTime']);
+        expect(actualDateTime.microsecondsSinceEpoch,
+            testData['expectedDateTime'].microsecondsSinceEpoch);
       });
     }
 
@@ -198,8 +207,8 @@ void main() {
 
       // Verify
       expect(actualDateTime.isUtc, expectedLocalDateTime.isUtc);
-      expect(actualDateTime.millisecondsSinceEpoch,
-          expectedLocalDateTime.millisecondsSinceEpoch);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          expectedLocalDateTime.microsecondsSinceEpoch);
     });
 
     test('Should successfully convert local datetime to utc', () {
@@ -213,8 +222,8 @@ void main() {
 
       // Verify
       expect(actualDateTime.isUtc, expectedUTCDateTime.isUtc);
-      expect(actualDateTime.millisecondsSinceEpoch,
-          expectedUTCDateTime.millisecondsSinceEpoch);
+      expect(actualDateTime.microsecondsSinceEpoch,
+          expectedUTCDateTime.microsecondsSinceEpoch);
     });
   });
 }

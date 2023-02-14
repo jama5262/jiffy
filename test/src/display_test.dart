@@ -259,207 +259,12 @@ List<Map<String, dynamic>> formatWithOrdinalPatternDateTimeTestData() {
   ];
 }
 
-List<Map<String, dynamic>> fromAsRelativeDateTimeTestData() {
-  return [
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 457),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 457),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
-      'expectedFromAsRelativeDateTime': 'a few seconds ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 124),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 124),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
-      'expectedFromAsRelativeDateTime': 'a few seconds ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
-      'expectedFromAsRelativeDateTime': 'a minute ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 0),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 45),
-      'expectedFromAsRelativeDateTime': 'in a minute'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'expectedFromAsRelativeDateTime': 'a few seconds ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 23),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 40),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
-      'expectedFromAsRelativeDateTime': '40 minutes ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 40),
-      'expectedFromAsRelativeDateTime': 'in 40 minutes'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 45),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
-      'expectedFromAsRelativeDateTime': 'an hour ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 45),
-      'expectedFromAsRelativeDateTime': 'in an hour'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 12),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11),
-      'expectedFromAsRelativeDateTime': 'a minute ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12, 10),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11),
-      'expectedFromAsRelativeDateTime': 'in a minute'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 23),
-      'secondDateTime': DateTime(1997, 10, 23, 0),
-      'expectedFromAsRelativeDateTime': '23 hours ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 0),
-      'secondDateTime': DateTime(1997, 10, 23, 23),
-      'expectedFromAsRelativeDateTime': 'in 23 hours'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 13),
-      'secondDateTime': DateTime(1997, 10, 23, 12),
-      'expectedFromAsRelativeDateTime': 'an hour ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 12),
-      'secondDateTime': DateTime(1997, 10, 23, 12),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23, 11),
-      'secondDateTime': DateTime(1997, 10, 23, 12),
-      'expectedFromAsRelativeDateTime': 'in an hour'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 24),
-      'secondDateTime': DateTime(1997, 10, 23),
-      'expectedFromAsRelativeDateTime': 'a day ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23),
-      'secondDateTime': DateTime(1997, 10, 23),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23),
-      'secondDateTime': DateTime(1997, 10, 24),
-      'expectedFromAsRelativeDateTime': 'in a day'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 20),
-      'secondDateTime': DateTime(1997, 10, 24),
-      'expectedFromAsRelativeDateTime': 'in 4 days'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10, 23),
-      'secondDateTime': DateTime(1997, 10, 20),
-      'expectedFromAsRelativeDateTime': '3 days ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 11),
-      'secondDateTime': DateTime(1997, 10),
-      'expectedFromAsRelativeDateTime': 'a month ago'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10),
-      'secondDateTime': DateTime(1997, 10),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997, 10),
-      'secondDateTime': DateTime(1997, 11),
-      'expectedFromAsRelativeDateTime': 'in a month'
-    },
-    {
-      'firstDateTime': DateTime(1997, 8),
-      'secondDateTime': DateTime(1997, 11),
-      'expectedFromAsRelativeDateTime': 'in 3 months'
-    },
-    {
-      'firstDateTime': DateTime(1997, 11),
-      'secondDateTime': DateTime(1997, 8),
-      'expectedFromAsRelativeDateTime': '3 months ago'
-    },
-    {
-      'firstDateTime': DateTime(1998),
-      'secondDateTime': DateTime(1997),
-      'expectedFromAsRelativeDateTime': 'a year ago'
-    },
-    {
-      'firstDateTime': DateTime(1997),
-      'secondDateTime': DateTime(1997),
-      'expectedFromAsRelativeDateTime': 'in a few seconds'
-    },
-    {
-      'firstDateTime': DateTime(1997),
-      'secondDateTime': DateTime(1998),
-      'expectedFromAsRelativeDateTime': 'in a year'
-    },
-    {
-      'firstDateTime': DateTime(1995),
-      'secondDateTime': DateTime(1998),
-      'expectedFromAsRelativeDateTime': 'in 3 years'
-    },
-    {
-      'firstDateTime': DateTime(1998),
-      'secondDateTime': DateTime(1995),
-      'expectedFromAsRelativeDateTime': '3 years ago'
-    }
-  ];
-}
-
 List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
   return [
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 457),
-      'expectedToAsRelativeDateTime': 'a few seconds ago'
+      'expectedToAsRelativeDateTime': 'in a few seconds'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
@@ -469,12 +274,12 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 457),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
-      'expectedToAsRelativeDateTime': 'in a few seconds'
+      'expectedToAsRelativeDateTime': 'a few seconds ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 124),
-      'expectedToAsRelativeDateTime': 'a few seconds ago'
+      'expectedToAsRelativeDateTime': 'in a few seconds'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
@@ -484,22 +289,22 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 124),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
-      'expectedToAsRelativeDateTime': 'in a few seconds'
+      'expectedToAsRelativeDateTime': 'a few seconds ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
-      'expectedToAsRelativeDateTime': 'in a minute'
+      'expectedToAsRelativeDateTime': 'a minute ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 0),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 45),
-      'expectedToAsRelativeDateTime': 'a minute ago'
+      'expectedToAsRelativeDateTime': 'in a minute'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'expectedToAsRelativeDateTime': 'in a few seconds'
+      'expectedToAsRelativeDateTime': 'a few seconds ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
@@ -509,32 +314,32 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 23),
-      'expectedToAsRelativeDateTime': 'a few seconds ago'
+      'expectedToAsRelativeDateTime': 'in a few seconds'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 40),
       'secondDateTime': DateTime(1997, 10, 23, 12, 0),
-      'expectedToAsRelativeDateTime': 'in 40 minutes'
+      'expectedToAsRelativeDateTime': '40 minutes ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 0),
       'secondDateTime': DateTime(1997, 10, 23, 12, 40),
-      'expectedToAsRelativeDateTime': '40 minutes ago'
+      'expectedToAsRelativeDateTime': 'in 40 minutes'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 45),
       'secondDateTime': DateTime(1997, 10, 23, 12, 0),
-      'expectedToAsRelativeDateTime': 'in an hour'
+      'expectedToAsRelativeDateTime': 'an hour ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 0),
       'secondDateTime': DateTime(1997, 10, 23, 12, 45),
-      'expectedToAsRelativeDateTime': 'an hour ago'
+      'expectedToAsRelativeDateTime': 'in an hour'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 12),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11),
-      'expectedToAsRelativeDateTime': 'in a minute'
+      'expectedToAsRelativeDateTime': 'a minute ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11),
@@ -544,22 +349,22 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 10),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11),
-      'expectedToAsRelativeDateTime': 'a minute ago'
+      'expectedToAsRelativeDateTime': 'in a minute'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 23),
       'secondDateTime': DateTime(1997, 10, 23, 0),
-      'expectedToAsRelativeDateTime': 'in 23 hours'
+      'expectedToAsRelativeDateTime': '23 hours ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 0),
       'secondDateTime': DateTime(1997, 10, 23, 23),
-      'expectedToAsRelativeDateTime': '23 hours ago'
+      'expectedToAsRelativeDateTime': 'in 23 hours'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 13),
       'secondDateTime': DateTime(1997, 10, 23, 12),
-      'expectedToAsRelativeDateTime': 'in an hour'
+      'expectedToAsRelativeDateTime': 'an hour ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23, 12),
@@ -569,12 +374,12 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23, 11),
       'secondDateTime': DateTime(1997, 10, 23, 12),
-      'expectedToAsRelativeDateTime': 'an hour ago'
+      'expectedToAsRelativeDateTime': 'in an hour'
     },
     {
       'firstDateTime': DateTime(1997, 10, 24),
       'secondDateTime': DateTime(1997, 10, 23),
-      'expectedToAsRelativeDateTime': 'in a day'
+      'expectedToAsRelativeDateTime': 'a day ago'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23),
@@ -584,22 +389,22 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23),
       'secondDateTime': DateTime(1997, 10, 24),
-      'expectedToAsRelativeDateTime': 'a day ago'
+      'expectedToAsRelativeDateTime': 'in a day'
     },
     {
       'firstDateTime': DateTime(1997, 10, 20),
       'secondDateTime': DateTime(1997, 10, 24),
-      'expectedToAsRelativeDateTime': '4 days ago'
+      'expectedToAsRelativeDateTime': 'in 4 days'
     },
     {
       'firstDateTime': DateTime(1997, 10, 23),
       'secondDateTime': DateTime(1997, 10, 20),
-      'expectedToAsRelativeDateTime': 'in 3 days'
+      'expectedToAsRelativeDateTime': '3 days ago'
     },
     {
       'firstDateTime': DateTime(1997, 11),
       'secondDateTime': DateTime(1997, 10),
-      'expectedToAsRelativeDateTime': 'in a month'
+      'expectedToAsRelativeDateTime': 'a month ago'
     },
     {
       'firstDateTime': DateTime(1997, 10),
@@ -609,22 +414,22 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10),
       'secondDateTime': DateTime(1997, 11),
-      'expectedToAsRelativeDateTime': 'a month ago'
+      'expectedToAsRelativeDateTime': 'in a month'
     },
     {
       'firstDateTime': DateTime(1997, 8),
       'secondDateTime': DateTime(1997, 11),
-      'expectedToAsRelativeDateTime': '3 months ago'
+      'expectedToAsRelativeDateTime': 'in 3 months'
     },
     {
       'firstDateTime': DateTime(1997, 11),
       'secondDateTime': DateTime(1997, 8),
-      'expectedToAsRelativeDateTime': 'in 3 months'
+      'expectedToAsRelativeDateTime': '3 months ago'
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'expectedToAsRelativeDateTime': 'in a year'
+      'expectedToAsRelativeDateTime': 'a year ago'
     },
     {
       'firstDateTime': DateTime(1997),
@@ -634,17 +439,212 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1998),
-      'expectedToAsRelativeDateTime': 'a year ago'
+      'expectedToAsRelativeDateTime': 'in a year'
     },
     {
       'firstDateTime': DateTime(1995),
       'secondDateTime': DateTime(1998),
-      'expectedToAsRelativeDateTime': '3 years ago'
+      'expectedToAsRelativeDateTime': 'in 3 years'
     },
     {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1995),
-      'expectedToAsRelativeDateTime': 'in 3 years'
+      'expectedToAsRelativeDateTime': '3 years ago'
+    }
+  ];
+}
+
+List<Map<String, dynamic>> fromAsRelativeDateTimeTestData() {
+  return [
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 457),
+      'expectedFromAsRelativeDateTime': 'a few seconds ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 457),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123, 456),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 124),
+      'expectedFromAsRelativeDateTime': 'a few seconds ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22, 124),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22, 123),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'expectedFromAsRelativeDateTime': 'in a minute'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 45),
+      'expectedFromAsRelativeDateTime': 'a minute ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 23),
+      'expectedFromAsRelativeDateTime': 'a few seconds ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 40),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
+      'expectedFromAsRelativeDateTime': 'in 40 minutes'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 40),
+      'expectedFromAsRelativeDateTime': '40 minutes ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 45),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
+      'expectedFromAsRelativeDateTime': 'in an hour'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 45),
+      'expectedFromAsRelativeDateTime': 'an hour ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 12),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11),
+      'expectedFromAsRelativeDateTime': 'in a minute'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12, 10),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11),
+      'expectedFromAsRelativeDateTime': 'a minute ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 23),
+      'secondDateTime': DateTime(1997, 10, 23, 0),
+      'expectedFromAsRelativeDateTime': 'in 23 hours'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 23),
+      'expectedFromAsRelativeDateTime': '23 hours ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 13),
+      'secondDateTime': DateTime(1997, 10, 23, 12),
+      'expectedFromAsRelativeDateTime': 'in an hour'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 12),
+      'secondDateTime': DateTime(1997, 10, 23, 12),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23, 11),
+      'secondDateTime': DateTime(1997, 10, 23, 12),
+      'expectedFromAsRelativeDateTime': 'an hour ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 24),
+      'secondDateTime': DateTime(1997, 10, 23),
+      'expectedFromAsRelativeDateTime': 'in a day'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 23),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 24),
+      'expectedFromAsRelativeDateTime': 'a day ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 20),
+      'secondDateTime': DateTime(1997, 10, 24),
+      'expectedFromAsRelativeDateTime': '4 days ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 20),
+      'expectedFromAsRelativeDateTime': 'in 3 days'
+    },
+    {
+      'firstDateTime': DateTime(1997, 11),
+      'secondDateTime': DateTime(1997, 10),
+      'expectedFromAsRelativeDateTime': 'in a month'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10),
+      'secondDateTime': DateTime(1997, 10),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997, 10),
+      'secondDateTime': DateTime(1997, 11),
+      'expectedFromAsRelativeDateTime': 'a month ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 8),
+      'secondDateTime': DateTime(1997, 11),
+      'expectedFromAsRelativeDateTime': '3 months ago'
+    },
+    {
+      'firstDateTime': DateTime(1997, 11),
+      'secondDateTime': DateTime(1997, 8),
+      'expectedFromAsRelativeDateTime': 'in 3 months'
+    },
+    {
+      'firstDateTime': DateTime(1998),
+      'secondDateTime': DateTime(1997),
+      'expectedFromAsRelativeDateTime': 'in a year'
+    },
+    {
+      'firstDateTime': DateTime(1997),
+      'secondDateTime': DateTime(1997),
+      'expectedFromAsRelativeDateTime': 'in a few seconds'
+    },
+    {
+      'firstDateTime': DateTime(1997),
+      'secondDateTime': DateTime(1998),
+      'expectedFromAsRelativeDateTime': 'a year ago'
+    },
+    {
+      'firstDateTime': DateTime(1995),
+      'secondDateTime': DateTime(1998),
+      'expectedFromAsRelativeDateTime': '3 years ago'
+    },
+    {
+      'firstDateTime': DateTime(1998),
+      'secondDateTime': DateTime(1995),
+      'expectedFromAsRelativeDateTime': 'in 3 years'
     }
   ];
 }
