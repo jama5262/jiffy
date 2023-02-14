@@ -1,0 +1,1 @@
+dart analyze lib test example

@@ -58,7 +58,7 @@ void main() {
     for (var testData in localesRelativeDateTimeTestData()) {
       test('Should successfully return correct relative date time', () {
         // Execute
-        final actualRelativeDateTime = display.fromAsRelativeDateTime(
+        final actualRelativeDateTime = display.toAsRelativeDateTime(
             testData['firstDateTime'],
             testData['secondDateTime'],
             testData['locale']);
@@ -122,8 +122,8 @@ List<Map<String, dynamic>> localesTestData() {
       'relativeTime': EnRelativeTime()
     },
     {
-      'locale': EnLiLocale(),
-      'code': 'en_li',
+      'locale': EnIlLocale(),
+      'code': 'en_il',
       'ordinals': ['st', 'nd', 'rd', 'th'],
       'startOfWeek': StartOfWeek.SUNDAY,
       'relativeTime': EnRelativeTime()

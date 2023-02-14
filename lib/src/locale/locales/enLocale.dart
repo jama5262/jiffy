@@ -53,9 +53,9 @@ class EnIeLocale extends EnLocale {
   StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
 }
 
-class EnLiLocale extends EnLocale {
+class EnIlLocale extends EnLocale {
   @override
-  String code() => 'en_li';
+  String code() => 'en_il';
 }
 
 class EnNzLocale extends EnLocale {

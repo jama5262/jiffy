@@ -32,7 +32,7 @@ Map<String, Locale> _availableLocales = {
   'en_ca': EnCaLocale(),
   'en_gb': EnGbLocale(),
   'en_ie': EnIeLocale(),
-  'en_il': EnLiLocale(),
+  'en_il': EnIlLocale(),
   'en_nz': EnNzLocale(),
   'es': EsLocale(),
   'es_do': EsDoLocale(),

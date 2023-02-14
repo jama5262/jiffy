@@ -4,7 +4,7 @@ import 'enums/startOfWeek.dart';
 import 'query.dart';
 
 class Getter {
-  DateTime dateTime(DateTime dateTime) => dateTime;
+  DateTime dateTime(DateTime dateTime) => dateTime.copyWith();
 
   int microsecond(DateTime dateTime) => dateTime.microsecond;
 
