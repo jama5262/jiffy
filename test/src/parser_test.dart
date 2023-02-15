@@ -45,7 +45,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.fromString(input, pattern, locale),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
 
@@ -60,7 +60,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.fromString(input, pattern, locale),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
 
@@ -104,7 +104,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.fromString(input, pattern, locale),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
   });
@@ -130,7 +130,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.fromList(input),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
   });
@@ -167,7 +167,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.fromMap(input),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
   });
@@ -196,22 +196,22 @@ List<Map<String, dynamic>> fromStringWithPatternTestData() {
 List<Map<String, dynamic>> fromStringWithPatternAMAndPMTestData() {
   return [
     {
-      'input': '1997 Sep 23th 3:14 pm',
+      'input': '1997 Sep 23rd 3:14 pm',
       'pattern': 'yyyy MMM do h:mm a',
       'expected': DateTime(1997, 9, 23, 15, 14)
     },
     {
-      'input': '1997 Sep 23th 3 pm',
+      'input': '1997 Sep 23rd 3 pm',
       'pattern': 'yyyy MMM do h a',
       'expected': DateTime(1997, 9, 23, 15, 0)
     },
     {
-      'input': '1997 Sep 23th 3:14 am',
+      'input': '1997 Sep 23rd 3:14 am',
       'pattern': 'yyyy MMM do h:mm a',
       'expected': DateTime(1997, 9, 23, 3, 14)
     },
     {
-      'input': '1997 Sep 23th 3 am',
+      'input': '1997 Sep 23rd 3 am',
       'pattern': 'yyyy MMM do h a',
       'expected': DateTime(1997, 9, 23, 3, 0)
     },

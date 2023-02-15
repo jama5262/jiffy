@@ -192,7 +192,7 @@ void main() {
       // Execute and Verify
       expect(
           () async => await jiffy.setLocale(unknownLocaleCode),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
   });

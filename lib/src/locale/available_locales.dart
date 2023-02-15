@@ -85,9 +85,3 @@ Locale getLocale(String locale) {
 bool isLocalAvailable(String locale) {
   return _availableLocales.containsKey(locale.toLowerCase());
 }
-
-// todo remove this function, it has no purpose
-// all available locales can be maintained in the documentation
-List<String> getAllLocales() {
-  return _availableLocales.keys.toList();
-}
