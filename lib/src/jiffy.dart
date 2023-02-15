@@ -84,7 +84,9 @@ class Jiffy {
     if (isLocalAvailable(systemLocale)) {
       _locale = getLocale(systemLocale);
     } else {
-      // todo print that the current locale is not available in Jiffy and show a link to github with available locales
+      // todo add doc comments to this comment below
+      // The locale $systemLocale is not supported by Jiffy, '
+      // 'setting a default locale of ${_locale.code()}
       _locale = EnUsLocale();
     }
   }
@@ -237,8 +239,6 @@ class Jiffy {
         ? _display.formatToISO8601(dateTime)
         : _display.format(dateTime, pattern, _locale);
   }
-
-  // todo pass in locale
 
   String get E => _defaultDisplay.E(dateTime);
 

@@ -3,9 +3,6 @@ class JiffyException implements Exception {
 
   JiffyException(this._message);
 
-  // todo remove this getter, will start using the toString
-  String get message => 'JiffyException: $_message';
-
   @override
   String toString() {
     return 'JiffyException: $_message';

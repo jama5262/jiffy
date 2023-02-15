@@ -83,7 +83,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.format(dateTime, pattern, locale),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
 
@@ -99,7 +99,7 @@ void main() {
       // Execute and Verify
       expect(
           () => underTest.format(dateTime, pattern, locale),
-          throwsA(isA<JiffyException>().having((e) => e.message, 'message',
+          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
   });

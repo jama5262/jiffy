@@ -87,9 +87,6 @@ class Parser {
         .replaceFirst(_matchesOrdinalDates(input, ordinals), '');
   }
 
-  // todo fix this regex replacement of the ordinals when there is a space between
-  // example `12 th`
-  // todo test if empty ordinals are provided
   String _matchesOrdinalDates(String input, List<String> ordinals) {
     final matches =
         RegExp(r'\d+\s*(' + ordinals.join('|') + ')').allMatches(input);
