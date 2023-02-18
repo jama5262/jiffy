@@ -2,7 +2,7 @@ import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/locale/locales/enLocale.dart';
 import 'package:jiffy/src/parser.dart';
-import 'package:jiffy/src/utils/exception.dart';
+import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
 
 void main() {

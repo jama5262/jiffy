@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'enums/unit.dart';
 import 'getter.dart';
 import 'locale/locale.dart';
-import 'utils/exception.dart';
+import 'utils/jiffy_exception.dart';
 
 class Parser {
   final Getter _getter;

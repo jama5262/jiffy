@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 
 class DefaultDisplay {
-  // todo add examples as docs comments here
   String E(DateTime dateTime) => DateFormat.E().format(dateTime);
 
   String EEEE(DateTime dateTime) => DateFormat.EEEE().format(dateTime);
@@ -61,6 +60,8 @@ class DefaultDisplay {
   String yQQQ(DateTime dateTime) => DateFormat.yQQQ().format(dateTime);
 
   String yQQQQ(DateTime dateTime) => DateFormat.yQQQQ().format(dateTime);
+
+  String H(DateTime dateTime) => DateFormat.H().format(dateTime);
 
   String Hm(DateTime dateTime) => DateFormat.Hm().format(dateTime);
 

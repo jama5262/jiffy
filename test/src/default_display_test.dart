@@ -162,6 +162,11 @@ List<Map<String, dynamic>> defaultDisplayTestData(
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
+      'function': (DateTime dateTime) => defaultDisplay.H(dateTime),
+      'expectedDateTimeDisplay': '12'
+    },
+    {
+      'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
       'function': (DateTime dateTime) => defaultDisplay.Hm(dateTime),
       'expectedDateTimeDisplay': '12:11'
     },

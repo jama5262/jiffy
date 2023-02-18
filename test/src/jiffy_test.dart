@@ -23,7 +23,7 @@ import 'package:jiffy/src/locale/locales/thLocale.dart';
 import 'package:jiffy/src/locale/locales/trLocale.dart';
 import 'package:jiffy/src/locale/locales/ukLocale.dart';
 import 'package:jiffy/src/locale/locales/zhLocale.dart';
-import 'package:jiffy/src/utils/exception.dart';
+import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
@@ -162,10 +162,24 @@ void main() {
       final expectedLocaleCode = 'ja';
 
       // Execute
-      final actualLocaleCode = jiffy.locale.code();
+      final actualLocaleCode = jiffy.localeCode;
 
       // Verify
       expect(actualLocaleCode, expectedLocaleCode);
+    });
+
+    test('Should successfully get start of week', () async {
+      // Setup
+      final jiffy = Jiffy.now();
+      await jiffy.setLocale('ja');
+
+      final expectedStartOfWeek = StartOfWeek.SUNDAY;
+
+      // Execute
+      final actualLocaleStartOfWeek = jiffy.localeStartOfWeek;
+
+      // Verify
+      expect(actualLocaleStartOfWeek, expectedStartOfWeek);
     });
 
     for (var testData in localeTestData()) {
@@ -177,8 +191,8 @@ void main() {
         await jiffy.setLocale(testData['localeCode']);
 
         // Verify
-        final actualLocale = jiffy.locale;
-        expect(actualLocale.code(), testData['expectedLocale'].code());
+        final actualLocaleCode = jiffy.localeCode;
+        expect(actualLocaleCode, testData['expectedLocale'].code());
       });
     }
 
@@ -354,14 +368,14 @@ void main() {
       expect(actualDayOfYear, expectedDayOfYear);
     });
 
-    test('Should successfully get day of year', () {
+    test('Should successfully get week of year', () {
       // Setup
       final jiffy = Jiffy.parseFromList([1997, 9, 23]);
 
       final expectedWeek = 39;
 
       // Execute
-      final actualWeek = jiffy.week;
+      final actualWeek = jiffy.weekOfYear;
 
       // Verify
       expect(actualWeek, expectedWeek);
@@ -1209,6 +1223,11 @@ List<Map<String, dynamic>> defaultDisplayDateTimeFormatsTestData() {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
       'function': (Jiffy jiffy) => jiffy.yQQQQ,
       'expectedFormat': '3rd quarter 1997'
+    },
+    {
+      'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
+      'function': (Jiffy jiffy) => jiffy.H,
+      'expectedFormat': '12'
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),

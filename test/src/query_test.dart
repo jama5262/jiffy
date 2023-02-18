@@ -1,5 +1,4 @@
 import 'package:jiffy/jiffy.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
 import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/query.dart';
