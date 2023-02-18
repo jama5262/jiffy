@@ -5,7 +5,7 @@ import 'enums/unit.dart';
 import 'locale/locale.dart';
 import 'manipulator.dart';
 import 'query.dart';
-import 'utils/exception.dart';
+import 'utils/jiffy_exception.dart';
 
 class Display {
   final Getter getter;
