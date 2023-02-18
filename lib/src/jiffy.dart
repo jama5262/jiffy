@@ -108,8 +108,8 @@ class Jiffy {
   /// `[year, month, day, hour, minute, second, millisecond, microsecond]`.
   ///
   /// At least `year` should be provided. Any other values that are not
-  /// provided will default to their minimum value (e.g. day and month will
-  /// default to 1 and, hour, minute, second, millisecond, and microsecond
+  /// provided will default to their minimum value (For example, day and month
+  /// will default to 1 and, hour, minute, second, millisecond, and microsecond
   /// will default to 0 if not provided).
   ///
   /// Example usage:
