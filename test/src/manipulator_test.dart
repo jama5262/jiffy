@@ -376,6 +376,11 @@ List<Map<String, dynamic>> endOfDateTimeTestData() {
       'expectedDateTime': DateTime(1997, 9, 30, 23, 59, 59, 999, 999)
     },
     {
+      'dateTime': DateTime(2020, 9, 23, 12, 11, 22, 123, 456),
+      'unit': Unit.MONTH,
+      'expectedDateTime': DateTime(2020, 9, 30, 23, 59, 59, 999, 999)
+    },
+    {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
       'unit': Unit.YEAR,
       'expectedDateTime': DateTime(1997, 12, 31, 23, 59, 59, 999, 999),
