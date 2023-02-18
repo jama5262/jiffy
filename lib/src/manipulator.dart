@@ -199,7 +199,7 @@ class Manipulator {
         var endMonthDate = Getter.daysInMonthArray[_getter.month(dateTime)];
         if (Query.isLeapYear(_getter.year(dateTime)) &&
             _getter.month(dateTime) == 2) {
-          endMonthDate = 29;
+          endMonthDate++;
         }
         newDateTime = DateTime(_getter.year(dateTime), _getter.month(dateTime),
             endMonthDate, 23, 59, 59, 999, 999);
