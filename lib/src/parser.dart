@@ -10,24 +10,26 @@ class Parser {
 
   Parser(this._getter);
 
-  DateTime fromString(String input, String? pattern, Locale locale) {
+  DateTime fromString(
+      String input, String? pattern, Locale locale, bool isUtc) {
     if (pattern != null) {
       if (pattern.trim().isEmpty) {
         throw JiffyException('The provided pattern for input `$input` cannot '
             'be blank');
       }
       final ordinals = locale.ordinals();
-      return _parseString(
-          _replaceParseInput(input, ordinals), _replacePatternInput(pattern));
+      return _parseString(_replaceParseInput(input, ordinals),
+              _replacePatternInput(pattern))
+          .copyWith(isUtc: isUtc);
     }
 
     if (_matchesHyphenStringDateTime(input)) {
-      return _parseString(input, 'yyyy-MM-dd');
+      return _parseString(input, 'yyyy-MM-dd').copyWith(isUtc: isUtc);
     } else if (_matchesSlashStringDateTime(input)) {
-      return _parseString(input, 'yyyy/MM/dd');
+      return _parseString(input, 'yyyy/MM/dd').copyWith(isUtc: isUtc);
     } else if (_matchesDartStringDateTime(input) ||
         _matchesISOStringDateTime(input)) {
-      return DateTime.parse(input);
+      return DateTime.parse(input).copyWith(isUtc: isUtc);
     } else {
       throw JiffyException(
           'Could not read date time of input `$input`, try using a pattern, '
@@ -35,40 +37,41 @@ class Parser {
     }
   }
 
-  DateTime fromList(List<int> input) {
+  DateTime fromList(List<int> input, bool isUtc) {
     if (input.isEmpty) {
       throw JiffyException('The provided datetime list cannot be empty');
     }
     final length = input.length;
     return DateTime(
-        input[0],
-        length > 1 ? input[1] : 1,
-        length > 2 ? input[2] : 1,
-        length > 3 ? input[3] : 0,
-        length > 4 ? input[4] : 0,
-        length > 5 ? input[5] : 0,
-        length > 6 ? input[6] : 0,
-        length > 7 ? input[7] : 0);
+            input[0],
+            length > 1 ? input[1] : 1,
+            length > 2 ? input[2] : 1,
+            length > 3 ? input[3] : 0,
+            length > 4 ? input[4] : 0,
+            length > 5 ? input[5] : 0,
+            length > 6 ? input[6] : 0,
+            length > 7 ? input[7] : 0)
+        .copyWith(isUtc: isUtc);
   }
 
-  DateTime fromMap(Map<Unit, int> input) {
+  DateTime fromMap(Map<Unit, int> input, bool isUtc) {
     if (input.isEmpty) {
       throw JiffyException('The provided datetime map cannot be empty');
     }
     return DateTime(
-        input[Unit.YEAR] ?? _getter.year(DateTime.now()),
-        input[Unit.MONTH] ?? _getter.month(DateTime.now()),
-        input[Unit.DAY] ?? _getter.date(DateTime.now()),
-        input[Unit.HOUR] ?? _getter.hour(DateTime.now()),
-        input[Unit.MINUTE] ?? _getter.minute(DateTime.now()),
-        input[Unit.SECOND] ?? _getter.second(DateTime.now()),
-        input[Unit.MILLISECOND] ?? _getter.millisecond(DateTime.now()),
-        input[Unit.MICROSECOND] ?? _getter.microsecond(DateTime.now()));
+            input[Unit.YEAR] ?? _getter.year(DateTime.now()),
+            input[Unit.MONTH] ?? _getter.month(DateTime.now()),
+            input[Unit.DAY] ?? _getter.date(DateTime.now()),
+            input[Unit.HOUR] ?? _getter.hour(DateTime.now()),
+            input[Unit.MINUTE] ?? _getter.minute(DateTime.now()),
+            input[Unit.SECOND] ?? _getter.second(DateTime.now()),
+            input[Unit.MILLISECOND] ?? _getter.millisecond(DateTime.now()),
+            input[Unit.MICROSECOND] ?? _getter.microsecond(DateTime.now()))
+        .copyWith(isUtc: isUtc);
   }
 
   DateTime _parseString(String input, String pattern) {
     try {
-      // todo use utc param here
       return DateFormat(pattern).parse(input);
     } on FormatException catch (e) {
       throw JiffyException('Could not parse input `$input`, failed with the '

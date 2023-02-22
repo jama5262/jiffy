@@ -16,7 +16,7 @@ void main() {
       test('Should successfully parse datetime from pattern', () {
         // Execute
         final actualDateTime = underTest.fromString(
-            testData['input'], testData['pattern'], locale);
+            testData['input'], testData['pattern'], locale, false);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -27,7 +27,7 @@ void main() {
       test('Should successfully parse datetime if pattern contains am pm', () {
         // Execute
         final actualDateTime = underTest.fromString(
-            testData['input'], testData['pattern'], locale);
+            testData['input'], testData['pattern'], locale, false);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -44,7 +44,7 @@ void main() {
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, locale),
+          () => underTest.fromString(input, pattern, locale, false),
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
@@ -59,7 +59,7 @@ void main() {
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, locale),
+          () => underTest.fromString(input, pattern, locale, false),
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
@@ -71,7 +71,7 @@ void main() {
 
         // Execute
         final actualDateTime =
-            underTest.fromString(testData['input'], pattern, locale);
+            underTest.fromString(testData['input'], pattern, locale, false);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -85,7 +85,7 @@ void main() {
 
         // Execute
         final actualDateTime =
-            underTest.fromString(testData['input'], pattern, locale);
+            underTest.fromString(testData['input'], pattern, locale, false);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -103,9 +103,23 @@ void main() {
 
       // Execute and Verify
       expect(
-          () => underTest.fromString(input, pattern, locale),
+          () => underTest.fromString(input, pattern, locale, false),
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
+    });
+
+    test('Should successfully pass date time if it is in Utc', () {
+      // Setup
+      final input = '1997 Sep 23th';
+      final pattern = 'yyyy MMM do';
+
+      final expected = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actual = underTest.fromString(input, pattern, locale, true);
+
+      // Verify
+      expect(actual, expected);
     });
   });
 
@@ -113,7 +127,7 @@ void main() {
     for (var testData in fromListTestData()) {
       test('Should successfully parse datetime as list', () {
         // Execute
-        final actualDateTime = underTest.fromList(testData['input']);
+        final actualDateTime = underTest.fromList(testData['input'], false);
 
         // Verify
         expect(actualDateTime, testData['expected']);
@@ -129,9 +143,22 @@ void main() {
 
       // Execute and Verify
       expect(
-          () => underTest.fromList(input),
+          () => underTest.fromList(input, false),
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
+    });
+
+    test('Should successfully pass date time as list if it is in Utc', () {
+      // Setup
+      final list = [1997, 9, 23];
+
+      final expected = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actual = underTest.fromList(list, true);
+
+      // Verify
+      expect(actual, expected);
     });
   });
 
@@ -151,7 +178,7 @@ void main() {
 
       final expectedDateTime = DateTime(1997, 9, 23, 12, 22, 11, 123, 456);
       // Execute
-      final actualDateTime = underTest.fromMap(input);
+      final actualDateTime = underTest.fromMap(input, false);
 
       // Verify
       expect(actualDateTime, expectedDateTime);
@@ -166,9 +193,31 @@ void main() {
 
       // Execute and Verify
       expect(
-          () => underTest.fromMap(input),
+          () => underTest.fromMap(input, false),
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
+    });
+
+    test('Should successfully pass date time as map if it is in Utc', () {
+      // Setup
+      final map = {
+        Unit.YEAR: 1997,
+        Unit.MONTH: 9,
+        Unit.DAY: 23,
+        Unit.HOUR: 12,
+        Unit.MINUTE: 22,
+        Unit.SECOND: 11,
+        Unit.MILLISECOND: 123,
+        Unit.MICROSECOND: 456,
+      };
+
+      final expected = DateTime.utc(1997, 9, 23, 12, 22, 11, 123, 456);
+
+      // Execute
+      final actual = underTest.fromMap(map, true);
+
+      // Verify
+      expect(actual, expected);
     });
   });
 }

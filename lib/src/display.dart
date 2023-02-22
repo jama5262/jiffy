@@ -8,11 +8,11 @@ import 'query.dart';
 import 'utils/jiffy_exception.dart';
 
 class Display {
-  final Getter getter;
-  final Manipulator manipulator;
-  final Query query;
+  final Getter _getter;
+  final Manipulator _manipulator;
+  final Query _query;
 
-  Display(this.getter, this.manipulator, this.query);
+  Display(this._getter, this._manipulator, this._query);
 
   String formatToISO8601(DateTime dateTime) => dateTime.toIso8601String();
 
@@ -23,7 +23,7 @@ class Display {
     }
     try {
       final escapedPattern = _replaceEscapePattern(pattern);
-      final localeOrdinal = _getLocaleOrdinal(locale, getter.date(dateTime));
+      final localeOrdinal = _getLocaleOrdinal(locale, _getter.date(dateTime));
       final newPattern =
           _replaceLocaleOrdinalDatePattern(escapedPattern, localeOrdinal);
       return DateFormat(newPattern).format(dateTime);
@@ -36,7 +36,7 @@ class Display {
 
   String fromAsRelativeDateTime(
       DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
-    final isFirstDateTimeSameOrAfterSecondDateTime = query.isSameOrAfter(
+    final isFirstDateTimeSameOrAfterSecondDateTime = _query.isSameOrAfter(
         firstDateTime, secondDateTime, Unit.MICROSECOND, locale.startOfWeek());
 
     final relativeDateTime = locale.relativeDateTime();
@@ -98,9 +98,9 @@ class Display {
   num diff(DateTime firstDateTime, DateTime secondDateTime, Unit unit,
       bool asFloat) {
     final firstDateTimeMicrosecondsSinceEpoch =
-        getter.microsecondsSinceEpoch(firstDateTime);
+        _getter.microsecondsSinceEpoch(firstDateTime);
     final secondDateTimeMicrosecondsSinceEpoch =
-        getter.microsecondsSinceEpoch(secondDateTime);
+        _getter.microsecondsSinceEpoch(secondDateTime);
     final diffMicrosecondsSinceEpoch = firstDateTimeMicrosecondsSinceEpoch -
         secondDateTimeMicrosecondsSinceEpoch;
 
@@ -177,13 +177,13 @@ class Display {
   }
 
   num _monthDiff(DateTime firstDateTime, DateTime secondDateTime) {
-    if (getter.date(firstDateTime) < getter.date(secondDateTime)) {
+    if (_getter.date(firstDateTime) < _getter.date(secondDateTime)) {
       return -(_monthDiff(secondDateTime, firstDateTime));
     }
 
     final monthDiff =
-        ((getter.year(secondDateTime) - getter.year(firstDateTime)) * 12) +
-            (getter.month(secondDateTime) - getter.month(firstDateTime));
+        ((_getter.year(secondDateTime) - _getter.year(firstDateTime)) * 12) +
+            (_getter.month(secondDateTime) - _getter.month(firstDateTime));
 
     final thirdDateTime = _addMonths(firstDateTime, monthDiff);
     final thirdDateTimeMicrosecondsSinceEpoch =
@@ -213,10 +213,10 @@ class Display {
   int _asFloor(num number) => number < 0 ? number.ceil() : number.floor();
 
   DateTime _addMonths(DateTime dateTime, int months) {
-    return manipulator.add(dateTime, 0, 0, 0, 0, 0, 0, 0, months, 0);
+    return _manipulator.add(dateTime, 0, 0, 0, 0, 0, 0, 0, months, 0);
   }
 
   int _getMicrosecondsSinceEpoch(DateTime dateTime) {
-    return getter.microsecondsSinceEpoch(dateTime);
+    return _getter.microsecondsSinceEpoch(dateTime);
   }
 }
