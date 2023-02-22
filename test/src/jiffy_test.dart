@@ -623,9 +623,35 @@ void main() {
         expect(actualJiffy.isLocal, expectedIsLocal);
       });
 
+      test('Should successfully return local if already local', () {
+        // Setup
+        final underTest = Jiffy.now().toLocal();
+
+        final expectedIsLocal = true;
+
+        // Execute
+        final actualJiffy = underTest.toLocal();
+
+        // Verify
+        expect(actualJiffy.isLocal, expectedIsLocal);
+      });
+
       test('Should successfully convert local date time to utc', () {
         // Setup
         final underTest = Jiffy.now().toLocal();
+
+        final expectedIsUtc = true;
+
+        // Execute
+        final actualJiffy = underTest.toUtc();
+
+        // Verify
+        expect(actualJiffy.isUtc, expectedIsUtc);
+      });
+
+      test('Should successfully return utc if already utc', () {
+        // Setup
+        final underTest = Jiffy.now().toUtc();
 
         final expectedIsUtc = true;
 
