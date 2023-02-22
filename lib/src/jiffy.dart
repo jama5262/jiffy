@@ -14,8 +14,6 @@ import './parser.dart';
 import './query.dart';
 import './utils/jiffy_exception.dart';
 
-// todo understand more of this utc stuff
-
 /// Jiffy is a Flutter (Android, IOS and Web) date time package inspired by
 /// [momentjs](https://momentjs.com/) for parsing, manipulating, querying and
 /// formatting dates
@@ -28,13 +26,12 @@ class Jiffy {
   late final Display _display;
 
   late Locale _locale;
-  // todo see if we can always make this utc
   late final DateTime _dateTime;
 
-  Jiffy._internal(var input, [String? pattern]) {
+  Jiffy._internal(var input, {String? pattern, bool isUtc = false}) {
     _initializeDependencies();
     _initializeLocale();
-    _initializeDateTime(input, pattern);
+    _initializeDateTime(input, pattern, isUtc);
   }
 
   /// Constructs a new [Jiffy] instance by parsing a [String].
@@ -57,8 +54,8 @@ class Jiffy {
   /// ```
   ///
   /// Throws a [JiffyException] if the input [string] cannot be parsed.
-  factory Jiffy.parse(String string, {String? pattern}) {
-    return Jiffy._internal(string, pattern);
+  factory Jiffy.parse(String string, {String? pattern, bool isUtc = false}) {
+    return Jiffy._internal(string, pattern: pattern, isUtc: isUtc);
   }
 
   /// Constructs a new [Jiffy] instance from a [DateTime] object.
@@ -118,8 +115,8 @@ class Jiffy {
   /// final jiffy = Jiffy.parseFromList([1997, 9, 23]);
   /// ```
   /// Throws a [JiffyException] if the input [list] is empty.
-  factory Jiffy.parseFromList(List<int> list) {
-    return Jiffy._internal(list);
+  factory Jiffy.parseFromList(List<int> list, {bool isUtc = false}) {
+    return Jiffy._internal(list, isUtc: isUtc);
   }
 
   /// Constructs a [Jiffy] instance from a [map] of date and time values.
@@ -147,8 +144,8 @@ class Jiffy {
   /// ```
   ///
   /// Throws a [JiffyException] if the input [map] is empty.
-  factory Jiffy.parseFromMap(Map<Unit, int> map) {
-    return Jiffy._internal(map);
+  factory Jiffy.parseFromMap(Map<Unit, int> map, {bool isUtc = false}) {
+    return Jiffy._internal(map, isUtc: isUtc);
   }
 
   /// Constructs a [Jiffy] instance from a [microsecondsSinceEpoch] of type
@@ -197,17 +194,17 @@ class Jiffy {
     _display = Display(_getter, _manipulator, _query);
   }
 
-  void _initializeDateTime(var input, String? pattern) {
+  void _initializeDateTime(var input, String? pattern, bool isUtc) {
     if (input is DateTime) {
-      _dateTime = input;
+      _dateTime = _getter.dateTime(input);
     } else if (input is Jiffy) {
       _dateTime = input.dateTime;
     } else if (input is String) {
-      _dateTime = _parser.fromString(input, pattern, _locale);
+      _dateTime = _parser.fromString(input, pattern, _locale, isUtc);
     } else if (input is List<int>) {
-      _dateTime = _parser.fromList(input);
+      _dateTime = _parser.fromList(input, isUtc);
     } else if (input is Map<Unit, int>) {
-      _dateTime = _parser.fromMap(input);
+      _dateTime = _parser.fromMap(input, isUtc);
     } else {
       throw JiffyException('Could not parse input: `$input`, '
           'only String, List, Map, DateTime and Jiffy are allowed');
@@ -220,7 +217,6 @@ class Jiffy {
     if (isLocalAvailable(systemLocale)) {
       _locale = getLocale(systemLocale);
     } else {
-      // todo add doc comments to this comment below
       // The locale `systemLocale` is not supported by Jiffy, hence '
       // 'setting a default locale of `en_us`
       _locale = EnUsLocale();
@@ -279,7 +275,7 @@ class Jiffy {
   Jiffy clone() => Jiffy.parseFromDateTime(dateTime);
 
   Jiffy _clone(DateTime dateTime) =>
-      Jiffy.parseFromDateTime(dateTime.copyWith());
+      Jiffy.parseFromDateTime(_getter.dateTime(dateTime));
 
   /// Returns a new [DateTime] instance of the [Jiffy] object.
   DateTime get dateTime => _getter.dateTime(_dateTime);
@@ -499,7 +495,6 @@ class Jiffy {
     return _clone(dateTime);
   }
 
-  // todo look at this more together with to utc
   /// Returns a new instance of [Jiffy] with the same date and time in
   /// local time zone.
   ///
@@ -507,8 +502,9 @@ class Jiffy {
   /// will be converted to local time zone. Otherwise, the current instance
   /// will be returned as is.
   Jiffy toLocal() {
-    final dateTime =
-        Query.isUtc(this.dateTime) ? this.dateTime.toLocal() : this.dateTime;
+    final dateTime = Query.isUtc(this.dateTime)
+        ? _manipulator.toLocal(this.dateTime)
+        : this.dateTime;
     return _clone(dateTime);
   }
 
@@ -519,8 +515,9 @@ class Jiffy {
   /// will be converted to UTC time zone. Otherwise, the current instance
   /// will be returned as is.
   Jiffy toUtc() {
-    final dateTime =
-        Query.isUtc(this.dateTime) ? this.dateTime : this.dateTime.toUtc();
+    final dateTime = Query.isUtc(this.dateTime)
+        ? this.dateTime
+        : _manipulator.toUtc(this.dateTime);
     return _clone(dateTime);
   }
 

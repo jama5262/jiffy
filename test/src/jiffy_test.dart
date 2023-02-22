@@ -56,6 +56,21 @@ void main() {
           expectedDateTime.microsecondsSinceEpoch);
     });
 
+    test('Should successfully parse from string is it is utc', () {
+      // Setup
+      final dateTime = '23 Sep 97';
+      final pattern = 'dd MMM yy';
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parse(dateTime, pattern: pattern, isUtc: true);
+
+      // Verify
+      expect(actualJiffy.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
+    });
+
     test('Should successfully parse from DateTime', () {
       // Setup
       final dateTime = DateTime(1997, 9, 23);
@@ -95,6 +110,20 @@ void main() {
           expectedDateTime.microsecondsSinceEpoch);
     });
 
+    test('Should successfully parse from List if it is utc', () {
+      // Setup
+      final list = [1997, 9, 23];
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parseFromList(list, isUtc: true);
+
+      // Verify
+      expect(actualJiffy.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
+    });
+
     test('Should successfully parse from Map', () {
       // Setup
       final map = {Unit.YEAR: 1997, Unit.MONTH: 9, Unit.DAY: 23};
@@ -107,6 +136,21 @@ void main() {
       expect(actualJiffy.year, expectedDateTime.year);
       expect(actualJiffy.month, expectedDateTime.month);
       expect(actualJiffy.date, expectedDateTime.day);
+    });
+
+    test('Should successfully parse from Map if it is utc', () {
+      // Setup
+      final map = {Unit.YEAR: 1997, Unit.MONTH: 9, Unit.DAY: 23};
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parseFromMap(map, isUtc: true);
+
+      // Verify
+      expect(actualJiffy.year, expectedDateTime.year);
+      expect(actualJiffy.month, expectedDateTime.month);
+      expect(actualJiffy.date, expectedDateTime.day);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
     });
 
     test('Should successfully parse from Microseconds since epoch', () {
