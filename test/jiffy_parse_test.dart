@@ -112,7 +112,7 @@ void main() {
         Jiffy('', 'yyyy');
       } catch (e) {
         expect(e.toString(),
-            'FormatException: Trying to read yyyy from  at position 0');
+            'FormatException: Trying to read yyyy from  at 0');
       }
     });
     test(
@@ -122,7 +122,7 @@ void main() {
         Jiffy('Oct', 'yyyy');
       } catch (e) {
         expect(e.toString(),
-            'FormatException: Trying to read yyyy from Oct at position 0');
+            'FormatException: Trying to read yyyy from Oct at 0');
       }
     });
     test(
