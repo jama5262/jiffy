@@ -1,3 +1,13 @@
+## 5.0.1
+
+## What's Changed
+* change version intl to 0.18.0 by @nguyenxdat in https://github.com/jama5262/jiffy/pull/173
+
+## New Contributors
+* @nguyenxdat made their first contribution in https://github.com/jama5262/jiffy/pull/173
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v5.0.0...v5.0.1
+
 ## 5.0.0
 
 ### Major Changes
