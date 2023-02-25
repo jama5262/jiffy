@@ -1,9 +1,10 @@
 name: Continuous Integration
 
-on: [push]
+on: [push, workflow_call]
 
 jobs:
   run-tests:
+    name: Run tests
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -13,9 +14,9 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - name: Install dart dependencies
         run: dart pub get
-      - name: Analyze library
+      - name: Analyze package
         run: dart analyze lib test example
-      - name: Verify library formatting
+      - name: Verify package formatting
         run: dart format --set-exit-if-changed lib test example
       - name: Run tests and generate coverage reports
         run: |
