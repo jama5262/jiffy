@@ -1,4 +1,4 @@
-import 'enums/startOfWeek.dart';
+import 'enums/start_of_week.dart';
 import 'enums/unit.dart';
 import 'getter.dart';
 import 'manipulator.dart';
@@ -14,7 +14,7 @@ class Query {
     final secondDateTimeMicrosecondsSinceEpoch =
         _getter.microsecondsSinceEpoch(secondDateTime);
 
-    if (unit == Unit.MICROSECOND) {
+    if (unit == Unit.microsecond) {
       return _getter.microsecondsSinceEpoch(firstDateTime) <
           secondDateTimeMicrosecondsSinceEpoch;
     }
@@ -32,7 +32,7 @@ class Query {
     final secondDateTimeMicrosecondsSinceEpoch =
         _getter.microsecondsSinceEpoch(secondDateTime);
 
-    if (unit == Unit.MICROSECOND) {
+    if (unit == Unit.microsecond) {
       return _getter.microsecondsSinceEpoch(firstDateTime) >
           secondDateTimeMicrosecondsSinceEpoch;
     }
@@ -50,7 +50,7 @@ class Query {
     final secondDateTimeMicrosecondsSinceEpoch =
         _getter.microsecondsSinceEpoch(secondDateTime);
 
-    if (unit == Unit.MICROSECOND) {
+    if (unit == Unit.microsecond) {
       return _getter.microsecondsSinceEpoch(firstDateTime) ==
           secondDateTimeMicrosecondsSinceEpoch;
     }

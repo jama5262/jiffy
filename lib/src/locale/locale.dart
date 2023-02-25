@@ -1,4 +1,4 @@
-import '../enums/startOfWeek.dart';
+import '../enums/start_of_week.dart';
 import 'relative_date_time.dart';
 
 /// An abstract class representing a Locale in Dart.

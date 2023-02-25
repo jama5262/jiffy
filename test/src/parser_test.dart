@@ -1,6 +1,6 @@
 import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/locale/locales/enLocale.dart';
+import 'package:jiffy/src/locale/locales/en_locale.dart';
 import 'package:jiffy/src/parser.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
@@ -166,14 +166,14 @@ void main() {
     test('Should successfully parse datetime as map', () {
       // Setup
       final input = {
-        Unit.YEAR: 1997,
-        Unit.MONTH: 9,
-        Unit.DAY: 23,
-        Unit.HOUR: 12,
-        Unit.MINUTE: 22,
-        Unit.SECOND: 11,
-        Unit.MILLISECOND: 123,
-        Unit.MICROSECOND: 456,
+        Unit.year: 1997,
+        Unit.month: 9,
+        Unit.day: 23,
+        Unit.hour: 12,
+        Unit.minute: 22,
+        Unit.second: 11,
+        Unit.millisecond: 123,
+        Unit.microsecond: 456,
       };
 
       final expectedDateTime = DateTime(1997, 9, 23, 12, 22, 11, 123, 456);
@@ -201,14 +201,14 @@ void main() {
     test('Should successfully pass date time as map if it is in Utc', () {
       // Setup
       final map = {
-        Unit.YEAR: 1997,
-        Unit.MONTH: 9,
-        Unit.DAY: 23,
-        Unit.HOUR: 12,
-        Unit.MINUTE: 22,
-        Unit.SECOND: 11,
-        Unit.MILLISECOND: 123,
-        Unit.MICROSECOND: 456,
+        Unit.year: 1997,
+        Unit.month: 9,
+        Unit.day: 23,
+        Unit.hour: 12,
+        Unit.minute: 22,
+        Unit.second: 11,
+        Unit.millisecond: 123,
+        Unit.microsecond: 456,
       };
 
       final expected = DateTime.utc(1997, 9, 23, 12, 22, 11, 123, 456);

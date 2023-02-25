@@ -1,11 +1,11 @@
 enum Unit {
-  MICROSECOND,
-  MILLISECOND,
-  SECOND,
-  MINUTE,
-  HOUR,
-  DAY,
-  WEEK,
-  MONTH,
-  YEAR
+  microsecond,
+  millisecond,
+  second,
+  minute,
+  hour,
+  day,
+  week,
+  month,
+  year
 }

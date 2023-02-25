@@ -1,7 +1,7 @@
 import 'package:jiffy/src/display.dart';
 import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/locale/locales/enLocale.dart';
+import 'package:jiffy/src/locale/locales/en_locale.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/query.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
@@ -149,7 +149,7 @@ void main() {
       // Setup
       final firstDateTime = DateTime(2022, 12, 5);
       final secondDateTime = DateTime(2022, 12, 8);
-      final unit = Unit.WEEK;
+      final unit = Unit.week;
       final asFloat = false;
 
       final expectedDifference = -0.42857142857142855;
@@ -654,175 +654,175 @@ List<Map<String, dynamic>> diffDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 10),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 24),
-      'unit': Unit.MICROSECOND,
+      'unit': Unit.microsecond,
       'expectedDifference': -14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 24),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 10),
-      'unit': Unit.MICROSECOND,
+      'unit': Unit.microsecond,
       'expectedDifference': 14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 2),
-      'unit': Unit.MICROSECOND,
+      'unit': Unit.microsecond,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 10),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 24),
-      'unit': Unit.MILLISECOND,
+      'unit': Unit.millisecond,
       'expectedDifference': -14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 24),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 10),
-      'unit': Unit.MILLISECOND,
+      'unit': Unit.millisecond,
       'expectedDifference': 14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 22, 2),
-      'unit': Unit.MILLISECOND,
+      'unit': Unit.millisecond,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 10),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 24),
-      'unit': Unit.SECOND,
+      'unit': Unit.second,
       'expectedDifference': -14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 24),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 10),
-      'unit': Unit.SECOND,
+      'unit': Unit.second,
       'expectedDifference': 14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 11, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 11, 2),
-      'unit': Unit.SECOND,
+      'unit': Unit.second,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 10),
       'secondDateTime': DateTime(1997, 9, 23, 12, 24),
-      'unit': Unit.MINUTE,
+      'unit': Unit.minute,
       'expectedDifference': -14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 24),
       'secondDateTime': DateTime(1997, 9, 23, 12, 10),
-      'unit': Unit.MINUTE,
+      'unit': Unit.minute,
       'expectedDifference': 14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 12, 2),
       'secondDateTime': DateTime(1997, 9, 23, 12, 2),
-      'unit': Unit.MINUTE,
+      'unit': Unit.minute,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 10),
       'secondDateTime': DateTime(1997, 9, 23, 24),
-      'unit': Unit.HOUR,
+      'unit': Unit.hour,
       'expectedDifference': -14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 24),
       'secondDateTime': DateTime(1997, 9, 23, 10),
-      'unit': Unit.HOUR,
+      'unit': Unit.hour,
       'expectedDifference': 14
     },
     {
       'firstDateTime': DateTime(1997, 9, 23, 2),
       'secondDateTime': DateTime(1997, 9, 23, 2),
-      'unit': Unit.HOUR,
+      'unit': Unit.hour,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(1997, 9, 10),
       'secondDateTime': DateTime(1997, 9, 24),
-      'unit': Unit.DAY,
+      'unit': Unit.day,
       'expectedDifference': -14
     },
     {
       'firstDateTime': DateTime(1997, 9, 24),
       'secondDateTime': DateTime(1997, 9, 10),
-      'unit': Unit.DAY,
+      'unit': Unit.day,
       'expectedDifference': 14
     },
     {
       'firstDateTime': DateTime(1997, 9, 2),
       'secondDateTime': DateTime(1997, 9, 2),
-      'unit': Unit.DAY,
+      'unit': Unit.day,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 20),
-      'unit': Unit.WEEK,
+      'unit': Unit.week,
       'expectedDifference': -2
     },
     {
       'firstDateTime': DateTime(2022, 12, 22),
       'secondDateTime': DateTime(2022, 12, 6),
-      'unit': Unit.WEEK,
+      'unit': Unit.week,
       'expectedDifference': 2
     },
     {
       'firstDateTime': DateTime(2022, 12, 5),
       'secondDateTime': DateTime(2022, 12, 8),
-      'unit': Unit.WEEK,
+      'unit': Unit.week,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(2022, 5),
       'secondDateTime': DateTime(2022, 7),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDifference': -2
     },
     {
       'firstDateTime': DateTime(2022, 7),
       'secondDateTime': DateTime(2022, 5),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDifference': 2
     },
     {
       'firstDateTime': DateTime(2022, 5),
       'secondDateTime': DateTime(2022, 5),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDifference': 0
     },
     {
       'firstDateTime': DateTime(2016, 2, 29),
       'secondDateTime': DateTime(2016, 1, 30),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDifference': 1
     },
     {
       'firstDateTime': DateTime(2016, 2, 29),
       'secondDateTime': DateTime(2016, 1, 31),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDifference': 1
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1999),
-      'unit': Unit.YEAR,
+      'unit': Unit.year,
       'expectedDifference': -2
     },
     {
       'firstDateTime': DateTime(1999),
       'secondDateTime': DateTime(1997),
-      'unit': Unit.YEAR,
+      'unit': Unit.year,
       'expectedDifference': 2
     },
     {
       'firstDateTime': DateTime(1997),
       'secondDateTime': DateTime(1997),
-      'unit': Unit.YEAR,
+      'unit': Unit.year,
       'expectedDifference': 0
     },
   ];

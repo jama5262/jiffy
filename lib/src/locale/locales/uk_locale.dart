@@ -1,38 +1,38 @@
-import '../../enums/startOfWeek.dart';
+import '../../enums/start_of_week.dart';
 import '../locale.dart';
 import '../relative_date_time.dart';
 
-class RuLocale extends Locale {
+class UkLocale extends Locale {
   @override
-  String code() => 'ru';
+  String code() => 'uk';
 
   @override
   List<String> ordinals() => List.from(['', '', '', ''], growable: false);
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.monday;
 
   @override
-  RelativeDateTime relativeDateTime() => RuRelativeTime();
+  RelativeDateTime relativeDateTime() => UkRelativeTime();
 }
 
-class RuRelativeTime extends RelativeDateTime {
+class UkRelativeTime extends RelativeDateTime {
   @override
   String prefixAgo() => '';
   @override
   String prefixFromNow() => 'через';
   @override
-  String suffixAgo() => 'назад';
+  String suffixAgo() => 'тому';
   @override
   String suffixFromNow() => '';
   @override
-  String lessThanOneMinute(int seconds) => 'несколько секунд';
+  String lessThanOneMinute(int seconds) => 'декілька секунд';
   @override
-  String aboutAMinute(int minutes) => 'минуту';
+  String aboutAMinute(int minutes) => 'хвилину';
   @override
   String minutes(int minutes) => '$minutes ${_convert(minutes, 'minutes')}';
   @override
-  String aboutAnHour(int minutes) => 'час';
+  String aboutAnHour(int minutes) => 'годину';
   @override
   String hours(int hours) => '$hours ${_convert(hours, 'hours')}';
   @override
@@ -40,11 +40,11 @@ class RuRelativeTime extends RelativeDateTime {
   @override
   String days(int days) => '$days ${_convert(days, 'days')}';
   @override
-  String aboutAMonth(int days) => 'месяц';
+  String aboutAMonth(int days) => 'місяць';
   @override
   String months(int months) => '$months ${_convert(months, 'months')}';
   @override
-  String aboutAYear(int year) => 'год';
+  String aboutAYear(int year) => 'рік';
   @override
   String years(int years) => '$years ${_convert(years, 'years')}';
   @override
@@ -58,15 +58,15 @@ String _convert(int number, String type) {
   if (mod == 1 && modH != 11) {
     switch (type) {
       case 'minutes':
-        return 'минуту';
+        return 'хвилину';
       case 'hours':
-        return 'час';
+        return 'годину';
       case 'days':
         return 'день';
       case 'months':
-        return 'месяц';
+        return 'місяць';
       case 'years':
-        return 'год';
+        return 'рік';
       default:
         return '';
     }
@@ -74,30 +74,30 @@ String _convert(int number, String type) {
       !<int>[12, 13, 14].contains(modH)) {
     switch (type) {
       case 'minutes':
-        return 'минуты';
+        return 'хвилини';
       case 'hours':
-        return 'часа';
+        return 'години';
       case 'days':
-        return 'дня';
+        return 'дні';
       case 'months':
-        return 'месяца';
+        return 'місяці';
       case 'years':
-        return 'года';
+        return 'роки';
       default:
         return '';
     }
   }
   switch (type) {
     case 'minutes':
-      return 'минут';
+      return 'хвилин';
     case 'hours':
-      return 'часов';
+      return 'годин';
     case 'days':
-      return 'дней';
+      return 'днів';
     case 'months':
-      return 'месяцев';
+      return 'місяців';
     case 'years':
-      return 'лет';
+      return 'років';
     default:
       return '';
   }

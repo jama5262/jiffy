@@ -3,12 +3,12 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import './default_display.dart';
 import './display.dart';
-import './enums/startOfWeek.dart';
+import './enums/start_of_week.dart';
 import './enums/unit.dart';
 import './getter.dart';
 import './locale/available_locales.dart';
 import './locale/locale.dart';
-import './locale/locales/enLocale.dart';
+import './locale/locales/en_locale.dart';
 import './manipulator.dart';
 import './parser.dart';
 import './query.dart';
@@ -550,38 +550,49 @@ class Jiffy {
   String get E => _defaultDisplay.E(dateTime);
 
   /// Returns the weekday. Example: `Tuesday`
+  // ignore: non_constant_identifier_names
   String get EEEE => _defaultDisplay.EEEE(dateTime);
 
   /// Returns the day of month and date. Example: `9/23`
+  // ignore: non_constant_identifier_names
   String get Md => _defaultDisplay.Md(dateTime);
 
   /// Returns the day of month, abbreviated weekday and date.
   /// Example: `Tue, 9/23`
+  // ignore: non_constant_identifier_names
   String get MEd => _defaultDisplay.MEd(dateTime);
 
   /// Returns the abbreviated month. Example: `Sep`
+  // ignore: non_constant_identifier_names
   String get MMM => _defaultDisplay.MMM(dateTime);
 
   /// Returns the abbreviated month and date. Example: `Sep 23`
+  // ignore: non_constant_identifier_names
   String get MMMd => _defaultDisplay.MMMd(dateTime);
 
   /// Returns the abbreviated month, abbreviated weekday and date.
   /// Example: `Tue, Sep 23`
+  // ignore: non_constant_identifier_names
   String get MMMEd => _defaultDisplay.MMMEd(dateTime);
 
   /// Returns the month. Example: `September`
+  // ignore: non_constant_identifier_names
   String get MMMM => _defaultDisplay.MMMM(dateTime);
 
   /// Returns the month and date. Example: `September 23`
+  // ignore: non_constant_identifier_names
   String get MMMMd => _defaultDisplay.MMMMd(dateTime);
 
   /// Returns the month, weekday and date. Example: `Tuesday, September 23`
+  // ignore: non_constant_identifier_names
   String get MMMMEEEEd => _defaultDisplay.MMMMEEEEd(dateTime);
 
   /// Returns the abbreviated quarter. Example: `Q3`
+  // ignore: non_constant_identifier_names
   String get QQQ => _defaultDisplay.QQQ(dateTime);
 
   /// Returns the quarter. Example: `3rd quarter`
+  // ignore: non_constant_identifier_names
   String get QQQQ => _defaultDisplay.QQQQ(dateTime);
 
   /// Returns the year and day of month. Example: `9/1997`
@@ -640,9 +651,11 @@ class Jiffy {
   String get H => _defaultDisplay.H(dateTime);
 
   /// Returns 24 hour and minute. Example: `12:11`
+  // ignore: non_constant_identifier_names
   String get Hm => _defaultDisplay.Hm(dateTime);
 
   /// Returns 24 hour, minute and second. Example: `12:11:22`
+  // ignore: non_constant_identifier_names
   String get Hms => _defaultDisplay.Hms(dateTime);
 
   /// Returns 12 hour. Example: `12 PM`
@@ -712,7 +725,7 @@ class Jiffy {
   /// [jiffy] instance as a numeric value.
   ///
   /// The [unit] parameter specifies the unit in which to return the difference.
-  /// The default value is [Unit.MICROSECOND].
+  /// The default value is [Unit.microsecond].
   ///
   /// The optional [asFloat] parameter determines whether to return the
   /// difference as a floating-point number. The default value is [false].
@@ -729,7 +742,7 @@ class Jiffy {
   /// print('Difference in days: $diffInDays');
   /// // output: Difference in days: -14
   /// ```
-  num diff(Jiffy jiffy, {Unit unit = Unit.MICROSECOND, bool asFloat = false}) {
+  num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = false}) {
     return _display.diff(dateTime, jiffy.dateTime, unit, asFloat);
   }
 
@@ -737,8 +750,8 @@ class Jiffy {
   /// before the given [jiffy] instance.
   ///
   /// The [unit] parameter specifies the unit of measurement to use when
-  /// comparing the two instances. The default value is [Unit.MICROSECOND].
-  bool isBefore(Jiffy jiffy, {Unit unit = Unit.MICROSECOND}) {
+  /// comparing the two instances. The default value is [Unit.microsecond].
+  bool isBefore(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isBefore(
         dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
   }
@@ -747,8 +760,8 @@ class Jiffy {
   /// after the given [jiffy] instance.
   ///
   /// The [unit] parameter specifies the unit of measurement to use when
-  /// comparing the two instances. The default value is [Unit.MICROSECOND].
-  bool isAfter(Jiffy jiffy, {Unit unit = Unit.MICROSECOND}) {
+  /// comparing the two instances. The default value is [Unit.microsecond].
+  bool isAfter(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isAfter(
         dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
   }
@@ -757,8 +770,8 @@ class Jiffy {
   /// the same as the given [jiffy] instance.
   ///
   /// The [unit] parameter specifies the unit of measurement to use when
-  /// comparing the two instances. The default value is [Unit.MICROSECOND].
-  bool isSame(Jiffy jiffy, {Unit unit = Unit.MICROSECOND}) {
+  /// comparing the two instances. The default value is [Unit.microsecond].
+  bool isSame(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSame(dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
   }
 
@@ -766,8 +779,8 @@ class Jiffy {
   /// the same as or before the given [jiffy] instance.
   ///
   /// The [unit] parameter specifies the unit of measurement to use when
-  /// comparing the two instances. The default value is [Unit.MICROSECOND].
-  bool isSameOrBefore(Jiffy jiffy, {Unit unit = Unit.MICROSECOND}) {
+  /// comparing the two instances. The default value is [Unit.microsecond].
+  bool isSameOrBefore(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSameOrBefore(
         dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
   }
@@ -776,8 +789,8 @@ class Jiffy {
   /// the same as or after the given [jiffy] instance.
   ///
   /// The [unit] parameter specifies the unit of measurement to use when
-  /// comparing the two instances. The default value is [Unit.MICROSECOND].
-  bool isSameOrAfter(Jiffy jiffy, {Unit unit = Unit.MICROSECOND}) {
+  /// comparing the two instances. The default value is [Unit.microsecond].
+  bool isSameOrAfter(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSameOrAfter(
         dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
   }
@@ -786,9 +799,9 @@ class Jiffy {
   /// between the two given [jiffyFrom] and [jiffyTo] instances.
   ///
   /// The [unit] parameter specifies the unit of measurement to use when
-  /// comparing the three instances. The default value is [Unit.MICROSECOND].
+  /// comparing the three instances. The default value is [Unit.microsecond].
   bool isBetween(Jiffy jiffyFrom, Jiffy jiffyTo,
-      {Unit unit = Unit.MICROSECOND}) {
+      {Unit unit = Unit.microsecond}) {
     return _query.isBetween(dateTime, jiffyFrom.dateTime, jiffyTo.dateTime,
         unit, _locale.startOfWeek());
   }

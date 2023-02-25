@@ -1,5 +1,5 @@
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
+import 'package:jiffy/src/enums/start_of_week.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -136,7 +136,7 @@ void main() {
     for (var testData in dayOfWeekTestData()) {
       test('Should successfully get day of week for locales', () {
         // Setup
-        final startOfWeek = StartOfWeek.MONDAY;
+        final startOfWeek = StartOfWeek.monday;
 
         // Execute
         final actualDayOfWeek =
@@ -226,17 +226,17 @@ List<Map<String, dynamic>> dayOfWeekWithStartOfWeekTestData() {
   return [
     {
       'dateTime': DateTime(2022, 12, 5),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDayOfWeek': 1
     },
     {
       'dateTime': DateTime(2022, 12, 4),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDayOfWeek': 1
     },
     {
       'dateTime': DateTime(2022, 12, 3),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDayOfWeek': 1
     }
   ];
@@ -254,17 +254,17 @@ List<Map<String, dynamic>> weekOfYearTestData() {
   return [
     {
       'dateTime': DateTime(1997, 9, 23),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedWeekOfYear': 39
     },
     {
       'dateTime': DateTime(2020, 3, 1),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedWeekOfYear': 10
     },
     {
       'dateTime': DateTime(2022, 12, 25),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedWeekOfYear': 52
     }
   ];
