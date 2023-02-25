@@ -17,10 +17,12 @@ jobs:
         run: dart analyze lib test example
       - name: Verify library formatting
         run: dart format --set-exit-if-changed lib test example
-      - name: Run tests and generate coverage
-        run: dart test --reporter=github --coverage=./coverage
+      - name: Run tests and generate coverage reports
+        run: |
+          dart test --reporter=github --coverage=./coverage/reports
+          dart pub global run coverage:format_coverage --report-on=./lib --lcov --in=./coverage/reports --out=coverage/lcov.info
       - name: Report to Codecov
         uses: codecov/codecov-action@v3
         with:
-          directory: ./coverage
+          file: coverage/lcov.info
           fail_ci_if_error: true
