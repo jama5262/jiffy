@@ -1,28 +1,28 @@
 import 'package:jiffy/jiffy.dart';
-import 'package:jiffy/src/locale/locales/arLocale.dart';
-import 'package:jiffy/src/locale/locales/azLocale.dart';
-import 'package:jiffy/src/locale/locales/bnLocale.dart';
-import 'package:jiffy/src/locale/locales/deLocale.dart';
-import 'package:jiffy/src/locale/locales/enLocale.dart';
-import 'package:jiffy/src/locale/locales/esLocale.dart';
-import 'package:jiffy/src/locale/locales/faLocale.dart';
-import 'package:jiffy/src/locale/locales/frLocale.dart';
-import 'package:jiffy/src/locale/locales/hiLocale.dart';
-import 'package:jiffy/src/locale/locales/huLocale.dart';
-import 'package:jiffy/src/locale/locales/idLocale.dart';
-import 'package:jiffy/src/locale/locales/itLocale.dart';
-import 'package:jiffy/src/locale/locales/jaLocale.dart';
-import 'package:jiffy/src/locale/locales/koLocale.dart';
-import 'package:jiffy/src/locale/locales/nbLocale.dart';
-import 'package:jiffy/src/locale/locales/nlLocale.dart';
-import 'package:jiffy/src/locale/locales/plLocale.dart';
-import 'package:jiffy/src/locale/locales/ptLocale.dart';
-import 'package:jiffy/src/locale/locales/ruLocale.dart';
-import 'package:jiffy/src/locale/locales/svLocale.dart';
-import 'package:jiffy/src/locale/locales/thLocale.dart';
-import 'package:jiffy/src/locale/locales/trLocale.dart';
-import 'package:jiffy/src/locale/locales/ukLocale.dart';
-import 'package:jiffy/src/locale/locales/zhLocale.dart';
+import 'package:jiffy/src/locale/locales/ar_locale.dart';
+import 'package:jiffy/src/locale/locales/az_locale.dart';
+import 'package:jiffy/src/locale/locales/bn_locale.dart';
+import 'package:jiffy/src/locale/locales/de_locale.dart';
+import 'package:jiffy/src/locale/locales/en_locale.dart';
+import 'package:jiffy/src/locale/locales/es_locale.dart';
+import 'package:jiffy/src/locale/locales/fa_locale.dart';
+import 'package:jiffy/src/locale/locales/fr_locale.dart';
+import 'package:jiffy/src/locale/locales/hi_locale.dart';
+import 'package:jiffy/src/locale/locales/hu_locale.dart';
+import 'package:jiffy/src/locale/locales/id_locale.dart';
+import 'package:jiffy/src/locale/locales/it_locale.dart';
+import 'package:jiffy/src/locale/locales/ja_locale.dart';
+import 'package:jiffy/src/locale/locales/ko_locale.dart';
+import 'package:jiffy/src/locale/locales/nb_locale.dart';
+import 'package:jiffy/src/locale/locales/nl_locale.dart';
+import 'package:jiffy/src/locale/locales/pl_locale.dart';
+import 'package:jiffy/src/locale/locales/pt_locale.dart';
+import 'package:jiffy/src/locale/locales/ru_locale.dart';
+import 'package:jiffy/src/locale/locales/sv_locale.dart';
+import 'package:jiffy/src/locale/locales/th_locale.dart';
+import 'package:jiffy/src/locale/locales/tr_locale.dart';
+import 'package:jiffy/src/locale/locales/uk_locale.dart';
+import 'package:jiffy/src/locale/locales/zh_locale.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
@@ -126,7 +126,7 @@ void main() {
 
     test('Should successfully parse from Map', () {
       // Setup
-      final map = {Unit.YEAR: 1997, Unit.MONTH: 9, Unit.DAY: 23};
+      final map = {Unit.year: 1997, Unit.month: 9, Unit.day: 23};
       final expectedDateTime = DateTime(1997, 9, 23);
 
       // Execute
@@ -140,7 +140,7 @@ void main() {
 
     test('Should successfully parse from Map if it is utc', () {
       // Setup
-      final map = {Unit.YEAR: 1997, Unit.MONTH: 9, Unit.DAY: 23};
+      final map = {Unit.year: 1997, Unit.month: 9, Unit.day: 23};
       final expectedDateTime = DateTime.utc(1997, 9, 23);
 
       // Execute
@@ -217,7 +217,7 @@ void main() {
       final jiffy = Jiffy.now();
       await jiffy.setLocale('ja');
 
-      final expectedStartOfWeek = StartOfWeek.SUNDAY;
+      final expectedStartOfWeek = StartOfWeek.sunday;
 
       // Execute
       final actualLocaleStartOfWeek = jiffy.localeStartOfWeek;
@@ -586,7 +586,7 @@ void main() {
         final expectedJiffy = Jiffy.parseFromList([1997, 9, 23, 0, 0, 0, 0, 0]);
 
         // Execute
-        final actualJiffy = underTest.startOf(Unit.DAY);
+        final actualJiffy = underTest.startOf(Unit.day);
 
         // Verify
         expect(actualJiffy.microsecondsSinceEpoch,
@@ -601,7 +601,7 @@ void main() {
             Jiffy.parseFromList([1997, 9, 23, 23, 59, 59, 999, 999]);
 
         // Execute
-        final actualJiffy = underTest.endOf(Unit.DAY);
+        final actualJiffy = underTest.endOf(Unit.day);
 
         // Verify
         expect(actualJiffy.microsecondsSinceEpoch,
@@ -780,7 +780,7 @@ void main() {
         final expectedDifference = -291.2903225806452;
 
         // Execute
-        final actualDifference = underTest.diff(jiffyFrom, unit: Unit.MONTH);
+        final actualDifference = underTest.diff(jiffyFrom, unit: Unit.month);
 
         // Verify
         expect(actualDifference, expectedDifference);
@@ -795,7 +795,7 @@ void main() {
 
         // Execute
         final actualDifference =
-            underTest.diff(jiffyFrom, unit: Unit.MONTH, asFloat: true);
+            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: true);
 
         // Verify
         expect(actualDifference, expectedDifference);

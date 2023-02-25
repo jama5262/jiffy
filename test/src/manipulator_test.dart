@@ -1,5 +1,5 @@
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/enums/startOfWeek.dart';
+import 'package:jiffy/src/enums/start_of_week.dart';
 import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:test/expect.dart';
@@ -136,7 +136,7 @@ void main() {
     for (var testData in startOfDateTimeTestData()) {
       test('Should successfully get start of datetime', () {
         // Setup
-        final startOfWeek = StartOfWeek.MONDAY;
+        final startOfWeek = StartOfWeek.monday;
 
         // Execute
         final actualDateTime = underTest.startOf(
@@ -151,7 +151,7 @@ void main() {
     for (var testData in startOfWeekWithLocaleDateTimeTestData()) {
       test('Should successfully get start of week base in local datetime', () {
         // Setup
-        final unit = Unit.WEEK;
+        final unit = Unit.week;
 
         // Execute
         final actualDateTime = underTest.startOf(
@@ -168,7 +168,7 @@ void main() {
     for (var testData in endOfDateTimeTestData()) {
       test('Should successfully get end of datetime', () {
         // Setup
-        final startOfWeek = StartOfWeek.MONDAY;
+        final startOfWeek = StartOfWeek.monday;
 
         // Execute
         final actualDateTime = underTest.endOf(
@@ -183,7 +183,7 @@ void main() {
     for (var testData in endOfWeekWithLocaleDateTimeTestData()) {
       test('Should successfully get end of week base in local datetime', () {
         // Setup
-        final unit = Unit.WEEK;
+        final unit = Unit.week;
 
         // Execute
         final actualDateTime = underTest.endOf(
@@ -232,47 +232,47 @@ List<Map<String, dynamic>> startOfDateTimeTestData() {
   return [
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MICROSECOND,
+      'unit': Unit.microsecond,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MILLISECOND,
+      'unit': Unit.millisecond,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.SECOND,
+      'unit': Unit.second,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MINUTE,
+      'unit': Unit.minute,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.HOUR,
+      'unit': Unit.hour,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 0, 0, 0, 0, 0),
-      'unit': Unit.DAY,
+      'unit': Unit.day,
       'expectedDateTime': DateTime(1997, 9, 23, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.WEEK,
+      'unit': Unit.week,
       'expectedDateTime': DateTime(1997, 9, 22, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDateTime': DateTime(1997, 9, 1, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.YEAR,
+      'unit': Unit.year,
       'expectedDateTime': DateTime(1997, 1, 1, 0, 0, 0, 0, 0)
     }
   ];
@@ -282,52 +282,52 @@ List<Map<String, dynamic>> startOfWeekWithLocaleDateTimeTestData() {
   return [
     {
       'dateTime': DateTime(2022, 12, 6, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 12, 5, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 12, 5, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 12, 5, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 2, 28, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 2, 28, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 3, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 2, 28, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 12, 6, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDateTime': DateTime(2022, 12, 4, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 12, 4, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDateTime': DateTime(2022, 12, 4, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 3, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDateTime': DateTime(2022, 2, 27, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 12, 6, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDateTime': DateTime(2022, 12, 3, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 12, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDateTime': DateTime(2022, 12, 3, 0, 0, 0, 0, 0)
     },
     {
       'dateTime': DateTime(2022, 3, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDateTime': DateTime(2022, 2, 26, 0, 0, 0, 0, 0)
     },
   ];
@@ -337,57 +337,57 @@ List<Map<String, dynamic>> endOfDateTimeTestData() {
   return [
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MICROSECOND,
+      'unit': Unit.microsecond,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MILLISECOND,
+      'unit': Unit.millisecond,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.SECOND,
+      'unit': Unit.second,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 22, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MINUTE,
+      'unit': Unit.minute,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 11, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.HOUR,
+      'unit': Unit.hour,
       'expectedDateTime': DateTime(1997, 9, 23, 12, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.DAY,
+      'unit': Unit.day,
       'expectedDateTime': DateTime(1997, 9, 23, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.WEEK,
+      'unit': Unit.week,
       'expectedDateTime': DateTime(1997, 9, 28, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDateTime': DateTime(1997, 9, 30, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2020, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDateTime': DateTime(2020, 9, 30, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2020, 2, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.MONTH,
+      'unit': Unit.month,
       'expectedDateTime': DateTime(2020, 2, 29, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(1997, 9, 23, 12, 11, 22, 123, 456),
-      'unit': Unit.YEAR,
+      'unit': Unit.year,
       'expectedDateTime': DateTime(1997, 12, 31, 23, 59, 59, 999, 999),
     }
   ];
@@ -397,47 +397,47 @@ List<Map<String, dynamic>> endOfWeekWithLocaleDateTimeTestData() {
   return [
     {
       'dateTime': DateTime(2022, 12, 6, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 12, 11, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 12, 5, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 12, 11, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 3, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.MONDAY,
+      'startOfWeek': StartOfWeek.monday,
       'expectedDateTime': DateTime(2022, 3, 6, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 12, 6, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDateTime': DateTime(2022, 12, 10, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 12, 4, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDateTime': DateTime(2022, 12, 10, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 3, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SUNDAY,
+      'startOfWeek': StartOfWeek.sunday,
       'expectedDateTime': DateTime(2022, 3, 5, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 12, 6, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDateTime': DateTime(2022, 12, 9, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 12, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDateTime': DateTime(2022, 12, 9, 23, 59, 59, 999, 999)
     },
     {
       'dateTime': DateTime(2022, 3, 3, 12, 11, 22, 123, 456),
-      'startOfWeek': StartOfWeek.SATURDAY,
+      'startOfWeek': StartOfWeek.saturday,
       'expectedDateTime': DateTime(2022, 3, 4, 23, 59, 59, 999, 999)
     },
   ];

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'getter.dart';
-import 'enums/startOfWeek.dart';
+import 'enums/start_of_week.dart';
 import 'enums/unit.dart';
 import 'query.dart';
 
@@ -67,9 +67,9 @@ class Manipulator {
   }
 
   DateTime startOf(DateTime dateTime, Unit unit, StartOfWeek startOfWeek) {
-    var newDateTime;
+    DateTime newDateTime;
     switch (unit) {
-      case Unit.MICROSECOND:
+      case Unit.microsecond:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -80,7 +80,7 @@ class Manipulator {
             millisecond: _getter.millisecond(dateTime),
             microsecond: _getter.microsecond(dateTime));
         break;
-      case Unit.MILLISECOND:
+      case Unit.millisecond:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -91,7 +91,7 @@ class Manipulator {
             millisecond: _getter.millisecond(dateTime),
             microsecond: 0);
         break;
-      case Unit.SECOND:
+      case Unit.second:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -102,7 +102,7 @@ class Manipulator {
             millisecond: 0,
             microsecond: 0);
         break;
-      case Unit.MINUTE:
+      case Unit.minute:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -113,7 +113,7 @@ class Manipulator {
             millisecond: 0,
             microsecond: 0);
         break;
-      case Unit.HOUR:
+      case Unit.hour:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -124,7 +124,7 @@ class Manipulator {
             millisecond: 0,
             microsecond: 0);
         break;
-      case Unit.DAY:
+      case Unit.day:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -135,7 +135,7 @@ class Manipulator {
             millisecond: 0,
             microsecond: 0);
         break;
-      case Unit.WEEK:
+      case Unit.week:
         var newDate = subtractDuration(dateTime,
             Duration(days: _getter.dayOfWeek(dateTime, startOfWeek) - 1));
         newDateTime = dateTime.copyWith(
@@ -148,7 +148,7 @@ class Manipulator {
             millisecond: 0,
             microsecond: 0);
         break;
-      case Unit.MONTH:
+      case Unit.month:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -159,7 +159,7 @@ class Manipulator {
             millisecond: 0,
             microsecond: 0);
         break;
-      case Unit.YEAR:
+      case Unit.year:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: 1,
@@ -175,9 +175,9 @@ class Manipulator {
   }
 
   DateTime endOf(DateTime dateTime, Unit unit, StartOfWeek startOfWeek) {
-    var newDateTime;
+    DateTime newDateTime;
     switch (unit) {
-      case Unit.MICROSECOND:
+      case Unit.microsecond:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -188,7 +188,7 @@ class Manipulator {
             millisecond: _getter.millisecond(dateTime),
             microsecond: _getter.microsecond(dateTime));
         break;
-      case Unit.MILLISECOND:
+      case Unit.millisecond:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -199,7 +199,7 @@ class Manipulator {
             millisecond: _getter.millisecond(dateTime),
             microsecond: 999);
         break;
-      case Unit.SECOND:
+      case Unit.second:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -210,7 +210,7 @@ class Manipulator {
             millisecond: 999,
             microsecond: 999);
         break;
-      case Unit.MINUTE:
+      case Unit.minute:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -221,7 +221,7 @@ class Manipulator {
             millisecond: 999,
             microsecond: 999);
         break;
-      case Unit.HOUR:
+      case Unit.hour:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -232,7 +232,7 @@ class Manipulator {
             millisecond: 999,
             microsecond: 999);
         break;
-      case Unit.DAY:
+      case Unit.day:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: _getter.month(dateTime),
@@ -243,7 +243,7 @@ class Manipulator {
             millisecond: 999,
             microsecond: 999);
         break;
-      case Unit.WEEK:
+      case Unit.week:
         var newDate = addDuration(
             dateTime,
             Duration(
@@ -259,7 +259,7 @@ class Manipulator {
             millisecond: 999,
             microsecond: 999);
         break;
-      case Unit.MONTH:
+      case Unit.month:
         var endMonthDate = Getter.daysInMonthArray[_getter.month(dateTime)];
         if (Query.isLeapYear(_getter.year(dateTime)) &&
             _getter.month(dateTime) == 2) {
@@ -275,7 +275,7 @@ class Manipulator {
             millisecond: 999,
             microsecond: 999);
         break;
-      case Unit.YEAR:
+      case Unit.year:
         newDateTime = dateTime.copyWith(
             year: _getter.year(dateTime),
             month: 12,

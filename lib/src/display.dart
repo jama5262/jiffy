@@ -37,10 +37,10 @@ class Display {
   String fromAsRelativeDateTime(
       DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
     final isFirstDateTimeSameOrAfterSecondDateTime = _query.isSameOrAfter(
-        firstDateTime, secondDateTime, Unit.MICROSECOND, locale.startOfWeek());
+        firstDateTime, secondDateTime, Unit.microsecond, locale.startOfWeek());
 
     final relativeDateTime = locale.relativeDateTime();
-    var prefix, suffix;
+    String prefix, suffix;
 
     if (isFirstDateTimeSameOrAfterSecondDateTime) {
       prefix = relativeDateTime.prefixFromNow();
@@ -51,15 +51,15 @@ class Display {
     }
 
     final seconds =
-        diff(firstDateTime, secondDateTime, Unit.SECOND, false).abs();
+        diff(firstDateTime, secondDateTime, Unit.second, false).abs();
     final minutes =
-        diff(firstDateTime, secondDateTime, Unit.MINUTE, false).abs();
-    final hours = diff(firstDateTime, secondDateTime, Unit.HOUR, false).abs();
-    final days = diff(firstDateTime, secondDateTime, Unit.DAY, false).abs();
-    final months = diff(firstDateTime, secondDateTime, Unit.MONTH, false).abs();
-    final years = diff(firstDateTime, secondDateTime, Unit.YEAR, false).abs();
+        diff(firstDateTime, secondDateTime, Unit.minute, false).abs();
+    final hours = diff(firstDateTime, secondDateTime, Unit.hour, false).abs();
+    final days = diff(firstDateTime, secondDateTime, Unit.day, false).abs();
+    final months = diff(firstDateTime, secondDateTime, Unit.month, false).abs();
+    final years = diff(firstDateTime, secondDateTime, Unit.year, false).abs();
 
-    var result;
+    String result;
 
     if (seconds < 45) {
       result = relativeDateTime.lessThanOneMinute(seconds.round());
@@ -104,34 +104,34 @@ class Display {
     final diffMicrosecondsSinceEpoch = firstDateTimeMicrosecondsSinceEpoch -
         secondDateTimeMicrosecondsSinceEpoch;
 
-    var diff;
+    num diff;
 
     switch (unit) {
-      case Unit.MICROSECOND:
+      case Unit.microsecond:
         diff = diffMicrosecondsSinceEpoch;
         break;
-      case Unit.MILLISECOND:
+      case Unit.millisecond:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerMillisecond;
         break;
-      case Unit.SECOND:
+      case Unit.second:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerSecond;
         break;
-      case Unit.MINUTE:
+      case Unit.minute:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerMinute;
         break;
-      case Unit.HOUR:
+      case Unit.hour:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerHour;
         break;
-      case Unit.DAY:
+      case Unit.day:
         diff = diffMicrosecondsSinceEpoch / Duration.microsecondsPerDay;
         break;
-      case Unit.WEEK:
+      case Unit.week:
         diff = (diffMicrosecondsSinceEpoch / Duration.microsecondsPerDay) / 7;
         break;
-      case Unit.MONTH:
+      case Unit.month:
         diff = _monthDiff(firstDateTime, secondDateTime);
         break;
-      case Unit.YEAR:
+      case Unit.year:
         diff = _monthDiff(firstDateTime, secondDateTime) / 12;
         break;
     }
@@ -170,7 +170,7 @@ class Display {
   }
 
   List<Match> _matchesOrdinalDatePattern(String input) {
-    return RegExp('''\'[^\']*\'|(do)''')
+    return RegExp(''''[^']*'|(do)''')
         .allMatches(input)
         .where((match) => match.group(1) == 'do')
         .toList();
@@ -193,7 +193,7 @@ class Display {
         _getMicrosecondsSinceEpoch(secondDateTime) -
             thirdDateTimeMicrosecondsSinceEpoch;
 
-    var offset;
+    double offset;
 
     if (diffMicrosecondsSinceEpoch < 0) {
       final fifthDateTime = _addMonths(firstDateTime, monthDiff - 1);

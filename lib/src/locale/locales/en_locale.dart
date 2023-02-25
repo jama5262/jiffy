@@ -1,4 +1,4 @@
-import '../../enums/startOfWeek.dart';
+import '../../enums/start_of_week.dart';
 import '../locale.dart';
 import '../relative_date_time.dart';
 
@@ -11,7 +11,7 @@ class EnLocale extends Locale {
       List.from(['st', 'nd', 'rd', 'th'], growable: false);
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.sunday;
 
   @override
   RelativeDateTime relativeDateTime() => EnRelativeTime();
@@ -42,7 +42,7 @@ class EnGbLocale extends EnLocale {
   String code() => 'en_gb';
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.monday;
 }
 
 class EnIeLocale extends EnLocale {
@@ -50,7 +50,7 @@ class EnIeLocale extends EnLocale {
   String code() => 'en_ie';
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.monday;
 }
 
 class EnIlLocale extends EnLocale {

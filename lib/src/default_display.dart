@@ -3,27 +3,38 @@ import 'package:intl/intl.dart';
 class DefaultDisplay {
   String E(DateTime dateTime) => DateFormat.E().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String EEEE(DateTime dateTime) => DateFormat.EEEE().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String Md(DateTime dateTime) => DateFormat.Md().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MEd(DateTime dateTime) => DateFormat.MEd().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MMM(DateTime dateTime) => DateFormat.MMM().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MMMd(DateTime dateTime) => DateFormat.MMMd().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MMMEd(DateTime dateTime) => DateFormat.MMMEd().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MMMM(DateTime dateTime) => DateFormat.MMMM().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MMMMd(DateTime dateTime) => DateFormat.MMMMd().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String MMMMEEEEd(DateTime dateTime) =>
       DateFormat.MMMMEEEEd().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String QQQ(DateTime dateTime) => DateFormat.QQQ().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String QQQQ(DateTime dateTime) => DateFormat.QQQQ().format(dateTime);
 
   String yM(DateTime dateTime) => DateFormat.yM().format(dateTime);
@@ -63,8 +74,10 @@ class DefaultDisplay {
 
   String H(DateTime dateTime) => DateFormat.H().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String Hm(DateTime dateTime) => DateFormat.Hm().format(dateTime);
 
+  // ignore: non_constant_identifier_names
   String Hms(DateTime dateTime) => DateFormat.Hms().format(dateTime);
 
   String j(DateTime dateTime) => DateFormat.j().format(dateTime);

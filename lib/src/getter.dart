@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-import 'enums/startOfWeek.dart';
+import 'enums/start_of_week.dart';
 import 'query.dart';
 
 class Getter {
@@ -31,12 +31,12 @@ class Getter {
     var weekDayIndex = dateTime.weekday - 1;
 
     switch (startOfWeek) {
-      case StartOfWeek.MONDAY:
+      case StartOfWeek.monday:
         break;
-      case StartOfWeek.SUNDAY:
+      case StartOfWeek.sunday:
         weekDayIndex += 1;
         break;
-      case StartOfWeek.SATURDAY:
+      case StartOfWeek.saturday:
         weekDayIndex += 2;
         break;
     }

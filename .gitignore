@@ -2,10 +2,10 @@
 .*
 # except
 !.gitignore
+!.pubignore
 !.github
 
 # IntelliJ related
-*.iml
 *.ipr
 *.iws
 .idea

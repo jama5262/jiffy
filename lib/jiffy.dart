@@ -4,5 +4,5 @@
 library jiffy;
 
 export 'src/enums/unit.dart';
-export 'src/enums/startOfWeek.dart';
+export 'src/enums/start_of_week.dart';
 export 'src/jiffy.dart';

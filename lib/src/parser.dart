@@ -59,14 +59,14 @@ class Parser {
       throw JiffyException('The provided datetime map cannot be empty');
     }
     return DateTime(
-            input[Unit.YEAR] ?? _getter.year(DateTime.now()),
-            input[Unit.MONTH] ?? _getter.month(DateTime.now()),
-            input[Unit.DAY] ?? _getter.date(DateTime.now()),
-            input[Unit.HOUR] ?? _getter.hour(DateTime.now()),
-            input[Unit.MINUTE] ?? _getter.minute(DateTime.now()),
-            input[Unit.SECOND] ?? _getter.second(DateTime.now()),
-            input[Unit.MILLISECOND] ?? _getter.millisecond(DateTime.now()),
-            input[Unit.MICROSECOND] ?? _getter.microsecond(DateTime.now()))
+            input[Unit.year] ?? _getter.year(DateTime.now()),
+            input[Unit.month] ?? _getter.month(DateTime.now()),
+            input[Unit.day] ?? _getter.date(DateTime.now()),
+            input[Unit.hour] ?? _getter.hour(DateTime.now()),
+            input[Unit.minute] ?? _getter.minute(DateTime.now()),
+            input[Unit.second] ?? _getter.second(DateTime.now()),
+            input[Unit.millisecond] ?? _getter.millisecond(DateTime.now()),
+            input[Unit.microsecond] ?? _getter.microsecond(DateTime.now()))
         .copyWith(isUtc: isUtc);
   }
 
@@ -92,6 +92,7 @@ class Parser {
 
   String _matchesOrdinalDates(String input, List<String> ordinals) {
     final matches =
+        // ignore: prefer_interpolation_to_compose_strings
         RegExp(r'\d+\s*(' + ordinals.join('|') + ')').allMatches(input);
     return matches.isNotEmpty ? matches.first.group(1) ?? '' : '';
   }

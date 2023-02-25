@@ -1,4 +1,4 @@
-import '../../enums/startOfWeek.dart';
+import '../../enums/start_of_week.dart';
 import '../../utils/replace.dart';
 import '../locale.dart';
 import '../relative_date_time.dart';
@@ -11,7 +11,7 @@ class BnLocale extends Locale {
   List<String> ordinals() => List.from(['', '', '', ''], growable: false);
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.sunday;
 
   @override
   RelativeDateTime relativeDateTime() => BnRelativeTime();

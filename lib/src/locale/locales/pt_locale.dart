@@ -1,4 +1,4 @@
-import '../../enums/startOfWeek.dart';
+import '../../enums/start_of_week.dart';
 import '../locale.dart';
 import '../relative_date_time.dart';
 
@@ -10,7 +10,7 @@ class PtLocale extends Locale {
   List<String> ordinals() => List.from(['º', 'º', 'º', 'º'], growable: false);
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.MONDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.monday;
 
   @override
   RelativeDateTime relativeDateTime() => PtRelativeTime();
@@ -21,7 +21,7 @@ class PtBrLocale extends PtLocale {
   String code() => 'pt_br';
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.sunday;
 }
 
 class PtRelativeTime extends RelativeDateTime {

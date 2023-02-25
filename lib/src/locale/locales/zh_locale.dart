@@ -1,4 +1,4 @@
-import '../../enums/startOfWeek.dart';
+import '../../enums/start_of_week.dart';
 import '../locale.dart';
 import '../relative_date_time.dart';
 
@@ -10,7 +10,7 @@ class ZhLocale extends Locale {
   List<String> ordinals() => List.from(['日', '日', '日', '日'], growable: false);
 
   @override
-  StartOfWeek startOfWeek() => StartOfWeek.SUNDAY;
+  StartOfWeek startOfWeek() => StartOfWeek.sunday;
 
   @override
   RelativeDateTime relativeDateTime() => ZhRelativeTime();
