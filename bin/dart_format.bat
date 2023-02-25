@@ -1,1 +1,1 @@
-dart format --set-exit-if-changed lib test
+dart format --set-exit-if-changed lib test example
