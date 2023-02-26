@@ -249,11 +249,10 @@ class Jiffy {
   ///
   /// Throws a [JiffyException] if the [locale] provided is not supported in
   /// [Jiffy].
-  Future<void> setLocale(String locale) async {
+  static Future<void> setLocale(String locale) async {
     if (isLocalAvailable(locale)) {
       Intl.defaultLocale = locale;
       await initializeDateFormatting();
-      _locale = getLocale(locale);
     } else {
       // todo add github readme locale link to this exception and also
       // update the doc comment

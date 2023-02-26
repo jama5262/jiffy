@@ -1,112 +1,115 @@
 # Jiffy
 
-[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
+[![Release to pub.dev](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg?branch=master)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v5.0.0-blue)](https://pub.dev/packages/jiffy)
+[![Pub Version](https://img.shields.io/badge/pub.dev-v5.0.1-blue)](https://pub.dev/packages/jiffy/versions/5.0.1)
 ![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)
 
 Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
 
-### [Full Documentation](doc) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
-
-#### [Follow the project board](https://github.com/jama5262/jiffy/projects/1)
+### [Full Documentation](./doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy#-installing-tab-) | [ChangeLog](https://pub.dev/packages/jiffy#-changelog-tab-) | [Examples](https://pub.dev/packages/jiffy#-example-tab-)
 
 # Usage
 
 ## Format Dates
 ```dart
-Jiffy([2021, 1, 19]).format("MMMM do yyyy, h:mm:ss a"); // January 1st 2021, 12:00:00 AM
-Jiffy().format("EEEE"); // Tuesday
-Jiffy().format("MMM do yy"); // Mar 2nd 21
-Jiffy().format("yyyy [escaped] yyyy"); // 2021 escaped 2021
-Jiffy().format(); // 2021-03-02T15:18:29.922343
+Jiffy.parse('2021/01/19').format('MMMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
+Jiffy.now().format('EEEE'); // Tuesday
+Jiffy.now().format('MMM do yy'); // Mar 2nd 21
+Jiffy.now().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
+Jiffy.now().format(); // 2021-03-02T15:18:29.922343
 
-Jiffy([2020, 10, 19]).yMMMMd; // January 19, 2021
+Jiffy.parseFromList([2020, 10, 19]).yMMMMd; // January 19, 2021
 
-Jiffy({
-  "year": 2020,
-  "month": 10,
-  "day": 19,
-  "hour": 19
+Jiffy.parseFromMap({
+  Unit.year: 2020,
+  Unit.month: 10,
+  Unit.day: 19,
+  Unit.hour: 19
 }).yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
 
-//  You can also use default formats
-Jiffy("19, Jan 2021", "dd, MMM yyyy").yMMMMd; // January 19, 2021
-
-Jiffy().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
+//  You can also use pre-set formats
+Jiffy.parse('19, Jan 2021', pattern: 'dd, MMM yyyy').yMMMMd; // January 19, 2021
+Jiffy.now().yMMMMEEEEdjm; // Tuesday, March 2, 2021 3:20 PM
 ```
 
 ## Relative Time
 ```dart
-Jiffy("2011-10-31", "yyyy-MM-dd").fromNow(); // 9 years ago
+// From X
+Jiffy.parse('1997/09/23').from(Jiffy.parse('2002/10/26')); // 5 years ago
+// From Now
+Jiffy.parse('1997/09/23').fromNow(); // 25 years ago
 
-Jiffy("2020-01-01", "yyyy-MM-dd").from(Jiffy("2021-12-31", "yyyy-MM-dd"), maxRelativeTimeUnit: Units.MONTH); // 24 months ago
-
-Jiffy().startOf(Units.DAY).fromNow(); // 19 hours ago
-
-Jiffy().endOf(Units.DAY).fromNow(); // in 5 hours
-
-Jiffy().startOf(Units.HOUR).add(hours: 2, minutes: 20).fromNow(); // in 2 hours
+// To X
+Jiffy.parse('1997/09/23').to(Jiffy.parse('2002/10/26')); // in 5 years
+// To Now
+Jiffy.parse('1997/09/23').toNow(); // in 25 years
 ```
 
 ## Manipulation
 
 ```dart
-var jiffy1 = Jiffy().add(duration: Duration(days: 1));
-jiffy1.yMMMMd; // March 3, 2021
+var jiffy = Jiffy.now().add(duration: Duration(days: 1));
+jiffy.yMMMMd; // March 3, 2021
 
-Jiffy().subtract(days: 1).yMMMMd; // March 1, 2021
+Jiffy.now().subtract(days: 1).yMMMMd; // March 1, 2021
 
-Jiffy()
+Jiffy.now()
   .add(hours: 3, days: 1)
   .subtract(minutes: 30, months: 1);
   .yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
 
-// Months and year are added in respect to how many 
-// days there are in a months and if is a year is a leap year
-Jiffy("2010/1/31", "yyyy-MM-dd"); // This is January 31
-Jiffy([2010, 1, 31]).add(months: 1); // This is February 28
+Jiffy.parse('1997/09/23')
+    .startOf(Unit.year)
+    .yMMMMEEEEd; // Wednesday, January 1, 1997
+
+Jiffy.parse('1997/09/23')
+    .endOf(Unit.month)
+    .yMMMMEEEEd; // Tuesday, September 30, 1997
+```
+
+## Querying
+
+```dart
+Jiffy.parse('1997/9/23').isBefore(Jiffy.parse('1997/9/24')); // true
+
+Jiffy.parse('1997/9/23').isAfter(Jiffy.parse('1997/9/20')); // true
+
+Jiffy.parse('1997/9/23').isSame(Jiffy.parse('1997/9/23')); // true
+
+Jiffy.parse('1997/9/23')
+  .isBetween(Jiffy.parse('1997/9/20'), Jiffy.parse('1997/9/24')); // true
 ```
 
 ## Locale Support
 ```dart
-//  The locale method always return a future
-//  To get locale (The default locale is English)
-await (Jiffy.locale()).code; // en
+// Get current locale code, by default it is en_us
+Jiffy.now().localeCode; // en_us
 
-//  To set locale
-await Jiffy.locale("fr");
-Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
+//  Setting your preferred locale
+await Jiffy.setLocale('fr_ca');
+Jiffy.now().yMMMMEEEEdjm; // dimanche 26 février 2023 12 h 03
 
-await Jiffy.locale("ar");
-Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
+await Jiffy.setLocale('ja');
+Jiffy.now().yMMMMEEEEdjm; // 2023年2月26日日曜日 12:02
 
-await Jiffy.locale("zh_cn");
-Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+await Jiffy.setLocale('zh_cn');
+Jiffy.now().yMMMMEEEEdjm; // 2023年2月26日星期日 下午12:03
 ```
 
 ## Contributing
 
 To contribute, follow the following easy steps
-
-##### Step 1
-
-- Fork this repo!
-
-##### Step 2
-
-- Make your own updates
-
-##### Step 3
-
-- Create a new pull request
+1. Fork this repo!
+2. Make your own updates
+3. Create a new pull request to the `master` branch
 
 ## Support
 
 Reach out to me at one of the following places!
 
-- Email at jama3137@gmail.com
+- Email at [jama3137@gmail.com](mailto:jama3137@gmail.com)
 - Twitter [timedjama5262](https://twitter.com/timedjama5262)
 
 ## License
