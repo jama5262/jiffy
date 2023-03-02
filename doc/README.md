@@ -1,144 +1,158 @@
 # Jiffy
 
-[![.github/workflows/release.yml](https://github.com/jama5262/jiffy/actions/workflows/release.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/release.yml)
-[![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub-v5.0.0-blue)](https://pub.dev/packages/jiffy)
-[![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)](https://github.com/jama5262/jiffy)
-
-
-Jiffy is a Flutter (Android, IOS and Web) date time package inspired by [momentjs](https://momentjs.com/) for parsing, manipulating, querying and formatting dates
-
-# Table of content
-- [Parsing](#parsing)
-    - [Now](#now)
-    - [String](#string)
-    - [String Formating](#string-formatting)
-    - [Maps](#maps)
-    - [Unix Timestamp](#unix-timestamp)
-    - [Jiffy Cloning](#jiffy-cloning)
-    - [DateTime](#datetime)
-    - [List](#list)
-    - [UTC](#utc)
-- [Get](#get)
-    - [Millisecond](#millisecond)
-    - [Second](#second)
-    - [Minute](#minute)
-    - [Hour](#hour)
-    - [Date of Month](#date-of-month)
-    - [Days in Month](#days-in-month)
-    - [Day of Week](#day-of-week)
-    - [Day of Year](#day-of-year)
-    - [Week of Year](#week-of-year)
-    - [Month](#month)
-    - [Quarter](#quarter)
-    - [Year](#year)
-- [Manipulation](#manipulation)
-    - [Add](#add)
-    - [Subtract](#subtract)
-    - [Start of Time](#start-of-time)
-    - [End of Time](#end-of-time)
-    - [Local](#local)
-    - [UTC](#utc)
-- [Display](#display)
-    - [Format](#format)
-    - [Time from Now](#time-from-now)
-    - [Time from X](#time-from-x)
-    - [Difference](#difference)
-    - [Unix Timestamp (Milliseconds)](#unix-timestamp-milliseconds)
-    - [Unix Timestamp (Seconds)](#unix-timestamp-seconds)
-- [Query](#query)
-    - [Is Before](#is-before)
-    - [Is Same](#is-same)
-    - [Is After](#is-after)
-    - [Is Same or Before](#is-same-or-before)
-    - [Is Same or After](#is-same-or-after)
-    - [Is Between](#is-between)
-    - [Is Leap Year](#is-leapyear)
-    - [Is Jiffy](#is-jiffy)
-    - [Is DateTime](#is-datetime)
-- [Locale Support](#locale-support)
+Jiffy is a Flutter (Android, IOS and Web) date time 
+package inspired by [momentjs](https://momentjs.com/) for parsing, 
+manipulating, querying and formatting dates
 
 # Parsing
 ### Now
-To get the date now, just call `Jiffy()` without passing any parameters. This will return a Jiffy instance. See below
+To get the current date time, just call `Jiffy.now()`. 
+This will return a Jiffy instance with the current date time.
 ```dart
-Jiff(); // Returns a Jiffy instance
-Jiffy().dateTime; // Returns a dart DateTime.now()
-Jiffy().format(); // Return a ISO 8601 date time format
+Jiffy.now(); // Returns a Jiffy instance
+Jiffy.now().dateTime; // Returns a dart DateTime.now()
+Jiffy.now().format(); // Return a ISO 8601 date time format
 ```
 
 ### String
-Creating a Jiffy from a string. See below
+Creating a Jiffy date time by parsing a string.
 ```dart
-Jiffy("2021-5-25"); // A calendar date part
-Jiffy("2021/5/25"); // A calendar date part separated by slash "/"
-Jiffy("2021525"); // Basic (short) full date
-Jiffy("2021-5-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
-Jiffy("2021-5-25T12:00:00.000"); // ISO date format
-Jiffy("2021-5-25T12:00:00.000Z"); // ISO date format (UTC)
+Jiffy.parse('2021-05-25'); // A calendar date part
+Jiffy.parse('2021/05/25'); // A calendar date part separated by slash "/"
+Jiffy.parse('2021-05-25 12:00:00.000'); // An hour, minute, second, and millisecond time part
+Jiffy.parse('2021-05-25T12:00:00.000'); // ISO date format
+Jiffy.parse('2021-05-25T12:00:00.000Z'); // ISO date format (UTC)
 ```
 
 ### String Formatting
-To get a Jiffy date from a string, pass the string and its pattern to Jiffy as is parameters. See below
+Create a Jiffy date time from a string date time pattern. 
+Use this if you know the format of an input string
 ```dart
-Jiffy("2021-5-25", "yyyy-MM-dd");
-Jiffy("25-5-2021", "dd-MM-yyyy");
-Jiffy("5-2021", "MM-yyyy");
+Jiffy.parse('2021, May 25', pattern: 'yyyy, MMMM dd');
+Jiffy.parse('25-05-2021', pattern: 'dd-MM-yyyy');
+Jiffy.parse('5-2021', pattern: 'MM-yyyy');
 ```
 You can also parse ordinal date formats. The date pattern for the ordinal date is `do`
 
 ```dart
-Jiffy("Jan 19th", "MMM do");
-Jiffy("19th January 2021", "do MMMM yyyy");
+Jiffy.parse('Jan 19th', pattern: 'MMM do');
+Jiffy.parse('19th January 2021', pattern: 'do MMMM yyyy');
 ```
 
-**_Note: Jiffy runs on top of the [Intl DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html) package, so you can find all the date time patterns used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)_**
+**_Note: Jiffy runs on top of the [Intl DateFormat](https://pub.dev/packages/intl) 
+package, so you can find all the date time patterns also
+used by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)_**
 
-This is also same for Jiffy default formats. See below
+This is also same for Jiffy pre-set formats.
 ```dart
-Jiffy().MMMEd; // Tue, May 25
-Jiffy("2021-5-25", "yyyy-MM-dd").yMMMMd; // May 25, 2021
+Jiffy.now().MMMEd; // Tue, May 25
+Jiffy.parse('2021-05-25', pattern: 'yyyy-MM-dd').yMMMMd; // May 25, 2021
+```
+
+If you want to parse them as `utc` do the following. This will return Jiffy instance in
+UTC date time
+```dart
+Jiffy.parse('2021-05-25', isUtc: true)
+Jiffy.parse('2021-05-25', pattern: 'yyyy-MM-dd', isUtc: true)
+```
+
+### DateTime
+Jiffy date time can be created from a dart `DateTime` instance.
+```dart
+var dateTime = DateTime.now();
+Jiffy.parseFromDateTime(dateTime);
+
+Jiffy.parseFromDateTime(DateTime(2021, 5, 25)).yMMMM; // May 2021
+```
+
+### Jiffy
+Jiffy date time can be created from another `Jiffy` instance.
+```dart
+var jiffy = Jiffy.now();
+Jiffy.parseFromJiffy(jiffy);
+```
+
+### List
+You can also create Jiffy from a List. But they should mirror the following order
+
+`[ year, month, day, hour, minute, second, millisecond, microsecond ]`
+```dart
+Jiffy.parseFromList([2021]); // January 1st 2021
+Jiffy.parseFromList([2021, 10]); // October 1st 2021
+Jiffy.parseFromList([2021, 10, 19]); // October 19th 2021
+```
+
+If you want to parse them as `utc` do the following. This will return Jiffy instance in
+UTC date time
+```dart
+Jiffy.parseFromList([2021, 10], isUtc: true);
 ```
 
 ### Maps
 You can also create a Jiffy from a Map, Supported key pairs are,
 
-`[ year, month, day, hour, minute, second and millisecond ]`. See below
-```dart
-Jiffy({
-  "hour": 19,
-  "minutes": 20
-});
+`[ Unit.year, Unit.month, Unit.day, Unit.hour, 
+Unit.minute, Unit.second, Unit.millisecond and Unit.microsecond ]`.
 
-Jiffy({
-  "year": 2019,
-  "month": 10,
-  "day": 19,
-  "hour": 19
-});
+If any of the units are not provided, the current date time will be used
+
+```dart
+Jiffy.parseFromMap(
+  {
+    Unit.hour: 19,
+    Unit.minute: 20
+  }
+);
+
+Jiffy.parseFromMap(
+  {
+    Unit.year: 2019,
+    Unit.month: 10,
+    Unit.day: 19,
+    Unit.hour: 19
+  }
+);
 ```
 
-### Unix Timestamp
-Jiffy can also parse timestamp milliseconds and seconds. Just call `Jiffy.unix()` which return a dart Datetime. See below
+If you want to parse them as `utc` do the following. This will return Jiffy instance in
+UTC date time
 ```dart
-// Parsing a timestamp in milliseconds
-Jiffy.unixFromMillisecondsSinceEpoch(1318781876406);
-
-// Parsing a timestamp in seconds
-Jiffy.unixFromSecondsSinceEpoch(1318781876).format(); // 2011-10-16T19:17:56.000
+Jiffy.parseFromMap(
+  {
+    Unit.year: 2019,
+    Unit.month: 10,
+    Unit.day: 19,
+    Unit.hour: 19
+  }, 
+  isUtc: true
+);
 ```
 
-**_Note: `Jiffy.unixFromMillisecondsSinceEpoch() or Jiffy.unixFromSecondsSinceEpoch` returns a timestamp base on local time. You can also get it in UTC which returns a UTC in dart Datetime. See below_**
+### Timestamps since epoch
+Jiffy can also parse timestamp milliseconds and microseconds since epoch.
 ```dart
-Jiffy.unixFromMillisecondsSinceEpoch(1318781876406).utc();
+// Parsing a timestamp in microseconds since epoch
+Jiffy.parseFromMicrosecondsSinceEpoch(874962000000000); // 1997-09-23 00:00:00.000
+
+// Parsing a timestamp in milliseconds since epoch
+Jiffy.parseFromMillisecondsSinceEpoch(874962000000); // 1997-09-23 00:00:00.000
+```
+
+If you want to parse them as `utc` do the following. This will return Jiffy instance in
+UTC date time
+```dart
+// Parsing a timestamp in microseconds since epoch
+Jiffy.parseFromMicrosecondsSinceEpoch(874962000000000, isUtc: true); // 1997-09-22 21:00:00.000Z
+
+// Parsing a timestamp in milliseconds since epoch
+Jiffy.parseFromMillisecondsSinceEpoch(874962000000, isUtc: true); // 1997-09-22 21:00:00.000Z
 ```
 
 ### Jiffy Cloning
 Jiffy date time can be created from another Jiffy instance, a way of cloning.
 ```dart
-var jiffy1 = Jiffy([2021]);
-var jiffy2 = Jiffy(jiffy1);
+var jiffy1 = Jiffy.parseFromList([2021]);
+var jiffy2 = Jiffy.parseFromJiffy(jiffy1);
 jiffy1.add(years: 10);
 jiffy1.year; // 2031
 jiffy2.year; // 2021
@@ -146,389 +160,431 @@ jiffy2.year; // 2021
 
 Or you can use the clone method itself
 ```dart
-var jiffy1 = Jiffy([2021]);
+var jiffy1 = Jiffy.parseFromList([2021]);
 var jiffy2 = jiffy1.clone();
 jiffy1.add(years: 10);
 jiffy1.year; // 2031
 jiffy2.year; // 2021
 ```
 
-### DateTime
-Jiffy date time can be created from a dart DateTime instance. See below
-```dart
-var dateTime = DateTime.now();
-Jiffy(dateTime);
-
-Jiffy(DateTime(2021, 5, 25)).yMMMM; // May 2021
-```
-
-### List
-You can also create Jiffy from a List. But they should mirror the following order
-
-`[ year, month, day, hour, minute, second, millisecond ]`
-```dart
-Jiffy([2021]); // January 1st 2021
-Jiffy([2021, 10]); // October 1st 2021
-Jiffy([2021, 10, 19]); // October 19th 2021
-```
-
 ### UTC
-Get date time in UTC. See below
+Get date time in UTC.
 ```dart
 // In local time
-Jiffy().format(); // 2021-03-02T14:35:24.363919
+var jiffy1 = Jiffy.now();
+jiffy1.format(); // 2021-03-02T14:35:24.363919
 
 // Change to UTC
-var jiffy = (Jiffy()..utc());
-jiffy.format(); // 2021-03-02T11:35:24.363919
+var jiffy2 = jiffy1.toUtc();
+jiffy2.format(); // 2021-03-02T11:35:24.363919Z
 ```
 
 # Get
-### Millisecond
-Get millisecond (Returns from 0 - 999)
+### DateTime
+Returns a new `DateTime` instance of the `Jiffy` object.
 ```dart
-Jiffy().millisecond;
+Jiffy.now().dateTime;
 ```
-
-### Second
-Get second (Returns from 0 - 59)
+### Microsecond
+Returns the microsecond ranging from 0 to 999.
 ```dart
-Jiffy().second;
+Jiffy.now().microsecond;
+```
+### Microsecond since epoch
+Returns the number of microseconds since epoch time `January 1, 1970, 00:00:00 UTC`.
+```dart
+Jiffy.now().microsecondsSinceEpoch;
+```
+### Millisecond
+Returns the millisecond ranging from 0 to 999.
+```dart
+Jiffy.now().millisecond;
+```
+### Millisecond since epoch
+Returns the number of milliseconds since epoch time `January 1, 1970, 00:00:00 UTC`.
+```dart
+Jiffy.now().millisecondsSinceEpoch;
+```
+### Second
+Returns the second ranging from 0 to 59.
+```dart
+Jiffy.now().second;
 ```
 ### Minute
-Get minute (Returns from 0 - 59)
+Returns the minute ranging from 0 to 59.
 ```dart
-Jiffy().minute;
+Jiffy.now().minute;
 ```
 ### Hour
-Get hour (Returns from 0 - 23)
+Returns the hour ranging from 0 to 23.
 ```dart
-Jiffy().hour;
+Jiffy.now().hour;
 ```
 ### Date of month
-Get date of month (Returns from 1 - 31)
+Returns the date ranging from 1 to 31.
 ```dart
-Jiffy().date;
-```
-### Days in month
-Get days in a month (Returns from 28 - 31)
-```dart
-Jiffy().daysInMonth;
+Jiffy.now().date;
 ```
 ### Day of week
-Get day of week (Returns from 1 - 7 that is [Sunday - Saturday] depending on locale start of week)
+Returns the day of the week according to the 
+locale's start of week. The return value is an integer 
+between 1 and 7, where 1 represents the
+locale start of week, either Saturday, Sunday or Monday
 ```dart
-Jiffy().day;
+Jiffy.now().dayOfWeek;
+```
+### Days in a month
+Returns the number of days in the month.
+```dart
+Jiffy.now().daysInMonth;
 ```
 ### Day of year
-Get day o year (Returns from 1 - 366)
+Returns the day of the year ranging from 1 to 366, 
+where 1 represents January 1st of the year and 366 represents 
+December 31st of a leap year.
 ```dart
-Jiffy().dayOfYear;
+Jiffy.now().dayOfYear;
 ```
 ### Week of year
-Get week of year
+Returns the week of the year based on the current 
+locale's start of week. The week of the year ranges from 1 to 53, 
+where week 1 is the first week that has at least 'DateTime.daysPerWeek' days in the new year.
 ```dart
-Jiffy().week;
+Jiffy.now().weekOfYear;
 ```
 ### Month
-Get month (Returns from 1 - 12 [Jan - Dec])
+Returns the month of the year ranging from 1 to 12, 
+where 1 represents January and 12 represents December
 ```dart
-Jiffy().month;
+Jiffy.now().month;
 ```
 ### Quarter
-Get quarter (Returns from 1 - 4)
+Returns the quarter on the year ranging from 1 to 4.
 ```dart
-Jiffy().quarter;
+Jiffy.now().quarter;
 ```
 ### Year
-Get year
+Returns the year.
 ```dart
-Jiffy().year;
+Jiffy.now().year;
 ```
 
 # Manipulation
 
+### Add using Dart's `Duration` object
+```dart
+Jiffy.parse('1997/09/23')
+  .addDuration(Duration(days: 5, hours: 6))
+  .format(); // 1997-09-28T06:00:00.000
+```
+
 ### Add
-This adds time to Jiffy by the following units `years, months, weeks, days, hours, minutes, seconds and milliseconds, microseconds and duration`. See below
+This adds time to Jiffy by the following units 
+`years, months, weeks, days, hours, minutes, seconds, milliseconds, microseconds`.
 ```dart
-Jiffy().add(years: 1);
-Jiffy().add(days: 3);
-Jiffy().add(months: 3, duration: Duration(days: 3));
-Jiffy().add(years: 1, weeks: 3, duration: Duration(days: 3));
-```
-Below are the params that can be used
-
-`[ years, months, weeks, days, hours, minutes, seconds, milliseconds, microseconds, duration ]`
-
-```dart
-var jiffy = Jiffy()
-    .startOf(Units.DAY)
-    .add(days: 7, months: 1)
-    .subtract(years: 1);
-jiffy.yMMMdjm; // Apr 8, 2020 9:00 PM
+Jiffy.parse('1997/09/23')
+    .add(years: 2, months: 3, days: 5)
+    .yMMMMd; // December 28, 1999
 ```
 
-**_Note: Months and year are added in respect to how many days there are in a months and if a year is a leap year. See below_**
-
+### Subtract using Dart's `Duration` object
 ```dart
-Jiffy("2021-1-31", "yyyy-MM-dd").yMMMd; // Jan 31, 2021
-Jiffy("2021-1-31", "yyyy-MM-dd").add(months: 1).yMMMd; // Feb 28, 2021
+Jiffy.parse('1997/09/23')
+    .subtractDuration(Duration(days: 5, hours: 6))
+    .format(); // 1997-09-17T18:00:00.000
 ```
+
 ### Subtract
-This subtracts time from Jiffy by the following units `years, months, weeks, days, hours, minutes, seconds and milliseconds`. See below
+This subtracts time from Jiffy by the following units 
+`years, months, weeks, days, hours, minutes, seconds, milliseconds, microseconds`.
 ```dart
-Jiffy().subtract(years: 1);
-Jiffy().subtract(days: 3);
+Jiffy.parse('1997/09/23')
+    .subtract(years: 2, months: 3, days: 5)
+    .yMMMMd; // June 18, 1995
 ```
 ### Start of Time
-This set the Jiffy date time to a specific unit in time in terms of years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
+Returns a new Jiffy instance representing the start of the specified
+`unit` of time
 
 The units that are available are,
 
-`[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.YEAR ]`
+`[ Unit.microsecond, Unit.millisecond, Unit.second, Unit.minute, 
+Unit.hour, Unit.day, Unit.week, Unit.month, Unit.year ]`
 
 ```dart
-Jiffy().startOf(Units.YEAR);    // Set to January 1st, 12:00 am this year
-Jiffy().startOf(Units.MONTH);   // Set to the first of this month, 12:00 am
-Jiffy().startOf(Units.WEEK);    // Set to the first day of this week, 12:00 am
-Jiffy().startOf(Units.DAY);     // Set to 12:00 am today
-Jiffy().startOf(Units.HOUR);    // Set to now, but with 0 mins, 0 secs, and 0 ms
-Jiffy().startOf(Units.MINUTE);  // Set to now, but with 0 seconds and 0 milliseconds
-Jiffy().startOf(Units.SECONDS);  // Set to now, but with 0 milliseconds;
+// Set to now, but with 0 microseconds
+Jiffy.now().startOf(Unit.millisecond); // 2023-02-26T13:28:20.047000
+
+// Set to now, but with 0 milliseconds and microseconds
+Jiffy.now().startOf(Unit.second); // 2023-02-26T13:28:20.00000
+
+// Set to now, but with 0 seconds, milliseconds and microsecond
+Jiffy.now().startOf(Unit.minute); // 2023-02-26T13:28:00.00000
+
+// Set to now, but with 0 minutes, seconds, milliseconds and microseconds
+Jiffy.now().startOf(Unit.hour); // 2023-02-26T13:00:00.00000
+
+// Set to now 12:00 am today
+Jiffy.now().startOf(Unit.day);  // 2023-02-26T00:00:00.00000
+
+// Set to the first day of this week, 12:00 am
+Jiffy.now().startOf(Unit.week); // 2023-02-26T00:00:00.00000
+
+// Set to the first of this month, 12:00 am
+Jiffy.now().startOf(Unit.month); // 2023-02-01T00:00:00.00000
+
+// Set to January 1st, 12:00 am this year
+Jiffy.now().startOf(Unit.year); // 2023-01-01T00:00:00.000000
 ```
-
+Another example
 ```dart
-var jiffy = Jiffy()
-    .startOf(Units.DAY)
+var jiffy = Jiffy.now()
+    .startOf(Unit.day)
     .add(days: 1);
-    .format("MMMM do yyyy, h:mm:ss a"); // March 3rd 2021, 12:00:00 AM
+    .format('MMMM do yyyy, h:mm:ss a'); // March 3rd 2021, 12:00:00 AM
 ```
 
 ### End of Time
-This set the Jiffy date time to a specific unit in time in terms of years, months, weeks, days, hours, minutes, seconds and milliseconds. See below
+Returns a new Jiffy instance representing the end of the specified unit of time
 
 ```dart
-Jiffy().endOf(Units.YEAR);    // Set to December 31st, 23:59:59:999 this year
-Jiffy().endOf(Units.MONTH);   // Set to the end of this month, 23:59:59:999
-Jiffy().endOf(Units.WEEK);    // Set to the end day of this week, 23:59:59:999
-Jiffy().endOf(Units.DAY);     // Set to 23:59:59:999 today
+Jiffy.now().endOf(Unit.year);    // Set to December 31st, 23:59:59:999 this year
+Jiffy.now().endOf(Unit.month);   // Set to the end of this month, 23:59:59:999
+Jiffy.now().endOf(Unit.week);    // Set to the end day of this week, 23:59:59:999
+Jiffy.now().endOf(Unit.day);     // Set to 23:59:59:999 today
 ```
-### Local
-Sets Jiffy to local time. See below
+### To Local
+Sets Jiffy to local time.
 ```dart
-var jiffy = Jiffy().utc(); // Time in utc
+var jiffy = Jiffy.parseFromList([2022]).toUtc(); // Time in utc
+var jiffy = Jiffy.parseFromList([2022], isUtc: true).utc(); // Also time in utc
+
 jiffy.local(); // Set to local
 ```
-### UTC
-Sets Jiffy to UTC time. See below
+### To UTC
+Sets Jiffy to UTC time.
 ```dart
-var jiffy = Jiffy(); // Time in local
-jiffy.utc(); // Set to utc
+var jiffy = Jiffy.now(); // Time in local
+
+jiffy.toUtc(); // Set to utc
 ```
 # Display
 ### Format
-The format function takes in a string pattern, which can be found [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html), and format them. See below
+**_Note: Jiffy runs on top of the [Intl DateFormat](https://pub.dev/packages/intl) 
+package, so you can find all the date time patterns used 
+by Jiffy [here](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)_**
 ```dart
-Jiffy().format("MMMM do yyyy, h:mm:ss a"); // October 19th 2019, 7:00:53 PM
-Jiffy().format("EEEE"); // Saturday
-Jiffy().format("yyyy [escaped] yyyy"); // 2019 escaped 2019
+Jiffy.now().format('MMMM do yyyy, h:mm:ss a'); // October 19th 2019, 7:00:53 PM
+Jiffy.now().format('EEEE'); // Saturday
+Jiffy.now().format('yyyy [escaped] yyyy'); // 2019 escaped 2019
 
-// Not passing a string pattern for format method will return an ISO Date format
+// Not passing a string pattern to the format method will return an ISO Date format
 Jiffy().format(); // 2019-10-19T19:00:53.090646
 ```
-You can also use Intl Dateformat default methods to format. See below
+You can also use pre-set formats.
 ```dart
-Jiffy().yMMMMd; // October 19, 2019
-Jiffy().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
+Jiffy.now().yMMMMd; // October 19, 2019
+Jiffy.now().yMMMMEEEEdjm; // Saturday, October 19, 2019 7:00 PM
 ```
 ### Time from Now
-This method is used to get the relative time from now. See below
+This method is used to get the relative time from now.
 ```dart
-Jiffy("2007-1-29").fromNow(); // 14 years ago
-Jiffy([2022, 10, 29]).fromNow(); // in a year
-Jiffy(DateTime(2050, 10, 29)).fromNow(); // in 30 years
+Jiffy.parse('2007-01-29').fromNow(); // 14 years ago
+Jiffy.parseFromList([2022, 10, 29]).fromNow(); // in a year
+Jiffy.parseFromDateTime(DateTime(2050, 10, 29)).fromNow(); // in 30 years
 
-var jiffy = Jiffy().startOf(Units.HOUR).fromNow(); // 9 minutes ago
+Jiffy.now().startOf(Unit.hour).fromNow(); // 9 minutes ago
 ```
 
 ### Time from X
-This method is used to get the relative time from a specific date time. See below
+This method is used to get the relative time from a specific date time.
 ```dart
-var jiffy1 = Jiffy("2007-1-28");
-var jiffy2 = Jiffy("2017-1-29", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse('2007-01-28');
+var jiffy2 = Jiffy.parse('2017-01-29');
 
 jiffy1.from(jiffy2); // a day ago
-
-jiffy1.from([2017, 1, 30]); // 2 days ago
 ```
+
+### Time to Now
+This works opposite to the `fromNow()` method. 
+This method is used to get the relative time to now.
+```dart
+Jiffy.parse('2007-01-29').toNow(); // in 14 years
+Jiffy.parseFromList([2022, 10, 29]).toNow(); // a year ago
+Jiffy.parseFromDateTime(DateTime(2050, 10, 29)).toNow(); // 30 years ago
+
+Jiffy.now().startOf(Unit.hour).toNow(); // in 9 minutes
+```
+
+### Time to X
+This works opposite to the `from()` method. 
+This method is used to get the relative time to a specific date time.
+```dart
+var jiffy1 = Jiffy.parse('2007-01-28');
+var jiffy2 = Jiffy.parse('2017-01-29');
+
+jiffy1.to(jiffy2); // in a day
+```
+
 ### Difference
-Used to get the difference between two Jiffy date times. See below
+Used to get the difference between two Jiffy date times.
 ```dart
-// By default, diff method, get the difference in milliseconds
-var jiffy1 = Jiffy("2007-1-28", "yyyy-MM-dd");
-var jiffy2 = Jiffy("2017-1-29", "yyyy-MM-dd");
-jiff1.diff(jiffy2); // 86400000
+// By default, diff method, get the difference in microseconds
+var jiffy1 = Jiffy.parse('2017-1-29');
+var jiffy2 = Jiffy.parse('2017-1-28');
+
+jiff1.diff(jiffy2); // 86400000000
 ```
-Getting difference in another unit of measurement. The units that are available are,
+You can get the difference in another unit of measurement. 
+The units that are available are,
 
-`[ Units.MILLISECOND, Units.SECOND, Units.MINUTE, Units.HOUR, Units.DAY, Units.WEEK, Units.MONTH, Units.YEAR ]`
+`[ Unit.microsecond, Unit.millisecond, Unit.second, Unit.minute, 
+Unit.hour, Unit.day, Unit.week, Unit.month, Unit.year ]`
 ```dart
-Jiffy([2007, 1, 28]).diff([2017, 1, 29], Units.DAY); // -3654
-```
-
-Also by default `diff` will truncate the result to return a whole number. To get decimal numbers, just pass a third param as `true`. See below
-```dart
-var jiffy1 = Jiffy("2008-10", "yyyy-MM");
-var jiffy2 = Jiffy("2007-1", "yyyy-MM");
-
-jiff1.diff(jiffy2, Units.YEAR); // 1
-jiff1.diff(jiffy2, Units.YEAR, true); // 1.75
-```
-**_Note: Months and years are added in respect to how many days there are in a months and if its a year is a leap year._**
-
-### Unix Timestamp (Milliseconds)
-To get timestamp in milliseconds see below
-```dart
-Jiffy().valueOf();
+Jiffy.parseFromList([2007, 1, 28])
+  .diff(Jiffy.parseFromList([2017, 1, 29]), unit: Unit.day); // -3654
 ```
 
-### Unix Timestamp (Seconds)
-To get timestamp in seconds see below
+Also by default `diff` will truncate the result to return a whole number. 
+To get decimal numbers, just pass a third param `asFloat` to `false`.
 ```dart
-Jiffy().unix();
+var jiffy1 = Jiffy.parse('2008-10', pattern: 'yyyy-MM');
+var jiffy2 = Jiffy.parse('2007-01', pattern: 'yyyy-MM');
+
+jiffy1.diff(jiffy2, unit: Unit.year); // 1
+jiffy1.diff(jiffy2, unit: Unit.year, asFloat: false); // 1.75
 ```
 
 # Query
 ### Is Before
-Check if date time is before another date time. See below
+Check if date time is before another date time.
 ```dart
-var jiffy1 = Jiffy("2021-10-20");
-var jiffy2 = Jiffy("2021-10-21");
+var jiffy1 = Jiffy.parse("2021-10-20");
+var jiffy2 = Jiffy.parse("2021-10-21");
+
 jiffy1.isBefore(jiffy2); // true
 ```
 
-You can also check in terms of units of measurement. The below example checks if year is before.
+You can also check in terms of units of measurement. 
+The below example checks if year is before.
 ```dart
-var jiffy1 = Jiffy([2020, 10, 20]);
+var jiffy1 = Jiffy.parseFromList([2020, 10, 20]);
 
-var jiffy2 = Jiffy("2020-12-31", "yyyy-MM-dd");
-var jiffy3 = Jiffy("2021-01-01", "yyyy-MM-dd");
+var jiffy2 = Jiffy.parse("2020-12-31");
+var jiffy3 = Jiffy.parse("2021-01-01");
 
-jiffy1.isBefore(jiffy2, Units.YEAR); // false
-jiffy1.isBefore(jiffy3, Units.YEAR); // true
+jiffy1.isBefore(jiffy2, unit: Unit.year); // false
+jiffy1.isBefore(jiffy3, unit: Unit.year); // true
 ```
 
 ### Is Same
-Check if date time is same with another date time. See below
+Check if date time is same with another date time.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
-var jiffy2 = Jiffy("2021-10-20", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
+var jiffy2 = Jiffy.parse("2021-10-20");
+
 jiffy1.isSame(jiffy2); // true
 ```
 
-You can also check in terms of units of measurement. The below example checks if years are the same.
+You can also check in terms of units of measurement. 
+The below example checks if years are the same.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
 
-var jiffy2 = Jiffy("2020-12-31", "yyyy-MM-dd");
-var jiffy3 = Jiffy("2021-01-01", "yyyy-MM-dd");
+var jiffy2 = Jiffy.parse("2020-12-31");
+var jiffy3 = Jiffy.parse("2021-01-01");
 
-jiffy1.isSame(jiffy2, Units.YEAR); // false
-jiffy1.isSame(jiffy3, Units.YEAR); // true
+jiffy1.isSame(jiffy2, unit: Unit.year); // false
+jiffy1.isSame(jiffy3, unit: Unit.year); // true
 ```
 
 ### Is After
-Check if date time is after another date time. See below
+Check if date time is after another date time.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
-var jiffy2 = Jiffy("2021-10-19", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
+var jiffy2 = Jiffy.parse("2021-10-19");
+
 jiffy1.isAfter(jiffy2); // true
 ```
 
-You can also check in terms of units of measurement. The below example checks if year is after.
+You can also check in terms of units of measurement. 
+The below example checks if year is after.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
 
-var jiffy2 = Jiffy("2021-01-01", "yyyy-MM-dd");
-var jiffy3 = Jiffy("2020-12-31", "yyyy-MM-dd");
+var jiffy2 = Jiffy.parse("2021-01-01");
+var jiffy3 = Jiffy.parse("2020-12-31");
 
-jiffy1.isAfter(jiffy2, Units.YEAR); // false
-jiffy1.isAfter(jiffy3, Units.YEAR); // true
+jiffy1.isAfter(jiffy2, Unit.year); // false
+jiffy1.isAfter(jiffy3, Unit.year); // true
 ```
 
 ### Is Same or Before
-Check if date time is same or before with another date time. See below
+Check if date time is same or before with another date time.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
 
-var jiffy2 = Jiffy("2020-12-31", "yyyy-MM-dd");
-var jiffy3 = Jiffy("2021-12-31", "yyyy-MM-dd");
-var jiffy4 = Jiffy("2022-01-01", "yyyy-MM-dd");
+var jiffy2 = Jiffy.parse("2020-12-31");
+var jiffy3 = Jiffy.parse("2021-12-31");
+var jiffy4 = Jiffy.parse("2022-01-01");
 
-jiffy1.isSameOrBefore(jiffy2, Units.YEAR); // false
-jiffy1.isSameOrBefore(jiffy3, Units.YEAR); // true
-jiffy1.isSameOrBefore(jiffy4, Units.YEAR); // true
+jiffy1.isSameOrBefore(jiffy2, Unit.year); // false
+jiffy1.isSameOrBefore(jiffy3, Unit.year); // true
+jiffy1.isSameOrBefore(jiffy4, Unit.year); // true
 ```
 ### Is Same or After
-Check if date time is same or after with another date time. See below
+Check if date time is same or after with another date time.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
 
-var jiffy2 = Jiffy("2022-12-31", "yyyy-MM-dd");
-var jiffy3 = Jiffy("2021-01-01", "yyyy-MM-dd");
-var jiffy4 = Jiffy("2020-12-31", "yyyy-MM-dd");
+var jiffy2 = Jiffy.parse("2022-12-31");
+var jiffy3 = Jiffy.parse("2021-01-01");
+var jiffy4 = Jiffy.parse("2020-12-31");
 
-jiffy1.isSameOrAfter(jiffy2, Units.YEAR); // false
-jiffy1.isSameOrAfter(jiffy3, Units.YEAR); // true
-jiffy1.isSameOrAfter(jiffy4, Units.YEAR); // true
+jiffy1.isSameOrAfter(jiffy2, Unit.year); // false
+jiffy1.isSameOrAfter(jiffy3, Unit.year); // true
+jiffy1.isSameOrAfter(jiffy4, Unit.year); // true
 ```
 
 ### Is Between
-Check if a date time is between two date times. See below
+Check if a date time is between two date times.
 ```dart
-var jiffy1 = Jiffy("2021-10-20", "yyyy-MM-dd");
+var jiffy1 = Jiffy.parse("2021-10-20");
 
-var jiffy2 = Jiffy("2021-01-01", "yyyy-MM-dd");
-var jiffy3 = Jiffy("2023-01-01", "yyyy-MM-dd");
+var jiffy2 = Jiffy.parse("2021-01-01");
+var jiffy3 = Jiffy.parse("2023-01-01");
 
-var jiffy4 = Jiffy("2020-12-31", "yyyy-MM-dd");
-var jiffy5 = Jiffy("2023-01-01", "yyyy-MM-dd");
+var jiffy4 = Jiffy.parse("2020-12-31");
+var jiffy5 = Jiffy.parse("2023-01-01");
 
-jiffy1.isBetween(jiffy2, jiffy3, Units.YEAR); // false
-jiffy1.isBetween(jiffy4, jiffy5, Units.YEAR); // true
+jiffy1.isBetween(jiffy2, jiffy3, Unit.year); // false
+jiffy1.isBetween(jiffy4, jiffy5, Unit.year); // true
+```
+
+### Is Local Date Time
+Check if date time is local.
+```dart
+Jiffy.parse("2019", pattern: "yyyy").isLeapYear; // false
+Jiffy.parse("2016", pattern: "yyyy").isLeapYear; // true
+```
+
+### Is UTC Date Time
+Check if date time is UTC.
+```dart
+Jiffy.parse("2019", pattern: "yyyy").isLeapYear; // false
+Jiffy.parse("2016", pattern: "yyyy").isLeapYear; // true
 ```
 
 ### Is LeapYear
-Check if date time is a leap year or not. See below
+Check if date time is a leap year or not.
 ```dart
-Jiffy("2019", "yyyy").isLeapYear; // false
-Jiffy("2016", "yyyy").isLeapYear; // true
-```
-
-### Is Jiffy
-Check if it is a Jiffy instance. See below
-```dart
-Jiffy.isJiffy("string"); // false
-Jiffy.isJiffy(Jiffy()); // true
-Jiffy.isJiffy(DateTime.now()); // false
-```
-
-### Is DateTime
-Check if it is a dart DateTime instance. See below
-```dart
-Jiffy.isDateTime("string"); // false
-Jiffy.isDateTime(DateTime.now()); // true
-Jiffy.isDateTime(Jiffy()); // false
+Jiffy.parse("2019", pattern: "yyyy").isLeapYear; // false
+Jiffy.parse("2016", pattern: "yyyy").isLeapYear; // true
 ```
 
 # Locale Support
 
-```dart
-await Jiffy.locale("fr");
-Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
-```
-
-Below are the locales that are supported in Jiffy. More will be added
+Below are the locales that are supported in Jiffy. More can be added.
 
 | Key  | Locale |
 | ------------- | ------------- |
@@ -556,27 +612,22 @@ Below are the locales that are supported in Jiffy. More will be added
 | Dutch | nl |
 | Thailand | th |
 
-Getting and setting locales in Jiffy **_always returns a future_**
+## Setting a locale
+Setting locales in Jiffy **_always returns a future_**
 
 ```dart
-// Get the locale (By default, the locale is "en")
-await Jiffy.locale(); // en
+// To set a locale
+await Jiffy.setLocale('fr');
+Jiffy.now().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
 
-// To set locale
-await Jiffy.locale("fr");
-Jiffy().yMMMMEEEEdjm; // samedi 19 octobre 2019 19:25
+await Jiffy.setLocale('ar');
+Jiffy.now().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
 
-await Jiffy.locale("ar");
-Jiffy().yMMMMEEEEdjm; // السبت، ١٩ أكتوبر ٢٠١٩ ٧:٢٧ م
-
-await Jiffy.locale("zh-cn");
-Jiffy().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
+await Jiffy.setLocale('zh-cn');
+Jiffy.now().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 ```
 
-### Get all available locales
-
-To get all available locales in Jiffy run the following
-
+## Getting the locale code
 ```dart
-Jiffy.getAllAvailableLocales() // returns all locales
+var localeCode = Jiffy.now().localeCode; // eu_us
 ```

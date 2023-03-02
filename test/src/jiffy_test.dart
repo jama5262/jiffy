@@ -168,6 +168,24 @@ void main() {
           expectedDateTime.microsecondsSinceEpoch);
     });
 
+    test('Should successfully parse from Microseconds since epoch if it is utc',
+        () {
+      // Setup
+      final microsecondsSinceEpoch =
+          DateTime.utc(1997, 9, 23).microsecondsSinceEpoch;
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parseFromMicrosecondsSinceEpoch(
+          microsecondsSinceEpoch,
+          isUtc: true);
+
+      // Verify
+      expect(actualJiffy.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
+    });
+
     test('Should successfully parse from Milliseconds since epoch', () {
       // Setup
       final millisecondsSinceEpoch =
@@ -181,6 +199,24 @@ void main() {
       // Verify
       expect(actualJiffy.millisecondsSinceEpoch,
           expectedDateTime.millisecondsSinceEpoch);
+    });
+
+    test('Should successfully parse from Milliseconds since epoch if it is utc',
+        () {
+      // Setup
+      final millisecondsSinceEpoch =
+          DateTime.utc(1997, 9, 23).millisecondsSinceEpoch;
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parseFromMillisecondsSinceEpoch(
+          millisecondsSinceEpoch,
+          isUtc: true);
+
+      // Verify
+      expect(actualJiffy.millisecondsSinceEpoch,
+          expectedDateTime.millisecondsSinceEpoch);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
     });
 
     test('Should successfully get date time now', () {
@@ -777,7 +813,8 @@ void main() {
         final expectedDifference = -291.2903225806452;
 
         // Execute
-        final actualDifference = underTest.diff(jiffyFrom, unit: Unit.month);
+        final actualDifference =
+            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: false);
 
         // Verify
         expect(actualDifference, expectedDifference);
