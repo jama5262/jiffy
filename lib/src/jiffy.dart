@@ -158,9 +158,11 @@ class Jiffy {
   /// final now = DateTime.now();
   /// final jiffy = Jiffy.parseFromMicrosecondsSinceEpoch(now.microsecondsSinceEpoch);
   /// ```
-  factory Jiffy.parseFromMicrosecondsSinceEpoch(int microsecondsSinceEpoch) {
-    return Jiffy._internal(
-        DateTime.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch));
+  factory Jiffy.parseFromMicrosecondsSinceEpoch(int microsecondsSinceEpoch,
+      {bool isUtc = false}) {
+    return Jiffy._internal(DateTime.fromMicrosecondsSinceEpoch(
+        microsecondsSinceEpoch,
+        isUtc: isUtc));
   }
 
   /// Constructs a [Jiffy] instance from a [millisecondsSinceEpoch] of type
@@ -173,9 +175,11 @@ class Jiffy {
   /// final now = DateTime.now();
   /// final jiffy = Jiffy.parseFromMillisecondsSinceEpoch(now.millisecondsSinceEpoch);
   /// ```
-  factory Jiffy.parseFromMillisecondsSinceEpoch(int millisecondsSinceEpoch) {
-    return Jiffy._internal(
-        DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch));
+  factory Jiffy.parseFromMillisecondsSinceEpoch(int millisecondsSinceEpoch,
+      {bool isUtc = false}) {
+    return Jiffy._internal(DateTime.fromMillisecondsSinceEpoch(
+        millisecondsSinceEpoch,
+        isUtc: isUtc));
   }
 
   /// Returns a [Jiffy] instance representing the current date and time.
@@ -249,11 +253,10 @@ class Jiffy {
   ///
   /// Throws a [JiffyException] if the [locale] provided is not supported in
   /// [Jiffy].
-  Future<void> setLocale(String locale) async {
+  static Future<void> setLocale(String locale) async {
     if (isLocalAvailable(locale)) {
       Intl.defaultLocale = locale;
       await initializeDateFormatting();
-      _locale = getLocale(locale);
     } else {
       // todo add github readme locale link to this exception and also
       // update the doc comment
@@ -742,7 +745,7 @@ class Jiffy {
   /// print('Difference in days: $diffInDays');
   /// // output: Difference in days: -14
   /// ```
-  num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = false}) {
+  num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = true}) {
     return _display.diff(dateTime, jiffy.dateTime, unit, asFloat);
   }
 

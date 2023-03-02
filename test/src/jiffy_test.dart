@@ -168,6 +168,24 @@ void main() {
           expectedDateTime.microsecondsSinceEpoch);
     });
 
+    test('Should successfully parse from Microseconds since epoch if it is utc',
+        () {
+      // Setup
+      final microsecondsSinceEpoch =
+          DateTime.utc(1997, 9, 23).microsecondsSinceEpoch;
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parseFromMicrosecondsSinceEpoch(
+          microsecondsSinceEpoch,
+          isUtc: true);
+
+      // Verify
+      expect(actualJiffy.microsecondsSinceEpoch,
+          expectedDateTime.microsecondsSinceEpoch);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
+    });
+
     test('Should successfully parse from Milliseconds since epoch', () {
       // Setup
       final millisecondsSinceEpoch =
@@ -181,6 +199,24 @@ void main() {
       // Verify
       expect(actualJiffy.millisecondsSinceEpoch,
           expectedDateTime.millisecondsSinceEpoch);
+    });
+
+    test('Should successfully parse from Milliseconds since epoch if it is utc',
+        () {
+      // Setup
+      final millisecondsSinceEpoch =
+          DateTime.utc(1997, 9, 23).millisecondsSinceEpoch;
+      final expectedDateTime = DateTime.utc(1997, 9, 23);
+
+      // Execute
+      final actualJiffy = Jiffy.parseFromMillisecondsSinceEpoch(
+          millisecondsSinceEpoch,
+          isUtc: true);
+
+      // Verify
+      expect(actualJiffy.millisecondsSinceEpoch,
+          expectedDateTime.millisecondsSinceEpoch);
+      expect(actualJiffy.isUtc, expectedDateTime.isUtc);
     });
 
     test('Should successfully get date time now', () {
@@ -200,8 +236,8 @@ void main() {
   group('Test getting and setting locales', () {
     test('Should successfully get locale', () async {
       // Setup
+      await Jiffy.setLocale('ja');
       final jiffy = Jiffy.now();
-      await jiffy.setLocale('ja');
 
       final expectedLocaleCode = 'ja';
 
@@ -214,8 +250,8 @@ void main() {
 
     test('Should successfully get start of week', () async {
       // Setup
+      await Jiffy.setLocale('ja');
       final jiffy = Jiffy.now();
-      await jiffy.setLocale('ja');
 
       final expectedStartOfWeek = StartOfWeek.sunday;
 
@@ -228,11 +264,9 @@ void main() {
 
     for (var testData in localeTestData()) {
       test('Should successfully set expectedLocale', () async {
-        // Setup
-        final jiffy = Jiffy.now();
-
         // Execute
-        await jiffy.setLocale(testData['localeCode']);
+        await Jiffy.setLocale(testData['localeCode']);
+        final jiffy = Jiffy.now();
 
         // Verify
         final actualLocaleCode = jiffy.localeCode;
@@ -242,14 +276,13 @@ void main() {
 
     test('Should throw Jiffy exception if locale is not supported', () async {
       // Setup
-      final jiffy = Jiffy.now();
       final unknownLocaleCode = 'unknown_locale';
       final expectedExceptionMessage = 'The locale `$unknownLocaleCode` is not '
           'supported, please check here for a list of supported locales';
 
       // Execute and Verify
       expect(
-          () async => await jiffy.setLocale(unknownLocaleCode),
+          () async => await Jiffy.setLocale(unknownLocaleCode),
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
@@ -374,8 +407,8 @@ void main() {
 
     test('Should successfully get day of week', () async {
       // Setup
+      await Jiffy.setLocale('en_us');
       final jiffy = Jiffy.parseFromList([2022, 12, 5]);
-      await jiffy.setLocale('en_us');
 
       final expectedDayOfWeek = 2;
 
@@ -780,7 +813,8 @@ void main() {
         final expectedDifference = -291.2903225806452;
 
         // Execute
-        final actualDifference = underTest.diff(jiffyFrom, unit: Unit.month);
+        final actualDifference =
+            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: false);
 
         // Verify
         expect(actualDifference, expectedDifference);
