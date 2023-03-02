@@ -586,31 +586,33 @@ Jiffy.parse("2016", pattern: "yyyy").isLeapYear; // true
 
 Below are the locales that are supported in Jiffy. More can be added.
 
-| Key  | Locale |
-| ------------- | ------------- |
-| English  | en / en_sg / en_au / en_ca / en_gb / en_ie / en_il / en_nz |
-| Spanish  | es / es_do / es_us |
-| Chinese  | zh / zh_cn / zh_hk / zh_tw |
-| Japanese  | ja |
-| German  | de / de_at / de_ch |
-| French  | fr / fr_ch / fr_ca |
-| Indonesian  | id |
-| Hungarian  | hu / hu_hu |
-| Italian  | it / it_ch |
-| Korean  | ko |
-| Russian  | ru |
-| Ukrainian  | uk |
-| Hindi  | hi |
-| Arabic  | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma / ar_tn |
-| Portuguese  | pt / pt_br |
-| Polish  | pl |
-| Turkish  | tr |
-| Swedish | sv |
-| Norwegian | nb |
-| Persian | fa |
-| Azerbaijani | az |
-| Dutch | nl |
-| Thailand | th |
+| Locale      | Locale Code                                                        |
+|-------------|--------------------------------------------------------------------|
+| English     | en / en_us / en_sg / en_au / en_ca / en_gb / en_ie / en_il / en_nz |
+| Spanish     | es / es_us / es_do                                                 |
+| French      | fr / fr_ch / fr_ca                                                 |
+| Chinese     | zh / zh_cn / zh_hk / zh_tw                                         |
+| Japan       | ja                                                                 |
+| Korean      | ko                                                                 |
+| German      | de / de_de / de_at / de_ch                                         |
+| Italian     | it / it_ch                                                         |
+| Hindi       | hi                                                                 |
+| Bangladesh  | bn                                                                 |
+| Portuguese  | pt / pt_br                                                         |
+| Indonesian  | id                                                                 |
+| Russian     | ru                                                                 |
+| Swedish     | sv                                                                 |
+| Ukrainian   | uk                                                                 |
+| Arabic      | ar / ar_ly / ar_dz / ar_kw / ar_sa / ar_ma /_tn                    |
+| Hungarian   | hu / hu_hu                                                         |
+| Polish      | pl                                                                 |
+| Turkish     | tr                                                                 |
+| Norwegian   | nb                                                                 |
+| Persian     | fa                                                                 |
+| Azerbaijani | az                                                                 |
+| Dutch       | nl                                                                 |
+| Thailand    | th                                                                 |
+
 
 ## Setting a locale
 Setting locales in Jiffy **_always returns a future_**
