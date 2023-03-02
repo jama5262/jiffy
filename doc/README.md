@@ -338,7 +338,7 @@ Jiffy.now().startOf(Unit.year); // 2023-01-01T00:00:00.000000
 ```
 Another example
 ```dart
-var jiffy = Jiffy.now()
+Jiffy.now()
     .startOf(Unit.day)
     .add(days: 1);
     .format('MMMM do yyyy, h:mm:ss a'); // March 3rd 2021, 12:00:00 AM
