@@ -31,4 +31,4 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional Information**
 
-Add any additional information that you think may be relevant to the review of your PR, such as performance considerations, design decisions, or trade-offs that were made.
+<!-- Add any additional information that you think may be relevant to the review of your PR, such as performance considerations, design decisions, or trade-offs that were made. -->
