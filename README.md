@@ -100,16 +100,14 @@ Jiffy.now().yMMMMEEEEdjm; // 2023年2月26日星期日 下午12:03
 
 ## Contributing
 
-To contribute, follow the following easy steps
-1. Fork this repo!
-2. Make your own updates
-3. Create a new pull request to the `master` branch
+For contribution guidelines, see [CONTRIBUTING](./CONTRIBUTING.md).
 
 ## Support
 
 Reach out to me at one of the following places!
 
-- Email at [jama3137@gmail.com](mailto:jama3137@gmail.com)
+- Email me at [jama3137@gmail.com](mailto:jama3137@gmail.com)
+- LinkedIn [Jama Mohamed](https://www.linkedin.com/in/jama-mohamed/)
 - Twitter [timedjama5262](https://twitter.com/timedjama5262)
 
 ## License
