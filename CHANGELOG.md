@@ -1,3 +1,10 @@
+# 6.0.0
+
+## What's Changed
+* Breaking changes
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v5.0.1...v6.0.0
+
 # 5.0.1
 
 ## What's Changed
