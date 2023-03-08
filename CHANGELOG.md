@@ -1,161 +1,178 @@
-## 5.0.1
+# 5.0.1
 
 ## What's Changed
 * change version intl to 0.18.0 by @nguyenxdat in https://github.com/jama5262/jiffy/pull/173
+* Release v5.0.1 by @jama5262 in https://github.com/jama5262/jiffy/pull/194
 
 ## New Contributors
 * @nguyenxdat made their first contribution in https://github.com/jama5262/jiffy/pull/173
 
 **Full Changelog**: https://github.com/jama5262/jiffy/compare/v5.0.0...v5.0.1
 
-## 5.0.0
+# 5.0.0
 
-### Major Changes
+## What's Changed
+* added Ukrainian locale by @yarmat in https://github.com/jama5262/jiffy/pull/113
+* Add dutch language support by @diegonuja in https://github.com/jama5262/jiffy/pull/114
+* Support Bangla Language by @yeahia2508 in https://github.com/jama5262/jiffy/pull/102
+* added Thailand locale by @srithong in https://github.com/jama5262/jiffy/pull/116
+* Bugfix/readme by @calvintam236 in https://github.com/jama5262/jiffy/pull/120
+* Fix jama5262#115 by @calvintam236 in https://github.com/jama5262/jiffy/pull/119
+* Bugfix/115 for nb by @calvintam236 in https://github.com/jama5262/jiffy/pull/122
+* [Issue 130] Update the unix parse function to be specific to either seconds of milliseconds by @jama5262 in https://github.com/jama5262/jiffy/pull/135
+* Release v5.0.0 to master by @jama5262 in https://github.com/jama5262/jiffy/pull/136
 
-1. Updated `Jiffy.unix()` to be more specific to seconds and milliseconds timestamps
+## New Contributors
+* @yarmat made their first contribution in https://github.com/jama5262/jiffy/pull/113
+* @diegonuja made their first contribution in https://github.com/jama5262/jiffy/pull/114
+* @yeahia2508 made their first contribution in https://github.com/jama5262/jiffy/pull/102
+* @srithong made their first contribution in https://github.com/jama5262/jiffy/pull/116
+* @calvintam236 made their first contribution in https://github.com/jama5262/jiffy/pull/120
 
-Previously
-```dart
-// Parsing a timestamp in milliseconds
-Jiffy.unix(1318781876406);
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v4.1.0...v5.0.0
 
-// Parsing a timestamp in seconds
-Jiffy.unix(1318781876).format(); // 2011-10-16T19:17:56.000
-```
-Now
-```dart
-// Parsing a timestamp in milliseconds
-Jiffy.unixFromMillisecondsSinceEpoch(1318781876406);
+# 4.1.0
 
-// Parsing a timestamp in seconds
-Jiffy.unixFromSecondsSinceEpoch(1318781876).format(); // 2011-10-16T19:17:56.000
-```
+## What's Changed
+* Add Az locale by @justkost in https://github.com/jama5262/jiffy/pull/105
+* Does not rely on method cascading for immutability by @jama5262 in https://github.com/jama5262/jiffy/pull/107
+* Add GitHub actions by @jama5262 in https://github.com/jama5262/jiffy/pull/109
+* Release v4.1.0 to master by @jama5262 in https://github.com/jama5262/jiffy/pull/110
 
-2. Added Ukranian `uk` locale contributed by [yarmat](https://github.com/yarmat)
-3. Added Dutch `nl` locale contributed by [diegonuja](https://github.com/diegonuja)
-4. Added Thailand `th` locale contributed by [srithong](https://github.com/srithong)
-5. Minor bug fixes from [calvintam236](https://github.com/calvintam236)
+## New Contributors
+* @justkost made their first contribution in https://github.com/jama5262/jiffy/pull/105
 
-## 4.1.0
-
-### Minor Changes
-
-1. All methods return `Jiffy`, except `utc()` and `local()` functions
-2. Added github actions   
-3. Added Azerbaijani `az` locale contributed by [Konstantin](https://github.com/justkost)
-
-
-## 4.0.0
-
-### Major Changes
-
-1. Implemented null safety
-2. Jiffy cloning
-   ```dart
-   var jiffy1 = Jiffy();
-   var jiffy2 = jiffy1.clone();
-   // or 
-   var jiffy1 = Jiffy();
-   var jiffy2 = Jiffy(jiffy1);
-   ```
-3. Bug fix `diff()` function
-4. Added Persian `fa` locale contributed by [mozaffari](https://github.com/mozaffari)
-5. Added Norwegian `nb` locale contributed by [Yilmaz Guleryuz](https://github.com/zeusbaba)
-6. Added `de_DE` mapping locale contributed by [Sebastian Rutofski](https://github.com/SebRut)
-7. Fixed minor locale bugs
-
-## 3.0.1
-
-### Patch changes
-
-1. Fixed `Undefined name 'Units'` bug
-2. Swedish locale `sv` contributed by [Erik Carlsson](https://github.com/ercadev)
-
-## 3.0.0
-
-### Major changes
-
-1. Unit of time are now in enums. Examples, previously `startOf("day")` can now be set as `startOf(Units.DAY)`
-String escape changes to use square braces `[]`. Examples, previously
-2. `Jiffy().format("yyyy 'escaped' yyyy");` and now updated to `Jiffy().format("yyyy [escaped] yyyy");`
-3. Added Indonsia local `id` by [ampersanda](https://github.com/ampersanda) and Turkish local `tr` by [iozozturk](https://github.com/iozozturk)
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v4.0.0...v4.1.0
 
 
-## 2.2.0
+# 4.0.0
 
-### Minor Changes
+## What's Changed
+* added Norwegian Bokmål (nb) language by @zeusbaba in https://github.com/jama5262/jiffy/pull/63
+* add mapping for 'de_DE' locale by @SebRut in https://github.com/jama5262/jiffy/pull/71
+* Added Persian locale by @mozaffari in https://github.com/jama5262/jiffy/pull/88
+* Fix diff function by @jama5262 in https://github.com/jama5262/jiffy/pull/91
+* All methods return jiffy and add Jiffy cloning by @jama5262 in https://github.com/jama5262/jiffy/pull/92
+* Implement null safety by @jama5262 in https://github.com/jama5262/jiffy/pull/93
+* Update locale functionality by @jama5262 in https://github.com/jama5262/jiffy/pull/99
+* Release version 4.0.0 to master by @jama5262 in https://github.com/jama5262/jiffy/pull/100
 
-1.  Added more string parsing functionality. See below
+## New Contributors
+* @zeusbaba made their first contribution in https://github.com/jama5262/jiffy/pull/63
+* @SebRut made their first contribution in https://github.com/jama5262/jiffy/pull/71
+* @mozaffari made their first contribution in https://github.com/jama5262/jiffy/pull/88
 
-```
-Jiffy("1995/12/25"); // A calendar date part separated by slash "/"
-Jiffy("19951225"); // Basic (short) full date
-Jiffy("1995-12-25 12:00:00.000"); // An hour, minute, second, and millisecond time part
-Jiffy("1995-12-25T12:00:00.000"); ISO dart format
-Jiffy("1995-12-25T12:00:00.000Z"); ISO dart format (UTC)
-```
-2. Added support to Polish locale `pl` added by [leszekkrol](https://github.com/leszekkrol)
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v3.0.1...v4.0.0
 
-## 2.1.2
+# 3.0.1
 
-### Patch Changes
+## What's Changed
+* Added Swedish locale by @ercadev in https://github.com/jama5262/jiffy/pull/53
+* Fix enum by @jama5262 in https://github.com/jama5262/jiffy/pull/55
+* Releasing v3.0.1 by @jama5262 in https://github.com/jama5262/jiffy/pull/56
 
-1. Bug fix to support `startOf` and `endOf` for locales
-2. Bug fix on week getter by [MrCasCode](https://github.com/MrCasCode)
+## New Contributors
+* @ercadev made their first contribution in https://github.com/jama5262/jiffy/pull/53
 
-## 2.1.1
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v3.0.0...v3.0.1
 
-### Patch Changes
+# 3.0.0
 
-Previously
+## What's Changed
+* Add Bahasa Indonesia (Indonesian) locale language by @ampersanda in https://github.com/jama5262/jiffy/pull/43
+* Add tr locale by @iozozturk in https://github.com/jama5262/jiffy/pull/44
+* Updated test names and descriptions by @jama5262 in https://github.com/jama5262/jiffy/pull/46
+* Setup unit enums by @jama5262 in https://github.com/jama5262/jiffy/pull/48
+* Update escape by @jama5262 in https://github.com/jama5262/jiffy/pull/49
+* Releasing v3.0.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/50
+* Releasing v3.0.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/52
 
-`Jiffy([2014, 4, 23]).format("EEEE MMMM do, yyyy"); // Wednesday April 23o, 2014`
+## New Contributors
+* @ampersanda made their first contribution in https://github.com/jama5262/jiffy/pull/43
+* @iozozturk made their first contribution in https://github.com/jama5262/jiffy/pull/44
 
-Updated
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v2.2.0...v3.0.0
 
-`Jiffy([2014, 4, 23]).format("EEEE MMMM do, yyyy"); // Wednesday April 23rd, 2014`
 
-## 2.1.0
+# 2.2.0
 
-### Minor Changes
+## What's Changed
+* Added Polish locale by @leszekkrol in https://github.com/jama5262/jiffy/pull/38
+* Fix polish locale by @jama5262 in https://github.com/jama5262/jiffy/pull/39
+* Update string parsing by @jama5262 in https://github.com/jama5262/jiffy/pull/40
+* Releasing v2.2.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/41
 
-1. Ordinal date parsing and formating
-In Jiffy you can now parse and format with ordinal date. e.g
-```dart
-Jiffy().format("MMM do yyyy"); // Oct 19th 2019
-```
-2. It also supports locales for the following
+## New Contributors
+* @leszekkrol made their first contribution in https://github.com/jama5262/jiffy/pull/38
 
-`"en", "es", "fr", "frch", "frca", "it", "itch", "ja", "ko", "pt", "ptbr", "zh", "zhcn", "zhhk", "zhtw", "de", "deat", "dech"`
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v2.1.2...v2.2.0
 
-3. Added `daysInMonth` method to get number of days for specific months .e.g
-```dart
-Jiffy([2016, 1]).daysInMonth; // 31
-Jiffy([2016, 2]).daysInMonth; // 28
-Jiffy([2017, 2]).daysInMonth; // 29
-```
+# 2.1.2
 
-## 2.0.0
+## What's Changed
+* Add support to locales to day getter by @MrCasCode in https://github.com/jama5262/jiffy/pull/32
+* Fix week by @jama5262 in https://github.com/jama5262/jiffy/pull/33
+* Releasing v2.1.2 by @jama5262 in https://github.com/jama5262/jiffy/pull/34
 
-### Major Changes
+## New Contributors
+* @MrCasCode made their first contribution in https://github.com/jama5262/jiffy/pull/32
 
-1. Added params to add and subtract methods by [yongjhih](https://github.com/yongjhih)
-Example
-```dart
-Jiffy().add(days: 1);
-Jiffy().add(years: 2, months: 1, duration: Duration(days: 1, hours: 30));
-```
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v2.1.1...v2.1.2
 
-## 1.1.0
+# 2.1.1
 
-### Minor Changes
+## What's Changed
+* Releasing v2.1.1 by @jama5262 in https://github.com/jama5262/jiffy/pull/30
 
-1. Add more functionality to parsing. These are
-- Array parsing `Jiffy([2019, 10, 21]);`
-- Map parsing `Jiffy({"year": 2019, "month": 10});`
-- Dart DateTime parsing `Jiffy(DateTime.now());`
-- String parsing `Jiffy("2019-10-21");`
 
-## 1.0.0
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v2.1.0...v2.1.1
 
-1. Launch 🚀
+# 2.1.0
+
+## What's Changed
+* Add days in month by @jama5262 in https://github.com/jama5262/jiffy/pull/27
+* Ordianl days by @jama5262 in https://github.com/jama5262/jiffy/pull/28
+* Releasing v2.1.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/29
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v2.0.0...v2.1.0
+
+# 2.0.0
+
+## What's Changed
+* Support Duration by @yongjhih in https://github.com/jama5262/jiffy/pull/18
+* Updated docs by @jama5262 in https://github.com/jama5262/jiffy/pull/20
+* Update changelog by @jama5262 in https://github.com/jama5262/jiffy/pull/21
+* Releasing version v2.0.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/23
+
+## New Contributors
+* @yongjhih made their first contribution in https://github.com/jama5262/jiffy/pull/18
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v1.1.0...v2.0.0
+
+# 1.1.0
+
+## What's Changed
+* Add more parsing by @jama5262 in https://github.com/jama5262/jiffy/pull/14
+* Releasing v1.1.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/15
+* Releasing Updated v1.1.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/16
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v1.0.0...v1.1.0
+# 1.0.0
+
+## What's Changed
+* Set up Travis and coveralls by @jama5262 in https://github.com/jama5262/jiffy/pull/1
+* Setup all methods by @jama5262 in https://github.com/jama5262/jiffy/pull/2
+* Setup jiffy date time by @jama5262 in https://github.com/jama5262/jiffy/pull/4
+* Setup unix parsing by @jama5262 in https://github.com/jama5262/jiffy/pull/5
+* Setup manipulation of datetime by @jama5262 in https://github.com/jama5262/jiffy/pull/6
+* Setup display by @jama5262 in https://github.com/jama5262/jiffy/pull/7
+* Setup query by @jama5262 in https://github.com/jama5262/jiffy/pull/8
+* Added example file by @jama5262 in https://github.com/jama5262/jiffy/pull/9
+* Setup docs by @jama5262 in https://github.com/jama5262/jiffy/pull/10
+* Releasing v1.0.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/11
+* Releasing v1.0.0 to master by @jama5262 in https://github.com/jama5262/jiffy/pull/12
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/commits/v1.0.0
