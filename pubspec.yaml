@@ -1,6 +1,6 @@
 name: jiffy
 description: Jiffy is a date dart package inspired by momentjs for parsing, manipulating and formatting dates
-version: 5.0.0
+version: 5.0.1
 homepage: https://github.com/jama5262/jiffy
 repository: https://github.com/jama5262/jiffy
 issue_tracker: https://github.com/jama5262/jiffy/issues
@@ -10,8 +10,7 @@ environment:
   sdk: '>=2.15.0 <3.0.0'
 
 dependencies:
-#  update version to 0.18.0
-  intl: ^0.17.0
+  intl: ^0.18.0
 
 dev_dependencies:
   lints: ^2.0.1
