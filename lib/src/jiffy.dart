@@ -820,4 +820,13 @@ class Jiffy {
   /// Returns a boolean value indicating whether the [Jiffy] instance
   /// provided falls on a leap year.
   bool get isLeapYear => Query.isLeapYear(dateTime.year);
+
+  @override
+  bool operator ==(Object other) {
+    if (other is Jiffy) return dateTime == other.dateTime;
+    return false;
+  }
+
+  @override
+  int get hashCode => dateTime.hashCode;
 }
