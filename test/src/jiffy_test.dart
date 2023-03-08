@@ -297,7 +297,7 @@ void main() {
       final newJiffy = jiffy.clone();
 
       // Verify
-      expect(newJiffy, isNot(jiffy));
+      expect(identical(newJiffy, jiffy), false);
       expect(newJiffy.microsecondsSinceEpoch, jiffy.microsecondsSinceEpoch);
     });
   });
@@ -964,22 +964,59 @@ void main() {
         expect(actual, expected);
       });
     }
+
+    for (var testData in isLeapYearTestData()) {
+      test('Should successfully check if jiffy year is leap year', () {
+        // Setup
+        final jiffy = testData['jiffy'] as Jiffy;
+
+        final expected = testData['expectedIsLeapYear'];
+
+        // Execute
+        final actualIsLeapYear = jiffy.isLeapYear;
+
+        // Verify
+        expect(actualIsLeapYear, expected);
+      });
+    }
   });
 
-  for (var testData in isLeapYearTestData()) {
-    test('Should successfully check if jiffy year is leap year', () {
+  group('Test equality and hashcode', () {
+    for (var testData in equalityTestData()) {
+      test("Should successfully test the equality of two Jiffy instances", () {
+        // Setup
+        final jiffy1 = testData['jiffy1'];
+        final jiffy2 = testData['jiffy2'];
+
+        final expectedEquality = testData['expectedEquality'];
+
+        // Execute
+        final actualEquality = jiffy1 == jiffy2;
+
+        // Verify
+        expect(actualEquality, expectedEquality);
+      });
+    }
+
+    test('Should successfully return true with valid hashcode consistency', () {
       // Setup
-      final jiffy = testData['jiffy'] as Jiffy;
+      final jiffy1 = Jiffy.parseFromList([1997, 9, 23]);
+      final jiffy2 = Jiffy.parseFromList([1997, 9, 23]);
 
-      final expected = testData['expectedIsLeapYear'];
-
-      // Execute
-      final actualIsLeapYear = jiffy.isLeapYear;
-
-      // Verify
-      expect(actualIsLeapYear, expected);
+      // Execute and Verify
+      expect(jiffy1.hashCode, equals(jiffy2.hashCode));
     });
-  }
+
+    test('Should successfully return false with invalid hashcode consistency',
+        () {
+      // Setup
+      final jiffy1 = Jiffy.parseFromList([1997, 9, 23]);
+      final jiffy2 = Jiffy.parseFromList([1997, 9, 24]);
+
+      // Execute and Verify
+      expect(jiffy1.hashCode, isNot(jiffy2.hashCode));
+    });
+  });
 }
 
 List<Map<String, dynamic>> localeTestData() {
@@ -1496,5 +1533,20 @@ List<Map<String, dynamic>> isLeapYearTestData() {
       'jiffy': Jiffy.parseFromList([2016]),
       'expectedIsLeapYear': true
     },
+  ];
+}
+
+List<Map<String, dynamic>> equalityTestData() {
+  return [
+    {
+      'jiffy1': Jiffy.parseFromList([1997, 9, 23]),
+      'jiffy2': Jiffy.parseFromList([1997, 9, 23]),
+      'expectedEquality': true
+    },
+    {
+      'jiffy1': Jiffy.parseFromList([1997, 9, 23]),
+      'jiffy2': Jiffy.parseFromList([1997, 9, 24]),
+      'expectedEquality': false
+    }
   ];
 }
