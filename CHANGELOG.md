@@ -1,7 +1,31 @@
 # 6.0.0
 
 ## What's Changed
-* Breaking changes
+* stop tracking .idea folder by @dJani97 in https://github.com/jama5262/jiffy/pull/148
+* add Hungarian locale by @dJani97 in https://github.com/jama5262/jiffy/pull/147
+* [ISSUE168] Create separate files for main implementations by @jama5262 in https://github.com/jama5262/jiffy/pull/169
+* [ISSUE-170] Move the diff implemetation to a new file by @jama5262 in https://github.com/jama5262/jiffy/pull/171
+* [ISSUE-172] Implement the new datetime format functionality by @jama5262 in https://github.com/jama5262/jiffy/pull/174
+* [ISSUE-175] Implement the new relative datetime functionality by @jama5262 in https://github.com/jama5262/jiffy/pull/176
+* [ISSUE-177] Add test for relative date time for locales by @jama5262 in https://github.com/jama5262/jiffy/pull/181
+* [ISSUE-182] Reiterate_jiffy_implementations by @jama5262 in https://github.com/jama5262/jiffy/pull/183
+* [ISSUE-182] Add tests for Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/184
+* [ISSUE-185] Resolve all todos by @jama5262 in https://github.com/jama5262/jiffy/pull/186
+* [ISSUE-188] Add code documentation to Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/189
+* [ISSUE-190] Added test stub to endOf manipulator function by @jama5262 in https://github.com/jama5262/jiffy/pull/191
+* [ISSUE-192] Update how we use utc by @jama5262 in https://github.com/jama5262/jiffy/pull/193
+* [ISSUE-195] Implement new CI/CD by @jama5262 in https://github.com/jama5262/jiffy/pull/196
+* [ISSUE-197] Fix linting by @jama5262 in https://github.com/jama5262/jiffy/pull/198
+* [ISSUE-187] Update main readme and docs by @jama5262 in https://github.com/jama5262/jiffy/pull/200
+* [ISSUE-203] Update the CHANGELOG.md format by @jama5262 in https://github.com/jama5262/jiffy/pull/204
+* [ISSUE-202] Update the pull request and issue template by @jama5262 in https://github.com/jama5262/jiffy/pull/206
+* [ISSUE-201] Create a CONTRIBUTING.md file by @jama5262 in https://github.com/jama5262/jiffy/pull/208
+* [ISSUE-207] Add sponsor button for repo by @jama5262 in https://github.com/jama5262/jiffy/pull/209
+* [ISSUE-205] Add dependabot.yml by @jama5262 in https://github.com/jama5262/jiffy/pull/210
+* [ISSUE-145] Comparing two different instances that hold the exact same date should return true by @jama5262 in https://github.com/jama5262/jiffy/pull/211
+
+## New Contributors
+* @dJani97 made their first contribution in https://github.com/jama5262/jiffy/pull/148
 
 **Full Changelog**: https://github.com/jama5262/jiffy/compare/v5.0.1...v6.0.0
 
