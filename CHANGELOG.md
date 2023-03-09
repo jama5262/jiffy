@@ -1,3 +1,12 @@
+# 6.1.0
+
+## What's Changed
+* [ISSUE-216] Add CHANGELOG for v6.0.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/217
+* [ISSUE-163] Option to omit prefix and suffix from relative datetime functions by @jama5262 in https://github.com/jama5262/jiffy/pull/218
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.0.0...v6.1.0
+
 # 6.0.0
 
 ## What's Changed
