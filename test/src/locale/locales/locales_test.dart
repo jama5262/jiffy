@@ -61,7 +61,8 @@ void main() {
         final actualRelativeDateTime = display.toAsRelativeDateTime(
             testData['firstDateTime'],
             testData['secondDateTime'],
-            testData['locale']);
+            testData['locale'],
+            true);
 
         // Verify
         expect(actualRelativeDateTime, testData['expectedRelativeDateTime']);

@@ -34,8 +34,8 @@ class Display {
     }
   }
 
-  String fromAsRelativeDateTime(
-      DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
+  String fromAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,
+      Locale locale, bool withPrefixAndSuffix) {
     final isFirstDateTimeSameOrAfterSecondDateTime = _query.isSameOrAfter(
         firstDateTime, secondDateTime, Unit.microsecond, locale.startOfWeek());
 
@@ -85,14 +85,19 @@ class Display {
       result = relativeDateTime.years(years.round());
     }
 
-    return [prefix, result, suffix]
-        .where((str) => str.isNotEmpty)
-        .join(relativeDateTime.wordSeparator());
+    if (withPrefixAndSuffix) {
+      return [prefix, result, suffix]
+          .where((str) => str.isNotEmpty)
+          .join(relativeDateTime.wordSeparator());
+    }
+
+    return result;
   }
 
-  String toAsRelativeDateTime(
-      DateTime firstDateTime, DateTime secondDateTime, Locale locale) {
-    return fromAsRelativeDateTime(secondDateTime, firstDateTime, locale);
+  String toAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,
+      Locale locale, bool withPrefixAndSuffix) {
+    return fromAsRelativeDateTime(
+        secondDateTime, firstDateTime, locale, withPrefixAndSuffix);
   }
 
   num diff(DateTime firstDateTime, DateTime secondDateTime, Unit unit,
