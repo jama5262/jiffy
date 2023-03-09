@@ -396,6 +396,12 @@ Jiffy.parseFromDateTime(DateTime(2050, 10, 29)).fromNow(); // in 30 years
 Jiffy.now().startOf(Unit.hour).fromNow(); // 9 minutes ago
 ```
 
+You can also omit returning the prefix and suffix like `in` and `ago`.
+
+```dart
+Jiffy.parse('2007-01-29').fromNow(withPrefixAndSuffix: false); // 14 years
+```
+
 ### Time from X
 This method is used to get the relative time from a specific date time.
 ```dart
@@ -403,6 +409,15 @@ var jiffy1 = Jiffy.parse('2007-01-28');
 var jiffy2 = Jiffy.parse('2017-01-29');
 
 jiffy1.from(jiffy2); // a day ago
+```
+
+You can also omit returning the prefix and suffix like `in` and `ago`.
+
+```dart
+var jiffy1 = Jiffy.parse('2007-01-28');
+var jiffy2 = Jiffy.parse('2017-01-29');
+
+jiffy1.from(jiffy2, withPrefixAndSuffix: false); // a day
 ```
 
 ### Time to Now
@@ -416,6 +431,12 @@ Jiffy.parseFromDateTime(DateTime(2050, 10, 29)).toNow(); // 30 years ago
 Jiffy.now().startOf(Unit.hour).toNow(); // in 9 minutes
 ```
 
+You can also omit returning the prefix and suffix like `in` and `ago`.
+
+```dart
+Jiffy.parse('2007-01-29').toNow(withPrefixAndSuffix: false); // 14 years
+```
+
 ### Time to X
 This works opposite to the `from()` method. 
 This method is used to get the relative time to a specific date time.
@@ -426,6 +447,14 @@ var jiffy2 = Jiffy.parse('2017-01-29');
 jiffy1.to(jiffy2); // in a day
 ```
 
+You can also omit returning the prefix and suffix like `in` and `ago`.
+
+```dart
+var jiffy1 = Jiffy.parse('2007-01-28');
+var jiffy2 = Jiffy.parse('2017-01-29');
+
+jiffy1.to(jiffy2, withPrefixAndSuffix: false); // a day
+```
 ### Difference
 Used to get the difference between two Jiffy date times.
 ```dart

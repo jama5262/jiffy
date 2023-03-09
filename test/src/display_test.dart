@@ -110,24 +110,62 @@ void main() {
         final locale = EnLocale();
 
         final actualFromAsRelativeDateTime = underTest.fromAsRelativeDateTime(
-            testData['firstDateTime'], testData['secondDateTime'], locale);
+            testData['firstDateTime'],
+            testData['secondDateTime'],
+            locale,
+            true);
 
         expect(actualFromAsRelativeDateTime,
             testData['expectedFromAsRelativeDateTime']);
       });
     }
 
+    test(
+        'Should successfully get from as relative datetime without prefix and suffix',
+        () {
+      final locale = EnLocale();
+      final firstDateTime = DateTime(1997, 10, 23, 12, 11, 22, 123, 456);
+      final secondDateTime = DateTime(1998, 10, 23, 12, 11, 22, 123, 457);
+      final withPrefixAndSuffix = false;
+
+      final expectedFromAsRelativeDateTime = 'a year';
+
+      final actualFromAsRelativeDateTime = underTest.fromAsRelativeDateTime(
+          firstDateTime, secondDateTime, locale, withPrefixAndSuffix);
+
+      expect(actualFromAsRelativeDateTime, expectedFromAsRelativeDateTime);
+    });
+
     for (var testData in toAsRelativeDateTimeTestData()) {
       test('Should successfully get to as relative datetime', () {
         final locale = EnLocale();
 
         final actualToAsRelativeDateTime = underTest.toAsRelativeDateTime(
-            testData['firstDateTime'], testData['secondDateTime'], locale);
+            testData['firstDateTime'],
+            testData['secondDateTime'],
+            locale,
+            true);
 
         expect(actualToAsRelativeDateTime,
             testData['expectedToAsRelativeDateTime']);
       });
     }
+
+    test(
+        'Should successfully get to as relative datetime without prefix and suffix',
+        () {
+      final locale = EnLocale();
+      final firstDateTime = DateTime(1997, 10, 23, 12, 11, 22, 123, 456);
+      final secondDateTime = DateTime(1998, 10, 23, 12, 11, 22, 123, 457);
+      final withPrefixAndSuffix = false;
+
+      final expectedFromAsRelativeDateTime = 'a year';
+
+      final actualFromAsRelativeDateTime = underTest.toAsRelativeDateTime(
+          firstDateTime, secondDateTime, locale, withPrefixAndSuffix);
+
+      expect(actualFromAsRelativeDateTime, expectedFromAsRelativeDateTime);
+    });
   });
 
   group('Test diff between two datetime', () {

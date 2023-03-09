@@ -763,6 +763,23 @@ void main() {
         expect(actualRelativeDateTime, expectedRelativeDateTime);
       });
 
+      test(
+          'Should successfully get relative date time from without prefix and suffix',
+          () {
+        // Setup
+        final underTest = Jiffy.parseFromList([1997]);
+        final jiffyFrom = Jiffy.parseFromList([2022]);
+
+        final expectedRelativeDateTime = '25 years';
+
+        // Execute
+        final actualRelativeDateTime =
+            underTest.from(jiffyFrom, withPrefixAndSuffix: false);
+
+        // Verify
+        expect(actualRelativeDateTime, expectedRelativeDateTime);
+      });
+
       test('Should successfully get relative date time fromNow', () {
         // Setup
         final underTest = Jiffy.now().subtract(years: 25);
@@ -771,6 +788,22 @@ void main() {
 
         // Execute
         final actualRelativeDateTime = underTest.fromNow();
+
+        // Verify
+        expect(actualRelativeDateTime, expectedRelativeDateTime);
+      });
+
+      test(
+          'Should successfully get relative date time fromNow without prefix and suffix',
+          () {
+        // Setup
+        final underTest = Jiffy.now().subtract(years: 25);
+
+        final expectedRelativeDateTime = '25 years';
+
+        // Execute
+        final actualRelativeDateTime =
+            underTest.fromNow(withPrefixAndSuffix: false);
 
         // Verify
         expect(actualRelativeDateTime, expectedRelativeDateTime);
@@ -790,6 +823,23 @@ void main() {
         expect(actualRelativeDateTime, expectedRelativeDateTime);
       });
 
+      test(
+          'Should successfully get relative date time to without prefix and suffix',
+          () {
+        // Setup
+        final underTest = Jiffy.parseFromList([1997]);
+        final jiffyTo = Jiffy.parseFromList([2022]);
+
+        final expectedRelativeDateTime = '25 years';
+
+        // Execute
+        final actualRelativeDateTime =
+            underTest.to(jiffyTo, withPrefixAndSuffix: false);
+
+        // Verify
+        expect(actualRelativeDateTime, expectedRelativeDateTime);
+      });
+
       test('Should successfully get relative date time toNow', () {
         // Setup
         final underTest = Jiffy.now().subtract(years: 25);
@@ -798,6 +848,22 @@ void main() {
 
         // Execute
         final actualRelativeDateTime = underTest.toNow();
+
+        // Verify
+        expect(actualRelativeDateTime, expectedRelativeDateTime);
+      });
+
+      test(
+          'Should successfully get relative date time toNow without prefix and suffix',
+          () {
+        // Setup
+        final underTest = Jiffy.now().subtract(years: 25);
+
+        final expectedRelativeDateTime = '25 years';
+
+        // Execute
+        final actualRelativeDateTime =
+            underTest.toNow(withPrefixAndSuffix: false);
 
         // Verify
         expect(actualRelativeDateTime, expectedRelativeDateTime);

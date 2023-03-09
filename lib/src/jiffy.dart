@@ -671,7 +671,8 @@ class Jiffy {
   String get jms => _defaultDisplay.jms(dateTime);
 
   /// Returns a string representation of current [Jiffy]'s instance relative
-  /// from [jiffy]'s date and time.
+  /// from [jiffy]'s date and time, with optional [withPrefixAndSuffix] flag
+  /// to include prefix and suffix like "in" or "ago".
   ///
   /// Example:
   ///
@@ -681,12 +682,27 @@ class Jiffy {
   /// print(jiffy1.from(jiffy2));
   /// // output: a month ago
   /// ```
-  String from(Jiffy jiffy) {
-    return _display.fromAsRelativeDateTime(dateTime, jiffy.dateTime, _locale);
+  ///
+  /// Example without returning prefix and suffix:
+  ///
+  /// ```dart
+  /// final jiffy1 = Jiffy.parseFromDateTime(DateTime(2023, 1, 1));
+  /// final jiffy2 = Jiffy.parseFromDateTime(DateTime(2023, 2, 1));
+  /// print(jiffy1.from(jiffy2, withPrefixAndSuffix: false));
+  /// // output: a month
+  /// ```
+  ///
+  /// If [withPrefixAndSuffix] is `true` (default), the output string will
+  /// include prefix and suffix words like "in" or "ago". Otherwise, only
+  /// the relative time difference string will be returned.
+  String from(Jiffy jiffy, {bool withPrefixAndSuffix = true}) {
+    return _display.fromAsRelativeDateTime(
+        dateTime, jiffy.dateTime, _locale, withPrefixAndSuffix);
   }
 
   /// Returns a string representation of current [Jiffy]'s instance relative
-  /// from current date and time.
+  /// from current date and time, with optional [withPrefixAndSuffix] flag
+  /// to include prefix and suffix like "in" or "ago".
   ///
   /// Example:
   ///
@@ -695,10 +711,24 @@ class Jiffy {
   /// print(jiffy.fromNow());
   /// // output: a month ago
   /// ```
-  String fromNow() => from(Jiffy.now());
+  ///
+  /// Example without returning prefix and suffix:
+  ///
+  /// ```dart
+  /// final jiffy = Jiffy.parseFromDateTime(DateTime(2023, 1, 1));
+  /// print(jiffy.fromNow(withPrefixAndSuffix: false));
+  /// // output: a month
+  /// ```
+  ///
+  /// If [withPrefixAndSuffix] is `true` (default), the output string will
+  /// include prefix and suffix words like "in" or "ago". Otherwise, only
+  /// the relative time difference string will be returned.
+  String fromNow({bool withPrefixAndSuffix = true}) =>
+      from(Jiffy.now(), withPrefixAndSuffix: withPrefixAndSuffix);
 
   /// Returns a string representation of current [Jiffy]'s instance relative
-  /// to [jiffy]'s date and time.
+  /// to [jiffy]'s date and time, with optional [withPrefixAndSuffix] flag
+  /// to include prefix and suffix like "in" or "ago".
   ///
   /// Example:
   ///
@@ -708,12 +738,27 @@ class Jiffy {
   /// print(jiffy1.to(jiffy2));
   /// // output: in a month
   /// ```
-  String to(Jiffy jiffy) {
-    return _display.toAsRelativeDateTime(dateTime, jiffy.dateTime, _locale);
+  ///
+  /// Example without returning prefix and suffix:
+  ///
+  /// ```dart
+  /// final jiffy1 = Jiffy.parseFromDateTime(DateTime(2023, 1, 1));
+  /// final jiffy2 = Jiffy.parseFromDateTime(DateTime(2023, 2, 1));
+  /// print(jiffy1.to(jiffy2, withPrefixAndSuffix: false));
+  /// // output: a month
+  /// ```
+  ///
+  /// If [withPrefixAndSuffix] is `true` (default), the output string will
+  /// include prefix and suffix words like "in" or "ago". Otherwise, only
+  /// the relative time difference string will be returned.
+  String to(Jiffy jiffy, {bool withPrefixAndSuffix = true}) {
+    return _display.toAsRelativeDateTime(
+        dateTime, jiffy.dateTime, _locale, withPrefixAndSuffix);
   }
 
   /// Returns a string representation of current [Jiffy]'s instance relative
-  /// to current date and time.
+  /// to current date and time, with optional [withPrefixAndSuffix] flag
+  /// to include prefix and suffix like "in" or "ago".
   ///
   /// Example:
   ///
@@ -722,7 +767,20 @@ class Jiffy {
   /// print(jiffy.toNow());
   /// // output: in a month
   /// ```
-  String toNow() => to(Jiffy.now());
+  ///
+  /// Example without returning prefix and suffix:
+  ///
+  /// ```dart
+  /// final jiffy = Jiffy.parseFromDateTime(DateTime(2023, 1, 1));
+  /// print(jiffy.toNow(withPrefixAndSuffix: false));
+  /// // output: a month
+  /// ```
+  ///
+  /// If [withPrefixAndSuffix] is `true` (default), the output string will
+  /// include prefix and suffix words like "in" or "ago". Otherwise, only
+  /// the relative time difference string will be returned.
+  String toNow({bool withPrefixAndSuffix = true}) =>
+      to(Jiffy.now(), withPrefixAndSuffix: withPrefixAndSuffix);
 
   /// Returns the difference between this [Jiffy] instance and the given
   /// [jiffy] instance as a numeric value.
