@@ -110,11 +110,6 @@ Reach out to me at one of the following places!
 - LinkedIn [Jama Mohamed](https://www.linkedin.com/in/jama-mohamed/)
 - Twitter [timedjama5262](https://twitter.com/timedjama5262)
 
----
-
-<a href="https://www.buymeacoffee.com/jama"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=jama&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
-
----
 
 ## License
 
