@@ -7,7 +7,7 @@ issue_tracker: https://github.com/jama5262/jiffy/issues
 documentation: https://github.com/jama5262/jiffy/tree/master/doc
 
 environment:
-  sdk: '>=2.15.0 <3.0.0'
+  sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
   intl: ^0.18.0
