@@ -10,7 +10,7 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  intl: ^0.18.0
+  intl: any
 
 dev_dependencies:
   lints: ^2.0.1
