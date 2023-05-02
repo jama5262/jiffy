@@ -1,5 +1,6 @@
 import 'locale.dart';
 import 'locales/ar_locale.dart';
+import 'locales/cs_locale.dart';
 import 'locales/de_locale.dart';
 import 'locales/en_locale.dart';
 import 'locales/es_locale.dart';
@@ -16,6 +17,7 @@ import 'locales/nl_locale.dart';
 import 'locales/pl_locale.dart';
 import 'locales/pt_locale.dart';
 import 'locales/ru_locale.dart';
+import 'locales/sk_locale.dart';
 import 'locales/th_locale.dart';
 import 'locales/uk_locale.dart';
 import 'locales/az_locale.dart';
@@ -75,7 +77,9 @@ Map<String, Locale> _availableLocales = {
   'fa': FaLocale(),
   'bn': BnLocale(),
   'nl': NlLocale(),
-  'th': ThLocale()
+  'th': ThLocale(),
+  'sk': SkLocale(),
+  'cs': CsLocale(),
 };
 
 Locale getLocale(String locale) {
