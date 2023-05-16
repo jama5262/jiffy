@@ -5,6 +5,7 @@ import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/locale/locales/ar_locale.dart';
 import 'package:jiffy/src/locale/locales/az_locale.dart';
 import 'package:jiffy/src/locale/locales/bn_locale.dart';
+import 'package:jiffy/src/locale/locales/cs_locale.dart';
 import 'package:jiffy/src/locale/locales/de_locale.dart';
 import 'package:jiffy/src/locale/locales/en_locale.dart';
 import 'package:jiffy/src/locale/locales/es_locale.dart';
@@ -21,6 +22,7 @@ import 'package:jiffy/src/locale/locales/nl_locale.dart';
 import 'package:jiffy/src/locale/locales/pl_locale.dart';
 import 'package:jiffy/src/locale/locales/pt_locale.dart';
 import 'package:jiffy/src/locale/locales/ru_locale.dart';
+import 'package:jiffy/src/locale/locales/sk_locale.dart';
 import 'package:jiffy/src/locale/locales/sv_locale.dart';
 import 'package:jiffy/src/locale/locales/th_locale.dart';
 import 'package:jiffy/src/locale/locales/tr_locale.dart';
@@ -429,6 +431,20 @@ List<Map<String, dynamic>> localesTestData() {
       'ordinals': ['', '', '', ''],
       'startOfWeek': StartOfWeek.sunday,
       'relativeTime': ThRelativeTime()
+    },
+    {
+      'locale': SkLocale(),
+      'code': 'sk',
+      'ordinals': ['.', '.', '.', '.'],
+      'startOfWeek': StartOfWeek.monday,
+      'relativeTime': SkRelativeTime(),
+    },
+    {
+      'locale': CsLocale(),
+      'code': 'cs',
+      'ordinals': ['.', '.', '.', '.'],
+      'startOfWeek': StartOfWeek.monday,
+      'relativeTime': CsRelativeTime(),
     },
   ];
 }
@@ -4073,6 +4089,284 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1995),
       'expectedRelativeDateTime': '3 ปีที่แล้ว',
+    },
+    // SkLocale
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'expectedRelativeDateTime': 'za pár sekundami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 23),
+      'expectedRelativeDateTime': 'za pár sekundami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'expectedRelativeDateTime': 'pred pár sekundami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 45),
+      'expectedRelativeDateTime': 'za minútou',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'expectedRelativeDateTime': 'pred minútou',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 1),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 3),
+      'expectedRelativeDateTime': 'za 2 minútami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 3),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 1),
+      'expectedRelativeDateTime': 'pred 2 minútami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 45),
+      'expectedRelativeDateTime': 'za hodinou',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 45),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
+      'expectedRelativeDateTime': 'pred hodinou',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 1),
+      'secondDateTime': DateTime(1997, 10, 23, 3),
+      'expectedRelativeDateTime': 'za 2 hodinami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 3),
+      'secondDateTime': DateTime(1997, 10, 23, 1),
+      'expectedRelativeDateTime': 'pred 2 hodinami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 22),
+      'secondDateTime': DateTime(1997, 10, 23),
+      'expectedRelativeDateTime': 'za dňom',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 22),
+      'expectedRelativeDateTime': 'pred dňom',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 20),
+      'secondDateTime': DateTime(1997, 10, 23),
+      'expectedRelativeDateTime': 'za 3 dňami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 20),
+      'expectedRelativeDateTime': 'pred 3 dňami',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10, 1),
+      'secondDateTime': DateTime(1997, 11, 1),
+      'expectedRelativeDateTime': 'za mesiacom',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 11, 1),
+      'secondDateTime': DateTime(1997, 10, 1),
+      'expectedRelativeDateTime': 'pred mesiacom',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 10),
+      'secondDateTime': DateTime(1997, 12),
+      'expectedRelativeDateTime': 'za 2 mesiacmi',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997, 12),
+      'secondDateTime': DateTime(1997, 10),
+      'expectedRelativeDateTime': 'pred 2 mesiacmi',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1997),
+      'secondDateTime': DateTime(1998),
+      'expectedRelativeDateTime': 'za rokom',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1998),
+      'secondDateTime': DateTime(1997),
+      'expectedRelativeDateTime': 'pred rokom',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1995),
+      'secondDateTime': DateTime(1998),
+      'expectedRelativeDateTime': 'za 3 rokmi',
+    },
+    {
+      'locale': SkLocale(),
+      'firstDateTime': DateTime(1998),
+      'secondDateTime': DateTime(1995),
+      'expectedRelativeDateTime': 'pred 3 rokmi',
+    },
+    // CsLocale
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'expectedRelativeDateTime': 'za pár sekundami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 23),
+      'expectedRelativeDateTime': 'za pár sekundami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
+      'expectedRelativeDateTime': 'před pár sekundami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 45),
+      'expectedRelativeDateTime': 'za minutou',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'expectedRelativeDateTime': 'před minutou',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 1),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 3),
+      'expectedRelativeDateTime': 'za 2 minutami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 3),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 1),
+      'expectedRelativeDateTime': 'před 2 minutami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 45),
+      'expectedRelativeDateTime': 'za hodinou',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 12, 45),
+      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
+      'expectedRelativeDateTime': 'před hodinou',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 1),
+      'secondDateTime': DateTime(1997, 10, 23, 3),
+      'expectedRelativeDateTime': 'za 2 hodinami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23, 3),
+      'secondDateTime': DateTime(1997, 10, 23, 1),
+      'expectedRelativeDateTime': 'před 2 hodinami',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 22),
+      'secondDateTime': DateTime(1997, 10, 23),
+      'expectedRelativeDateTime': 'za dnem',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 22),
+      'expectedRelativeDateTime': 'před dnem',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 20),
+      'secondDateTime': DateTime(1997, 10, 23),
+      'expectedRelativeDateTime': 'za 3 dny',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 23),
+      'secondDateTime': DateTime(1997, 10, 20),
+      'expectedRelativeDateTime': 'před 3 dny',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10, 1),
+      'secondDateTime': DateTime(1997, 11, 1),
+      'expectedRelativeDateTime': 'za měsícem',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 11, 1),
+      'secondDateTime': DateTime(1997, 10, 1),
+      'expectedRelativeDateTime': 'před měsícem',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 10),
+      'secondDateTime': DateTime(1997, 12),
+      'expectedRelativeDateTime': 'za 2 měsíci',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997, 12),
+      'secondDateTime': DateTime(1997, 10),
+      'expectedRelativeDateTime': 'před 2 měsíci',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1997),
+      'secondDateTime': DateTime(1998),
+      'expectedRelativeDateTime': 'za rokem',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1998),
+      'secondDateTime': DateTime(1997),
+      'expectedRelativeDateTime': 'před rokem',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1995),
+      'secondDateTime': DateTime(1998),
+      'expectedRelativeDateTime': 'za 3 lety',
+    },
+    {
+      'locale': CsLocale(),
+      'firstDateTime': DateTime(1998),
+      'secondDateTime': DateTime(1995),
+      'expectedRelativeDateTime': 'před 3 lety',
     },
   ];
 }
