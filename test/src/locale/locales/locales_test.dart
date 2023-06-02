@@ -15,7 +15,6 @@ import 'package:jiffy/src/locale/locales/hu_locale.dart';
 import 'package:jiffy/src/locale/locales/id_locale.dart';
 import 'package:jiffy/src/locale/locales/it_locale.dart';
 import 'package:jiffy/src/locale/locales/ja_locale.dart';
-import 'package:jiffy/src/locale/locales/kh_locale.dart';
 import 'package:jiffy/src/locale/locales/ko_locale.dart';
 import 'package:jiffy/src/locale/locales/nb_locale.dart';
 import 'package:jiffy/src/locale/locales/nl_locale.dart';
@@ -430,13 +429,6 @@ List<Map<String, dynamic>> localesTestData() {
       'ordinals': ['', '', '', ''],
       'startOfWeek': StartOfWeek.sunday,
       'relativeTime': ThRelativeTime()
-    },
-    {
-      'locale': KmKhLocale(),
-      'code': 'km_kh',
-      'ordinals': ['ទី', 'ទី', 'ទី', 'ទី'],
-      'startOfWeek': StartOfWeek.monday,
-      'relativeTime': KmKhRelativeTime()
     },
   ];
 }
@@ -4081,146 +4073,6 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1995),
       'expectedRelativeDateTime': '3 ปีที่แล้ว',
-    },
-
-    // KmKhLocale
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេលពីរបីវិនាទី',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 23),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេលពីរបីវិនាទី',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'expectedRelativeDateTime': 'ប៉ុន្មានវិនាទីមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 0),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 45),
-      'expectedRelativeDateTime': 'ក្នុងមួយនាទី',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
-      'expectedRelativeDateTime': 'មួយនាទីមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 1),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 3),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេល 2 នាទី',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 3),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 1),
-      'expectedRelativeDateTime': '2 នាទីមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 0),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 45),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេលមួយម៉ោង',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 12, 45),
-      'secondDateTime': DateTime(1997, 10, 23, 12, 0),
-      'expectedRelativeDateTime': 'មួយម៉ោងមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 1),
-      'secondDateTime': DateTime(1997, 10, 23, 3),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេល 2 ម៉ោង',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23, 3),
-      'secondDateTime': DateTime(1997, 10, 23, 1),
-      'expectedRelativeDateTime': '2 ម៉ោងមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 22),
-      'secondDateTime': DateTime(1997, 10, 23),
-      'expectedRelativeDateTime': 'ក្នុងមួយថ្ងៃ',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23),
-      'secondDateTime': DateTime(1997, 10, 22),
-      'expectedRelativeDateTime': 'មួយថ្ងៃមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 20),
-      'secondDateTime': DateTime(1997, 10, 23),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេល 3 ថ្ងៃ',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 23),
-      'secondDateTime': DateTime(1997, 10, 20),
-      'expectedRelativeDateTime': '3 ថ្ងៃមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10, 1),
-      'secondDateTime': DateTime(1997, 11, 1),
-      'expectedRelativeDateTime': 'ក្នុងមួយខែ',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 11, 1),
-      'secondDateTime': DateTime(1997, 10, 1),
-      'expectedRelativeDateTime': 'មួយខែមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 10),
-      'secondDateTime': DateTime(1997, 12),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេល 2 ខែ',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997, 12),
-      'secondDateTime': DateTime(1997, 10),
-      'expectedRelativeDateTime': '2 ខែមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1997),
-      'secondDateTime': DateTime(1998),
-      'expectedRelativeDateTime': 'ក្នុងមួយឆ្នាំ',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1998),
-      'secondDateTime': DateTime(1997),
-      'expectedRelativeDateTime': 'មួយឆ្នាំមុន',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1995),
-      'secondDateTime': DateTime(1998),
-      'expectedRelativeDateTime': 'ក្នុងរយៈពេល 3 ឆ្នាំ',
-    },
-    {
-      'locale': KmKhLocale(),
-      'firstDateTime': DateTime(1998),
-      'secondDateTime': DateTime(1995),
-      'expectedRelativeDateTime': '3 ឆ្នាំមុន',
     },
   ];
 }

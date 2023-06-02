@@ -1,5 +1,3 @@
-import 'package:jiffy/src/locale/locales/kh_locale.dart';
-
 import 'locale.dart';
 import 'locales/ar_locale.dart';
 import 'locales/de_locale.dart';
@@ -77,8 +75,7 @@ Map<String, Locale> _availableLocales = {
   'fa': FaLocale(),
   'bn': BnLocale(),
   'nl': NlLocale(),
-  'th': ThLocale(),
-  'km_kh': KmKhLocale()
+  'th': ThLocale()
 };
 
 Locale getLocale(String locale) {
