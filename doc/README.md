@@ -641,8 +641,6 @@ Below are the locales that are supported in Jiffy. More can be added.
 | Azerbaijani | az                                                                 |
 | Dutch       | nl                                                                 |
 | Thailand    | th                                                                 |
-| Cambodian   | km_kh                                                              |
-
 
 ## Setting a locale
 Setting locales in Jiffy **_always returns a future_**
