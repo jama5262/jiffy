@@ -82,7 +82,7 @@ Locale getLocale(String locale) {
   return _supportedLocales[locale.toLowerCase()] ?? _supportedLocales['en_us']!;
 }
 
-bool isLocalAvailable(String locale) {
+bool isLocalSupported(String locale) {
   return _supportedLocales.containsKey(locale.toLowerCase());
 }
 

@@ -218,7 +218,7 @@ class Jiffy {
   void _initializeLocale() {
     var systemLocale = Intl.getCurrentLocale();
 
-    if (supported_locales.isLocalAvailable(systemLocale)) {
+    if (supported_locales.isLocalSupported(systemLocale)) {
       _locale = supported_locales.getLocale(systemLocale);
     } else {
       // The locale `systemLocale` is not supported by Jiffy, hence '
@@ -254,7 +254,7 @@ class Jiffy {
   /// Throws a [JiffyException] if the [locale] provided is not supported in
   /// [Jiffy].
   static Future<void> setLocale(String locale) async {
-    if (supported_locales.isLocalAvailable(locale)) {
+    if (supported_locales.isLocalSupported(locale)) {
       Intl.defaultLocale = locale;
       await initializeDateFormatting();
     } else {
