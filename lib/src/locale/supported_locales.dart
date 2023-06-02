@@ -24,7 +24,7 @@ import 'locales/tr_locale.dart';
 import 'locales/zh_locale.dart';
 import 'locales/bn_locale.dart';
 
-Map<String, Locale> _availableLocales = {
+Map<String, Locale> _supportedLocales = {
   'en': EnLocale(),
   'en_us': EnUsLocale(),
   'en_sg': EnSgLocale(),
@@ -79,9 +79,13 @@ Map<String, Locale> _availableLocales = {
 };
 
 Locale getLocale(String locale) {
-  return _availableLocales[locale.toLowerCase()] ?? _availableLocales['en_us']!;
+  return _supportedLocales[locale.toLowerCase()] ?? _supportedLocales['en_us']!;
 }
 
 bool isLocalAvailable(String locale) {
-  return _availableLocales.containsKey(locale.toLowerCase());
+  return _supportedLocales.containsKey(locale.toLowerCase());
+}
+
+List<String> getSupportedLocales() {
+  return _supportedLocales.keys.toList();
 }

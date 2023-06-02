@@ -661,3 +661,7 @@ Jiffy.now().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 ```dart
 var localeCode = Jiffy.now().localeCode; // eu_us
 ```
+## Getting a list of supported locales
+```dart
+final supportLocales = Jiffy.getSupportedLocales(); // ['en_us', 'en', 'fr', ...]
+```

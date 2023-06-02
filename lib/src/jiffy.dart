@@ -6,9 +6,9 @@ import './display.dart';
 import './enums/start_of_week.dart';
 import './enums/unit.dart';
 import './getter.dart';
-import './locale/available_locales.dart';
 import './locale/locale.dart';
 import './locale/locales/en_locale.dart';
+import './locale/supported_locales.dart' as supported_locales;
 import './manipulator.dart';
 import './parser.dart';
 import './query.dart';
@@ -218,8 +218,8 @@ class Jiffy {
   void _initializeLocale() {
     var systemLocale = Intl.getCurrentLocale();
 
-    if (isLocalAvailable(systemLocale)) {
-      _locale = getLocale(systemLocale);
+    if (supported_locales.isLocalAvailable(systemLocale)) {
+      _locale = supported_locales.getLocale(systemLocale);
     } else {
       // The locale `systemLocale` is not supported by Jiffy, hence '
       // 'setting a default locale of `en_us`
@@ -254,7 +254,7 @@ class Jiffy {
   /// Throws a [JiffyException] if the [locale] provided is not supported in
   /// [Jiffy].
   static Future<void> setLocale(String locale) async {
-    if (isLocalAvailable(locale)) {
+    if (supported_locales.isLocalAvailable(locale)) {
       Intl.defaultLocale = locale;
       await initializeDateFormatting();
     } else {
@@ -264,6 +264,22 @@ class Jiffy {
           'please check here for a list of supported locales');
     }
   }
+
+  /// Retrieves a list of supported locales in Jiffy.
+  ///
+  /// This static method returns a list of supported locales by invoking the
+  /// `getSupportedLocales()` method from the `supported_locales` module.
+  ///
+  /// The returned list contains strings representing the supported locales.
+  ///
+  /// Example usage:
+  ///
+  /// ```dart
+  /// final supportLocales = Jiffy.getSupportedLocales();
+  /// print(supportLocales); // ['en_us', 'en', 'fr', ...]
+  /// ```
+  static List<String> getSupportedLocales() =>
+      supported_locales.getSupportedLocales();
 
   /// Returns a new [Jiffy] instance with the same date and time as the
   /// original instance.
