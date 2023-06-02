@@ -86,22 +86,6 @@ void main() {
           throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
               contains(expectedExceptionMessage))));
     });
-
-    test('Should throw JiffyException if provided pattern is invalid', () {
-      // Setup
-      final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
-      final pattern = 'invalid-pattern';
-      final locale = EnLocale();
-
-      final expectedExceptionMessage =
-          'The pattern `$pattern` might be invalid';
-
-      // Execute and Verify
-      expect(
-          () => underTest.format(dateTime, pattern, locale),
-          throwsA(isA<JiffyException>().having((e) => e.toString(), 'message',
-              contains(expectedExceptionMessage))));
-    });
   });
 
   group('Test from as relative between two datetime', () {

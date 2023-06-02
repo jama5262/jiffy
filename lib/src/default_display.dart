@@ -48,25 +48,25 @@ class DefaultDisplay {
   String yMMMd(DateTime dateTime) => DateFormat.yMMMd().format(dateTime);
 
   String yMMMdjm(DateTime dateTime) =>
-      DateFormat.yMMMd().add_jm().format(dateTime);
+      DateFormat.yMMMd().add_jm().format(dateTime).replaceAll(' ', ' ');
 
   String yMMMEd(DateTime dateTime) => DateFormat.yMMMEd().format(dateTime);
 
   String yMMMEdjm(DateTime dateTime) =>
-      DateFormat.yMMMEd().add_jm().format(dateTime);
+      DateFormat.yMMMEd().add_jm().format(dateTime).replaceAll(' ', ' ');
 
   String yMMMM(DateTime dateTime) => DateFormat.yMMMM().format(dateTime);
 
   String yMMMMd(DateTime dateTime) => DateFormat.yMMMMd().format(dateTime);
 
   String yMMMMdjm(DateTime dateTime) =>
-      DateFormat.yMMMMd().add_jm().format(dateTime);
+      DateFormat.yMMMMd().add_jm().format(dateTime).replaceAll(' ', ' ');
 
   String yMMMMEEEEd(DateTime dateTime) =>
       DateFormat.yMMMMEEEEd().format(dateTime);
 
   String yMMMMEEEEdjm(DateTime dateTime) =>
-      DateFormat.yMMMMEEEEd().add_jm().format(dateTime);
+      DateFormat.yMMMMEEEEd().add_jm().format(dateTime).replaceAll(' ', ' ');
 
   String yQQQ(DateTime dateTime) => DateFormat.yQQQ().format(dateTime);
 
@@ -80,9 +80,12 @@ class DefaultDisplay {
   // ignore: non_constant_identifier_names
   String Hms(DateTime dateTime) => DateFormat.Hms().format(dateTime);
 
-  String j(DateTime dateTime) => DateFormat.j().format(dateTime);
+  String j(DateTime dateTime) =>
+      DateFormat.j().format(dateTime).replaceAll(' ', ' ');
 
-  String jm(DateTime dateTime) => DateFormat.jm().format(dateTime);
+  String jm(DateTime dateTime) =>
+      DateFormat.jm().format(dateTime).replaceAll(' ', ' ');
 
-  String jms(DateTime dateTime) => DateFormat.jms().format(dateTime);
+  String jms(DateTime dateTime) =>
+      DateFormat.jms().format(dateTime).replaceAll(' ', ' ');
 }
