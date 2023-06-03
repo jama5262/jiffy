@@ -1,8 +1,7 @@
 # Jiffy
 
 Jiffy is a Flutter (Android, IOS and Web) date time 
-package inspired by [momentjs](https://momentjs.com/) for parsing, 
-manipulating, querying and formatting dates
+package for parsing, manipulating, querying and formatting dates
 
 # Parsing
 ### Now
