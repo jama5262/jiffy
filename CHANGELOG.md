@@ -1,3 +1,11 @@
+# 6.2.1
+
+## What's Changed
+* Update pubspec package description by @jama5262 in https://github.com/jama5262/jiffy/pull/240
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.2.0...v6.2.1
+
 # 6.2.0
 
 ## What's Changed
