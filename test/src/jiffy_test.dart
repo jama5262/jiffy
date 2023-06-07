@@ -27,6 +27,8 @@ import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
+import 'locale/supported_locales_test.dart';
+
 void main() {
   group('Test parsing and creating a Jiffy instance', () {
     test('Should successfully parse from string', () {
@@ -246,6 +248,22 @@ void main() {
 
       // Verify
       expect(actualLocaleCode, expectedLocaleCode);
+    });
+
+    group('Test available locales', () {
+      test('Should successfully return a list of available locales', () {
+        // Setup
+        final expectedSupportedLocales = supportedLocales();
+
+        // Execute
+        final actualSupportedLocales = Jiffy.getSupportedLocales();
+
+        actualSupportedLocales.sort();
+        expectedSupportedLocales.sort();
+
+        // Verify
+        expect(actualSupportedLocales, expectedSupportedLocales);
+      });
     });
 
     test('Should successfully get start of week', () async {

@@ -1,8 +1,7 @@
 # Jiffy
 
 Jiffy is a Flutter (Android, IOS and Web) date time 
-package inspired by [momentjs](https://momentjs.com/) for parsing, 
-manipulating, querying and formatting dates
+package for parsing, manipulating, querying and formatting dates
 
 # Parsing
 ### Now
@@ -644,7 +643,6 @@ Below are the locales that are supported in Jiffy. More can be added.
 | Slovak      | sk                                                                 |
 | Czech       | cs                                                                 |
 
-
 ## Setting a locale
 Setting locales in Jiffy **_always returns a future_**
 
@@ -663,4 +661,8 @@ Jiffy.now().yMMMMEEEEdjm; // 2019年10月19日星期六 下午7:28
 ## Getting the locale code
 ```dart
 var localeCode = Jiffy.now().localeCode; // eu_us
+```
+## Getting a list of supported locales
+```dart
+final supportLocales = Jiffy.getSupportedLocales(); // ['en_us', 'en', 'fr', ...]
 ```

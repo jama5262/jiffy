@@ -1,3 +1,25 @@
+# 6.2.1
+
+## What's Changed
+* Update pubspec package description by @jama5262 in https://github.com/jama5262/jiffy/pull/240
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.2.0...v6.2.1
+
+# 6.2.0
+
+## What's Changed
+* Add km_kh locale by @Kuntheasoung in https://github.com/jama5262/jiffy/pull/234
+* Update README.md by @Kuntheasoung in https://github.com/jama5262/jiffy/pull/235
+* [ISSUE-232] Increase SDK to 2.19.0 by @jama5262 in https://github.com/jama5262/jiffy/pull/233
+* Revert "Add km_kh locale" by @jama5262 in https://github.com/jama5262/jiffy/pull/238
+* [ISSUE-237] Add a function to retrieve all supported locales in Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/239
+
+## New Contributors
+* @Kuntheasoung made their first contribution in https://github.com/jama5262/jiffy/pull/234
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.1.0...v6.2.0
+
 # 6.1.0
 
 ## What's Changed

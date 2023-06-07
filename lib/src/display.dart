@@ -21,17 +21,11 @@ class Display {
       throw JiffyException('The provided pattern for datetime `$dateTime` '
           'cannot be blank');
     }
-    try {
-      final escapedPattern = _replaceEscapePattern(pattern);
-      final localeOrdinal = _getLocaleOrdinal(locale, _getter.date(dateTime));
-      final newPattern =
-          _replaceLocaleOrdinalDatePattern(escapedPattern, localeOrdinal);
-      return DateFormat(newPattern).format(dateTime);
-    } catch (error, stackTrace) {
-      throw JiffyException('The pattern `$pattern` might be invalid: \n'
-          'Error: $error'
-          'Stack Trace: $stackTrace');
-    }
+    final escapedPattern = _replaceEscapePattern(pattern);
+    final localeOrdinal = _getLocaleOrdinal(locale, _getter.date(dateTime));
+    final newPattern =
+        _replaceLocaleOrdinalDatePattern(escapedPattern, localeOrdinal);
+    return DateFormat(newPattern).format(dateTime);
   }
 
   String fromAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,

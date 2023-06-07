@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. Ex. `[x]` -->
 
 - [ ] Wrote additional tests, if needed
-- [ ] All tests have passed
+- [ ] All tests have passed, you can find the scripts from the `./bin` folder
 - [ ] I have updated the documentation accordingly, if needed.
 
 **Additional Information**
