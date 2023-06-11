@@ -640,6 +640,8 @@ Below are the locales that are supported in Jiffy. More can be added.
 | Azerbaijani | az                                                                 |
 | Dutch       | nl                                                                 |
 | Thailand    | th                                                                 |
+| Slovak      | sk                                                                 |
+| Czech       | cs                                                                 |
 
 ## Setting a locale
 Setting locales in Jiffy **_always returns a future_**

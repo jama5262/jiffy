@@ -72,6 +72,8 @@ List<String> supportedLocales() {
     'fa',
     'bn',
     'nl',
-    'th'
+    'th',
+    'sk',
+    'cs',
   ];
 }
