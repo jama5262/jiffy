@@ -1,6 +1,14 @@
 name: Continuous Integration
 
-on: [push, workflow_call]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [review_requested]
+    branches:
+      - master
+  workflow_call:
 
 jobs:
   run-tests:
