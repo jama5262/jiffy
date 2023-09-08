@@ -16,10 +16,10 @@ Jiffy is a Flutter (Android, IOS and Web) date time package for parsing, manipul
 
 ## Format Dates
 ```dart
-Jiffy.parse('2021/01/19').format('MMMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
-Jiffy.now().format('EEEE'); // Tuesday
-Jiffy.now().format('MMM do yy'); // Mar 2nd 21
-Jiffy.now().format('yyyy [escaped] yyyy'); // 2021 escaped 2021
+Jiffy.parse('2021/01/19').format(pattern: 'MMMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
+Jiffy.now().format(pattern: 'EEEE'); // Tuesday
+Jiffy.now().format(pattern: 'MMM do yy'); // Mar 2nd 21
+Jiffy.now().format(pattern: 'yyyy [escaped] yyyy'); // 2021 escaped 2021
 Jiffy.now().format(); // 2021-03-02T15:18:29.922343
 
 Jiffy.parseFromList([2020, 10, 19]).yMMMMd; // January 19, 2021
@@ -52,14 +52,14 @@ Jiffy.parse('1997/09/23').toNow(); // in 25 years
 ## Manipulation
 
 ```dart
-var jiffy = Jiffy.now().add(duration: Duration(days: 1));
+var jiffy = Jiffy.now().add(days: 1);
 jiffy.yMMMMd; // March 3, 2021
 
 Jiffy.now().subtract(days: 1).yMMMMd; // March 1, 2021
 
 Jiffy.now()
   .add(hours: 3, days: 1)
-  .subtract(minutes: 30, months: 1);
+  .subtract(minutes: 30, months: 1)
   .yMMMMEEEEdjm; // Wednesday, February 3, 2021 6:07 PM
 
 Jiffy.parse('1997/09/23')
