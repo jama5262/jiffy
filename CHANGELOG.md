@@ -1,3 +1,21 @@
+# 6.2.2
+
+## What's Changed
+* [ISSUE-243] Create a CODEOWNERS file by @jama5262 in https://github.com/jama5262/jiffy/pull/244
+* [ISSUE-245] Update the ci.yml workflow to run on PR review requested event by @jama5262 in https://github.com/jama5262/jiffy/pull/246
+* Add SK and CS locales by @tomaschyly in https://github.com/jama5262/jiffy/pull/230
+* update README.md by @K9i-0 in https://github.com/jama5262/jiffy/pull/249
+* feat: upgrade intl dependency by @Thientran2910 in https://github.com/jama5262/jiffy/pull/259
+* Bump lints from 2.1.1 to 3.0.0 by @dependabot in https://github.com/jama5262/jiffy/pull/253
+
+## New Contributors
+* @tomaschyly made their first contribution in https://github.com/jama5262/jiffy/pull/230
+* @K9i-0 made their first contribution in https://github.com/jama5262/jiffy/pull/249
+* @Thientran2910 made their first contribution in https://github.com/jama5262/jiffy/pull/259
+* @dependabot made their first contribution in https://github.com/jama5262/jiffy/pull/253
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.2.1...v6.2.2
+
 # 6.2.1
 
 ## What's Changed
