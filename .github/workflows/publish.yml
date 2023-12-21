@@ -9,6 +9,8 @@ jobs:
   run-tests:
     uses: ./.github/workflows/ci.yml
   publish:
+    permissions:
+      id-token: write
     needs: run-tests
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
 
