@@ -184,7 +184,7 @@ List<Map<String, dynamic>> localesTestData() {
       'locale': ZhLocale(),
       'code': 'zh',
       'ordinals': ['日', '日', '日', '日'],
-      'startOfWeek': StartOfWeek.sunday,
+      'startOfWeek': StartOfWeek.monday,
       'relativeTime': ZhRelativeTime()
     },
     {
