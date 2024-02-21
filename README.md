@@ -1,4 +1,4 @@
-# Jiffy
+# Jiffy 2
 
 [![Publish to pub.dev](https://github.com/jama5262/jiffy/actions/workflows/publish.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/publish.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
