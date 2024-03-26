@@ -1,3 +1,16 @@
+# 6.3.0
+
+## What's Changed
+* Start job run when commit is pushed to PR by @jama5262 in https://github.com/jama5262/jiffy/pull/268
+* Fix difference between two date times with asFloat param by @samip77 in https://github.com/jama5262/jiffy/pull/267
+* Update zh_locale.dart by @BenderBlog in https://github.com/jama5262/jiffy/pull/263
+
+## New Contributors
+* @samip77 made their first contribution in https://github.com/jama5262/jiffy/pull/267
+* @BenderBlog made their first contribution in https://github.com/jama5262/jiffy/pull/263
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.2.2...v6.3.0
+
 # 6.2.2
 
 ## What's Changed
