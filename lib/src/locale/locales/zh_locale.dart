@@ -20,6 +20,11 @@ class ZhCnLocale extends ZhLocale {
   @override
   String code() => 'zh_cn';
 
+  /// Per https://www.unicode.org/cldr/charts/42/supplemental/territory_information.html
+  /// China	First day of week is monday
+  @override
+  StartOfWeek startOfWeek() => StartOfWeek.monday;
+
   @override
   RelativeDateTime relativeDateTime() => ZhCnRelativeTime();
 }
