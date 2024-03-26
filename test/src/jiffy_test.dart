@@ -898,7 +898,7 @@ void main() {
 
         // Execute
         final actualDifference =
-            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: false);
+            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: true);
 
         // Verify
         expect(actualDifference, expectedDifference);
@@ -913,7 +913,7 @@ void main() {
 
         // Execute
         final actualDifference =
-            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: true);
+            underTest.diff(jiffyFrom, unit: Unit.month, asFloat: false);
 
         // Verify
         expect(actualDifference, expectedDifference);

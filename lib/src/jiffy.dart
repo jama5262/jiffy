@@ -819,7 +819,7 @@ class Jiffy {
   /// print('Difference in days: $diffInDays');
   /// // output: Difference in days: -14
   /// ```
-  num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = true}) {
+  num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = false}) {
     return _display.diff(dateTime, jiffy.dateTime, unit, asFloat);
   }
 
