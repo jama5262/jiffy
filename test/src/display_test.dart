@@ -154,9 +154,9 @@ void main() {
 
   group('Test diff between two datetime', () {
     for (var testData in diffDateTimeTestData()) {
-      test('Should successfully get difference between two datetime', () {
+      test('Should successfully get difference when float is disabled', () {
         // Setup
-        final asFloat = true;
+        final asFloat = false;
 
         // Execute
         final actualDifference = underTest.diff(testData['firstDateTime'],
@@ -167,12 +167,12 @@ void main() {
       });
     }
 
-    test('Should successfully get difference when float is disabled', () {
+    test('Should successfully get difference between two datetime', () {
       // Setup
       final firstDateTime = DateTime(2022, 12, 5);
       final secondDateTime = DateTime(2022, 12, 8);
       final unit = Unit.week;
-      final asFloat = false;
+      final asFloat = true;
 
       final expectedDifference = -0.42857142857142855;
 

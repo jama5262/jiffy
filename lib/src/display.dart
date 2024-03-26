@@ -135,7 +135,7 @@ class Display {
         break;
     }
 
-    return asFloat ? _asFloor(diff) : diff;
+    return asFloat ? diff : _asFloor(diff);
   }
 
   String _getLocaleOrdinal(Locale locale, int date) {
