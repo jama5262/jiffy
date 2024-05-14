@@ -45,13 +45,13 @@ class Display {
     }
 
     final seconds =
-        diff(firstDateTime, secondDateTime, Unit.second, false).abs();
+        diff(firstDateTime, secondDateTime, Unit.second, true).abs();
     final minutes =
-        diff(firstDateTime, secondDateTime, Unit.minute, false).abs();
-    final hours = diff(firstDateTime, secondDateTime, Unit.hour, false).abs();
-    final days = diff(firstDateTime, secondDateTime, Unit.day, false).abs();
-    final months = diff(firstDateTime, secondDateTime, Unit.month, false).abs();
-    final years = diff(firstDateTime, secondDateTime, Unit.year, false).abs();
+        diff(firstDateTime, secondDateTime, Unit.minute, true).abs();
+    final hours = diff(firstDateTime, secondDateTime, Unit.hour, true).abs();
+    final days = diff(firstDateTime, secondDateTime, Unit.day, true).abs();
+    final months = diff(firstDateTime, secondDateTime, Unit.month, true).abs();
+    final years = diff(firstDateTime, secondDateTime, Unit.year, true).abs();
 
     String result;
 

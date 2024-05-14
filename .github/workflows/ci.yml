@@ -19,19 +19,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: dart-lang/setup-dart@v1
+
       - name: Install dart dependencies
         run: dart pub get
+
       - name: Analyze package
         run: dart analyze lib test example
+
       - name: Verify package formatting
         run: dart format --set-exit-if-changed lib test example
+
       - name: Run tests and generate coverage reports
         run: |
           dart test --reporter=github --coverage=./coverage/reports
           dart pub global activate coverage
           dart pub global run coverage:format_coverage --report-on=./lib --lcov --in=./coverage/reports --out=coverage/lcov.info
-      - name: Report to Codecov
-        uses: codecov/codecov-action@v3
+
+      - if: matrix.os == 'ubuntu-latest'
+        name: Report to Codecov
+        uses: codecov/codecov-action@v4
         with:
           file: coverage/lcov.info
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

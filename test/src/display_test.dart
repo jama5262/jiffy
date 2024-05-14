@@ -1,3 +1,4 @@
+import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/display.dart';
 import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/getter.dart';
@@ -324,6 +325,16 @@ List<Map<String, dynamic>> toAsRelativeDateTimeTestData() {
       'expectedToAsRelativeDateTime': 'in a minute'
     },
     {
+      'firstDateTime': DateTime(2024, 1, 1, 2, 0, 0),
+      'secondDateTime': DateTime(2024, 1, 1, 1, 58, 5),
+      'expectedToAsRelativeDateTime': '2 minutes ago'
+    },
+    {
+      'firstDateTime': DateTime(2024, 1, 1, 2, 0, 0),
+      'secondDateTime': DateTime(2024, 1, 1, 1, 58, 31),
+      'expectedToAsRelativeDateTime': 'a minute ago'
+    },
+    {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
       'expectedToAsRelativeDateTime': 'a few seconds ago'
@@ -511,6 +522,16 @@ List<Map<String, dynamic>> fromAsRelativeDateTimeTestData() {
     {
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
+      'expectedFromAsRelativeDateTime': 'in a minute'
+    },
+    {
+      'firstDateTime': DateTime(2024, 1, 1, 2, 0, 0),
+      'secondDateTime': DateTime(2024, 1, 1, 1, 58, 5),
+      'expectedFromAsRelativeDateTime': 'in 2 minutes'
+    },
+    {
+      'firstDateTime': DateTime(2024, 1, 1, 2, 0, 0),
+      'secondDateTime': DateTime(2024, 1, 1, 1, 58, 31),
       'expectedFromAsRelativeDateTime': 'in a minute'
     },
     {
