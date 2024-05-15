@@ -35,8 +35,7 @@ jobs:
           dart pub global activate coverage
           dart pub global run coverage:format_coverage --report-on=./lib --lcov --in=./coverage/reports --out=coverage/lcov.info
 
-      - if: matrix.os == 'ubuntu-latest'
-        name: Report to Codecov
+      - name: Report to Codecov
         uses: codecov/codecov-action@v4
         with:
           file: coverage/lcov.info
