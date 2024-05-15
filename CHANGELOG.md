@@ -1,3 +1,10 @@
+# 6.3.1
+
+## What's Changed
+* [ISSUE-273] Use floating points to calculate relative time by @jama5262 in https://github.com/jama5262/jiffy/pull/274
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.3.0...v6.3.1
+
 # 6.3.0
 
 ## What's Changed
