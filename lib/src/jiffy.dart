@@ -1,5 +1,5 @@
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 import './default_display.dart';
 import './display.dart';
@@ -32,6 +32,16 @@ class Jiffy {
     _initializeDependencies();
     _initializeLocale();
     _initializeDateTime(input, pattern, isUtc);
+  }
+
+  /// ensureInitialized must be called before using [Jiffy].
+  ///
+  /// If [locales] is not null, you can update [locales].
+  ///
+  static Future<void> ensureInitialized({Map<String, Locale>? locales}) async {
+    if (locales != null) {
+      supported_locales.updateSupportedLocales(locales);
+    }
   }
 
   /// Constructs a new [Jiffy] instance by parsing a [String].
