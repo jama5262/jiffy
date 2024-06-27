@@ -22,7 +22,7 @@ class HiRelativeTime extends RelativeDateTime {
   @override
   String prefixFromNow() => '';
   @override
-  String suffixAgo() => 'पहले';
+  String suffixAgo() => 'पूर्व';
   @override
   String suffixFromNow() => 'में';
   @override
