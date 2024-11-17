@@ -592,15 +592,17 @@ jiffy1.isBetween(jiffy4, jiffy5, Unit.year); // true
 ### Is Local Date Time
 Check if date time is local.
 ```dart
-Jiffy.parse("2019", pattern: "yyyy").isLeapYear; // false
-Jiffy.parse("2016", pattern: "yyyy").isLeapYear; // true
+var jiffy = Jiffy.now().toLocal();
+jiffy.isLocal; // true
+jiffy.toUtc().isLocal; // false
 ```
 
 ### Is UTC Date Time
 Check if date time is UTC.
 ```dart
-Jiffy.parse("2019", pattern: "yyyy").isLeapYear; // false
-Jiffy.parse("2016", pattern: "yyyy").isLeapYear; // true
+var jiffy = Jiffy.now().toUtc();
+jiffy.isUtc; // true
+jiffy.toLocal().isUtc; // false
 ```
 
 ### Is LeapYear
