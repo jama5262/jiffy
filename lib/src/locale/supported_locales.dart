@@ -23,6 +23,7 @@ import 'locales/uk_locale.dart';
 import 'locales/az_locale.dart';
 import 'locales/sv_locale.dart';
 import 'locales/tr_locale.dart';
+import 'locales/vi_locale.dart';
 import 'locales/zh_locale.dart';
 import 'locales/bn_locale.dart';
 
@@ -80,6 +81,7 @@ Map<String, Locale> _supportedLocales = {
   'th': ThLocale(),
   'sk': SkLocale(),
   'cs': CsLocale(),
+  'vi': ViLocale(),
 };
 
 Locale getLocale(String locale) {
