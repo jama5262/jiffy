@@ -25,6 +25,7 @@ import 'locales/sv_locale.dart';
 import 'locales/tr_locale.dart';
 import 'locales/zh_locale.dart';
 import 'locales/bn_locale.dart';
+import 'locales/uz_locale.dart';
 
 Map<String, Locale> _supportedLocales = {
   'en': EnLocale(),
@@ -80,6 +81,7 @@ Map<String, Locale> _supportedLocales = {
   'th': ThLocale(),
   'sk': SkLocale(),
   'cs': CsLocale(),
+  'uz': UzLocale(),
 };
 
 Locale getLocale(String locale) {
