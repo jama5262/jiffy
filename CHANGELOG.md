@@ -1,3 +1,11 @@
+# 6.3.2
+
+## What's Changed
+* Bump intl from 0.19.0 to 0.20.1 by @jama5262 in https://github.com/jama5262/jiffy/pull/288
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.3.1...v6.3.2
+
 # 6.3.1
 
 ## What's Changed
