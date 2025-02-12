@@ -22,18 +22,17 @@ class Display {
           'cannot be blank');
     }
     final escapedPattern = _replaceEscapePattern(pattern);
-    final localeOrdinal = _getLocaleOrdinal(locale, _getter.date(dateTime));
-    final newPattern =
-        _replaceLocaleOrdinalDatePattern(escapedPattern, localeOrdinal);
+    final newPattern = _replaceLocaleOrdinalDatePattern(
+        escapedPattern, locale.ordinals.getOrdinal(_getter.date(dateTime)));
     return DateFormat(newPattern).format(dateTime);
   }
 
   String fromAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,
       Locale locale, bool withPrefixAndSuffix) {
     final isFirstDateTimeSameOrAfterSecondDateTime = _query.isSameOrAfter(
-        firstDateTime, secondDateTime, Unit.microsecond, locale.startOfWeek());
+        firstDateTime, secondDateTime, Unit.microsecond, locale.startOfWeek);
 
-    final relativeDateTime = locale.relativeDateTime();
+    final relativeDateTime = locale.relativeDateTime;
     String prefix, suffix;
 
     if (isFirstDateTimeSameOrAfterSecondDateTime) {
@@ -136,16 +135,6 @@ class Display {
     }
 
     return asFloat ? diff : _asFloor(diff);
-  }
-
-  String _getLocaleOrdinal(Locale locale, int date) {
-    final ordinals = locale.ordinals();
-    var suffix = ordinals.last;
-    final digit = date % 10;
-    if ((digit > 0 && digit < 4) && (date < 11 || date > 13)) {
-      suffix = ordinals[digit - 1];
-    }
-    return suffix;
   }
 
   String _replaceEscapePattern(String input) {

@@ -1,35 +1,21 @@
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:jiffy/src/locale/locales/ar_locale.dart';
-import 'package:jiffy/src/locale/locales/az_locale.dart';
-import 'package:jiffy/src/locale/locales/bn_locale.dart';
-import 'package:jiffy/src/locale/locales/de_locale.dart';
-import 'package:jiffy/src/locale/locales/en_locale.dart';
-import 'package:jiffy/src/locale/locales/es_locale.dart';
-import 'package:jiffy/src/locale/locales/fa_locale.dart';
-import 'package:jiffy/src/locale/locales/fr_locale.dart';
-import 'package:jiffy/src/locale/locales/hi_locale.dart';
-import 'package:jiffy/src/locale/locales/hu_locale.dart';
-import 'package:jiffy/src/locale/locales/id_locale.dart';
-import 'package:jiffy/src/locale/locales/it_locale.dart';
-import 'package:jiffy/src/locale/locales/ja_locale.dart';
-import 'package:jiffy/src/locale/locales/ko_locale.dart';
-import 'package:jiffy/src/locale/locales/nb_locale.dart';
-import 'package:jiffy/src/locale/locales/nl_locale.dart';
-import 'package:jiffy/src/locale/locales/pl_locale.dart';
-import 'package:jiffy/src/locale/locales/pt_locale.dart';
-import 'package:jiffy/src/locale/locales/ru_locale.dart';
-import 'package:jiffy/src/locale/locales/sv_locale.dart';
-import 'package:jiffy/src/locale/locales/th_locale.dart';
-import 'package:jiffy/src/locale/locales/tr_locale.dart';
-import 'package:jiffy/src/locale/locales/uk_locale.dart';
-import 'package:jiffy/src/locale/locales/zh_locale.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
-import 'locale/supported_locales_test.dart';
+class UpdatedJpRelativeDateTime extends JaRelativeDateTime {
+  @override
+  String aboutAMonth(int days) {
+    return "some months ago";
+  }
+}
 
 void main() {
+  setUp(() async {
+    Jiffy.setLocale("en_US");
+  });
+
   group('Test parsing and creating a Jiffy instance', () {
     test('Should successfully parse from string', () {
       // Setup
@@ -236,7 +222,76 @@ void main() {
   });
 
   group('Test getting and setting locales', () {
-    test('Should successfully get locale', () async {
+    test('Should successfully set locale', () async {
+      // Setup
+      await Jiffy.setLocale('ja');
+      final jiffy = Jiffy.now();
+
+      final expectedLocaleCode = 'ja';
+      final expectedLocaleStartOfWeek = StartOfWeek.sunday;
+      final expectedLocaleOrdinals =
+          Ordinals(first: '日', second: '日', third: '日', nth: '日');
+      final expectedLocaleRelativeDateTime = JaRelativeDateTime();
+
+      // Execute
+      final actualLocale = jiffy.locale;
+
+      // Verify
+      expect(actualLocale.code, expectedLocaleCode);
+      expect(actualLocale.startOfWeek, expectedLocaleStartOfWeek);
+      expect(actualLocale.ordinals, equals(expectedLocaleOrdinals));
+      expect(actualLocale.relativeDateTime,
+          equals(expectedLocaleRelativeDateTime));
+    });
+
+    test('Should successfully configure start of week', () async {
+      // Setup
+      await Jiffy.setLocale('ja');
+
+      // Verify default start of week before changing
+      expect(Jiffy.now().locale.startOfWeek, StartOfWeek.sunday);
+
+      // Execute
+      await Jiffy.setLocale('ja', startOfWeek: StartOfWeek.monday);
+
+      // Verify
+      expect(Jiffy.now().locale.startOfWeek, StartOfWeek.monday);
+    });
+
+    test('Should successfully configure ordinals', () async {
+      // Setup
+      await Jiffy.setLocale('en_US');
+
+      // Verify default ordinal before changing
+      expect(Jiffy.now().locale.ordinals,
+          Ordinals(first: 'st', second: 'nd', third: 'rd', nth: 'th'));
+
+      // Execute
+      final newOrdinal =
+          Ordinals(first: 'bla', second: 'bla', third: 'bla', nth: 'bla..bla');
+      await Jiffy.setLocale('ja', ordinals: newOrdinal);
+
+      // Verify
+      expect(Jiffy.now().locale.ordinals, newOrdinal);
+    });
+
+    test('Should successfully configure relative date time', () async {
+      // Setup
+      await Jiffy.setLocale('ja');
+
+      // Verify default relative date time before changing
+      expect(Jiffy.now().locale.relativeDateTime, JaRelativeDateTime());
+
+      // Execute
+      await Jiffy.setLocale('ja',
+          relativeDateTime: UpdatedJpRelativeDateTime());
+
+      // Verify
+      expect(Jiffy.now().locale.relativeDateTime.aboutAMonth(1),
+          "some months ago");
+    });
+
+    test('Should successfully get locale code', () async {
       // Setup
       await Jiffy.setLocale('ja');
       final jiffy = Jiffy.now();
@@ -253,7 +308,7 @@ void main() {
     group('Test available locales', () {
       test('Should successfully return a list of available locales', () {
         // Setup
-        final expectedSupportedLocales = supportedLocales();
+        final expectedSupportedLocales = dateTimeSymbolMap().keys.toList();
 
         // Execute
         final actualSupportedLocales = Jiffy.getSupportedLocales();
@@ -280,23 +335,10 @@ void main() {
       expect(actualLocaleStartOfWeek, expectedStartOfWeek);
     });
 
-    for (var testData in localeTestData()) {
-      test('Should successfully set expectedLocale', () async {
-        // Execute
-        await Jiffy.setLocale(testData['localeCode']);
-        final jiffy = Jiffy.now();
-
-        // Verify
-        final actualLocaleCode = jiffy.localeCode;
-        expect(actualLocaleCode, testData['expectedLocale'].code());
-      });
-    }
-
     test('Should throw Jiffy exception if locale is not supported', () async {
       // Setup
       final unknownLocaleCode = 'unknown_locale';
-      final expectedExceptionMessage = 'The locale `$unknownLocaleCode` is not '
-          'supported, please check here for a list of supported locales';
+      final expectedExceptionMessage = 'Invalid locale "$unknownLocaleCode"';
 
       // Execute and Verify
       expect(
@@ -425,7 +467,7 @@ void main() {
 
     test('Should successfully get day of week', () async {
       // Setup
-      await Jiffy.setLocale('en_us');
+      await Jiffy.setLocale('en_US');
       final jiffy = Jiffy.parseFromList([2022, 12, 5]);
 
       final expectedDayOfWeek = 2;
@@ -1101,215 +1143,6 @@ void main() {
       expect(jiffy1.hashCode, isNot(jiffy2.hashCode));
     });
   });
-}
-
-List<Map<String, dynamic>> localeTestData() {
-  return [
-    {
-      'localeCode': 'en',
-      'expectedLocale': EnLocale(),
-    },
-    {
-      'localeCode': 'en_us',
-      'expectedLocale': EnUsLocale(),
-    },
-    {
-      'localeCode': 'en_sg',
-      'expectedLocale': EnSgLocale(),
-    },
-    {
-      'localeCode': 'en_au',
-      'expectedLocale': EnAuLocale(),
-    },
-    {
-      'localeCode': 'en_ca',
-      'expectedLocale': EnCaLocale(),
-    },
-    {
-      'localeCode': 'en_gb',
-      'expectedLocale': EnGbLocale(),
-    },
-    {
-      'localeCode': 'en_ie',
-      'expectedLocale': EnIeLocale(),
-    },
-    {
-      'localeCode': 'en_il',
-      'expectedLocale': EnIlLocale(),
-    },
-    {
-      'localeCode': 'en_nz',
-      'expectedLocale': EnNzLocale(),
-    },
-    {
-      'localeCode': 'es',
-      'expectedLocale': EsLocale(),
-    },
-    {
-      'localeCode': 'es_do',
-      'expectedLocale': EsDoLocale(),
-    },
-    {
-      'localeCode': 'es_us',
-      'expectedLocale': EsUsLocale(),
-    },
-    {
-      'localeCode': 'fr',
-      'expectedLocale': FrLocale(),
-    },
-    {
-      'localeCode': 'fr_ch',
-      'expectedLocale': FrChLocale(),
-    },
-    {
-      'localeCode': 'fr_ca',
-      'expectedLocale': FrCaLocale(),
-    },
-    {
-      'localeCode': 'zh',
-      'expectedLocale': ZhLocale(),
-    },
-    {
-      'localeCode': 'zh_cn',
-      'expectedLocale': ZhCnLocale(),
-    },
-    {
-      'localeCode': 'zh_hk',
-      'expectedLocale': ZhHkLocale(),
-    },
-    {
-      'localeCode': 'zh_tw',
-      'expectedLocale': ZhTwLocale(),
-    },
-    {
-      'localeCode': 'de',
-      'expectedLocale': DeLocale(),
-    },
-    {
-      'localeCode': 'de_de',
-      'expectedLocale': DeDeLocale(),
-    },
-    {
-      'localeCode': 'de_at',
-      'expectedLocale': DeAtLocale(),
-    },
-    {
-      'localeCode': 'de_ch',
-      'expectedLocale': DeChLocale(),
-    },
-    {
-      'localeCode': 'it',
-      'expectedLocale': ItLocale(),
-    },
-    {
-      'localeCode': 'it_ch',
-      'expectedLocale': ItChLocale(),
-    },
-    {
-      'localeCode': 'ar',
-      'expectedLocale': ArLocale(),
-    },
-    {
-      'localeCode': 'ar_ly',
-      'expectedLocale': ArLyLocale(),
-    },
-    {
-      'localeCode': 'ar_dz',
-      'expectedLocale': ArDzLocale(),
-    },
-    {
-      'localeCode': 'ar_kw',
-      'expectedLocale': ArKwLocale(),
-    },
-    {
-      'localeCode': 'ar_sa',
-      'expectedLocale': ArSaLocale(),
-    },
-    {
-      'localeCode': 'ar_ma',
-      'expectedLocale': ArMaLocale(),
-    },
-    {
-      'localeCode': 'ar_tn',
-      'expectedLocale': ArTnLocale(),
-    },
-    {
-      'localeCode': 'az',
-      'expectedLocale': AzLocale(),
-    },
-    {
-      'localeCode': 'id',
-      'expectedLocale': IdLocale(),
-    },
-    {
-      'localeCode': 'ja',
-      'expectedLocale': JaLocale(),
-    },
-    {
-      'localeCode': 'ko',
-      'expectedLocale': KoLocale(),
-    },
-    {
-      'localeCode': 'ru',
-      'expectedLocale': RuLocale(),
-    },
-    {
-      'localeCode': 'uk',
-      'expectedLocale': UkLocale(),
-    },
-    {
-      'localeCode': 'hi',
-      'expectedLocale': HiLocale(),
-    },
-    {
-      'localeCode': 'hu',
-      'expectedLocale': HuLocale(),
-    },
-    {
-      'localeCode': 'hu_hu',
-      'expectedLocale': HuHuLocale(),
-    },
-    {
-      'localeCode': 'pt',
-      'expectedLocale': PtLocale(),
-    },
-    {
-      'localeCode': 'pt_br',
-      'expectedLocale': PtBrLocale(),
-    },
-    {
-      'localeCode': 'pl',
-      'expectedLocale': PlLocale(),
-    },
-    {
-      'localeCode': 'tr',
-      'expectedLocale': TrLocale(),
-    },
-    {
-      'localeCode': 'sv',
-      'expectedLocale': SvLocale(),
-    },
-    {
-      'localeCode': 'nb',
-      'expectedLocale': NbLocale(),
-    },
-    {
-      'localeCode': 'fa',
-      'expectedLocale': FaLocale(),
-    },
-    {
-      'localeCode': 'bn',
-      'expectedLocale': BnLocale(),
-    },
-    {
-      'localeCode': 'nl',
-      'expectedLocale': NlLocale(),
-    },
-    {
-      'localeCode': 'th',
-      'expectedLocale': ThLocale(),
-    },
-  ];
 }
 
 List<Map<String, dynamic>> defaultDisplayDateTimeFormatsTestData() {

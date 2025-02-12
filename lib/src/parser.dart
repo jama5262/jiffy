@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:jiffy/src/locale/ordinals.dart';
 
 import 'enums/unit.dart';
 import 'getter.dart';
@@ -17,7 +18,7 @@ class Parser {
         throw JiffyException('The provided pattern for input `$input` cannot '
             'be blank');
       }
-      final ordinals = locale.ordinals();
+      final ordinals = locale.ordinals;
       return _parseString(_replaceParseInput(input, ordinals),
               _replacePatternInput(pattern))
           .copyWith(isUtc: isUtc);
@@ -83,17 +84,18 @@ class Parser {
     return pattern.replaceFirst('do', 'd');
   }
 
-  String _replaceParseInput(String input, List<String> ordinals) {
+  String _replaceParseInput(String input, Ordinals ordinals) {
     return input
         .replaceFirst(' pm', ' PM')
         .replaceFirst(' am', ' AM')
         .replaceFirst(_matchesOrdinalDates(input, ordinals), '');
   }
 
-  String _matchesOrdinalDates(String input, List<String> ordinals) {
+  String _matchesOrdinalDates(String input, Ordinals ordinals) {
     final matches =
         // ignore: prefer_interpolation_to_compose_strings
-        RegExp(r'\d+\s*(' + ordinals.join('|') + ')').allMatches(input);
+        RegExp(r'\d+\s*(' + ordinals.asList().join('|') + ')')
+            .allMatches(input);
     return matches.isNotEmpty ? matches.first.group(1) ?? '' : '';
   }
 

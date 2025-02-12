@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/date_symbol_data_local.dart' as date_intl;
 
 import './default_display.dart';
 import './display.dart';
@@ -7,16 +7,19 @@ import './enums/start_of_week.dart';
 import './enums/unit.dart';
 import './getter.dart';
 import './locale/locale.dart';
-import './locale/locales/en_locale.dart';
-import './locale/supported_locales.dart' as supported_locales;
 import './manipulator.dart';
 import './parser.dart';
 import './query.dart';
 import './utils/jiffy_exception.dart';
+import './global/global_ordinals.dart';
+import './global/global_relative_date_time.dart';
+import './global/global_start_of_week.dart';
+import 'locale/ordinals.dart';
+import 'locale/relative_date_time.dart';
 
-/// Jiffy is a Flutter (Android, IOS and Web) date time package inspired by
-/// [momentjs](https://momentjs.com/) for parsing, manipulating, querying and
-/// formatting dates
+/// [Jiffy](https://github.com/jama5262/jiffy) is a
+/// Flutter (Android, IOS and Web) date time package for
+/// parsing, manipulating, querying and formatting dates
 class Jiffy {
   late final Getter _getter;
   late final DefaultDisplay _defaultDisplay;
@@ -28,11 +31,67 @@ class Jiffy {
   late Locale _locale;
   late final DateTime _dateTime;
 
-  Jiffy._internal(var input, {String? pattern, bool isUtc = false}) {
-    _initializeDependencies();
-    _initializeLocale();
-    _initializeDateTime(input, pattern, isUtc);
+  /// Sets the locale for this [Jiffy] instance based on the given [locale] string.
+  ///
+  /// If not provided, the default locale is `en_US`
+  ///
+  /// The [locale] parameter should be a valid string representation of a
+  /// supported locale, such as `'en_US'` or `'fr_FR'`. If the provided locale
+  /// is not supported, a [JiffyException] will be thrown.
+  ///
+  /// Example:
+  /// ```dart
+  /// await Jiffy.setLocale('en_US');
+  /// await Jiffy.setLocale('en_US', startOfWeek: StartOfWeek.monday);
+  /// ```
+  ///
+  /// Throws:
+  /// - [JiffyException] if the locale is not supported.
+  /// - [JiffyException] if an [ArgumentError] occurs during the process.
+  ///
+  /// Optional Parameters:
+  /// - [startOfWeek]: The first day of the week (e.g., `StartOfWeek.sunday`).
+  ///   If not provided, the default start of the week for the locale will be used.
+  /// - [ordinals]: A custom ordinal rule set for the locale.
+  ///   (e.g Ordinals(first: 'st', second: 'nd', third: 'rd', nth: 'th')).
+  ///   If not provided, the default ordinal rules will be used.
+  /// - [relativeDateTime]: Custom relative date-time formatting settings.
+  ///   (e.g, EnRelativeDateTime()). If not provided, the default relative
+  ///   date-time settings will be used.
+  static Future<void> setLocale(
+    String locale, {
+    StartOfWeek? startOfWeek,
+    Ordinals? ordinals,
+    RelativeDateTime? relativeDateTime,
+  }) async {
+    try {
+      final supportedLocale = Intl.verifiedLocale(locale,
+          (localeExists) => getSupportedLocales().contains(localeExists));
+
+      if (supportedLocale != null) {
+        Intl.defaultLocale = locale;
+        await date_intl.initializeDateFormatting();
+        defaultStartOfWeek = startOfWeek;
+        defaultOrdinals = ordinals;
+        defaultRelativeDateTime = relativeDateTime;
+      } else {
+        throw JiffyException('The locale `$locale` is not supported');
+      }
+    } on ArgumentError catch (e) {
+      throw JiffyException(e.message);
+    }
   }
+
+  /// Retrieves a list of supported locales in Jiffy.
+  ///
+  /// Example usage:
+  ///
+  /// ```dart
+  /// final supportLocales = Jiffy.getSupportedLocales();
+  /// print(supportLocales); // ['en_us', 'en', 'fr', ...]
+  /// ```
+  static List<String> getSupportedLocales() =>
+      date_intl.dateTimeSymbolMap().keys.toList();
 
   /// Constructs a new [Jiffy] instance by parsing a [String].
   ///
@@ -44,13 +103,20 @@ class Jiffy {
   /// * `'1997-09-23 11:18:12.946621'`
   /// * `'1997-09-23T11:18:12.947031'`
   ///
-  /// If [pattern] is provided, [string] should match the specified format.
+  /// If [pattern] is provided, [string] should match the
+  /// specified pattern format.
+  ///
+  /// This method also includes an optional [isUtc] parameter:
+  /// - If [isUtc] is `true`, the parsed date-time will be treated as UTC.
+  /// - If [isUtc] is `false` (default), the parsed date-time will be
+  /// treated as local time.
   ///
   /// Example usage:
   ///
   /// ```dart
   /// final jiffy1 = Jiffy.parse('1997-09-23');
   /// final jiffy2 = Jiffy.parse('1997 Sep 23th', pattern: 'yyyy MMM do');
+  /// final jiffy3 = Jiffy.parse('1997 Sep 23th', isUtc: true);
   /// ```
   ///
   /// Throws a [JiffyException] if the input [string] cannot be parsed.
@@ -75,9 +141,8 @@ class Jiffy {
   /// Constructs a new [Jiffy] instance from an existing [Jiffy] object.
   ///
   /// The resulting [Jiffy] object will have the same date and time values as
-  /// the provided [Jiffy] object. This can be useful if you need to create a
-  /// new [Jiffy] object based on an existing one, for example, to apply a
-  /// time zone offset or to format the date and time differently.
+  /// the provided [Jiffy] object. This can be useful if you need to clone a
+  /// new [Jiffy] object based on an existing one.
   ///
   /// Example usage:
   ///
@@ -87,7 +152,7 @@ class Jiffy {
   /// ```
   ///
   /// Alternatively, you can use the `clone` method of a [Jiffy] object to
-  /// create a new [Jiffy] object with the same values as the original.
+  /// create a new [Jiffy] object.
   ///
   /// ```dart
   /// final jiffy1 = Jiffy.now();
@@ -109,12 +174,18 @@ class Jiffy {
   /// will default to 1 and, hour, minute, second, millisecond, and microsecond
   /// will default to 0 if not provided).
   ///
+  /// This method also includes an optional [isUtc] parameter:
+  /// - If [isUtc] is `true`, the parsed date-time will be treated as UTC.
+  /// - If [isUtc] is `false` (default), the parsed date-time will be
+  /// treated as local time.
+  ///
   /// Example usage:
   ///
   /// ```dart
-  /// final jiffy = Jiffy.parseFromList([1997, 9, 23]);
+  /// final jiffy1 = Jiffy.parseFromList([1997, 9, 23]);
+  /// final jiffy2 = Jiffy.parseFromList([1997, 9, 23], isUtc: true);
   /// ```
-  /// Throws a [JiffyException] if the input [list] is empty.
+  /// Throws a [JiffyException] if the input [list] is invalid.
   factory Jiffy.parseFromList(List<int> list, {bool isUtc = false}) {
     return Jiffy._internal(list, isUtc: isUtc);
   }
@@ -131,15 +202,28 @@ class Jiffy {
   /// 'UNIT.MICROSECOND') are not provided, they default to the current
   /// date time value.
   ///
+  /// This method also includes an optional [isUtc] parameter:
+  /// - If [isUtc] is `true`, the parsed date-time will be treated as UTC.
+  /// - If [isUtc] is `false` (default), the parsed date-time will be
+  /// treated as local time.
+  ///
   /// Example usage:
   ///
   /// ```dart
-  /// final jiffy = Jiffy.parseFromMap(
+  /// final jiffy1 = Jiffy.parseFromMap(
   ///   {
   ///     Unit.YEAR: 1997,
   ///     Unit.MONTH: 9,
   ///     Unit.DAY: 23,
   ///   }
+  /// );
+  /// final jiffy2 = Jiffy.parseFromMap(
+  ///   {
+  ///     Unit.YEAR: 1997,
+  ///     Unit.MONTH: 9,
+  ///     Unit.DAY: 23,
+  ///   },
+  ///   isUtc: true
   /// );
   /// ```
   ///
@@ -154,9 +238,14 @@ class Jiffy {
   /// The [microsecondsSinceEpoch] represents the number of microseconds since
   /// epoch time, which is `January 1, 1970, 00:00:00 UTC`.
   ///
+  /// This method also includes an optional [isUtc] parameter:
+  /// - If [isUtc] is `true`, the parsed date-time will be treated as UTC.
+  /// - If [isUtc] is `false` (default), the parsed date-time will be
+  /// treated as local time.
+  ///
   /// ```dart
   /// final now = DateTime.now();
-  /// final jiffy = Jiffy.parseFromMicrosecondsSinceEpoch(now.microsecondsSinceEpoch);
+  /// final jiffy1 = Jiffy.parseFromMicrosecondsSinceEpoch(now.microsecondsSinceEpoch);
   /// ```
   factory Jiffy.parseFromMicrosecondsSinceEpoch(int microsecondsSinceEpoch,
       {bool isUtc = false}) {
@@ -170,6 +259,11 @@ class Jiffy {
   ///
   /// The [millisecondsSinceEpoch] represents the number of milliseconds since
   /// epoch time, which is `January 1, 1970, 00:00:00 UTC`.
+  ///
+  /// This method also includes an optional [isUtc] parameter:
+  /// - If [isUtc] is `true`, the parsed date-time will be treated as UTC.
+  /// - If [isUtc] is `false` (default), the parsed date-time will be
+  /// treated as local time.
   ///
   /// ```dart
   /// final now = DateTime.now();
@@ -189,6 +283,12 @@ class Jiffy {
   /// ```
   factory Jiffy.now() => Jiffy._internal(DateTime.now());
 
+  Jiffy._internal(var input, {String? pattern, bool isUtc = false}) {
+    _initializeDependencies();
+    _initializeLocale();
+    _initializeDateTime(input, pattern, isUtc);
+  }
+
   void _initializeDependencies() {
     _getter = Getter();
     _defaultDisplay = DefaultDisplay();
@@ -196,6 +296,15 @@ class Jiffy {
     _manipulator = Manipulator(_getter);
     _query = Query(_getter, _manipulator);
     _display = Display(_getter, _manipulator, _query);
+  }
+
+  void _initializeLocale() {
+    var currentLocale = Intl.getCurrentLocale();
+    _locale = Locale(
+        code: currentLocale,
+        startOfWeek: getStartOfWeek(currentLocale),
+        ordinals: getOrdinals(currentLocale),
+        relativeDateTime: getRelativeDateTime(currentLocale));
   }
 
   void _initializeDateTime(var input, String? pattern, bool isUtc) {
@@ -215,82 +324,35 @@ class Jiffy {
     }
   }
 
-  void _initializeLocale() {
-    var systemLocale = Intl.getCurrentLocale();
+  /// Returns the [Locale].
+  Locale get locale => _locale;
 
-    if (supported_locales.isLocalSupported(systemLocale)) {
-      _locale = supported_locales.getLocale(systemLocale);
-    } else {
-      // The locale `systemLocale` is not supported by Jiffy, hence '
-      // 'setting a default locale of `en_us`
-      _locale = EnUsLocale();
-    }
-  }
-
-  /// Returns the locale code for the current locale.
+  /// Returns the locale code for the current [Locale].
   ///
   /// The locale code is a string identifier that uniquely identifies a
-  /// Locale. Examples include "en-US" for English as used in the
-  /// United States, or "fr-CA" for French as used in Canada.
-  String get localeCode => _locale.code();
+  /// [Locale]. Examples include "en_US" for English as used in the
+  /// United States, or "fr_CA" for French as used in Canada.
+  @Deprecated("Use the [locale] to get the locale code")
+  String get localeCode => _locale.code;
 
   /// Returns a [StartOfWeek] enum value indicating the day on which the week
-  /// starts for the current locale.
+  /// starts for the current [Locale].
   ///
   /// The start of the week can vary by locale, with some starting on Sunday,
   /// and others starting on Monday or another day of the week.
-  StartOfWeek get localeStartOfWeek => _locale.startOfWeek();
+  @Deprecated("Use the [locale] to get the locale start of week")
+  StartOfWeek get localeStartOfWeek => _locale.startOfWeek;
 
-  /// Sets the locale for this [Jiffy] instance based on the [locale] provided.
+  /// Creates and returns a new [Jiffy] instance with the same date and time
+  /// as the original instance.
   ///
-  /// The [locale] parameter is expected to be a string representation of a
-  /// supported locale, such as 'en_US' or 'fr_FR'. If the [locale] provided
-  /// is not supported, a [JiffyException] will be thrown.
-  ///
-  /// ```dart
-  /// await Jiffy().setLocale('en_US');
-  /// ```
-  ///
-  /// Throws a [JiffyException] if the [locale] provided is not supported in
-  /// [Jiffy].
-  static Future<void> setLocale(String locale) async {
-    if (supported_locales.isLocalSupported(locale)) {
-      Intl.defaultLocale = locale;
-      await initializeDateFormatting();
-    } else {
-      // todo add github readme locale link to this exception and also
-      // update the doc comment
-      throw JiffyException('The locale `$locale` is not supported, '
-          'please check here for a list of supported locales');
-    }
-  }
-
-  /// Retrieves a list of supported locales in Jiffy.
-  ///
-  /// This static method returns a list of supported locales by invoking the
-  /// `getSupportedLocales()` method from the `supported_locales` module.
-  ///
-  /// The returned list contains strings representing the supported locales.
-  ///
-  /// Example usage:
-  ///
-  /// ```dart
-  /// final supportLocales = Jiffy.getSupportedLocales();
-  /// print(supportLocales); // ['en_us', 'en', 'fr', ...]
-  /// ```
-  static List<String> getSupportedLocales() =>
-      supported_locales.getSupportedLocales();
-
-  /// Returns a new [Jiffy] instance with the same date and time as the
-  /// original instance.
+  /// The cloned instance operates independently, meaning any modifications
+  /// to it will not affect the original.
   ///
   /// ```dart
   /// final originalJiffy = Jiffy();
   /// final newJiffy = originalJiffy.clone();
   /// ```
-  ///
-  /// The returned instance is not tied to the original instance, so
-  /// modifying the new instance will not affect the original.
   Jiffy clone() => Jiffy.parseFromDateTime(dateTime);
 
   Jiffy _clone(DateTime dateTime) =>
@@ -325,39 +387,38 @@ class Jiffy {
   /// Returns the date ranging from 1 to 31.
   int get date => _getter.date(dateTime);
 
-  /// Returns the day of the week according to the [Locale.startOfWeek()].
+  /// Returns the day of the week according to the [Locale.startOfWeek].
   ///
-  /// The return value is an integer between 1 and 7, where 1 represents the
-  /// [Locale.startOfWeek()]
+  /// The return value is an integer between 0 and 6, where index 0, is Monday
   ///
   /// By default, the day of the week is calculated based on the locale provided
-  /// during [Jiffy] initialization. If no locale was provided, it uses the
-  /// default `en_us` locale.
-  int get dayOfWeek => _getter.dayOfWeek(dateTime, _locale.startOfWeek());
+  /// on [Jiffy.setLocale(locale)]. If no locale was set, it uses the
+  /// default `en_US` locale.
+  int get dayOfWeek => _getter.dayOfWeek(dateTime, _locale.startOfWeek);
 
   /// Returns the number of days in the month.
   int get daysInMonth => _getter.daysInMonth(dateTime);
 
-  /// Returns the day of the year of this [Jiffy] instance.
+  /// Returns the day of the year.
   ///
   /// The returned value is an integer between 1 and 366, inclusive, where 1
   /// represents January 1st of the year and 366 represents December 31st of a
   /// leap year.
   int get dayOfYear => _getter.dayOfYear(dateTime);
 
-  /// Returns the week of the year based on the current [Locale]'s start of
-  /// week.
+  /// Returns the week number of the year based on the current [Locale]'s
+  /// defined start of the week.
   ///
-  /// The week of the year ranges from 1 to 53, where week 1 is the first week
-  /// that has at least [DateTime.daysPerWeek] days in the new year.
+  /// The week number ranges from 1 to 53, where week 1 is the first week
+  /// containing at least [DateTime.daysPerWeek] days in the new year.
   ///
-  /// For example, in the United States, weeks typically start on Sunday. If
-  /// date and time is a Monday in the second week of the year (For example,
-  /// 8 days after the start of the year), the method returns 2. On the other
-  /// hand, in France, weeks typically start on Monday. If date and time is a
-  /// Sunday in the first week of the year (For example, 6 days after the
-  /// start of the year), the method returns 1.
-  int get weekOfYear => _getter.weekOfYear(dateTime, _locale.startOfWeek());
+  /// Week calculation varies by locale:
+  /// - In the United States, weeks typically start on Sunday. For example,
+  ///   if the date falls on a Monday in the second week of the year (8 days
+  ///   after January 1st), this method returns `2`.
+  /// - In France, where weeks start on Monday, a date falling on a Sunday in
+  ///   the first week of the year (6 days after January 1st) would return `1`.
+  int get weekOfYear => _getter.weekOfYear(dateTime, _locale.startOfWeek);
 
   /// Returns the month of the year ranging from 1 to 12.
   int get month => _getter.month(dateTime);
@@ -473,7 +534,7 @@ class Jiffy {
   /// Returns a new [Jiffy] instance representing the start of the specified
   /// [unit] of time
   ///
-  /// [unit] must be one of the values in [Unit] enumeration.
+  /// [unit] must be one of the values in [Unit] enum.
   ///
   /// Example:
   ///
@@ -488,14 +549,14 @@ class Jiffy {
   /// ```
   Jiffy startOf(Unit unit) {
     final dateTime =
-        _manipulator.startOf(this.dateTime, unit, _locale.startOfWeek());
+        _manipulator.startOf(this.dateTime, unit, _locale.startOfWeek);
     return _clone(dateTime);
   }
 
   /// Returns a new [Jiffy] instance representing the end of the specified
   /// [unit] of time
   ///
-  /// [unit] must be one of the values in [Unit] enumeration.
+  /// [unit] must be one of the values in [Unit] enum.
   ///
   /// Example:
   ///
@@ -510,7 +571,7 @@ class Jiffy {
   /// ```
   Jiffy endOf(Unit unit) {
     final dateTime =
-        _manipulator.endOf(this.dateTime, unit, _locale.startOfWeek());
+        _manipulator.endOf(this.dateTime, unit, _locale.startOfWeek);
     return _clone(dateTime);
   }
 
@@ -814,10 +875,10 @@ class Jiffy {
   /// final jiffy2 = Jiffy(DateTime(2022, 2, 15, 12, 30, 0));
   ///
   /// // Calculate the difference between the two Jiffy instances in days
-  /// final diffInDays = jiffy1.diff(jiffy2, unit: Unit.DAY);
+  /// final diffInDays = jiffy2.diff(jiffy1, unit: Unit.DAY);
   ///
   /// print('Difference in days: $diffInDays');
-  /// // output: Difference in days: -14
+  /// // output: Difference in days: 14
   /// ```
   num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = false}) {
     return _display.diff(dateTime, jiffy.dateTime, unit, asFloat);
@@ -829,8 +890,7 @@ class Jiffy {
   /// The [unit] parameter specifies the unit of measurement to use when
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isBefore(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
-    return _query.isBefore(
-        dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
+    return _query.isBefore(dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -839,8 +899,7 @@ class Jiffy {
   /// The [unit] parameter specifies the unit of measurement to use when
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isAfter(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
-    return _query.isAfter(
-        dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
+    return _query.isAfter(dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -849,7 +908,7 @@ class Jiffy {
   /// The [unit] parameter specifies the unit of measurement to use when
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isSame(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
-    return _query.isSame(dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
+    return _query.isSame(dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -859,7 +918,7 @@ class Jiffy {
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isSameOrBefore(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSameOrBefore(
-        dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
+        dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -869,7 +928,7 @@ class Jiffy {
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isSameOrAfter(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSameOrAfter(
-        dateTime, jiffy.dateTime, unit, _locale.startOfWeek());
+        dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -880,16 +939,16 @@ class Jiffy {
   bool isBetween(Jiffy jiffyFrom, Jiffy jiffyTo,
       {Unit unit = Unit.microsecond}) {
     return _query.isBetween(dateTime, jiffyFrom.dateTime, jiffyTo.dateTime,
-        unit, _locale.startOfWeek());
+        unit, _locale.startOfWeek);
   }
-
-  /// Returns a boolean value indicating whether this [Jiffy] instance
-  /// represents a local date and time.
-  bool get isLocal => !isUtc;
 
   /// Returns a boolean value indicating whether this [Jiffy] instance
   /// represents a UTC date and time.
   bool get isUtc => Query.isUtc(dateTime);
+
+  /// Returns a boolean value indicating whether this [Jiffy] instance
+  /// represents a local date and time.
+  bool get isLocal => !isUtc;
 
   /// Returns a boolean value indicating whether the [Jiffy] instance
   /// provided falls on a leap year.

@@ -1,6 +1,5 @@
-import 'package:jiffy/src/enums/unit.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/locale/locales/en_locale.dart';
 import 'package:jiffy/src/parser.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
@@ -9,7 +8,11 @@ void main() {
   final getter = Getter();
   final underTest = Parser(getter);
 
-  final locale = EnLocale();
+  final locale = Locale(
+      code: "en",
+      ordinals: Ordinals(first: "st", second: "nd", third: "rd", nth: "th"),
+      startOfWeek: StartOfWeek.sunday,
+      relativeDateTime: EnRelativeDateTime());
 
   group('Test parsing datetime from string', () {
     for (var testData in fromStringWithPatternTestData()) {
