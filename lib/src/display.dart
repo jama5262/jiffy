@@ -24,7 +24,7 @@ class Display {
     final escapedPattern = _replaceEscapePattern(pattern);
     final newPattern = _replaceLocaleOrdinalDatePattern(
         escapedPattern, locale.ordinals.getOrdinal(_getter.date(dateTime)));
-    return DateFormat(newPattern).format(dateTime);
+    return DateFormat(newPattern, locale.code).format(dateTime);
   }
 
   String fromAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,

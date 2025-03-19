@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 import 'enums/start_of_week.dart';
+import 'locale/locale.dart';
 import 'query.dart';
 
 class Getter {
@@ -47,19 +48,19 @@ class Getter {
   int daysInMonth(DateTime dateTime) =>
       _daysInMonth(dateTime.year, dateTime.month);
 
-  int weekOfYear(DateTime dateTime, StartOfWeek startOfWeek) {
-    return ((dayOfYear(dateTime) - dayOfWeek(dateTime, startOfWeek) + 10) / 7)
+  int weekOfYear(DateTime dateTime, Locale locale) {
+    return ((dayOfYear(dateTime, locale) - dayOfWeek(dateTime, locale.startOfWeek) + 10) / 7)
         .floor();
   }
 
   int month(DateTime dateTime) => dateTime.month;
 
-  int quarterOfYear(DateTime dateTime) {
-    return int.parse(DateFormat('Q').format(dateTime));
+  int quarterOfYear(DateTime dateTime, Locale locale) {
+    return int.parse(DateFormat('Q', locale.code).format(dateTime));
   }
 
-  int dayOfYear(DateTime dateTime) {
-    return int.parse(DateFormat('D').format(dateTime));
+  int dayOfYear(DateTime dateTime, Locale locale) {
+    return int.parse(DateFormat('D', locale.code).format(dateTime));
   }
 
   int year(DateTime dateTime) => dateTime.year;

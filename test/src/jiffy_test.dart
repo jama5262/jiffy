@@ -13,7 +13,7 @@ class UpdatedJpRelativeDateTime extends JaRelativeDateTime {
 
 void main() {
   setUp(() async {
-    Jiffy.setLocale("en_US");
+    Jiffy.setLocale("en");
   });
 
   group('Test parsing and creating a Jiffy instance', () {
