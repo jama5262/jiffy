@@ -13,7 +13,7 @@ class UpdatedJpRelativeDateTime extends JaRelativeDateTime {
 
 void main() {
   setUp(() async {
-    Jiffy.setLocale("en_US");
+    Jiffy.setLocale("en");
   });
 
   group('Test parsing and creating a Jiffy instance', () {
@@ -291,20 +291,6 @@ void main() {
           "some months ago");
     });
 
-    test('Should successfully get locale code', () async {
-      // Setup
-      await Jiffy.setLocale('ja');
-      final jiffy = Jiffy.now();
-
-      final expectedLocaleCode = 'ja';
-
-      // Execute
-      final actualLocaleCode = jiffy.localeCode;
-
-      // Verify
-      expect(actualLocaleCode, expectedLocaleCode);
-    });
-
     group('Test available locales', () {
       test('Should successfully return a list of available locales', () {
         // Setup
@@ -319,20 +305,6 @@ void main() {
         // Verify
         expect(actualSupportedLocales, expectedSupportedLocales);
       });
-    });
-
-    test('Should successfully get start of week', () async {
-      // Setup
-      await Jiffy.setLocale('ja');
-      final jiffy = Jiffy.now();
-
-      final expectedStartOfWeek = StartOfWeek.sunday;
-
-      // Execute
-      final actualLocaleStartOfWeek = jiffy.localeStartOfWeek;
-
-      // Verify
-      expect(actualLocaleStartOfWeek, expectedStartOfWeek);
     });
 
     test('Should throw Jiffy exception if locale is not supported', () async {

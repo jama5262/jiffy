@@ -327,22 +327,6 @@ class Jiffy {
   /// Returns the [Locale].
   Locale get locale => _locale;
 
-  /// Returns the locale code for the current [Locale].
-  ///
-  /// The locale code is a string identifier that uniquely identifies a
-  /// [Locale]. Examples include "en_US" for English as used in the
-  /// United States, or "fr_CA" for French as used in Canada.
-  @Deprecated("Use the [locale] to get the locale code")
-  String get localeCode => _locale.code;
-
-  /// Returns a [StartOfWeek] enum value indicating the day on which the week
-  /// starts for the current [Locale].
-  ///
-  /// The start of the week can vary by locale, with some starting on Sunday,
-  /// and others starting on Monday or another day of the week.
-  @Deprecated("Use the [locale] to get the locale start of week")
-  StartOfWeek get localeStartOfWeek => _locale.startOfWeek;
-
   /// Creates and returns a new [Jiffy] instance with the same date and time
   /// as the original instance.
   ///
@@ -387,13 +371,16 @@ class Jiffy {
   /// Returns the date ranging from 1 to 31.
   int get date => _getter.date(dateTime);
 
-  /// Returns the day of the week according to the [Locale.startOfWeek].
+  /// Returns the day of the week based on the locale's start of the week.
   ///
-  /// The return value is an integer between 0 and 6, where index 0, is Monday
+  /// The returned value is an integer between 1 and 7, where:
+  /// - `1` corresponds to the start of the week (which could be Saturday,
+  /// Sunday, or Monday depending on the locale).
   ///
-  /// By default, the day of the week is calculated based on the locale provided
-  /// on [Jiffy.setLocale(locale)]. If no locale was set, it uses the
-  /// default `en_US` locale.
+  /// By default, the calculation of the day of the week follows the locale
+  /// set via [Jiffy.setLocale(locale)].
+  /// If no specific locale is set, the default locale `en_US` is used, where
+  /// Sunday is considered the first day of the week.
   int get dayOfWeek => _getter.dayOfWeek(dateTime, _locale.startOfWeek);
 
   /// Returns the number of days in the month.
@@ -404,7 +391,7 @@ class Jiffy {
   /// The returned value is an integer between 1 and 366, inclusive, where 1
   /// represents January 1st of the year and 366 represents December 31st of a
   /// leap year.
-  int get dayOfYear => _getter.dayOfYear(dateTime);
+  int get dayOfYear => _getter.dayOfYear(dateTime, _locale);
 
   /// Returns the week number of the year based on the current [Locale]'s
   /// defined start of the week.
@@ -418,13 +405,13 @@ class Jiffy {
   ///   after January 1st), this method returns `2`.
   /// - In France, where weeks start on Monday, a date falling on a Sunday in
   ///   the first week of the year (6 days after January 1st) would return `1`.
-  int get weekOfYear => _getter.weekOfYear(dateTime, _locale.startOfWeek);
+  int get weekOfYear => _getter.weekOfYear(dateTime, _locale);
 
   /// Returns the month of the year ranging from 1 to 12.
   int get month => _getter.month(dateTime);
 
   /// Returns the quarter on the year ranging from 1 to 4.
-  int get quarter => _getter.quarterOfYear(dateTime);
+  int get quarter => _getter.quarterOfYear(dateTime, _locale);
 
   /// Returns the year.
   int get year => _getter.year(dateTime);

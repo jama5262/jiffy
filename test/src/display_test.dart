@@ -13,11 +13,12 @@ void main() {
 
   final underTest = Display(getter, manipulator, query);
 
-  final locale = Locale(
-      code: "en",
-      ordinals: Ordinals(first: "st", second: "nd", third: "rd", nth: "th"),
-      startOfWeek: StartOfWeek.sunday,
-      relativeDateTime: EnRelativeDateTime());
+  late Locale locale;
+
+  setUp(() async {
+    Jiffy.setLocale("en");
+    locale = Jiffy.now().locale;
+  });
 
   test('Should successfully format datetime is iso when pattern not provided',
       () {

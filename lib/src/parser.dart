@@ -19,15 +19,17 @@ class Parser {
             'be blank');
       }
       final ordinals = locale.ordinals;
-      return _parseString(_replaceParseInput(input, ordinals),
+      return _parseString(locale.code, _replaceParseInput(input, ordinals),
               _replacePatternInput(pattern))
           .copyWith(isUtc: isUtc);
     }
 
     if (_matchesHyphenStringDateTime(input)) {
-      return _parseString(input, 'yyyy-MM-dd').copyWith(isUtc: isUtc);
+      return _parseString(locale.code, input, 'yyyy-MM-dd')
+          .copyWith(isUtc: isUtc);
     } else if (_matchesSlashStringDateTime(input)) {
-      return _parseString(input, 'yyyy/MM/dd').copyWith(isUtc: isUtc);
+      return _parseString(locale.code, input, 'yyyy/MM/dd')
+          .copyWith(isUtc: isUtc);
     } else if (_matchesDartStringDateTime(input) ||
         _matchesISOStringDateTime(input)) {
       return DateTime.parse(input).copyWith(isUtc: isUtc);
@@ -71,9 +73,9 @@ class Parser {
         .copyWith(isUtc: isUtc);
   }
 
-  DateTime _parseString(String input, String pattern) {
+  DateTime _parseString(String locale, String input, String pattern) {
     try {
-      return DateFormat(pattern).parse(input);
+      return DateFormat(pattern, locale).parse(input);
     } on FormatException catch (e) {
       throw JiffyException('Could not parse input `$input`, failed with the '
           'following error: ${e.toString()}');

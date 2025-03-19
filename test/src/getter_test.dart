@@ -1,9 +1,16 @@
+import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/enums/start_of_week.dart';
 import 'package:test/test.dart';
 
+final underTest = Getter();
+
+late Locale locale;
+
 void main() {
-  final underTest = Getter();
+  setUp(() async {
+    Jiffy.setLocale("en_US");
+    locale = Jiffy.now().locale;
+  });
 
   group('Test basic datetime getters', () {
     final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
@@ -134,9 +141,9 @@ void main() {
 
   group('Test getting datetime of', () {
     for (var testData in dayOfWeekTestData()) {
-      test('Should successfully get day of week for locales', () {
+      test('Should successfully get day of week', () {
         // Setup
-        final startOfWeek = StartOfWeek.monday;
+        final startOfWeek = testData['startOfWeek'];
 
         // Execute
         final actualDayOfWeek =
@@ -147,21 +154,11 @@ void main() {
       });
     }
 
-    for (var testData in dayOfWeekWithStartOfWeekTestData()) {
-      test('Should successfully get day of week for locales', () {
-        // Execute
-        final actualDayOfWeek =
-            underTest.dayOfWeek(testData['dateTime'], testData['startOfWeek']);
-
-        // Verify
-        expect(actualDayOfWeek, testData['expectedDayOfWeek']);
-      });
-    }
-
     for (var testData in dayOfYearTestData()) {
       test('Should successfully get day of year', () {
         // Execute
-        final actualDayOfYear = underTest.dayOfYear(testData['dateTime']);
+        final actualDayOfYear =
+            underTest.dayOfYear(testData['dateTime'], locale);
 
         // Verify
         expect(actualDayOfYear, testData['expectedDayOfYear']);
@@ -170,9 +167,13 @@ void main() {
 
     for (var testData in weekOfYearTestData()) {
       test('Should successfully get week of year', () {
+        // Setup
+        Jiffy.setLocale(locale.code, startOfWeek: testData['startOfWeek']);
+        final newLocale = Jiffy.now().locale;
+
         // Execute
         final actualWeekOfYear =
-            underTest.weekOfYear(testData['dateTime'], testData['startOfWeek']);
+            underTest.weekOfYear(testData['dateTime'], newLocale);
 
         // Verify
         expect(actualWeekOfYear, testData['expectedWeekOfYear']);
@@ -183,7 +184,7 @@ void main() {
       test('Should successfully get quarter of year', () {
         // Execute
         final actualQuarterOfYear =
-            underTest.quarterOfYear(testData['dateTime']);
+            underTest.quarterOfYear(testData['dateTime'], locale);
 
         // Verify
         expect(actualQuarterOfYear, testData['expectedQuarterOfYear']);
@@ -212,32 +213,110 @@ void main() {
 
 List<Map<String, dynamic>> dayOfWeekTestData() {
   return [
-    {'dateTime': DateTime(2022, 12, 5), 'expectedDayOfWeek': 1},
-    {'dateTime': DateTime(2022, 12, 6), 'expectedDayOfWeek': 2},
-    {'dateTime': DateTime(2022, 12, 7), 'expectedDayOfWeek': 3},
-    {'dateTime': DateTime(2022, 12, 8), 'expectedDayOfWeek': 4},
-    {'dateTime': DateTime(2022, 12, 9), 'expectedDayOfWeek': 5},
-    {'dateTime': DateTime(2022, 12, 10), 'expectedDayOfWeek': 6},
-    {'dateTime': DateTime(2022, 12, 11), 'expectedDayOfWeek': 7}
-  ];
-}
-
-List<Map<String, dynamic>> dayOfWeekWithStartOfWeekTestData() {
-  return [
+    {
+      'dateTime': DateTime(2022, 12, 5),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 3
+    },
+    {
+      'dateTime': DateTime(2022, 12, 6),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 4
+    },
+    {
+      'dateTime': DateTime(2022, 12, 7),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 5
+    },
+    {
+      'dateTime': DateTime(2022, 12, 8),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 6
+    },
+    {
+      'dateTime': DateTime(2022, 12, 9),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 7
+    },
+    {
+      'dateTime': DateTime(2022, 12, 10),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 1
+    },
+    {
+      'dateTime': DateTime(2022, 12, 11),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 2
+    },
+    {
+      'dateTime': DateTime(2022, 12, 5),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 2
+    },
+    {
+      'dateTime': DateTime(2022, 12, 6),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 3
+    },
+    {
+      'dateTime': DateTime(2022, 12, 7),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 4
+    },
+    {
+      'dateTime': DateTime(2022, 12, 8),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 5
+    },
+    {
+      'dateTime': DateTime(2022, 12, 9),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 6
+    },
+    {
+      'dateTime': DateTime(2022, 12, 10),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 7
+    },
+    {
+      'dateTime': DateTime(2022, 12, 11),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 1
+    },
     {
       'dateTime': DateTime(2022, 12, 5),
       'startOfWeek': StartOfWeek.monday,
       'expectedDayOfWeek': 1
     },
     {
-      'dateTime': DateTime(2022, 12, 4),
-      'startOfWeek': StartOfWeek.sunday,
-      'expectedDayOfWeek': 1
+      'dateTime': DateTime(2022, 12, 6),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 2
     },
     {
-      'dateTime': DateTime(2022, 12, 3),
-      'startOfWeek': StartOfWeek.saturday,
-      'expectedDayOfWeek': 1
+      'dateTime': DateTime(2022, 12, 7),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 3
+    },
+    {
+      'dateTime': DateTime(2022, 12, 8),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 4
+    },
+    {
+      'dateTime': DateTime(2022, 12, 9),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 5
+    },
+    {
+      'dateTime': DateTime(2022, 12, 10),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 6
+    },
+    {
+      'dateTime': DateTime(2022, 12, 11),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 7
     }
   ];
 }

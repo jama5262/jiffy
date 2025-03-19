@@ -8,11 +8,12 @@ void main() {
   final getter = Getter();
   final underTest = Parser(getter);
 
-  final locale = Locale(
-      code: "en",
-      ordinals: Ordinals(first: "st", second: "nd", third: "rd", nth: "th"),
-      startOfWeek: StartOfWeek.sunday,
-      relativeDateTime: EnRelativeDateTime());
+  late Locale locale;
+
+  setUp(() async {
+    Jiffy.setLocale("en");
+    locale = Jiffy.now().locale;
+  });
 
   group('Test parsing datetime from string', () {
     for (var testData in fromStringWithPatternTestData()) {
