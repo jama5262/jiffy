@@ -327,22 +327,6 @@ class Jiffy {
   /// Returns the [Locale].
   Locale get locale => _locale;
 
-  /// Returns the locale code for the current [Locale].
-  ///
-  /// The locale code is a string identifier that uniquely identifies a
-  /// [Locale]. Examples include "en_US" for English as used in the
-  /// United States, or "fr_CA" for French as used in Canada.
-  @Deprecated("Use the [locale] to get the locale code")
-  String get localeCode => _locale.code;
-
-  /// Returns a [StartOfWeek] enum value indicating the day on which the week
-  /// starts for the current [Locale].
-  ///
-  /// The start of the week can vary by locale, with some starting on Sunday,
-  /// and others starting on Monday or another day of the week.
-  @Deprecated("Use the [locale] to get the locale start of week")
-  StartOfWeek get localeStartOfWeek => _locale.startOfWeek;
-
   /// Creates and returns a new [Jiffy] instance with the same date and time
   /// as the original instance.
   ///

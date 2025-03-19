@@ -7,7 +7,6 @@ final underTest = Getter();
 late Locale locale;
 
 void main() {
-
   setUp(() async {
     Jiffy.setLocale("en_US");
     locale = Jiffy.now().locale;
@@ -158,7 +157,8 @@ void main() {
     for (var testData in dayOfYearTestData()) {
       test('Should successfully get day of year', () {
         // Execute
-        final actualDayOfYear = underTest.dayOfYear(testData['dateTime'], locale);
+        final actualDayOfYear =
+            underTest.dayOfYear(testData['dateTime'], locale);
 
         // Verify
         expect(actualDayOfYear, testData['expectedDayOfYear']);
@@ -213,27 +213,111 @@ void main() {
 
 List<Map<String, dynamic>> dayOfWeekTestData() {
   return [
-    {'dateTime': DateTime(2022, 12, 5), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 3},
-    {'dateTime': DateTime(2022, 12, 6), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 4},
-    {'dateTime': DateTime(2022, 12, 7), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 5},
-    {'dateTime': DateTime(2022, 12, 8), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 6},
-    {'dateTime': DateTime(2022, 12, 9), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 7},
-    {'dateTime': DateTime(2022, 12, 10), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 1},
-    {'dateTime': DateTime(2022, 12, 11), 'startOfWeek': StartOfWeek.saturday, 'expectedDayOfWeek': 2},
-    {'dateTime': DateTime(2022, 12, 5), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 2},
-    {'dateTime': DateTime(2022, 12, 6), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 3},
-    {'dateTime': DateTime(2022, 12, 7), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 4},
-    {'dateTime': DateTime(2022, 12, 8), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 5},
-    {'dateTime': DateTime(2022, 12, 9), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 6},
-    {'dateTime': DateTime(2022, 12, 10), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 7},
-    {'dateTime': DateTime(2022, 12, 11), 'startOfWeek': StartOfWeek.sunday, 'expectedDayOfWeek': 1},
-    {'dateTime': DateTime(2022, 12, 5), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 1},
-    {'dateTime': DateTime(2022, 12, 6), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 2},
-    {'dateTime': DateTime(2022, 12, 7), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 3},
-    {'dateTime': DateTime(2022, 12, 8), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 4},
-    {'dateTime': DateTime(2022, 12, 9), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 5},
-    {'dateTime': DateTime(2022, 12, 10), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 6},
-    {'dateTime': DateTime(2022, 12, 11), 'startOfWeek': StartOfWeek.monday, 'expectedDayOfWeek': 7}
+    {
+      'dateTime': DateTime(2022, 12, 5),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 3
+    },
+    {
+      'dateTime': DateTime(2022, 12, 6),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 4
+    },
+    {
+      'dateTime': DateTime(2022, 12, 7),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 5
+    },
+    {
+      'dateTime': DateTime(2022, 12, 8),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 6
+    },
+    {
+      'dateTime': DateTime(2022, 12, 9),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 7
+    },
+    {
+      'dateTime': DateTime(2022, 12, 10),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 1
+    },
+    {
+      'dateTime': DateTime(2022, 12, 11),
+      'startOfWeek': StartOfWeek.saturday,
+      'expectedDayOfWeek': 2
+    },
+    {
+      'dateTime': DateTime(2022, 12, 5),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 2
+    },
+    {
+      'dateTime': DateTime(2022, 12, 6),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 3
+    },
+    {
+      'dateTime': DateTime(2022, 12, 7),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 4
+    },
+    {
+      'dateTime': DateTime(2022, 12, 8),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 5
+    },
+    {
+      'dateTime': DateTime(2022, 12, 9),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 6
+    },
+    {
+      'dateTime': DateTime(2022, 12, 10),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 7
+    },
+    {
+      'dateTime': DateTime(2022, 12, 11),
+      'startOfWeek': StartOfWeek.sunday,
+      'expectedDayOfWeek': 1
+    },
+    {
+      'dateTime': DateTime(2022, 12, 5),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 1
+    },
+    {
+      'dateTime': DateTime(2022, 12, 6),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 2
+    },
+    {
+      'dateTime': DateTime(2022, 12, 7),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 3
+    },
+    {
+      'dateTime': DateTime(2022, 12, 8),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 4
+    },
+    {
+      'dateTime': DateTime(2022, 12, 9),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 5
+    },
+    {
+      'dateTime': DateTime(2022, 12, 10),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 6
+    },
+    {
+      'dateTime': DateTime(2022, 12, 11),
+      'startOfWeek': StartOfWeek.monday,
+      'expectedDayOfWeek': 7
+    }
   ];
 }
 

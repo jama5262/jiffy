@@ -25,9 +25,11 @@ class Parser {
     }
 
     if (_matchesHyphenStringDateTime(input)) {
-      return _parseString(locale.code, input, 'yyyy-MM-dd').copyWith(isUtc: isUtc);
+      return _parseString(locale.code, input, 'yyyy-MM-dd')
+          .copyWith(isUtc: isUtc);
     } else if (_matchesSlashStringDateTime(input)) {
-      return _parseString(locale.code, input, 'yyyy/MM/dd').copyWith(isUtc: isUtc);
+      return _parseString(locale.code, input, 'yyyy/MM/dd')
+          .copyWith(isUtc: isUtc);
     } else if (_matchesDartStringDateTime(input) ||
         _matchesISOStringDateTime(input)) {
       return DateTime.parse(input).copyWith(isUtc: isUtc);
