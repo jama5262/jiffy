@@ -59,11 +59,11 @@ class Getter {
   int month(DateTime dateTime) => dateTime.month;
 
   int quarterOfYear(DateTime dateTime, Locale locale) {
-    return int.parse(DateFormat('Q', locale.code).format(dateTime));
+    return _toInt(DateFormat('Q', locale.code).format(dateTime), locale);
   }
 
   int dayOfYear(DateTime dateTime, Locale locale) {
-    return int.parse(DateFormat('D', locale.code).format(dateTime));
+    return _toInt(DateFormat('D', locale.code).format(dateTime), locale);
   }
 
   int year(DateTime dateTime) => dateTime.year;
@@ -72,6 +72,10 @@ class Getter {
     var result = daysInMonthArray[month];
     if (month == 2 && Query.isLeapYear(year)) result++;
     return result;
+  }
+
+  int _toInt(String localeNumber, Locale locale) {
+    return NumberFormat.decimalPattern(locale.code).parse(localeNumber).toInt();
   }
 
   static final List<int> daysInMonthArray = List.from(

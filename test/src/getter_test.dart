@@ -165,6 +165,20 @@ void main() {
       });
     }
 
+    test('Should successfully get day of year for non-standard number symbols',
+        () async {
+      // Setup
+      await Jiffy.setLocale('bn');
+      final newLocale = Jiffy.now().locale;
+
+      // Execute
+      final actualDayOfYear =
+          underTest.dayOfYear(DateTime(1997, 9, 23), newLocale);
+
+      // Verify
+      expect(actualDayOfYear, 266);
+    });
+
     for (var testData in weekOfYearTestData()) {
       test('Should successfully get week of year', () {
         // Setup
@@ -190,6 +204,20 @@ void main() {
         expect(actualQuarterOfYear, testData['expectedQuarterOfYear']);
       });
     }
+
+    test('Should successfully get quarter for non-standard number symbols',
+        () async {
+      // Setup
+      await Jiffy.setLocale('bn');
+      final newLocale = Jiffy.now().locale;
+
+      // Execute
+      final actualDayOfYear =
+          underTest.quarterOfYear(DateTime(2022, 4, 1), newLocale);
+
+      // Verify
+      expect(actualDayOfYear, 2);
+    });
   });
 
   for (var testData in daysInMonthTestData()) {
