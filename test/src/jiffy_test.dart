@@ -309,8 +309,9 @@ void main() {
 
     test('Should throw Jiffy exception if locale is not supported', () async {
       // Setup
-      final unknownLocaleCode = 'unknown_locale';
-      final expectedExceptionMessage = 'Invalid locale "$unknownLocaleCode"';
+      final unknownLocaleCode = "unknown_locale";
+      final expectedExceptionMessage =
+          "The specified locale '$unknownLocaleCode' is not supported.";
 
       // Execute and Verify
       expect(

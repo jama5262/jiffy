@@ -1,6 +1,5 @@
 import 'package:quiver/core.dart';
 import '../../jiffy.dart';
-import '../utils/replace.dart';
 
 abstract class RelativeDateTime {
   String prefixAgo();
@@ -429,7 +428,7 @@ class ArRelativeDateTime extends RelativeDateTime {
     } else {
       result = '$minutes دقائق ';
     }
-    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
+    return replaceNum ? _replaceToLocaleNum(result, 'ar') : result;
   }
 
   @override
@@ -449,7 +448,7 @@ class ArRelativeDateTime extends RelativeDateTime {
     } else {
       result = '$hours ساعات ';
     }
-    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
+    return replaceNum ? _replaceToLocaleNum(result, 'ar') : result;
   }
 
   @override
@@ -469,7 +468,7 @@ class ArRelativeDateTime extends RelativeDateTime {
     } else {
       result = '$days ايام ';
     }
-    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
+    return replaceNum ? _replaceToLocaleNum(result, 'ar') : result;
   }
 
   @override
@@ -489,7 +488,7 @@ class ArRelativeDateTime extends RelativeDateTime {
     } else {
       result = '$months شهور ';
     }
-    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
+    return replaceNum ? _replaceToLocaleNum(result, 'ar') : result;
   }
 
   @override
@@ -509,7 +508,7 @@ class ArRelativeDateTime extends RelativeDateTime {
     } else {
       result = '$years أعوام ';
     }
-    return replaceNum ? replaceToLocaleNum(result, 'ar') : result;
+    return replaceNum ? _replaceToLocaleNum(result, 'ar') : result;
   }
 
   @override
@@ -542,7 +541,7 @@ class ArSaMaDzKwTnRelativeDateTime extends RelativeDateTime {
   @override
   String minutes(int minutes) {
     return replaceNum
-        ? replaceToLocaleNum('$minutes دقائق ', 'ar')
+        ? _replaceToLocaleNum('$minutes دقائق ', 'ar')
         : '$minutes دقائق ';
   }
 
@@ -552,7 +551,7 @@ class ArSaMaDzKwTnRelativeDateTime extends RelativeDateTime {
   @override
   String hours(int hours) {
     return replaceNum
-        ? replaceToLocaleNum('$hours ساعات ', 'ar')
+        ? _replaceToLocaleNum('$hours ساعات ', 'ar')
         : '$hours ساعات ';
   }
 
@@ -561,7 +560,9 @@ class ArSaMaDzKwTnRelativeDateTime extends RelativeDateTime {
 
   @override
   String days(int days) {
-    return replaceNum ? replaceToLocaleNum('$days أيام ', 'ar') : '$days أيام ';
+    return replaceNum
+        ? _replaceToLocaleNum('$days أيام ', 'ar')
+        : '$days أيام ';
   }
 
   @override
@@ -570,7 +571,7 @@ class ArSaMaDzKwTnRelativeDateTime extends RelativeDateTime {
   @override
   String months(int months) {
     return replaceNum
-        ? replaceToLocaleNum('$months أشهر ', 'ar')
+        ? _replaceToLocaleNum('$months أشهر ', 'ar')
         : '$months أشهر ';
   }
 
@@ -580,7 +581,7 @@ class ArSaMaDzKwTnRelativeDateTime extends RelativeDateTime {
   @override
   String years(int years) {
     return replaceNum
-        ? replaceToLocaleNum('$years سنوات ', 'ar')
+        ? _replaceToLocaleNum('$years سنوات ', 'ar')
         : '$years سنوات ';
   }
 
@@ -1447,7 +1448,7 @@ class FaRelativeDateTime extends RelativeDateTime {
   String minutes(int minutes) {
     String result;
     result = '$minutes دقیقه ';
-    return replaceToLocaleNum(result, 'fa');
+    return _replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -1457,7 +1458,7 @@ class FaRelativeDateTime extends RelativeDateTime {
   String hours(int hours) {
     String result;
     result = '$hours ساعت ';
-    return replaceToLocaleNum(result, 'fa');
+    return _replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -1467,7 +1468,7 @@ class FaRelativeDateTime extends RelativeDateTime {
   String days(int days) {
     String result;
     result = '$days روز ';
-    return replaceToLocaleNum(result, 'fa');
+    return _replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -1477,7 +1478,7 @@ class FaRelativeDateTime extends RelativeDateTime {
   String months(int months) {
     String result;
     result = '$months ماه ';
-    return replaceToLocaleNum(result, 'fa');
+    return _replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -1487,7 +1488,7 @@ class FaRelativeDateTime extends RelativeDateTime {
   String years(int years) {
     String result;
     result = '$years سال ';
-    return replaceToLocaleNum(result, 'fa');
+    return _replaceToLocaleNum(result, 'fa');
   }
 
   @override
@@ -1514,31 +1515,31 @@ class BnRelativeDateTime extends RelativeDateTime {
   String aboutAMinute(int minutes) => 'এক মিনিট';
 
   @override
-  String minutes(int minutes) => replaceToLocaleNum('$minutes মিনিট', 'bn');
+  String minutes(int minutes) => _replaceToLocaleNum('$minutes মিনিট', 'bn');
 
   @override
   String aboutAnHour(int minutes) => 'এক ঘন্টা';
 
   @override
-  String hours(int hours) => replaceToLocaleNum('$hours ঘন্টা', 'bn');
+  String hours(int hours) => _replaceToLocaleNum('$hours ঘন্টা', 'bn');
 
   @override
   String aDay(int hours) => 'এক দিন';
 
   @override
-  String days(int days) => replaceToLocaleNum('$days দিন', 'bn');
+  String days(int days) => _replaceToLocaleNum('$days দিন', 'bn');
 
   @override
   String aboutAMonth(int days) => 'এক মাস';
 
   @override
-  String months(int months) => replaceToLocaleNum('$months মাস', 'bn');
+  String months(int months) => _replaceToLocaleNum('$months মাস', 'bn');
 
   @override
   String aboutAYear(int year) => 'এক বছর';
 
   @override
-  String years(int years) => replaceToLocaleNum('$years বছর', 'bn');
+  String years(int years) => _replaceToLocaleNum('$years বছর', 'bn');
 
   @override
   String wordSeparator() => ' ';
@@ -1743,4 +1744,18 @@ class CsRelativeDateTime extends RelativeDateTime {
 
   @override
   String wordSeparator() => ' ';
+}
+
+String _replaceToLocaleNum(String input, String locale) {
+  var localeNumbers = {
+    'en': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    'ar': ['۰', '۱', '۲', '۳', '٤', '۵', '٦', '۷', '۸', '۹'],
+    'fa': ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
+    'bn': ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']
+  };
+  for (var i = 0; i < localeNumbers['en']!.length; i++) {
+    input =
+        input.replaceAll(localeNumbers['en']![i], localeNumbers[locale]![i]);
+  }
+  return input;
 }

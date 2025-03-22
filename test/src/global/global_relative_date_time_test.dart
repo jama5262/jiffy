@@ -1,6 +1,7 @@
 import 'package:jiffy/src/global/global_relative_date_time.dart';
 import 'package:jiffy/src/locale/relative_date_time.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
+import 'package:jiffy/src/utils/verify_locale.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -21,24 +22,17 @@ void main() {
       expect(result, mockRdt);
     });
 
-    test('Should return RelativeDateTime for supported locale (canonicalized)',
-        () {
-      // Execute
-      final result = getRelativeDateTime('zh_CN');
+    for (var testData in canonicalizedAndShortLocales()) {
+      test('Should return RelativeDateTime for supported locale', () {
+        // Execute
+        final result = getRelativeDateTime(testData['locale']);
 
-      // Verify
-      expect(result, isA<ZhCnRelativeDateTime>());
-    });
+        // Verify
+        expect(result, equals(testData['expectedRelativeDateTime']));
+      });
+    }
 
-    test('Should return RelativeDateTime for supported locale (short)', () {
-      // Execute
-      final result = getRelativeDateTime('zh_CH');
-
-      // Verify
-      expect(result, isA<ZhRelativeDateTime>());
-    });
-
-    test('Should return RelativeDateTime for specific locale', () {
+    test('Should return RelativeDateTime for pre set locales', () {
       // Setup
       final relativeDateTimes = {
         'en': EnRelativeDateTime(),
@@ -49,12 +43,7 @@ void main() {
         'de': DeRelativeDateTime(),
         'it': ItRelativeDateTime(),
         'ar': ArRelativeDateTime(true),
-        'ar_LY': ArRelativeDateTime(false),
         'ar_DZ': ArSaMaDzKwTnRelativeDateTime(false),
-        'ar_KW': ArSaMaDzKwTnRelativeDateTime(false),
-        'ar_SA': ArSaMaDzKwTnRelativeDateTime(true),
-        'ar_MA': ArSaMaDzKwTnRelativeDateTime(false),
-        'ar_TN': ArSaMaDzKwTnRelativeDateTime(false),
         'az': AzRelativeDateTime(),
         'id': IdRelativeDateTime(),
         'ja': JaRelativeDateTime(),
@@ -78,6 +67,9 @@ void main() {
 
       // Execute & Verify
       for (var entry in relativeDateTimes.entries) {
+        // Verify that the relative date time locales also exist in Intl locales
+        expect(() => verifyLocale(entry.key), returnsNormally);
+
         expect(getRelativeDateTime(entry.key), entry.value);
       }
     });
@@ -93,9 +85,19 @@ void main() {
               (e) => e.toString(),
               'message',
               contains(
-                  "Locale `$unsupportedLocale` is not supported for relative date formatting."))));
+                  "Locale `$unsupportedLocale` is not supported for relative date time formatting."))));
     });
   });
+}
+
+List<Map<String, dynamic>> canonicalizedAndShortLocales() {
+  return [
+    {'locale': 'en', 'expectedRelativeDateTime': EnRelativeDateTime()},
+    {'locale': 'en_us', 'expectedRelativeDateTime': EnRelativeDateTime()},
+    {'locale': 'en-US', 'expectedRelativeDateTime': EnRelativeDateTime()},
+    {'locale': 'en_US', 'expectedRelativeDateTime': EnRelativeDateTime()},
+    {'locale': 'en_XYZ', 'expectedRelativeDateTime': EnRelativeDateTime()}
+  ];
 }
 
 class MockRelativeDateTime extends EnRelativeDateTime {

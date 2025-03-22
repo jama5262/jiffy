@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart' as date_intl;
 
+import './utils/verify_locale.dart';
 import './default_display.dart';
 import './display.dart';
 import './enums/start_of_week.dart';
@@ -65,18 +66,12 @@ class Jiffy {
     RelativeDateTime? relativeDateTime,
   }) async {
     try {
-      final supportedLocale = Intl.verifiedLocale(locale,
-          (localeExists) => getSupportedLocales().contains(localeExists));
-
-      if (supportedLocale != null) {
-        Intl.defaultLocale = locale;
-        await date_intl.initializeDateFormatting();
-        defaultStartOfWeek = startOfWeek;
-        defaultOrdinals = ordinals;
-        defaultRelativeDateTime = relativeDateTime;
-      } else {
-        throw JiffyException('The locale `$locale` is not supported');
-      }
+      final supportedLocale = verifyLocale(locale);
+      Intl.defaultLocale = supportedLocale.NAME;
+      await date_intl.initializeDateFormatting();
+      defaultStartOfWeek = startOfWeek;
+      defaultOrdinals = ordinals;
+      defaultRelativeDateTime = relativeDateTime;
     } on ArgumentError catch (e) {
       throw JiffyException(e.message);
     }
@@ -90,8 +85,7 @@ class Jiffy {
   /// final supportLocales = Jiffy.getSupportedLocales();
   /// print(supportLocales); // ['en_us', 'en', 'fr', ...]
   /// ```
-  static List<String> getSupportedLocales() =>
-      date_intl.dateTimeSymbolMap().keys.toList();
+  static List<String> getSupportedLocales() => getSupportedIntlLocales();
 
   /// Constructs a new [Jiffy] instance by parsing a [String].
   ///
