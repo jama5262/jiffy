@@ -30,6 +30,30 @@ void main() {
     }
   });
 
+  test(
+      'Should successfully verify and accept different valid formated locale codes',
+      () {
+    // Setup
+    final locales = [
+      {'locale': 'en_US', 'expectedValidLocale': 'en_US'},
+      {'locale': 'en-US', 'expectedValidLocale': 'en_US'},
+      {'locale': 'en_us', 'expectedValidLocale': 'en_US'},
+      {'locale': 'en_US', 'expectedValidLocale': 'en_US'},
+      {'locale': 'EN-US', 'expectedValidLocale': 'en'},
+      {'locale': 'EN_US', 'expectedValidLocale': 'en'},
+      {'locale': 'EN_us', 'expectedValidLocale': 'en'},
+      {'locale': 'EN-us', 'expectedValidLocale': 'en'},
+      {'locale': 'en', 'expectedValidLocale': 'en'},
+      {'locale': 'EN', 'expectedValidLocale': 'en'}
+    ];
+
+    // Execute
+    for (var locale in locales) {
+      expect(verifyLocale(locale['locale']!).NAME,
+          equals(locale['expectedValidLocale']));
+    }
+  });
+
   test('Should successfully verify from a list of custom supported locales',
       () {
     // Setup
