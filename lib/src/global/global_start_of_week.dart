@@ -1,6 +1,5 @@
-import 'package:intl/date_symbol_data_local.dart' as date_intl;
-import 'package:jiffy/src/utils/jiffy_exception.dart';
-
+import '../utils/jiffy_exception.dart';
+import '../utils/verify_locale.dart';
 import '../enums/start_of_week.dart';
 
 StartOfWeek? _defaultStartOfWeek;
@@ -13,11 +12,7 @@ StartOfWeek getStartOfWeek(String locale) {
   if (_defaultStartOfWeek != null) {
     return _defaultStartOfWeek!;
   } else {
-    final supportedLocale = date_intl.dateTimeSymbolMap()[locale];
-
-    if (supportedLocale == null) {
-      throw JiffyException("The specified locale '$locale' is not supported.");
-    }
+    final supportedLocale = verifyLocale(locale);
 
     return switch (supportedLocale.FIRSTDAYOFWEEK) {
       0 => StartOfWeek.monday,

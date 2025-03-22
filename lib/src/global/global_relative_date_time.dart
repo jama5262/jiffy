@@ -1,7 +1,5 @@
-import 'package:intl/intl.dart';
-
+import '../utils/verify_locale.dart';
 import '../locale/relative_date_time.dart';
-import '../utils/jiffy_exception.dart';
 
 Map<String, RelativeDateTime> _relativeDateTime = {
   'en': EnRelativeDateTime(),
@@ -12,12 +10,7 @@ Map<String, RelativeDateTime> _relativeDateTime = {
   'de': DeRelativeDateTime(),
   'it': ItRelativeDateTime(),
   'ar': ArRelativeDateTime(true),
-  'ar_LY': ArRelativeDateTime(false),
   'ar_DZ': ArSaMaDzKwTnRelativeDateTime(false),
-  'ar_KW': ArSaMaDzKwTnRelativeDateTime(false),
-  'ar_SA': ArSaMaDzKwTnRelativeDateTime(true),
-  'ar_MA': ArSaMaDzKwTnRelativeDateTime(false),
-  'ar_TN': ArSaMaDzKwTnRelativeDateTime(false),
   'az': AzRelativeDateTime(),
   'id': IdRelativeDateTime(),
   'ja': JaRelativeDateTime(),
@@ -49,15 +42,15 @@ RelativeDateTime getRelativeDateTime(String locale) {
   if (_defaultRelativeDateTime != null) {
     return _defaultRelativeDateTime!;
   } else {
-    final canonicalizedLocale = Intl.canonicalizedLocale(locale);
-    final rdt1 = _relativeDateTime[canonicalizedLocale];
-    if (rdt1 != null) return rdt1;
+    final supportedLocale = verifyLocale(locale,
+        onLocaleExists: (localeExists) =>
+            _relativeDateTime.containsKey(localeExists),
+        onFailureMessage: _onFailureMessageLocaleNotSupported);
 
-    final shortLocale = Intl.shortLocale(locale);
-    final rdt2 = _relativeDateTime[shortLocale];
-    if (rdt2 != null) return rdt2;
-
-    throw JiffyException(
-        "Locale `$locale` is not supported for relative date formatting.");
+    return _relativeDateTime[supportedLocale.NAME]!;
   }
+}
+
+String _onFailureMessageLocaleNotSupported(String locale) {
+  return "Locale `$locale` is not supported for relative date time formatting.";
 }

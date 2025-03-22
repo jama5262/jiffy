@@ -1,6 +1,7 @@
 import 'package:jiffy/src/global/global_ordinals.dart';
 import 'package:jiffy/src/locale/ordinals.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
+import 'package:jiffy/src/utils/verify_locale.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -80,6 +81,9 @@ void main() {
 
       // Execute & Verify
       for (var entry in locales.entries) {
+        // Verify that the ordinal locales also exist in Intl locales
+        expect(() => verifyLocale(entry.key), returnsNormally);
+
         expect(getOrdinals(entry.key), entry.value);
       }
     });

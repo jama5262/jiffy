@@ -1,7 +1,5 @@
-import 'package:intl/intl.dart';
-
+import '../utils/verify_locale.dart';
 import '../locale/ordinals.dart';
-import '../utils/jiffy_exception.dart';
 
 Map<String, Ordinals> _builtInOrdinals = {
   'en': Ordinals(first: 'st', second: 'nd', third: 'rd', nth: 'th'),
@@ -42,10 +40,15 @@ Ordinals getOrdinals(String locale) {
   if (_defaultOrdinals != null) {
     return _defaultOrdinals!;
   } else {
-    final ordinals = _builtInOrdinals[Intl.shortLocale(locale)];
-    if (ordinals == null) {
-      throw JiffyException("Locale `$locale` is not supported for ordinals.");
-    }
-    return ordinals;
+    final supportedLocale = verifyLocale(locale,
+        onLocaleExists: (localeExists) =>
+            _builtInOrdinals.containsKey(localeExists),
+        onFailureMessage: _onFailureMessageLocaleNotSupported);
+
+    return _builtInOrdinals[supportedLocale.NAME]!;
   }
+}
+
+String _onFailureMessageLocaleNotSupported(String locale) {
+  return "Locale `$locale` is not supported for ordinals.";
 }
