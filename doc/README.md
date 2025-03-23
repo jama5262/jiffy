@@ -22,11 +22,15 @@ Jiffy.now().format(); // Returns an ISO 8601 formatted date-time
 You can create a Jiffy instance by parsing a string representation of a date.
 
 ```dart
-Jiffy.parse('2021-05-25'); // Standard date format (YYYY-MM-DD)
-Jiffy.parse('2021/05/25'); // Date format using slashes
-Jiffy.parse('2021-05-25 12:00:00.000'); // Date with time
-Jiffy.parse('2021-05-25T12:00:00.000'); // ISO date format
-Jiffy.parse('2021-05-25T12:00:00.000Z'); // ISO UTC format
+Jiffy.parse('2021/05/25'); // Standard date format (YYYY/MM/DD)
+
+Jiffy.parse('2021-05-25 12:00:00.000'); // Parse from Dart's DateTime to string format
+
+// ISO formats
+Jiffy.parse('2021-05-25'); // ISO Date format
+Jiffy.parse('2021-05-25T12:00:00.000'); // ISO date time format
+Jiffy.parse('2021-05-25T12:00:00.000Z'); // ISO date time UTC format
+Jiffy.parse('2021-05-25T12:00:00.000+02:00'); // ISO date time UTC offset format
 ```
 
 ## Parsing with Custom String Patterns

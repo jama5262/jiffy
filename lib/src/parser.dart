@@ -24,15 +24,11 @@ class Parser {
           .copyWith(isUtc: isUtc);
     }
 
-    if (_matchesHyphenStringDateTime(input)) {
-      return _parseString(locale.code, input, 'yyyy-MM-dd')
-          .copyWith(isUtc: isUtc);
-    } else if (_matchesSlashStringDateTime(input)) {
-      return _parseString(locale.code, input, 'yyyy/MM/dd')
-          .copyWith(isUtc: isUtc);
-    } else if (_matchesDartStringDateTime(input) ||
-        _matchesISOStringDateTime(input)) {
-      return DateTime.parse(input).copyWith(isUtc: isUtc);
+    if (_matchesSlashStringDateTime(input)) {
+      return _parseString(locale.code, input, 'yyyy/MM/dd');
+    } else if (_matchesIsoDateTime(input) ||
+        _matchesDartStringDateTime(input)) {
+      return DateTime.parse(input);
     } else {
       throw JiffyException(
           'Could not read date time of input `$input`, try using a pattern, '
@@ -93,18 +89,6 @@ class Parser {
         .replaceFirst(_matchesOrdinalDates(input, ordinals), '');
   }
 
-  String _matchesOrdinalDates(String input, Ordinals ordinals) {
-    final matches =
-        // ignore: prefer_interpolation_to_compose_strings
-        RegExp(r'\d+\s*(' + ordinals.asList().join('|') + ')')
-            .allMatches(input);
-    return matches.isNotEmpty ? matches.first.group(1) ?? '' : '';
-  }
-
-  bool _matchesHyphenStringDateTime(String input) {
-    return RegExp(r'\d{4}-\d{1,2}-\d{1,2}$').hasMatch(input);
-  }
-
   bool _matchesSlashStringDateTime(String input) {
     return RegExp(r'\d{4}/\d{1,2}/\d{1,2}$').hasMatch(input);
   }
@@ -115,9 +99,41 @@ class Parser {
         .hasMatch(input);
   }
 
-  bool _matchesISOStringDateTime(String input) {
-    return RegExp(
-            r'\d{4}-\d{1,2}-\d{1,2}T\d{1,2}(:\d{1,2})?(:\d{1,2})?(.\d+)?(Z?)$')
+  bool _matchesIsoDate(String input) {
+    return RegExp(r'\d{4}-\d{1,2}-\d{1,2}$').hasMatch(input);
+  }
+
+  bool _matchesIsoLocalDateTime(String input) {
+    return RegExp(r'^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+            r'T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]|60)(\.\d+)?)?$')
         .hasMatch(input);
+  }
+
+  bool _matchesIsoUtcDateTime(String input) {
+    return RegExp(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+            r'T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]|60)(\.\d+)?)?Z$')
+        .hasMatch(input);
+  }
+
+  bool _matchesIsoUtcOffsetDateTime(String input) {
+    return RegExp(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+            r'T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]|60)(\.\d+)?)?'
+            r'([+-](0[0-9]|1[0-4]):([0-5][0-9]))$')
+        .hasMatch(input);
+  }
+
+  bool _matchesIsoDateTime(String input) {
+    return _matchesIsoDate(input) ||
+        _matchesIsoLocalDateTime(input) ||
+        _matchesIsoUtcDateTime(input) ||
+        _matchesIsoUtcOffsetDateTime(input);
+  }
+
+  String _matchesOrdinalDates(String input, Ordinals ordinals) {
+    final matches =
+        // ignore: prefer_interpolation_to_compose_strings
+        RegExp(r'\d+\s*(' + ordinals.asList().join('|') + ')')
+            .allMatches(input);
+    return matches.isNotEmpty ? matches.first.group(1) ?? '' : '';
   }
 }

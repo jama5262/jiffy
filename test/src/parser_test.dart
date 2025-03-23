@@ -68,8 +68,8 @@ void main() {
               contains(expectedExceptionMessage))));
     });
 
-    for (var testData in fromStringWithBasicDateTimeTestData()) {
-      test('Should successfully parse basic datetime format', () {
+    for (var testData in fromStringWithSlashDateTimeTestData()) {
+      test('Should successfully parse slash datetime format', () {
         // Setup
         final pattern = null;
 
@@ -82,8 +82,22 @@ void main() {
       });
     }
 
-    for (var testData in fromStringWithDateTimeAndISOTestData()) {
+    for (var testData in fromStringWithIsoTestData()) {
       test('Should successfully parse DateTime and ISO datetime format', () {
+        // Setup
+        final pattern = null;
+
+        // Execute
+        final actualDateTime =
+            underTest.fromString(testData['input'], pattern, locale, false);
+
+        // Verify
+        expect(actualDateTime, testData['expected']);
+      });
+    }
+
+    for (var testData in fromStringWithDateTimeTestData()) {
+      test('Should successfully parse DateTime datetime format', () {
         // Setup
         final pattern = null;
 
@@ -271,27 +285,94 @@ List<Map<String, dynamic>> fromStringWithPatternAMAndPMTestData() {
   ];
 }
 
-List<Map<String, dynamic>> fromStringWithBasicDateTimeTestData() {
+List<Map<String, dynamic>> fromStringWithSlashDateTimeTestData() {
   return [
-    {'input': '1997-09-23', 'expected': DateTime(1997, 9, 23)},
-    {'input': '1997-9-02', 'expected': DateTime(1997, 9, 2)},
-    {'input': '1997-12-2', 'expected': DateTime(1997, 12, 2)},
     {'input': '2022/02/25', 'expected': DateTime(2022, 2, 25)},
     {'input': '2022/5/05', 'expected': DateTime(2022, 5, 5)},
     {'input': '2022/10/5', 'expected': DateTime(2022, 10, 5)}
   ];
 }
 
-List<Map<String, dynamic>> fromStringWithDateTimeAndISOTestData() {
+List<Map<String, dynamic>> fromStringWithIsoTestData() {
+  return [
+    {
+      'input': '2025-03-22',
+      'expected': DateTime(2025, 03, 22, 0, 0, 0, 0, 0),
+    },
+    {
+      'input': '2025-03-22T14:30',
+      'expected': DateTime(2025, 03, 22, 14, 30, 0, 0, 0),
+    },
+    {
+      'input': '2025-03-22T14:30:45',
+      'expected': DateTime(2025, 03, 22, 14, 30, 45, 0, 0),
+    },
+    {
+      'input': '2025-03-22T14:30:45.123',
+      'expected': DateTime(2025, 03, 22, 14, 30, 45, 123, 0),
+    },
+    {
+      'input': '2025-03-22T14:30:45.123876',
+      'expected': DateTime(2025, 03, 22, 14, 30, 45, 123, 876),
+    },
+    {
+      'input': '2025-03-22T14:30Z',
+      'expected': DateTime(2025, 03, 22, 14, 30, 0, 0, 0).copyWith(isUtc: true),
+    },
+    {
+      'input': '2025-03-22T14:30:45Z',
+      'expected':
+          DateTime(2025, 03, 22, 14, 30, 45, 0, 0).copyWith(isUtc: true),
+    },
+    {
+      'input': '2025-03-22T14:30:45.123Z',
+      'expected':
+          DateTime(2025, 03, 22, 14, 30, 45, 123, 0).copyWith(isUtc: true),
+    },
+    {
+      'input': '2025-03-22T14:30:45.123876Z',
+      'expected':
+          DateTime(2025, 03, 22, 14, 30, 45, 123, 876).copyWith(isUtc: true),
+    },
+    {
+      'input': '2025-03-22T14:00:00+00:00',
+      'expected': DateTime(2025, 03, 22, 14, 0, 0, 0, 0).copyWith(isUtc: true),
+    },
+    {
+      'input': '2025-03-22T15:00:00+01:00',
+      'expected': DateTime(2025, 03, 22, 14, 0, 0, 0, 0).copyWith(isUtc: true)
+    },
+    {
+      'input': '2025-03-22T09:00:00-05:00',
+      'expected': DateTime(2025, 03, 22, 14, 0, 0, 0, 0).copyWith(isUtc: true)
+    },
+    {
+      'input': '2025-03-22T19:30:00+05:30',
+      'expected': DateTime(2025, 03, 22, 14, 0, 0, 0, 0).copyWith(isUtc: true)
+    }
+  ];
+}
+
+List<Map<String, dynamic>> fromStringWithDateTimeTestData() {
   return [
     {
       'input': '2022-12-26 11:18:12.946621',
-      'expected': DateTime(2022, 12, 26, 11, 18, 12, 946, 621)
+      'expected': DateTime(2022, 12, 26, 11, 18, 12, 946, 621),
     },
     {
-      'input': '2022-12-26T11:18:12.947031',
-      'expected': DateTime(2022, 12, 26, 11, 18, 12, 947, 031)
-    }
+      'input': '2022-12-26 11:18:12.946',
+      'expected': DateTime(2022, 12, 26, 11, 18, 12, 946, 0),
+    },
+    {
+      'input': '2022-12-26 11:18:12.946Z',
+      'expected':
+          DateTime(2022, 12, 26, 11, 18, 12, 946, 0).copyWith(isUtc: true),
+    },
+    {
+      'input': '2022-12-26 11:18:12.946123Z',
+      'expected':
+          DateTime(2022, 12, 26, 11, 18, 12, 946, 123).copyWith(isUtc: true),
+    },
   ];
 }
 
