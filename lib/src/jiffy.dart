@@ -943,4 +943,7 @@ class Jiffy {
 
   @override
   int get hashCode => dateTime.hashCode;
+
+  @override
+  String toString() => _dateTime.toIso8601String();
 }
