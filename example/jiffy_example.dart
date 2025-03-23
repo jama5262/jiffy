@@ -1,10 +1,6 @@
 import 'package:jiffy/jiffy.dart';
 
 void main() {
-  final j = Jiffy.now().toUtc();
-  print(j);
-  print(j.dateTime);
-
   // Parsing and formatting date time
   // Parsing from string
   Jiffy.parse('1997/09/23').format(); // 1997-09-23T00:00:00.000
