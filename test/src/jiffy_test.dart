@@ -1080,7 +1080,7 @@ void main() {
     }
   });
 
-  group('Test equality and hashcode', () {
+  group('Test equality, hashcode and toString', () {
     for (var testData in equalityTestData()) {
       test("Should successfully test the equality of two Jiffy instances", () {
         // Setup
@@ -1114,6 +1114,15 @@ void main() {
 
       // Execute and Verify
       expect(jiffy1.hashCode, isNot(jiffy2.hashCode));
+    });
+
+    test('Should successfully return the toString in ISO format', () {
+      // Setup
+      final jiffy = Jiffy.parseFromList([1997, 9, 23, 22, 5, 33, 123, 456]);
+      final expectedFormat = '1997-09-23T22:05:33.123456';
+
+      // Execute and Verify
+      expect(jiffy.toString(), equals(expectedFormat));
     });
   });
 }
