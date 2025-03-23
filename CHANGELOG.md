@@ -1,3 +1,17 @@
+# 6.4.0
+
+## What's Changed
+* [JIFFY-293] Make locale settings configurable in Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/294
+* [JIFFY-297] Fix documentation by @jama5262 in https://github.com/jama5262/jiffy/pull/298
+* Bump lints from 3.0.0 to 5.1.1 by @dependabot in https://github.com/jama5262/jiffy/pull/291
+* JIFFY[257] - Fix: Use NumberFormat for locale-aware numeral parsing by @jama5262 in https://github.com/jama5262/jiffy/pull/299
+* JIFFY[300] - Fix Locale Code Validation: Normalize and Verify Supported Formats by @jama5262 in https://github.com/jama5262/jiffy/pull/301
+* JIFFY[281] - Add ISO 8601 String Parsing Support to Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/302
+* JIFFY[303] - Add toString Support for Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/304
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.3.2...v6.4.0
+
 # 6.3.2
 
 ## What's Changed

@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart' as date_intl;
 
-import './utils/verify_locale.dart';
 import './default_display.dart';
 import './display.dart';
 import './enums/start_of_week.dart';
@@ -15,8 +14,9 @@ import './utils/jiffy_exception.dart';
 import './global/global_ordinals.dart';
 import './global/global_relative_date_time.dart';
 import './global/global_start_of_week.dart';
-import 'locale/ordinals.dart';
-import 'locale/relative_date_time.dart';
+import './locale/ordinals.dart';
+import './locale/relative_date_time.dart';
+import './utils/verify_locale.dart';
 
 /// [Jiffy](https://github.com/jama5262/jiffy) is a
 /// Flutter (Android, IOS and Web) date time package for
@@ -945,5 +945,5 @@ class Jiffy {
   int get hashCode => dateTime.hashCode;
 
   @override
-  String toString() => _dateTime.toIso8601String();
+  String toString() => _display.formatToISO8601(_dateTime);
 }
