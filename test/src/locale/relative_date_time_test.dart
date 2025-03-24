@@ -2159,7 +2159,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 23),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 22),
-      'expectedRelativeDateTime': 'कुछ ही क्षण पहले',
+      'expectedRelativeDateTime': 'कुछ ही क्षण पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2171,7 +2171,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23, 12, 11, 45),
       'secondDateTime': DateTime(1997, 10, 23, 12, 11, 0),
-      'expectedRelativeDateTime': 'एक मिनट पहले',
+      'expectedRelativeDateTime': 'एक मिनट पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2183,7 +2183,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23, 12, 3),
       'secondDateTime': DateTime(1997, 10, 23, 12, 1),
-      'expectedRelativeDateTime': '2 मिनट पहले',
+      'expectedRelativeDateTime': '2 मिनट पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2195,7 +2195,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23, 12, 45),
       'secondDateTime': DateTime(1997, 10, 23, 12, 0),
-      'expectedRelativeDateTime': 'एक घंटा पहले',
+      'expectedRelativeDateTime': 'एक घंटा पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2207,7 +2207,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23, 3),
       'secondDateTime': DateTime(1997, 10, 23, 1),
-      'expectedRelativeDateTime': '2 घंटे पहले',
+      'expectedRelativeDateTime': '2 घंटे पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2219,7 +2219,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23),
       'secondDateTime': DateTime(1997, 10, 22),
-      'expectedRelativeDateTime': 'एक दिन पहले',
+      'expectedRelativeDateTime': 'एक दिन पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2231,7 +2231,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 10, 23),
       'secondDateTime': DateTime(1997, 10, 20),
-      'expectedRelativeDateTime': '3 दिन पहले',
+      'expectedRelativeDateTime': '3 दिन पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2243,7 +2243,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 11, 1),
       'secondDateTime': DateTime(1997, 10, 1),
-      'expectedRelativeDateTime': 'एक महीने पहले',
+      'expectedRelativeDateTime': 'एक महीने पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2255,7 +2255,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1997, 12),
       'secondDateTime': DateTime(1997, 10),
-      'expectedRelativeDateTime': '2 महीने पहले',
+      'expectedRelativeDateTime': '2 महीने पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2267,7 +2267,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1997),
-      'expectedRelativeDateTime': 'एक वर्ष पहले',
+      'expectedRelativeDateTime': 'एक वर्ष पूर्व',
     },
     {
       'relativeDateTime': HiRelativeDateTime(),
@@ -2279,7 +2279,7 @@ List<Map<String, dynamic>> localesRelativeDateTimeTestData() {
       'relativeDateTime': HiRelativeDateTime(),
       'firstDateTime': DateTime(1998),
       'secondDateTime': DateTime(1995),
-      'expectedRelativeDateTime': '3 वर्ष पहले',
+      'expectedRelativeDateTime': '3 वर्ष पूर्व',
     },
 
     // HuLocale

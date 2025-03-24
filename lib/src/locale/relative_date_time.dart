@@ -1051,7 +1051,7 @@ class HiRelativeDateTime extends RelativeDateTime {
   String prefixFromNow() => '';
 
   @override
-  String suffixAgo() => 'पहले';
+  String suffixAgo() => 'पूर्व';
 
   @override
   String suffixFromNow() => 'में';
