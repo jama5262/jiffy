@@ -1,3 +1,13 @@
+# 6.4.1
+
+## What's Changed
+* Update verify_locale.dart by @yoman07 in https://github.com/jama5262/jiffy/pull/309
+
+## New Contributors
+* @yoman07 made their first contribution in https://github.com/jama5262/jiffy/pull/309
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.0...v6.4.1
+
 # 6.4.0
 
 ## What's Changed

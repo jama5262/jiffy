@@ -1,6 +1,6 @@
 name: jiffy
 description: Jiffy is a Flutter (Android, IOS and Web) date time package for parsing, manipulating, querying and formatting dates and time
-version: 6.4.0
+version: 6.4.1
 homepage: https://github.com/jama5262/jiffy
 repository: https://github.com/jama5262/jiffy
 issue_tracker: https://github.com/jama5262/jiffy/issues
