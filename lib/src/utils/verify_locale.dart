@@ -5,7 +5,7 @@ import 'package:intl/date_symbols.dart';
 import 'jiffy_exception.dart';
 
 List<String> getSupportedIntlLocales() =>
-    date_intl.dateTimeSymbolMap().keys.toList();
+    date_intl.dateTimeSymbolMap().keys.cast<String>().toList();
 
 DateSymbols verifyLocale(String locale,
     {bool Function(String)? onLocaleExists,
