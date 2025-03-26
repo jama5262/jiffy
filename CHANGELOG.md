@@ -1,3 +1,14 @@
+# 6.4.2
+
+## What's Changed
+* Improved hindi translation for 'ago' by @aruhant in https://github.com/jama5262/jiffy/pull/307
+* [JIFFY-311] Rename Locale to JiffyLocale to avoid clashes with other packages by @jama5262 in https://github.com/jama5262/jiffy/pull/312
+
+## New Contributors
+* @aruhant made their first contribution in https://github.com/jama5262/jiffy/pull/307
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.1...v6.4.2
+
 # 6.4.1
 
 ## What's Changed
