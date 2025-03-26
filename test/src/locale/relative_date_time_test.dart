@@ -4,7 +4,7 @@ import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/display.dart';
 import 'package:jiffy/src/enums/start_of_week.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/locale/locale.dart';
+import 'package:jiffy/src/locale/jiffy_locale.dart';
 import 'package:jiffy/src/query.dart';
 
 import 'package:test/test.dart';
@@ -19,7 +19,7 @@ void main() {
     for (var testData in localesRelativeDateTimeTestData()) {
       test('Should successfully return correct relative date time', () {
         // Setup
-        final locale = Locale(
+        final locale = JiffyLocale(
             code: "en",
             ordinals:
                 Ordinals(first: "st", second: "nd", third: "rd", nth: "th"),

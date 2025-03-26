@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 import 'enums/start_of_week.dart';
-import 'locale/locale.dart';
+import 'locale/jiffy_locale.dart';
 import 'query.dart';
 
 class Getter {
@@ -48,7 +48,7 @@ class Getter {
   int daysInMonth(DateTime dateTime) =>
       _daysInMonth(dateTime.year, dateTime.month);
 
-  int weekOfYear(DateTime dateTime, Locale locale) {
+  int weekOfYear(DateTime dateTime, JiffyLocale locale) {
     return ((dayOfYear(dateTime, locale) -
                 dayOfWeek(dateTime, locale.startOfWeek) +
                 10) /
@@ -58,11 +58,11 @@ class Getter {
 
   int month(DateTime dateTime) => dateTime.month;
 
-  int quarterOfYear(DateTime dateTime, Locale locale) {
+  int quarterOfYear(DateTime dateTime, JiffyLocale locale) {
     return _toInt(DateFormat('Q', locale.code).format(dateTime), locale);
   }
 
-  int dayOfYear(DateTime dateTime, Locale locale) {
+  int dayOfYear(DateTime dateTime, JiffyLocale locale) {
     return _toInt(DateFormat('D', locale.code).format(dateTime), locale);
   }
 
@@ -74,7 +74,7 @@ class Getter {
     return result;
   }
 
-  int _toInt(String localeNumber, Locale locale) {
+  int _toInt(String localeNumber, JiffyLocale locale) {
     return NumberFormat.decimalPattern(locale.code).parse(localeNumber).toInt();
   }
 

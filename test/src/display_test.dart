@@ -13,7 +13,7 @@ void main() {
 
   final underTest = Display(getter, manipulator, query);
 
-  late Locale locale;
+  late JiffyLocale locale;
 
   setUp(() async {
     Jiffy.setLocale("en");

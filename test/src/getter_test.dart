@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 final underTest = Getter();
 
-late Locale locale;
+late JiffyLocale locale;
 
 void main() {
   setUp(() async {

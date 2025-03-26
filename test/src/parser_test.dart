@@ -8,7 +8,7 @@ void main() {
   final getter = Getter();
   final underTest = Parser(getter);
 
-  late Locale locale;
+  late JiffyLocale locale;
 
   setUp(() async {
     Jiffy.setLocale("en");
