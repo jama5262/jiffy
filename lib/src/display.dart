@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 import 'getter.dart';
 import 'enums/unit.dart';
-import 'locale/locale.dart';
+import 'locale/jiffy_locale.dart';
 import 'manipulator.dart';
 import 'query.dart';
 import 'utils/jiffy_exception.dart';
@@ -16,7 +16,7 @@ class Display {
 
   String formatToISO8601(DateTime dateTime) => dateTime.toIso8601String();
 
-  String format(DateTime dateTime, String pattern, Locale locale) {
+  String format(DateTime dateTime, String pattern, JiffyLocale locale) {
     if (pattern.trim().isEmpty) {
       throw JiffyException('The provided pattern for datetime `$dateTime` '
           'cannot be blank');
@@ -28,7 +28,7 @@ class Display {
   }
 
   String fromAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,
-      Locale locale, bool withPrefixAndSuffix) {
+      JiffyLocale locale, bool withPrefixAndSuffix) {
     final isFirstDateTimeSameOrAfterSecondDateTime = _query.isSameOrAfter(
         firstDateTime, secondDateTime, Unit.microsecond, locale.startOfWeek);
 
@@ -88,7 +88,7 @@ class Display {
   }
 
   String toAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,
-      Locale locale, bool withPrefixAndSuffix) {
+      JiffyLocale locale, bool withPrefixAndSuffix) {
     return fromAsRelativeDateTime(
         secondDateTime, firstDateTime, locale, withPrefixAndSuffix);
   }
