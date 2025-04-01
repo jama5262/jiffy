@@ -44,38 +44,42 @@ class Display {
     }
 
     final seconds =
-        diff(firstDateTime, secondDateTime, Unit.second, true).abs();
+        diff(firstDateTime, secondDateTime, Unit.second, true).abs().round();
     final minutes =
-        diff(firstDateTime, secondDateTime, Unit.minute, true).abs();
-    final hours = diff(firstDateTime, secondDateTime, Unit.hour, true).abs();
-    final days = diff(firstDateTime, secondDateTime, Unit.day, true).abs();
-    final months = diff(firstDateTime, secondDateTime, Unit.month, true).abs();
-    final years = diff(firstDateTime, secondDateTime, Unit.year, true).abs();
+        diff(firstDateTime, secondDateTime, Unit.minute, true).abs().round();
+    final hours =
+        diff(firstDateTime, secondDateTime, Unit.hour, true).abs().round();
+    final days =
+        diff(firstDateTime, secondDateTime, Unit.day, true).abs().round();
+    final months =
+        diff(firstDateTime, secondDateTime, Unit.month, true).abs().round();
+    final years =
+        diff(firstDateTime, secondDateTime, Unit.year, true).abs().round();
 
     String result;
 
     if (seconds < 45) {
-      result = relativeDateTime.lessThanOneMinute(seconds.round());
+      result = relativeDateTime.lessThanOneMinute(seconds);
     } else if (seconds < 90) {
-      result = relativeDateTime.aboutAMinute(minutes.round());
+      result = relativeDateTime.aboutAMinute(minutes);
     } else if (minutes < 45) {
-      result = relativeDateTime.minutes(minutes.round());
+      result = relativeDateTime.minutes(minutes);
     } else if (minutes < 90) {
-      result = relativeDateTime.aboutAnHour(minutes.round());
+      result = relativeDateTime.aboutAnHour(minutes);
     } else if (hours < 24) {
-      result = relativeDateTime.hours(hours.round());
+      result = relativeDateTime.hours(hours);
     } else if (hours < 48) {
-      result = relativeDateTime.aDay(hours.round());
+      result = relativeDateTime.aDay(hours);
     } else if (days < 30) {
-      result = relativeDateTime.days(days.round());
+      result = relativeDateTime.days(days);
     } else if (days < 60) {
-      result = relativeDateTime.aboutAMonth(days.round());
+      result = relativeDateTime.aboutAMonth(days);
     } else if (days < 365) {
-      result = relativeDateTime.months(months.round());
+      result = relativeDateTime.months(months);
     } else if (years < 2) {
-      result = relativeDateTime.aboutAYear(months.round());
+      result = relativeDateTime.aboutAYear(months);
     } else {
-      result = relativeDateTime.years(years.round());
+      result = relativeDateTime.years(years);
     }
 
     if (withPrefixAndSuffix) {
