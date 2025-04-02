@@ -3,7 +3,7 @@ import 'package:jiffy/src/locale/ordinals.dart';
 import '../enums/start_of_week.dart';
 import 'relative_date_time.dart';
 
-class JiffyLocale {
+class Locale {
   /// Returns the locale code for this locale.
   ///
   /// The locale code is a string identifier that uniquely identifies a
@@ -27,7 +27,7 @@ class JiffyLocale {
   /// a specific locale.
   final RelativeDateTime relativeDateTime;
 
-  JiffyLocale({
+  Locale({
     required this.code,
     required this.ordinals,
     required this.startOfWeek,

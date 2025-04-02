@@ -6,7 +6,7 @@ import './display.dart';
 import './enums/start_of_week.dart';
 import './enums/unit.dart';
 import './getter.dart';
-import './locale/jiffy_locale.dart';
+import './locale/locale.dart';
 import './manipulator.dart';
 import './parser.dart';
 import './query.dart';
@@ -29,7 +29,7 @@ class Jiffy {
   late final Query _query;
   late final Display _display;
 
-  late JiffyLocale _locale;
+  late Locale _locale;
   late final DateTime _dateTime;
 
   /// Sets the locale for this [Jiffy] instance based on the given [locale] string.
@@ -294,7 +294,7 @@ class Jiffy {
 
   void _initializeLocale() {
     var currentLocale = Intl.getCurrentLocale();
-    _locale = JiffyLocale(
+    _locale = Locale(
         code: currentLocale,
         startOfWeek: getStartOfWeek(currentLocale),
         ordinals: getOrdinals(currentLocale),
@@ -318,8 +318,17 @@ class Jiffy {
     }
   }
 
-  /// Returns the [JiffyLocale].
-  JiffyLocale get locale => _locale;
+  /// Returns the locale code
+  String get localeCode => _locale.code;
+
+  /// Returns the locale start of week
+  StartOfWeek get startOfWeek => _locale.startOfWeek;
+
+  /// Returns the locale ordinals
+  Ordinals get ordinals => _locale.ordinals;
+
+  /// Returns the locale relative date time
+  RelativeDateTime get relativeDateTime => _locale.relativeDateTime;
 
   /// Creates and returns a new [Jiffy] instance with the same date and time
   /// as the original instance.
@@ -387,7 +396,7 @@ class Jiffy {
   /// leap year.
   int get dayOfYear => _getter.dayOfYear(dateTime, _locale);
 
-  /// Returns the week number of the year based on the current [JiffyLocale]'s
+  /// Returns the week number of the year based on the current [Locale]'s
   /// defined start of the week.
   ///
   /// The week number ranges from 1 to 53, where week 1 is the first week

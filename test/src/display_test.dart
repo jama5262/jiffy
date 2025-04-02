@@ -1,23 +1,29 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/display.dart';
 import 'package:jiffy/src/getter.dart';
+import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/query.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
 
+final getter = Getter();
+final manipulator = Manipulator(getter);
+final query = Query(getter, manipulator);
+
+final underTest = Display(getter, manipulator, query);
+
+late Locale locale;
+
 void main() {
-  final getter = Getter();
-  final manipulator = Manipulator(getter);
-  final query = Query(getter, manipulator);
-
-  final underTest = Display(getter, manipulator, query);
-
-  late JiffyLocale locale;
-
   setUp(() async {
-    Jiffy.setLocale("en");
-    locale = Jiffy.now().locale;
+    Jiffy.setLocale("en_US");
+    final jiffy = Jiffy.now();
+    locale = Locale(
+        code: jiffy.localeCode,
+        ordinals: jiffy.ordinals,
+        startOfWeek: jiffy.startOfWeek,
+        relativeDateTime: jiffy.relativeDateTime);
   });
 
   test('Should successfully format datetime is iso when pattern not provided',

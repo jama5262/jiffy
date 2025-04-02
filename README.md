@@ -87,7 +87,7 @@ Jiffy.parse('1997/9/23')
 ## Locale Support
 ```dart
 // Get current locale code, by default it is en_us
-Jiffy.now().locale.code; // en_us
+Jiffy.now().localeCode; // en_US
 
 // Setting your preferred locale
 await Jiffy.setLocale('fr_ca');

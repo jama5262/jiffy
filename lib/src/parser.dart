@@ -3,7 +3,7 @@ import 'package:jiffy/src/locale/ordinals.dart';
 
 import 'enums/unit.dart';
 import 'getter.dart';
-import 'locale/jiffy_locale.dart';
+import 'locale/locale.dart';
 import 'utils/jiffy_exception.dart';
 
 class Parser {
@@ -12,7 +12,7 @@ class Parser {
   Parser(this._getter);
 
   DateTime fromString(
-      String input, String? pattern, JiffyLocale locale, bool isUtc) {
+      String input, String? pattern, Locale locale, bool isUtc) {
     if (pattern != null) {
       if (pattern.trim().isEmpty) {
         throw JiffyException('The provided pattern for input `$input` cannot '
