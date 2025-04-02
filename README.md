@@ -3,12 +3,12 @@
 [![Continuous Integration](https://github.com/jama5262/jiffy/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/jama5262/jiffy/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub.dev-v6.4.2-blue)](https://pub.dev/packages/jiffy/versions/6.4.2)
+[![Pub Version](https://img.shields.io/badge/pub.dev-v6.4.3-blue)](https://pub.dev/packages/jiffy/versions/6.4.3)
 ![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)
 
 Jiffy is a Flutter (Android, IOS and Web) date time package for parsing, manipulating, querying and formatting dates and time
 
-### [Full Documentation](https://github.com/jama5262/jiffy/tree/v6.4.2/doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy/install) | [ChangeLog](https://pub.dev/packages/jiffy/changelog) | [Examples](https://pub.dev/packages/jiffy/example)
+### [Full Documentation](https://github.com/jama5262/jiffy/tree/v6.4.3/doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy/install) | [ChangeLog](https://pub.dev/packages/jiffy/changelog) | [Examples](https://pub.dev/packages/jiffy/example)
 
 ### [Discussions](https://github.com/jama5262/jiffy/discussions)
 
