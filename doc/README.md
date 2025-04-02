@@ -712,11 +712,11 @@ jiffy1.from(jiffy2); // like a day ago, i think
 
 ## Getting the locale information
 ```dart
-final locale = Jiffy.now().locale; // Returns a jiffy locale object
-final localeCode = locale.code;
-final localeStartOfWeek = locale.startOfWeek;
-final localeCode = locale.ordinals;
-final localeCode = locale.relativeDateTime;
+final jiffy = Jiffy.now(); // Returns a jiffy locale object
+final localeCode = jiffy.localeCode;
+final localeStartOfWeek = jiffy.startOfWeek;
+final localeCode = jiffy.ordinals;
+final localeCode = jiffy.relativeDateTime;
 ```
 ## Getting a list of supported locales
 ```dart
