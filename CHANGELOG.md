@@ -1,3 +1,12 @@
+# 6.4.3
+
+## What's Changed
+* [JIFFY-308] Fix potential rounding error for relative date time calculations by @jama5262 in https://github.com/jama5262/jiffy/pull/314
+* [JIFFY-311] Remove the Locale object, no need to export publicly by @jama5262 in https://github.com/jama5262/jiffy/pull/315
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.2...v6.4.3
+
 # 6.4.2
 
 ## What's Changed
