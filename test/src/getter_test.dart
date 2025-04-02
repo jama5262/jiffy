@@ -1,15 +1,21 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/getter.dart';
+import 'package:jiffy/src/locale/locale.dart';
 import 'package:test/test.dart';
 
 final underTest = Getter();
 
-late JiffyLocale locale;
+late Locale locale;
 
 void main() {
   setUp(() async {
     Jiffy.setLocale("en_US");
-    locale = Jiffy.now().locale;
+    final jiffy = Jiffy.now();
+    locale = Locale(
+        code: jiffy.localeCode,
+        ordinals: jiffy.ordinals,
+        startOfWeek: jiffy.startOfWeek,
+        relativeDateTime: jiffy.relativeDateTime);
   });
 
   group('Test basic datetime getters', () {
@@ -169,7 +175,12 @@ void main() {
         () async {
       // Setup
       await Jiffy.setLocale('bn');
-      final newLocale = Jiffy.now().locale;
+      final jiffy = Jiffy.now();
+      final newLocale = Locale(
+          code: jiffy.localeCode,
+          ordinals: jiffy.ordinals,
+          startOfWeek: jiffy.startOfWeek,
+          relativeDateTime: jiffy.relativeDateTime);
 
       // Execute
       final actualDayOfYear =
@@ -183,7 +194,12 @@ void main() {
       test('Should successfully get week of year', () {
         // Setup
         Jiffy.setLocale(locale.code, startOfWeek: testData['startOfWeek']);
-        final newLocale = Jiffy.now().locale;
+        final jiffy = Jiffy.now();
+        final newLocale = Locale(
+            code: jiffy.localeCode,
+            ordinals: jiffy.ordinals,
+            startOfWeek: testData['startOfWeek'],
+            relativeDateTime: jiffy.relativeDateTime);
 
         // Execute
         final actualWeekOfYear =
@@ -209,7 +225,12 @@ void main() {
         () async {
       // Setup
       await Jiffy.setLocale('bn');
-      final newLocale = Jiffy.now().locale;
+      final jiffy = Jiffy.now();
+      final newLocale = Locale(
+          code: jiffy.localeCode,
+          ordinals: jiffy.ordinals,
+          startOfWeek: jiffy.startOfWeek,
+          relativeDateTime: jiffy.relativeDateTime);
 
       // Execute
       final actualDayOfYear =

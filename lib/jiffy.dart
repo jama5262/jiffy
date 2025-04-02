@@ -5,7 +5,6 @@ library;
 
 export 'src/enums/unit.dart';
 export 'src/enums/start_of_week.dart';
-export 'src/locale/jiffy_locale.dart';
 export 'src/locale/ordinals.dart';
 export 'src/locale/relative_date_time.dart';
 export 'src/jiffy.dart';

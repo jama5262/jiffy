@@ -234,14 +234,16 @@ void main() {
       final expectedLocaleRelativeDateTime = JaRelativeDateTime();
 
       // Execute
-      final actualLocale = jiffy.locale;
+      final actualLocaleCode = jiffy.localeCode;
+      final actualStartOfWeek = jiffy.startOfWeek;
+      final actualOrdinals = jiffy.ordinals;
+      final actualRelativeDateTime = jiffy.relativeDateTime;
 
       // Verify
-      expect(actualLocale.code, expectedLocaleCode);
-      expect(actualLocale.startOfWeek, expectedLocaleStartOfWeek);
-      expect(actualLocale.ordinals, equals(expectedLocaleOrdinals));
-      expect(actualLocale.relativeDateTime,
-          equals(expectedLocaleRelativeDateTime));
+      expect(actualLocaleCode, expectedLocaleCode);
+      expect(actualStartOfWeek, expectedLocaleStartOfWeek);
+      expect(actualOrdinals, equals(expectedLocaleOrdinals));
+      expect(actualRelativeDateTime, equals(expectedLocaleRelativeDateTime));
     });
 
     test('Should successfully configure start of week', () async {
@@ -249,13 +251,13 @@ void main() {
       await Jiffy.setLocale('ja');
 
       // Verify default start of week before changing
-      expect(Jiffy.now().locale.startOfWeek, StartOfWeek.sunday);
+      expect(Jiffy.now().startOfWeek, StartOfWeek.sunday);
 
       // Execute
       await Jiffy.setLocale('ja', startOfWeek: StartOfWeek.monday);
 
       // Verify
-      expect(Jiffy.now().locale.startOfWeek, StartOfWeek.monday);
+      expect(Jiffy.now().startOfWeek, StartOfWeek.monday);
     });
 
     test('Should successfully configure ordinals', () async {
@@ -263,7 +265,7 @@ void main() {
       await Jiffy.setLocale('en_US');
 
       // Verify default ordinal before changing
-      expect(Jiffy.now().locale.ordinals,
+      expect(Jiffy.now().ordinals,
           Ordinals(first: 'st', second: 'nd', third: 'rd', nth: 'th'));
 
       // Execute
@@ -272,7 +274,7 @@ void main() {
       await Jiffy.setLocale('ja', ordinals: newOrdinal);
 
       // Verify
-      expect(Jiffy.now().locale.ordinals, newOrdinal);
+      expect(Jiffy.now().ordinals, newOrdinal);
     });
 
     test('Should successfully configure relative date time', () async {
@@ -280,15 +282,14 @@ void main() {
       await Jiffy.setLocale('ja');
 
       // Verify default relative date time before changing
-      expect(Jiffy.now().locale.relativeDateTime, JaRelativeDateTime());
+      expect(Jiffy.now().relativeDateTime, JaRelativeDateTime());
 
       // Execute
       await Jiffy.setLocale('ja',
           relativeDateTime: UpdatedJpRelativeDateTime());
 
       // Verify
-      expect(Jiffy.now().locale.relativeDateTime.aboutAMonth(1),
-          "some months ago");
+      expect(Jiffy.now().relativeDateTime.aboutAMonth(1), "some months ago");
     });
 
     group('Test available locales', () {
