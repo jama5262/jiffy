@@ -21,3 +21,6 @@ doc/api/
 
 # Coverage
 coverage/
+
+# Temporary files
+flutter_linux_*.tar.xz
