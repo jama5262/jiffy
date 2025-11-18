@@ -29,7 +29,7 @@ Jiffy.parseFromMap({
   Unit.month: 10,
   Unit.day: 19,
   Unit.hour: 19
-}).yMMMMEEEEdjm; // Monday, October 19, 2020 7:14 PM
+}).dMMMMEEEEyjm; // Monday, October 19, 2020 7:14 PM
 
 //  You can also use pre-set formats
 Jiffy.parse('19, Jan 2021', pattern: 'dd, MMM yyyy').yMMMMd; // January 19, 2021
