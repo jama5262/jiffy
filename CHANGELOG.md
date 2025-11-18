@@ -1,3 +1,15 @@
+# 6.4.4
+
+## What's Changed
+* Bump lints from 5.1.1 to 6.0.0 by @dependabot[bot] in https://github.com/jama5262/jiffy/pull/320
+* Fix date format in README example by @michaelnjuguna in https://github.com/jama5262/jiffy/pull/328
+* [JIFFY-329] - Export JIffy exception by @jama5262 in https://github.com/jama5262/jiffy/pull/330
+
+## New Contributors
+* @michaelnjuguna made their first contribution in https://github.com/jama5262/jiffy/pull/328
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.3...v6.4.4
+
 # 6.4.3
 
 ## What's Changed
