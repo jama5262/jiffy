@@ -16,6 +16,17 @@ class Display {
 
   String formatToISO8601(DateTime dateTime) => dateTime.toIso8601String();
 
+  static String? _cachedLocale;
+  static final Map<String, DateFormat> _formatCache = {};
+
+  DateFormat _dateFormat(String pattern, String localeCode) {
+    if (localeCode != _cachedLocale) {
+      _formatCache.clear();
+      _cachedLocale = localeCode;
+    }
+    return _formatCache[pattern] ??= DateFormat(pattern, localeCode);
+  }
+
   String format(DateTime dateTime, String pattern, Locale locale) {
     if (pattern.trim().isEmpty) {
       throw JiffyException('The provided pattern for datetime `$dateTime` '
@@ -24,7 +35,7 @@ class Display {
     final escapedPattern = _replaceEscapePattern(pattern);
     final newPattern = _replaceLocaleOrdinalDatePattern(
         escapedPattern, locale.ordinals.getOrdinal(_getter.date(dateTime)));
-    return DateFormat(newPattern, locale.code).format(dateTime);
+    return _dateFormat(newPattern, locale.code).format(dateTime);
   }
 
   String fromAsRelativeDateTime(DateTime firstDateTime, DateTime secondDateTime,
