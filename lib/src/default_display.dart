@@ -1,91 +1,135 @@
 import 'package:intl/intl.dart';
 
 class DefaultDisplay {
-  String E(DateTime dateTime) => DateFormat.E().format(dateTime);
+  static String? _cachedLocale;
+  static final Map<String, DateFormat> _formatters = {};
+
+  DateFormat _format(String key, DateFormat Function() build) {
+    final currentLocale = Intl.getCurrentLocale();
+    if (currentLocale != _cachedLocale) {
+      _formatters.clear();
+      _cachedLocale = currentLocale;
+    }
+    return _formatters[key] ??= build();
+  }
+
+  String E(DateTime dateTime) =>
+      _format('E', () => DateFormat.E()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String EEEE(DateTime dateTime) => DateFormat.EEEE().format(dateTime);
+  String EEEE(DateTime dateTime) =>
+      _format('EEEE', () => DateFormat.EEEE()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String Md(DateTime dateTime) => DateFormat.Md().format(dateTime);
+  String Md(DateTime dateTime) =>
+      _format('Md', () => DateFormat.Md()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String MEd(DateTime dateTime) => DateFormat.MEd().format(dateTime);
+  String MEd(DateTime dateTime) =>
+      _format('MEd', () => DateFormat.MEd()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String MMM(DateTime dateTime) => DateFormat.MMM().format(dateTime);
+  String MMM(DateTime dateTime) =>
+      _format('MMM', () => DateFormat.MMM()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String MMMd(DateTime dateTime) => DateFormat.MMMd().format(dateTime);
+  String MMMd(DateTime dateTime) =>
+      _format('MMMd', () => DateFormat.MMMd()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String MMMEd(DateTime dateTime) => DateFormat.MMMEd().format(dateTime);
+  String MMMEd(DateTime dateTime) =>
+      _format('MMMEd', () => DateFormat.MMMEd()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String MMMM(DateTime dateTime) => DateFormat.MMMM().format(dateTime);
+  String MMMM(DateTime dateTime) =>
+      _format('MMMM', () => DateFormat.MMMM()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String MMMMd(DateTime dateTime) => DateFormat.MMMMd().format(dateTime);
+  String MMMMd(DateTime dateTime) =>
+      _format('MMMMd', () => DateFormat.MMMMd()).format(dateTime);
 
   // ignore: non_constant_identifier_names
   String MMMMEEEEd(DateTime dateTime) =>
-      DateFormat.MMMMEEEEd().format(dateTime);
+      _format('MMMMEEEEd', () => DateFormat.MMMMEEEEd()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String QQQ(DateTime dateTime) => DateFormat.QQQ().format(dateTime);
+  String QQQ(DateTime dateTime) =>
+      _format('QQQ', () => DateFormat.QQQ()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String QQQQ(DateTime dateTime) => DateFormat.QQQQ().format(dateTime);
+  String QQQQ(DateTime dateTime) =>
+      _format('QQQQ', () => DateFormat.QQQQ()).format(dateTime);
 
-  String yM(DateTime dateTime) => DateFormat.yM().format(dateTime);
+  String yM(DateTime dateTime) =>
+      _format('yM', () => DateFormat.yM()).format(dateTime);
 
-  String yMd(DateTime dateTime) => DateFormat.yMd().format(dateTime);
+  String yMd(DateTime dateTime) =>
+      _format('yMd', () => DateFormat.yMd()).format(dateTime);
 
-  String yMEd(DateTime dateTime) => DateFormat.yMEd().format(dateTime);
+  String yMEd(DateTime dateTime) =>
+      _format('yMEd', () => DateFormat.yMEd()).format(dateTime);
 
-  String yMMM(DateTime dateTime) => DateFormat.yMMM().format(dateTime);
+  String yMMM(DateTime dateTime) =>
+      _format('yMMM', () => DateFormat.yMMM()).format(dateTime);
 
-  String yMMMd(DateTime dateTime) => DateFormat.yMMMd().format(dateTime);
+  String yMMMd(DateTime dateTime) =>
+      _format('yMMMd', () => DateFormat.yMMMd()).format(dateTime);
 
   String yMMMdjm(DateTime dateTime) =>
-      DateFormat.yMMMd().add_jm().format(dateTime).replaceAll(' ', ' ');
+      _format('yMMMdjm', () => DateFormat.yMMMd().add_jm())
+          .format(dateTime)
+          .replaceAll(' ', ' ');
 
-  String yMMMEd(DateTime dateTime) => DateFormat.yMMMEd().format(dateTime);
+  String yMMMEd(DateTime dateTime) =>
+      _format('yMMMEd', () => DateFormat.yMMMEd()).format(dateTime);
 
   String yMMMEdjm(DateTime dateTime) =>
-      DateFormat.yMMMEd().add_jm().format(dateTime).replaceAll(' ', ' ');
+      _format('yMMMEdjm', () => DateFormat.yMMMEd().add_jm())
+          .format(dateTime)
+          .replaceAll(' ', ' ');
 
-  String yMMMM(DateTime dateTime) => DateFormat.yMMMM().format(dateTime);
+  String yMMMM(DateTime dateTime) =>
+      _format('yMMMM', () => DateFormat.yMMMM()).format(dateTime);
 
-  String yMMMMd(DateTime dateTime) => DateFormat.yMMMMd().format(dateTime);
+  String yMMMMd(DateTime dateTime) =>
+      _format('yMMMMd', () => DateFormat.yMMMMd()).format(dateTime);
 
   String yMMMMdjm(DateTime dateTime) =>
-      DateFormat.yMMMMd().add_jm().format(dateTime).replaceAll(' ', ' ');
+      _format('yMMMMdjm', () => DateFormat.yMMMMd().add_jm())
+          .format(dateTime)
+          .replaceAll(' ', ' ');
 
   String yMMMMEEEEd(DateTime dateTime) =>
-      DateFormat.yMMMMEEEEd().format(dateTime);
+      _format('yMMMMEEEEd', () => DateFormat.yMMMMEEEEd()).format(dateTime);
 
   String yMMMMEEEEdjm(DateTime dateTime) =>
-      DateFormat.yMMMMEEEEd().add_jm().format(dateTime).replaceAll(' ', ' ');
+      _format('yMMMMEEEEdjm', () => DateFormat.yMMMMEEEEd().add_jm())
+          .format(dateTime)
+          .replaceAll(' ', ' ');
 
-  String yQQQ(DateTime dateTime) => DateFormat.yQQQ().format(dateTime);
+  String yQQQ(DateTime dateTime) =>
+      _format('yQQQ', () => DateFormat.yQQQ()).format(dateTime);
 
-  String yQQQQ(DateTime dateTime) => DateFormat.yQQQQ().format(dateTime);
+  String yQQQQ(DateTime dateTime) =>
+      _format('yQQQQ', () => DateFormat.yQQQQ()).format(dateTime);
 
-  String H(DateTime dateTime) => DateFormat.H().format(dateTime);
+  String H(DateTime dateTime) =>
+      _format('H', () => DateFormat.H()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String Hm(DateTime dateTime) => DateFormat.Hm().format(dateTime);
+  String Hm(DateTime dateTime) =>
+      _format('Hm', () => DateFormat.Hm()).format(dateTime);
 
   // ignore: non_constant_identifier_names
-  String Hms(DateTime dateTime) => DateFormat.Hms().format(dateTime);
+  String Hms(DateTime dateTime) =>
+      _format('Hms', () => DateFormat.Hms()).format(dateTime);
 
   String j(DateTime dateTime) =>
-      DateFormat.j().format(dateTime).replaceAll(' ', ' ');
+      _format('j', () => DateFormat.j()).format(dateTime).replaceAll(' ', ' ');
 
   String jm(DateTime dateTime) =>
-      DateFormat.jm().format(dateTime).replaceAll(' ', ' ');
+      _format('jm', () => DateFormat.jm()).format(dateTime).replaceAll(' ', ' ');
 
   String jms(DateTime dateTime) =>
-      DateFormat.jms().format(dateTime).replaceAll(' ', ' ');
+      _format('jms', () => DateFormat.jms()).format(dateTime).replaceAll(' ', ' ');
 }
