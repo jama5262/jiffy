@@ -79,9 +79,6 @@ class Jiffy {
     }
   }
 
-  static Locale? _cachedLocale;
-  static String? _cachedLocaleCode;
-
   /// Retrieves a list of supported locales in Jiffy.
   ///
   /// Example usage:
@@ -296,6 +293,9 @@ class Jiffy {
     _query = Query(_getter, _manipulator);
     _display = Display(_getter, _manipulator, _query);
   }
+
+  static Locale? _cachedLocale;
+  static String? _cachedLocaleCode;
 
   void _initializeLocale() {
     final currentLocale = Intl.getCurrentLocale();
