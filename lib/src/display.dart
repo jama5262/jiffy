@@ -161,8 +161,10 @@ class Display {
     return pattern;
   }
 
+  static final RegExp _ordinalDatePattern = RegExp(''''[^']*'|(do)''');
+
   List<Match> _matchesOrdinalDatePattern(String input) {
-    return RegExp(''''[^']*'|(do)''')
+    return _ordinalDatePattern
         .allMatches(input)
         .where((match) => match.group(1) == 'do')
         .toList();
