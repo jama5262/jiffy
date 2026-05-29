@@ -4,7 +4,6 @@ import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/query.dart';
-import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
 
 final getter = Getter();

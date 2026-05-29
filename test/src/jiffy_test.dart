@@ -1,6 +1,5 @@
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
