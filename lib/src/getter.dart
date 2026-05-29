@@ -1,5 +1,3 @@
-import 'package:intl/intl.dart';
-
 import 'enums/start_of_week.dart';
 import 'locale/locale.dart';
 import 'query.dart';
@@ -49,21 +47,19 @@ class Getter {
       _daysInMonth(dateTime.year, dateTime.month);
 
   int weekOfYear(DateTime dateTime, Locale locale) {
-    return ((dayOfYear(dateTime, locale) -
-                dayOfWeek(dateTime, locale.startOfWeek) +
-                10) /
+    return ((dayOfYear(dateTime) - dayOfWeek(dateTime, locale.startOfWeek) + 10) /
             7)
         .floor();
   }
 
   int month(DateTime dateTime) => dateTime.month;
 
-  int quarterOfYear(DateTime dateTime, Locale locale) {
-    return _toInt(DateFormat('Q', locale.code).format(dateTime), locale);
-  }
+  int quarterOfYear(DateTime dateTime) => ((dateTime.month - 1) ~/ 3) + 1;
 
-  int dayOfYear(DateTime dateTime, Locale locale) {
-    return _toInt(DateFormat('D', locale.code).format(dateTime), locale);
+  int dayOfYear(DateTime dateTime) {
+    var doy = _cumulativeDaysBeforeMonth[dateTime.month - 1] + dateTime.day;
+    if (dateTime.month > 2 && Query.isLeapYear(dateTime.year)) doy++;
+    return doy;
   }
 
   int year(DateTime dateTime) => dateTime.year;
@@ -74,11 +70,11 @@ class Getter {
     return result;
   }
 
-  int _toInt(String localeNumber, Locale locale) {
-    return NumberFormat.decimalPattern(locale.code).parse(localeNumber).toInt();
-  }
-
   static final List<int> daysInMonthArray = List.from(
       [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      growable: false);
+
+  static final List<int> _cumulativeDaysBeforeMonth = List.from(
+      [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
       growable: false);
 }

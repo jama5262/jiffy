@@ -396,7 +396,7 @@ class Jiffy {
   /// The returned value is an integer between 1 and 366, inclusive, where 1
   /// represents January 1st of the year and 366 represents December 31st of a
   /// leap year.
-  int get dayOfYear => _getter.dayOfYear(dateTime, _locale);
+  int get dayOfYear => _getter.dayOfYear(dateTime);
 
   /// Returns the week number of the year based on the current [Locale]'s
   /// defined start of the week.
@@ -416,7 +416,7 @@ class Jiffy {
   int get month => _getter.month(dateTime);
 
   /// Returns the quarter on the year ranging from 1 to 4.
-  int get quarter => _getter.quarterOfYear(dateTime, _locale);
+  int get quarter => _getter.quarterOfYear(dateTime);
 
   /// Returns the year.
   int get year => _getter.year(dateTime);

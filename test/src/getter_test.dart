@@ -163,32 +163,12 @@ void main() {
     for (var testData in dayOfYearTestData()) {
       test('Should successfully get day of year', () {
         // Execute
-        final actualDayOfYear =
-            underTest.dayOfYear(testData['dateTime'], locale);
+        final actualDayOfYear = underTest.dayOfYear(testData['dateTime']);
 
         // Verify
         expect(actualDayOfYear, testData['expectedDayOfYear']);
       });
     }
-
-    test('Should successfully get day of year for non-standard number symbols',
-        () async {
-      // Setup
-      await Jiffy.setLocale('bn');
-      final jiffy = Jiffy.now();
-      final newLocale = Locale(
-          code: jiffy.localeCode,
-          ordinals: jiffy.ordinals,
-          startOfWeek: jiffy.startOfWeek,
-          relativeDateTime: jiffy.relativeDateTime);
-
-      // Execute
-      final actualDayOfYear =
-          underTest.dayOfYear(DateTime(1997, 9, 23), newLocale);
-
-      // Verify
-      expect(actualDayOfYear, 266);
-    });
 
     for (var testData in weekOfYearTestData()) {
       test('Should successfully get week of year', () {
@@ -214,31 +194,12 @@ void main() {
       test('Should successfully get quarter of year', () {
         // Execute
         final actualQuarterOfYear =
-            underTest.quarterOfYear(testData['dateTime'], locale);
+            underTest.quarterOfYear(testData['dateTime']);
 
         // Verify
         expect(actualQuarterOfYear, testData['expectedQuarterOfYear']);
       });
     }
-
-    test('Should successfully get quarter for non-standard number symbols',
-        () async {
-      // Setup
-      await Jiffy.setLocale('bn');
-      final jiffy = Jiffy.now();
-      final newLocale = Locale(
-          code: jiffy.localeCode,
-          ordinals: jiffy.ordinals,
-          startOfWeek: jiffy.startOfWeek,
-          relativeDateTime: jiffy.relativeDateTime);
-
-      // Execute
-      final actualDayOfYear =
-          underTest.quarterOfYear(DateTime(2022, 4, 1), newLocale);
-
-      // Verify
-      expect(actualDayOfYear, 2);
-    });
   });
 
   for (var testData in daysInMonthTestData()) {
