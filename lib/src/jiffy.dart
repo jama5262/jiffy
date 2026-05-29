@@ -22,12 +22,12 @@ import './utils/verify_locale.dart';
 /// Flutter (Android, IOS and Web) date time package for
 /// parsing, manipulating, querying and formatting dates
 class Jiffy {
-  late final Getter _getter;
-  late final DefaultDisplay _defaultDisplay;
-  late final Parser _parser;
-  late final Manipulator _manipulator;
-  late final Query _query;
-  late final Display _display;
+  static final Getter _getter = Getter();
+  static final DefaultDisplay _defaultDisplay = DefaultDisplay();
+  static final Parser _parser = Parser(_getter);
+  static final Manipulator _manipulator = Manipulator(_getter);
+  static final Query _query = Query(_getter, _manipulator);
+  static final Display _display = Display(_getter, _manipulator, _query);
 
   late Locale _locale;
   late final DateTime _dateTime;
@@ -280,18 +280,8 @@ class Jiffy {
   factory Jiffy.now() => Jiffy._internal(DateTime.now());
 
   Jiffy._internal(var input, {String? pattern, bool isUtc = false}) {
-    _initializeDependencies();
     _initializeLocale();
     _initializeDateTime(input, pattern, isUtc);
-  }
-
-  void _initializeDependencies() {
-    _getter = Getter();
-    _defaultDisplay = DefaultDisplay();
-    _parser = Parser(_getter);
-    _manipulator = Manipulator(_getter);
-    _query = Query(_getter, _manipulator);
-    _display = Display(_getter, _manipulator, _query);
   }
 
   static Locale? _cachedLocale;
