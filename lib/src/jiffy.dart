@@ -73,7 +73,6 @@ class Jiffy {
       defaultOrdinals = ordinals;
       defaultRelativeDateTime = relativeDateTime;
       _cachedLocale = null;
-      _cachedLocaleCode = null;
     } on ArgumentError catch (e) {
       throw JiffyException(e.message);
     }
@@ -280,27 +279,24 @@ class Jiffy {
   factory Jiffy.now() => Jiffy._internal(DateTime.now());
 
   Jiffy._internal(Object? input, {String? pattern, bool isUtc = false}) {
-    _initializeLocale();
+    _locale = _resolveLocale();
     _initializeDateTime(input, pattern, isUtc);
   }
 
   static Locale? _cachedLocale;
-  static String? _cachedLocaleCode;
-
-  void _initializeLocale() {
+  static Locale _resolveLocale() {
     final currentLocale = Intl.getCurrentLocale();
-    final cached = _cachedLocale;
-    if (cached != null && _cachedLocaleCode == currentLocale) {
-      _locale = cached;
-      return;
+    if (_cachedLocale case final cached? when cached.code == currentLocale) {
+      return cached; // Return the cached locale if it matches the current locale
     }
-    _locale = Locale(
-        code: currentLocale,
-        startOfWeek: getStartOfWeek(currentLocale),
-        ordinals: getOrdinals(currentLocale),
-        relativeDateTime: getRelativeDateTime(currentLocale));
-    _cachedLocale = _locale;
-    _cachedLocaleCode = currentLocale;
+
+    // Otherwise, create a new Locale instance and cache it for future use
+    return _cachedLocale = Locale(
+      code: currentLocale,
+      startOfWeek: getStartOfWeek(currentLocale),
+      ordinals: getOrdinals(currentLocale),
+      relativeDateTime: getRelativeDateTime(currentLocale),
+    );
   }
 
   void _initializeDateTime(Object? input, String? pattern, bool isUtc) {
