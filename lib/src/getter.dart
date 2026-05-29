@@ -47,7 +47,9 @@ class Getter {
       _daysInMonth(dateTime.year, dateTime.month);
 
   int weekOfYear(DateTime dateTime, Locale locale) {
-    return ((dayOfYear(dateTime) - dayOfWeek(dateTime, locale.startOfWeek) + 10) /
+    return ((dayOfYear(dateTime) -
+                dayOfWeek(dateTime, locale.startOfWeek) +
+                10) /
             7)
         .floor();
   }

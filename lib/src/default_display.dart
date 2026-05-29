@@ -127,9 +127,11 @@ class DefaultDisplay {
   String j(DateTime dateTime) =>
       _format('j', () => DateFormat.j()).format(dateTime).replaceAll(' ', ' ');
 
-  String jm(DateTime dateTime) =>
-      _format('jm', () => DateFormat.jm()).format(dateTime).replaceAll(' ', ' ');
+  String jm(DateTime dateTime) => _format('jm', () => DateFormat.jm())
+      .format(dateTime)
+      .replaceAll(' ', ' ');
 
-  String jms(DateTime dateTime) =>
-      _format('jms', () => DateFormat.jms()).format(dateTime).replaceAll(' ', ' ');
+  String jms(DateTime dateTime) => _format('jms', () => DateFormat.jms())
+      .format(dateTime)
+      .replaceAll(' ', ' ');
 }

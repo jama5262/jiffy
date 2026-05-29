@@ -236,7 +236,8 @@ void main() {
     print('');
     print('Notes:');
     print(' - ns/op is per-call cost (lower is better).');
-    print(' - "DateTime.now() (baseline)" is the raw Dart cost for comparison.');
+    print(
+        ' - "DateTime.now() (baseline)" is the raw Dart cost for comparison.');
     print(' - Measurements include warm-up; numbers are wall-clock and will');
     print('   vary with hardware, JIT state, and concurrent test load.');
   }, timeout: const Timeout(Duration(minutes: 2)));

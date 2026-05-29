@@ -61,12 +61,12 @@ void main() {
       final dtTo = DateTime(2025, 1, 1, 0, 1, 0);
 
       await Jiffy.setLocale('en');
-      final enRelative = Jiffy.parseFromDateTime(dtFrom)
-          .from(Jiffy.parseFromDateTime(dtTo));
+      final enRelative =
+          Jiffy.parseFromDateTime(dtFrom).from(Jiffy.parseFromDateTime(dtTo));
 
       await Jiffy.setLocale('fr');
-      final frRelative = Jiffy.parseFromDateTime(dtFrom)
-          .from(Jiffy.parseFromDateTime(dtTo));
+      final frRelative =
+          Jiffy.parseFromDateTime(dtFrom).from(Jiffy.parseFromDateTime(dtTo));
 
       expect(enRelative, isNot(equals(frRelative)));
     });
