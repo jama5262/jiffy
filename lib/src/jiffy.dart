@@ -72,10 +72,15 @@ class Jiffy {
       defaultStartOfWeek = startOfWeek;
       defaultOrdinals = ordinals;
       defaultRelativeDateTime = relativeDateTime;
+      _cachedLocale = null;
+      _cachedLocaleCode = null;
     } on ArgumentError catch (e) {
       throw JiffyException(e.message);
     }
   }
+
+  static Locale? _cachedLocale;
+  static String? _cachedLocaleCode;
 
   /// Retrieves a list of supported locales in Jiffy.
   ///
@@ -293,12 +298,19 @@ class Jiffy {
   }
 
   void _initializeLocale() {
-    var currentLocale = Intl.getCurrentLocale();
+    final currentLocale = Intl.getCurrentLocale();
+    final cached = _cachedLocale;
+    if (cached != null && _cachedLocaleCode == currentLocale) {
+      _locale = cached;
+      return;
+    }
     _locale = Locale(
         code: currentLocale,
         startOfWeek: getStartOfWeek(currentLocale),
         ordinals: getOrdinals(currentLocale),
         relativeDateTime: getRelativeDateTime(currentLocale));
+    _cachedLocale = _locale;
+    _cachedLocaleCode = currentLocale;
   }
 
   void _initializeDateTime(var input, String? pattern, bool isUtc) {
