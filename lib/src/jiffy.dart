@@ -279,7 +279,7 @@ class Jiffy {
   /// ```
   factory Jiffy.now() => Jiffy._internal(DateTime.now());
 
-  Jiffy._internal(var input, {String? pattern, bool isUtc = false}) {
+  Jiffy._internal(Object? input, {String? pattern, bool isUtc = false}) {
     _initializeLocale();
     _initializeDateTime(input, pattern, isUtc);
   }
@@ -303,11 +303,11 @@ class Jiffy {
     _cachedLocaleCode = currentLocale;
   }
 
-  void _initializeDateTime(var input, String? pattern, bool isUtc) {
+  void _initializeDateTime(Object? input, String? pattern, bool isUtc) {
     if (input is DateTime) {
-      _dateTime = _getter.dateTime(input);
+      _dateTime = input;
     } else if (input is Jiffy) {
-      _dateTime = input.dateTime;
+      _dateTime = input._dateTime;
     } else if (input is String) {
       _dateTime = _parser.fromString(input, pattern, _locale, isUtc);
     } else if (input is List<int>) {
@@ -344,37 +344,36 @@ class Jiffy {
   /// ```
   Jiffy clone() => Jiffy.parseFromDateTime(dateTime);
 
-  Jiffy _clone(DateTime dateTime) =>
-      Jiffy.parseFromDateTime(_getter.dateTime(dateTime));
+  Jiffy _clone(DateTime dateTime) => Jiffy.parseFromDateTime(dateTime);
 
   /// Returns a new [DateTime] instance of the [Jiffy] object.
   DateTime get dateTime => _getter.dateTime(_dateTime);
 
   /// Returns the microsecond ranging from 0 to 999.
-  int get microsecond => _getter.microsecond(dateTime);
+  int get microsecond => _getter.microsecond(_dateTime);
 
   /// Returns the number of microseconds since epoch time
   /// `January 1, 1970, 00:00:00 UTC`.
-  int get microsecondsSinceEpoch => _getter.microsecondsSinceEpoch(dateTime);
+  int get microsecondsSinceEpoch => _getter.microsecondsSinceEpoch(_dateTime);
 
   /// Returns the millisecond ranging from 0 to 999.
-  int get millisecond => _getter.millisecond(dateTime);
+  int get millisecond => _getter.millisecond(_dateTime);
 
   /// Returns the number of milliseconds since epoch time
   /// `January 1, 1970, 00:00:00 UTC`.
-  int get millisecondsSinceEpoch => _getter.millisecondsSinceEpoch(dateTime);
+  int get millisecondsSinceEpoch => _getter.millisecondsSinceEpoch(_dateTime);
 
   /// Returns the second ranging from 0 to 59.
-  int get second => _getter.second(dateTime);
+  int get second => _getter.second(_dateTime);
 
   /// Returns the minute ranging from 0 to 59.
-  int get minute => _getter.minute(dateTime);
+  int get minute => _getter.minute(_dateTime);
 
   /// Returns the hour ranging from 0 to 23.
-  int get hour => _getter.hour(dateTime);
+  int get hour => _getter.hour(_dateTime);
 
   /// Returns the date ranging from 1 to 31.
-  int get date => _getter.date(dateTime);
+  int get date => _getter.date(_dateTime);
 
   /// Returns the day of the week based on the locale's start of the week.
   ///
@@ -386,17 +385,17 @@ class Jiffy {
   /// set via [Jiffy.setLocale(locale)].
   /// If no specific locale is set, the default locale `en_US` is used, where
   /// Sunday is considered the first day of the week.
-  int get dayOfWeek => _getter.dayOfWeek(dateTime, _locale.startOfWeek);
+  int get dayOfWeek => _getter.dayOfWeek(_dateTime, _locale.startOfWeek);
 
   /// Returns the number of days in the month.
-  int get daysInMonth => _getter.daysInMonth(dateTime);
+  int get daysInMonth => _getter.daysInMonth(_dateTime);
 
   /// Returns the day of the year.
   ///
   /// The returned value is an integer between 1 and 366, inclusive, where 1
   /// represents January 1st of the year and 366 represents December 31st of a
   /// leap year.
-  int get dayOfYear => _getter.dayOfYear(dateTime);
+  int get dayOfYear => _getter.dayOfYear(_dateTime);
 
   /// Returns the week number of the year based on the current [Locale]'s
   /// defined start of the week.
@@ -410,16 +409,16 @@ class Jiffy {
   ///   after January 1st), this method returns `2`.
   /// - In France, where weeks start on Monday, a date falling on a Sunday in
   ///   the first week of the year (6 days after January 1st) would return `1`.
-  int get weekOfYear => _getter.weekOfYear(dateTime, _locale);
+  int get weekOfYear => _getter.weekOfYear(_dateTime, _locale);
 
   /// Returns the month of the year ranging from 1 to 12.
-  int get month => _getter.month(dateTime);
+  int get month => _getter.month(_dateTime);
 
   /// Returns the quarter on the year ranging from 1 to 4.
-  int get quarter => _getter.quarterOfYear(dateTime);
+  int get quarter => _getter.quarterOfYear(_dateTime);
 
   /// Returns the year.
-  int get year => _getter.year(dateTime);
+  int get year => _getter.year(_dateTime);
 
   /// Adds the provided [duration] to the current [Jiffy] instance's date
   /// and time, and returns a new [Jiffy] instance with the updated value.
@@ -433,8 +432,8 @@ class Jiffy {
   /// // output: 'October 3, 1997'
   /// ```
   Jiffy addDuration(Duration duration) {
-    final dateTime = _manipulator.addDuration(this.dateTime, duration);
-    return _clone(dateTime);
+    final newDateTime = _manipulator.addDuration(_dateTime, duration);
+    return _clone(newDateTime);
   }
 
   /// Adds date and time to the current [Jiffy] instance and returns a
@@ -467,9 +466,9 @@ class Jiffy {
     int months = 0,
     int years = 0,
   }) {
-    final dateTime = _manipulator.add(this.dateTime, microseconds, milliseconds,
+    final newDateTime = _manipulator.add(_dateTime, microseconds, milliseconds,
         seconds, minutes, hours, days, weeks, months, years);
-    return _clone(dateTime);
+    return _clone(newDateTime);
   }
 
   /// Subtracts the provided [duration] from the current [Jiffy] instance's
@@ -484,8 +483,8 @@ class Jiffy {
   /// // output: 'September 13, 1997'
   /// ```
   Jiffy subtractDuration(Duration duration) {
-    final dateTime = _manipulator.subtractDuration(this.dateTime, duration);
-    return _clone(dateTime);
+    final newDateTime = _manipulator.subtractDuration(_dateTime, duration);
+    return _clone(newDateTime);
   }
 
   /// Subtracts the date and time from the current [Jiffy] instance and
@@ -518,9 +517,9 @@ class Jiffy {
     int months = 0,
     int years = 0,
   }) {
-    final dateTime = _manipulator.subtract(this.dateTime, microseconds,
+    final newDateTime = _manipulator.subtract(_dateTime, microseconds,
         milliseconds, seconds, minutes, hours, days, weeks, months, years);
-    return _clone(dateTime);
+    return _clone(newDateTime);
   }
 
   /// Returns a new [Jiffy] instance representing the start of the specified
@@ -540,9 +539,9 @@ class Jiffy {
   /// // output: '1997-09-23 00:00:00'
   /// ```
   Jiffy startOf(Unit unit) {
-    final dateTime =
-        _manipulator.startOf(this.dateTime, unit, _locale.startOfWeek);
-    return _clone(dateTime);
+    final newDateTime =
+        _manipulator.startOf(_dateTime, unit, _locale.startOfWeek);
+    return _clone(newDateTime);
   }
 
   /// Returns a new [Jiffy] instance representing the end of the specified
@@ -562,9 +561,9 @@ class Jiffy {
   /// // output: '1997-09-23 23:59:59'
   /// ```
   Jiffy endOf(Unit unit) {
-    final dateTime =
-        _manipulator.endOf(this.dateTime, unit, _locale.startOfWeek);
-    return _clone(dateTime);
+    final newDateTime =
+        _manipulator.endOf(_dateTime, unit, _locale.startOfWeek);
+    return _clone(newDateTime);
   }
 
   /// Returns a new instance of [Jiffy] with the same date and time in
@@ -574,10 +573,9 @@ class Jiffy {
   /// will be converted to local time zone. Otherwise, the current instance
   /// will be returned as is.
   Jiffy toLocal() {
-    final dateTime = Query.isUtc(this.dateTime)
-        ? _manipulator.toLocal(this.dateTime)
-        : this.dateTime;
-    return _clone(dateTime);
+    final newDateTime =
+        Query.isUtc(_dateTime) ? _manipulator.toLocal(_dateTime) : _dateTime;
+    return _clone(newDateTime);
   }
 
   /// Returns a new instance of [Jiffy] with the same date and time in
@@ -587,10 +585,9 @@ class Jiffy {
   /// will be converted to UTC time zone. Otherwise, the current instance
   /// will be returned as is.
   Jiffy toUtc() {
-    final dateTime = Query.isUtc(this.dateTime)
-        ? this.dateTime
-        : _manipulator.toUtc(this.dateTime);
-    return _clone(dateTime);
+    final newDateTime =
+        Query.isUtc(_dateTime) ? _dateTime : _manipulator.toUtc(_dateTime);
+    return _clone(newDateTime);
   }
 
   /// Returns the formatted date and time string based on the provided
@@ -614,130 +611,130 @@ class Jiffy {
   /// ```
   String format({String? pattern}) {
     return pattern == null
-        ? _display.formatToISO8601(dateTime)
-        : _display.format(dateTime, pattern, _locale);
+        ? _display.formatToISO8601(_dateTime)
+        : _display.format(_dateTime, pattern, _locale);
   }
 
   /// Returns the abbreviated weekday. Example: `Tue`
-  String get E => _defaultDisplay.E(dateTime);
+  String get E => _defaultDisplay.E(_dateTime);
 
   /// Returns the weekday. Example: `Tuesday`
   // ignore: non_constant_identifier_names
-  String get EEEE => _defaultDisplay.EEEE(dateTime);
+  String get EEEE => _defaultDisplay.EEEE(_dateTime);
 
   /// Returns the day of month and date. Example: `9/23`
   // ignore: non_constant_identifier_names
-  String get Md => _defaultDisplay.Md(dateTime);
+  String get Md => _defaultDisplay.Md(_dateTime);
 
   /// Returns the day of month, abbreviated weekday and date.
   /// Example: `Tue, 9/23`
   // ignore: non_constant_identifier_names
-  String get MEd => _defaultDisplay.MEd(dateTime);
+  String get MEd => _defaultDisplay.MEd(_dateTime);
 
   /// Returns the abbreviated month. Example: `Sep`
   // ignore: non_constant_identifier_names
-  String get MMM => _defaultDisplay.MMM(dateTime);
+  String get MMM => _defaultDisplay.MMM(_dateTime);
 
   /// Returns the abbreviated month and date. Example: `Sep 23`
   // ignore: non_constant_identifier_names
-  String get MMMd => _defaultDisplay.MMMd(dateTime);
+  String get MMMd => _defaultDisplay.MMMd(_dateTime);
 
   /// Returns the abbreviated month, abbreviated weekday and date.
   /// Example: `Tue, Sep 23`
   // ignore: non_constant_identifier_names
-  String get MMMEd => _defaultDisplay.MMMEd(dateTime);
+  String get MMMEd => _defaultDisplay.MMMEd(_dateTime);
 
   /// Returns the month. Example: `September`
   // ignore: non_constant_identifier_names
-  String get MMMM => _defaultDisplay.MMMM(dateTime);
+  String get MMMM => _defaultDisplay.MMMM(_dateTime);
 
   /// Returns the month and date. Example: `September 23`
   // ignore: non_constant_identifier_names
-  String get MMMMd => _defaultDisplay.MMMMd(dateTime);
+  String get MMMMd => _defaultDisplay.MMMMd(_dateTime);
 
   /// Returns the month, weekday and date. Example: `Tuesday, September 23`
   // ignore: non_constant_identifier_names
-  String get MMMMEEEEd => _defaultDisplay.MMMMEEEEd(dateTime);
+  String get MMMMEEEEd => _defaultDisplay.MMMMEEEEd(_dateTime);
 
   /// Returns the abbreviated quarter. Example: `Q3`
   // ignore: non_constant_identifier_names
-  String get QQQ => _defaultDisplay.QQQ(dateTime);
+  String get QQQ => _defaultDisplay.QQQ(_dateTime);
 
   /// Returns the quarter. Example: `3rd quarter`
   // ignore: non_constant_identifier_names
-  String get QQQQ => _defaultDisplay.QQQQ(dateTime);
+  String get QQQQ => _defaultDisplay.QQQQ(_dateTime);
 
   /// Returns the year and day of month. Example: `9/1997`
-  String get yM => _defaultDisplay.yM(dateTime);
+  String get yM => _defaultDisplay.yM(_dateTime);
 
   /// Returns the year, of month and date. Example: `9/23/1997`
-  String get yMd => _defaultDisplay.yMd(dateTime);
+  String get yMd => _defaultDisplay.yMd(_dateTime);
 
   /// Returns the year, of month, abbreviated weekday and date.
   /// Example: `Tue, 9/23/1997`
-  String get yMEd => _defaultDisplay.yMEd(dateTime);
+  String get yMEd => _defaultDisplay.yMEd(_dateTime);
 
   /// Returns the year and abbreviated month. Example: `Sep 1997`
-  String get yMMM => _defaultDisplay.yMMM(dateTime);
+  String get yMMM => _defaultDisplay.yMMM(_dateTime);
 
   /// Returns the year and abbreviated month. Example: `Sep 23, 1997`
-  String get yMMMd => _defaultDisplay.yMMMd(dateTime);
+  String get yMMMd => _defaultDisplay.yMMMd(_dateTime);
 
   /// Returns the year, abbreviated month, date, hour and minute.
   /// Example: `Sep 23, 1997 12:11 PM`
-  String get yMMMdjm => _defaultDisplay.yMMMdjm(dateTime);
+  String get yMMMdjm => _defaultDisplay.yMMMdjm(_dateTime);
 
   /// Returns the year, abbreviated month, abbreviated weekday and date.
   /// Example: `Tue, Sep 23, 1997`
-  String get yMMMEd => _defaultDisplay.yMMMEd(dateTime);
+  String get yMMMEd => _defaultDisplay.yMMMEd(_dateTime);
 
   /// Returns the year, abbreviated month, abbreviated weekday, date, hour
   /// and minute. Example: `Tue, Sep 23, 1997 12:11 PM`
-  String get yMMMEdjm => _defaultDisplay.yMMMEdjm(dateTime);
+  String get yMMMEdjm => _defaultDisplay.yMMMEdjm(_dateTime);
 
   /// Returns the year and month. Example: `September 1997`
-  String get yMMMM => _defaultDisplay.yMMMM(dateTime);
+  String get yMMMM => _defaultDisplay.yMMMM(_dateTime);
 
   /// Returns the year, month and date. Example: `September 23, 1997`
-  String get yMMMMd => _defaultDisplay.yMMMMd(dateTime);
+  String get yMMMMd => _defaultDisplay.yMMMMd(_dateTime);
 
   /// Returns the year, month, date, hour and minute.
   /// Example: `September 23, 1997 12:11 PM`
-  String get yMMMMdjm => _defaultDisplay.yMMMMdjm(dateTime);
+  String get yMMMMdjm => _defaultDisplay.yMMMMdjm(_dateTime);
 
   /// Returns the year, month, weekday and date.
   /// Example: `Tuesday, September 23, 1997`
-  String get yMMMMEEEEd => _defaultDisplay.yMMMMEEEEd(dateTime);
+  String get yMMMMEEEEd => _defaultDisplay.yMMMMEEEEd(_dateTime);
 
   /// Returns the year, month, weekday, date, hour and minute.
   /// Example: `Tuesday, September 23, 1997 12:11 PM`
-  String get yMMMMEEEEdjm => _defaultDisplay.yMMMMEEEEdjm(dateTime);
+  String get yMMMMEEEEdjm => _defaultDisplay.yMMMMEEEEdjm(_dateTime);
 
   /// Returns the year and abbreviated quarter. Example: `Q3 1997`
-  String get yQQQ => _defaultDisplay.yQQQ(dateTime);
+  String get yQQQ => _defaultDisplay.yQQQ(_dateTime);
 
   /// Returns the year and quarter. Example: `3rd quarter 1997`
-  String get yQQQQ => _defaultDisplay.yQQQQ(dateTime);
+  String get yQQQQ => _defaultDisplay.yQQQQ(_dateTime);
 
   /// Returns 24 hour and minute. Example: `12`
-  String get H => _defaultDisplay.H(dateTime);
+  String get H => _defaultDisplay.H(_dateTime);
 
   /// Returns 24 hour and minute. Example: `12:11`
   // ignore: non_constant_identifier_names
-  String get Hm => _defaultDisplay.Hm(dateTime);
+  String get Hm => _defaultDisplay.Hm(_dateTime);
 
   /// Returns 24 hour, minute and second. Example: `12:11:22`
   // ignore: non_constant_identifier_names
-  String get Hms => _defaultDisplay.Hms(dateTime);
+  String get Hms => _defaultDisplay.Hms(_dateTime);
 
   /// Returns 12 hour. Example: `12 PM`
-  String get j => _defaultDisplay.j(dateTime);
+  String get j => _defaultDisplay.j(_dateTime);
 
   /// Returns 12 hour and minute. Example: `12:11 PM`
-  String get jm => _defaultDisplay.jm(dateTime);
+  String get jm => _defaultDisplay.jm(_dateTime);
 
   /// Returns 12 hour, minute and seconds. Example: `12:11:22 PM`
-  String get jms => _defaultDisplay.jms(dateTime);
+  String get jms => _defaultDisplay.jms(_dateTime);
 
   /// Returns a string representation of current [Jiffy]'s instance relative
   /// from [jiffy]'s date and time, with optional [withPrefixAndSuffix] flag
@@ -766,7 +763,7 @@ class Jiffy {
   /// the relative time difference string will be returned.
   String from(Jiffy jiffy, {bool withPrefixAndSuffix = true}) {
     return _display.fromAsRelativeDateTime(
-        dateTime, jiffy.dateTime, _locale, withPrefixAndSuffix);
+        _dateTime, jiffy._dateTime, _locale, withPrefixAndSuffix);
   }
 
   /// Returns a string representation of current [Jiffy]'s instance relative
@@ -822,7 +819,7 @@ class Jiffy {
   /// the relative time difference string will be returned.
   String to(Jiffy jiffy, {bool withPrefixAndSuffix = true}) {
     return _display.toAsRelativeDateTime(
-        dateTime, jiffy.dateTime, _locale, withPrefixAndSuffix);
+        _dateTime, jiffy._dateTime, _locale, withPrefixAndSuffix);
   }
 
   /// Returns a string representation of current [Jiffy]'s instance relative
@@ -873,7 +870,7 @@ class Jiffy {
   /// // output: Difference in days: 14
   /// ```
   num diff(Jiffy jiffy, {Unit unit = Unit.microsecond, bool asFloat = false}) {
-    return _display.diff(dateTime, jiffy.dateTime, unit, asFloat);
+    return _display.diff(_dateTime, jiffy._dateTime, unit, asFloat);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -882,7 +879,8 @@ class Jiffy {
   /// The [unit] parameter specifies the unit of measurement to use when
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isBefore(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
-    return _query.isBefore(dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
+    return _query.isBefore(
+        _dateTime, jiffy._dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -891,7 +889,8 @@ class Jiffy {
   /// The [unit] parameter specifies the unit of measurement to use when
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isAfter(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
-    return _query.isAfter(dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
+    return _query.isAfter(
+        _dateTime, jiffy._dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -900,7 +899,7 @@ class Jiffy {
   /// The [unit] parameter specifies the unit of measurement to use when
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isSame(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
-    return _query.isSame(dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
+    return _query.isSame(_dateTime, jiffy._dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -910,7 +909,7 @@ class Jiffy {
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isSameOrBefore(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSameOrBefore(
-        dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
+        _dateTime, jiffy._dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -920,7 +919,7 @@ class Jiffy {
   /// comparing the two instances. The default value is [Unit.microsecond].
   bool isSameOrAfter(Jiffy jiffy, {Unit unit = Unit.microsecond}) {
     return _query.isSameOrAfter(
-        dateTime, jiffy.dateTime, unit, _locale.startOfWeek);
+        _dateTime, jiffy._dateTime, unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance is
@@ -930,13 +929,13 @@ class Jiffy {
   /// comparing the three instances. The default value is [Unit.microsecond].
   bool isBetween(Jiffy jiffyFrom, Jiffy jiffyTo,
       {Unit unit = Unit.microsecond}) {
-    return _query.isBetween(dateTime, jiffyFrom.dateTime, jiffyTo.dateTime,
+    return _query.isBetween(_dateTime, jiffyFrom._dateTime, jiffyTo._dateTime,
         unit, _locale.startOfWeek);
   }
 
   /// Returns a boolean value indicating whether this [Jiffy] instance
   /// represents a UTC date and time.
-  bool get isUtc => Query.isUtc(dateTime);
+  bool get isUtc => Query.isUtc(_dateTime);
 
   /// Returns a boolean value indicating whether this [Jiffy] instance
   /// represents a local date and time.
@@ -944,16 +943,16 @@ class Jiffy {
 
   /// Returns a boolean value indicating whether the [Jiffy] instance
   /// provided falls on a leap year.
-  bool get isLeapYear => Query.isLeapYear(dateTime.year);
+  bool get isLeapYear => Query.isLeapYear(_dateTime.year);
 
   @override
   bool operator ==(Object other) {
-    if (other is Jiffy) return dateTime == other.dateTime;
+    if (other is Jiffy) return _dateTime == other._dateTime;
     return false;
   }
 
   @override
-  int get hashCode => dateTime.hashCode;
+  int get hashCode => _dateTime.hashCode;
 
   @override
   String toString() => _display.formatToISO8601(_dateTime);
