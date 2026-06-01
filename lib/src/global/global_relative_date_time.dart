@@ -1,5 +1,6 @@
 import '../utils/verify_locale.dart';
 import '../locale/relative_date_time.dart';
+import '../locale/new_locale_relative_time.dart';
 
 Map<String, RelativeDateTime> _relativeDateTime = {
   'en': EnRelativeDateTime(),
@@ -30,6 +31,45 @@ Map<String, RelativeDateTime> _relativeDateTime = {
   'th': ThRelativeDateTime(),
   'sk': SkRelativeDateTime(),
   'cs': CsRelativeDateTime(),
+  'or': OrRelativeDateTime(),
+  'pa': PaRelativeDateTime(),
+  'mr': MrRelativeDateTime(),
+  'si': SiRelativeDateTime(),
+  'jv': JvRelativeDateTime(),
+  'ms': MsRelativeDateTime(),
+  'sw': SwRelativeDateTime(),
+  'ta': TaRelativeDateTime(),
+  'te': TeRelativeDateTime(),
+  'kn': KnRelativeDateTime(),
+  'ml': MlRelativeDateTime(),
+  'vi': ViRelativeDateTime(),
+  'yo': YoRelativeDateTime(),
+  'ur': UrRelativeDateTime(),
+  'gu': GuRelativeDateTime(),
+  'ro': RoRelativeDateTime(),
+  'uz': UzRelativeDateTime(),
+  'am': AmRelativeDateTime(),
+  'ha': HaRelativeDateTime(),
+  'ig': IgRelativeDateTime(),
+  'sn': SnRelativeDateTime(),
+  'kk': KkRelativeDateTime(),
+  'el': ElRelativeDateTime(),
+  'tl': TlRelativeDateTime(),
+  'he': HeRelativeDateTime(),
+  'rw': RwRelativeDateTime(),
+  'no': NbRelativeDateTime(),
+  'fi': FiRelativeDateTime(),
+  'da': DaRelativeDateTime(),
+  'lt': LtRelativeDateTime(),
+  'sl': SlRelativeDateTime(),
+  'hr': HrRelativeDateTime(),
+  'ca': CaRelativeDateTime(),
+  'sr': SrRelativeDateTime(),
+  'bg': BgRelativeDateTime(),
+  'ka': KaRelativeDateTime(),
+  'et': EtRelativeDateTime(),
+  'eu': EuRelativeDateTime(),
+  'gl': GlRelativeDateTime(),
 };
 
 RelativeDateTime? _defaultRelativeDateTime;
