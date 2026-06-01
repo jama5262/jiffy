@@ -3,12 +3,12 @@
 [![Continuous Integration](https://github.com/jama5262/jiffy/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/jama5262/jiffy/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub.dev-v6.4.4-blue)](https://pub.dev/packages/jiffy/versions/6.4.4)
+[![Pub Version](https://img.shields.io/badge/pub.dev-v6.4.5-blue)](https://pub.dev/packages/jiffy/versions/6.4.5)
 ![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)
 
 Jiffy is a Flutter (Android, IOS and Web) date time package for parsing, manipulating, querying and formatting dates and time
 
-### [Full Documentation](https://github.com/jama5262/jiffy/tree/v6.4.4/doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy/install) | [ChangeLog](https://pub.dev/packages/jiffy/changelog) | [Examples](https://pub.dev/packages/jiffy/example)
+### [Full Documentation](https://github.com/jama5262/jiffy/tree/v6.4.5/doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy/install) | [ChangeLog](https://pub.dev/packages/jiffy/changelog) | [Examples](https://pub.dev/packages/jiffy/example)
 
 ### [Discussions](https://github.com/jama5262/jiffy/discussions)
 
@@ -16,7 +16,7 @@ Jiffy is a Flutter (Android, IOS and Web) date time package for parsing, manipul
 
 ## Format Dates
 ```dart
-Jiffy.parse('2021/01/19').format(pattern: 'MMMM do yyyy, h:mm:ss a'); // January 1st 2021, 12:00:00 AM
+Jiffy.parse('2021/01/19').format(pattern: 'MMMM do yyyy, h:mm:ss a'); // January 19th 2021, 12:00:00 AM
 Jiffy.now().format(pattern: 'EEEE'); // Tuesday
 Jiffy.now().format(pattern: 'MMM do yy'); // Mar 2nd 21
 Jiffy.now().format(pattern: 'yyyy [escaped] yyyy'); // 2021 escaped 2021
@@ -55,7 +55,7 @@ Jiffy.parse('1997/09/23').toNow(); // in 25 years
 var jiffy = Jiffy.now().add(days: 1);
 jiffy.yMMMMd; // March 3, 2021
 
-Jiffy.now().subtract(days: 1).yMMMMd; // March 1, 2021
+Jiffy.now().subtract(days: 1).yMMMMd; // March 2, 2021
 
 Jiffy.now()
   .add(hours: 3, days: 1)

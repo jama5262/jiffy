@@ -1,6 +1,16 @@
 # 6.4.4
 
 ## What's Changed
+* perf: cache locale & DateFormat lookups by @xsahil03x in https://github.com/jama5262/jiffy/pull/332
+
+## New Contributors
+* @xsahil03x made their first contribution in https://github.com/jama5262/jiffy/pull/332
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.4...v6.4.5
+
+# 6.4.4
+
+## What's Changed
 * Bump lints from 5.1.1 to 6.0.0 by @dependabot[bot] in https://github.com/jama5262/jiffy/pull/320
 * Fix date format in README example by @michaelnjuguna in https://github.com/jama5262/jiffy/pull/328
 * [JIFFY-329] - Export JIffy exception by @jama5262 in https://github.com/jama5262/jiffy/pull/330
