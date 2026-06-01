@@ -2,7 +2,6 @@ import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/getter.dart';
 import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/parser.dart';
-import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
 
 final getter = Getter();

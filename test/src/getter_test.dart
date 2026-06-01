@@ -163,8 +163,7 @@ void main() {
     for (var testData in dayOfYearTestData()) {
       test('Should successfully get day of year', () {
         // Execute
-        final actualDayOfYear =
-            underTest.dayOfYear(testData['dateTime'], locale);
+        final actualDayOfYear = underTest.dayOfYear(testData['dateTime']);
 
         // Verify
         expect(actualDayOfYear, testData['expectedDayOfYear']);
@@ -175,16 +174,9 @@ void main() {
         () async {
       // Setup
       await Jiffy.setLocale('bn');
-      final jiffy = Jiffy.now();
-      final newLocale = Locale(
-          code: jiffy.localeCode,
-          ordinals: jiffy.ordinals,
-          startOfWeek: jiffy.startOfWeek,
-          relativeDateTime: jiffy.relativeDateTime);
 
       // Execute
-      final actualDayOfYear =
-          underTest.dayOfYear(DateTime(1997, 9, 23), newLocale);
+      final actualDayOfYear = underTest.dayOfYear(DateTime(1997, 9, 23));
 
       // Verify
       expect(actualDayOfYear, 266);
@@ -214,7 +206,7 @@ void main() {
       test('Should successfully get quarter of year', () {
         // Execute
         final actualQuarterOfYear =
-            underTest.quarterOfYear(testData['dateTime'], locale);
+            underTest.quarterOfYear(testData['dateTime']);
 
         // Verify
         expect(actualQuarterOfYear, testData['expectedQuarterOfYear']);
@@ -225,19 +217,12 @@ void main() {
         () async {
       // Setup
       await Jiffy.setLocale('bn');
-      final jiffy = Jiffy.now();
-      final newLocale = Locale(
-          code: jiffy.localeCode,
-          ordinals: jiffy.ordinals,
-          startOfWeek: jiffy.startOfWeek,
-          relativeDateTime: jiffy.relativeDateTime);
 
       // Execute
-      final actualDayOfYear =
-          underTest.quarterOfYear(DateTime(2022, 4, 1), newLocale);
+      final actualQuarter = underTest.quarterOfYear(DateTime(2022, 4, 1));
 
       // Verify
-      expect(actualDayOfYear, 2);
+      expect(actualQuarter, 2);
     });
   });
 
